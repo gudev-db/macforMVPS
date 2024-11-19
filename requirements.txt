@@ -4,6 +4,7 @@ sqlite3==3.45.1  # Ensure SQLite version is >= 3.35.0
 crewai==0.76.9
 langchain-openai==0.2.4
 python-dotenv==1.0.1
+pydantic>=1.9,<2.0
 attrs==24.2.0
 auth0-python==4.7.2
 backoff==2.2.1
