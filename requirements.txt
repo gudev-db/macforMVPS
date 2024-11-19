@@ -2,3 +2,5 @@ streamlit==1.39.0
 crewai==0.76.9
 langchain-openai==0.2.4
 python-dotenv==1.0.1
+chroma-hnswlib==0.7.3
+chromadb==0.4.24
