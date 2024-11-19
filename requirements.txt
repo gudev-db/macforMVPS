@@ -1,4 +1,5 @@
 streamlit==1.39.0
+sqlite3 >= 3.35.0
 chroma-hnswlib==0.7.3
 chromadb==0.4.24
 crewai==0.76.9
