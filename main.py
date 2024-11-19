@@ -201,7 +201,7 @@ if login():
                     tasks=tarefas,
                     process=Process.hierarchical,
                     manager_llm=modelo_linguagem,
-                    verbose=True,
+                    # verbose=True,
                     language='português brasileiro'
                 )
 
