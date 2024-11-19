@@ -2,10 +2,8 @@ streamlit==1.39.0
 chromadb==0.4.7  # Or specify the exact version you're using for Chroma
 sqlite3==3.45.1  # Ensure SQLite version is >= 3.35.0
 crewai==0.76.9
-langchain-openai==0.2.4
 python-dotenv==1.0.1
 pydantic>=1.9,<2.0
-starlette==0.41.2
 pydantic-settings==2.6.0
 pydantic_core==2.23.4
 numpy==1.26.4
