@@ -1,6 +1,7 @@
 streamlit==1.39.0
-sqlite3 >= 3.35.0
-chroma-hnswlib==0.7.3
+chromadb==0.4.7  # Or specify the exact version you're using for Chroma
+sqlite3==3.35.0  # Ensure SQLite version is >= 3.35.0
+
 chromadb==0.4.24
 crewai==0.76.9
 langchain-openai==0.2.4
