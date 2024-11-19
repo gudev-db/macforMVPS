@@ -11,7 +11,7 @@ from crewai_tools import FileReadTool, WebsiteSearchTool
 import os
 
 # Configuração do ambiente da API
-api_key = os.getenv["OPENAI_API_KEY"]
+api_key = os.getenv("OPENAI_API_KEY")
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
