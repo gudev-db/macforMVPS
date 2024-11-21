@@ -87,57 +87,57 @@ if login():
                     agentes = [
                     Agent(
                         role="Líder e revisor geral de estratégia",
-                        goal=f"Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.",
-                        backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao}.",
+                        goal=f"Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca} em português brasileiro.",
+                        backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Analista PEST",
-                        goal=f"Realizar a análise PEST para o cliente {nome_cliente}.",
-                        backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente}.",
+                        goal=f"Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
+                        backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador do posicionamento de marca",
-                        goal=f"Criar o posicionamento de marca adequado para {nome_cliente}, considerando o público-alvo {publico_alvo}, o {objetivos_de_marca} a análise SWOT, e o Golden Circle e a referencia de marca: {referencia_da_marca}.",
-                        backstory="Você é Al Ries, responsável por desenvolver o posicionamento de marca.",
+                        goal=f"Criar o posicionamento de marca adequado para {nome_cliente}, considerando o público-alvo {publico_alvo}, o {objetivos_de_marca} a análise SWOT, e o Golden Circle e a referencia de marca: {referencia_da_marca} em português brasileiro.",
+                        backstory="Você é Al Ries, responsável por desenvolver o posicionamento de marca em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador do Golden Circle",
-                        goal=f"Desenvolver o Golden Circle para {nome_cliente}, considerando o público-alvo '{publico_alvo}', SWOT, {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}.", 
-                        backstory="Você é Simon Sinek, desenvolvendo o Golden Circle.",
+                        goal=f"Desenvolver o Golden Circle para {nome_cliente}, considerando o público-alvo '{publico_alvo}', SWOT, {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.", 
+                        backstory="Você é Simon Sinek, desenvolvendo o Golden Circle em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador da Brand Persona",
-                        goal=f"Definir a Brand Persona com nome real (como bruna, fernanda, etc) de {nome_cliente}, garantindo consistência na comunicação e levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}.",
-                        backstory="Você é Marty Neumeier, criando a Brand Persona.",
+                        goal=f"Definir a Brand Persona com nome real (como bruna, fernanda, etc) de {nome_cliente}, garantindo consistência na comunicação e levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.",
+                        backstory="Você é Marty Neumeier, criando a Brand Persona em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador da Buyer Persona e Público-Alvo",
-                        goal=f"Definir a buyer persona com nome real (como bruna, fernanda, etc) e o público-alvo de {nome_cliente} levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}, os {concorrentes} o posicionamento de marca e o golden circle.",
-                        backstory="Você é Adele Revella, conduzindo a criação da buyer persona.",
+                        goal=f"Definir a buyer persona com nome real (como bruna, fernanda, etc) e o público-alvo de {nome_cliente} levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}, os {concorrentes} o posicionamento de marca e o golden circle em português brasileiro.",
+                        backstory="Você é Adele Revella, conduzindo a criação da buyer persona em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador da Matriz SWOT",
-                        goal=f"Desenvolver uma análise SWOT para {nome_cliente} considerando os concorrentes '{concorrentes}, o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}.", 
-                        backstory="Você é Michael Porter, desenvolvendo a análise SWOT.",
+                        goal=f"Desenvolver uma análise SWOT para {nome_cliente} considerando os concorrentes '{concorrentes}, o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.", 
+                        backstory="Você é Michael Porter, desenvolvendo a análise SWOT em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador do Tom de Voz",
-                        goal=f"Definir o tom de voz de {nome_cliente}.",
-                        backstory="Você é Ann Handley, desenvolvendo a voz da marca o objetivo de marca: {objetivo de marca} e a referencia de marca: {referencia_de_marca} o posicionamento, brand persona e golden circle.",
+                        goal=f"Definir o tom de voz de {nome_cliente} em português brasileiro.",
+                        backstory="Você é Ann Handley, desenvolvendo a voz da marca o objetivo de marca: {objetivo de marca} e a referencia de marca: {referencia_de_marca} o posicionamento, brand persona e golden circle em português brasileiro.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     )
