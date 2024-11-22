@@ -25,6 +25,7 @@ def limpar_estado():
 
 
 # Função de login
+file_tool = FileReadTool()
 def login():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
@@ -65,7 +66,11 @@ if login():
         site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
         objetivos_de_marca = st.text_input('Objetivos de marca', key="objetivos_marca", placeholder="Ex: Ser líder no mercado de moda online")
         referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key = "referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
-    
+        
+        st.subheader("Suba os Arquivos Estratégicos de atualidades para a análise PEST (CSV, PDF ou DOCX)")
+        pest_files = st.file_uploader("Escolha arquivos", type=["csv", "pdf", "docx"], accept_multiple_files=True)
+
+    if uploaded_file is not None:
       
 
         # Se o relatório já foi gerado, exiba os resultados
@@ -97,9 +102,10 @@ if login():
                     Agent(
                         role="Analista PEST",
                         goal=f"Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                        backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro.",
+                        backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST.",
                         allow_delegation=False,
-                        llm=modelo_linguagem
+                        llm=modelo_linguagem,
+                        tools = file_tool
                     ),
                     Agent(
                         role="Criador do posicionamento de marca",
@@ -186,7 +192,7 @@ if login():
                     ),
                     Task(
                         description="Análise PEST.",
-                        expected_output="Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro.",
+                        expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro. o arquivo {pest_files} possui informações sobre atualidades da realidade em que o {nome_do_cliente} está inserido.",
                         agent=agentes[1],
                         output_file = 'pest.md'
                     ),
