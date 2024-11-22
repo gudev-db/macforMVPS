@@ -24,7 +24,6 @@ def limpar_estado():
         del st.session_state[key]
 
 from crewai_tools import BaseTool, tool
-import fitz  # PyMuPDF
 
 @tool("PDFSearchTool")
 def pdf_search_tool(pdf_file: str, search_term: str) -> str:
@@ -37,7 +36,7 @@ def pdf_search_tool(pdf_file: str, search_term: str) -> str:
     """
     # Open the uploaded PDF
     try:
-        document = fitz.open(pdf_file)  # Open the PDF file
+        document = (pdf_file)  # Open the PDF file
         
         found_text = []
         
