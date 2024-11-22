@@ -51,15 +51,15 @@ def login():
     return False
 
          # Inputs do cliente com exemplos
-        nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente")
-        site_cliente = st.text_input('Site do Cliente:', key="site_cliente")
-        ramo_atuacao = st.text_input('Ramo de Atuação:', key="ramo_atuacao")
-        intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano")
-        publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo")
-        concorrentes = st.text_input('Concorrentes:', key="concorrentes")
-        site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes")
-        objetivos_de_marca = st.text_input('Objetivos de marca', key="objetivos_marca")
-        referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key = "referencias_marca")
+    nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente")
+    site_cliente = st.text_input('Site do Cliente:', key="site_cliente")
+    ramo_atuacao = st.text_input('Ramo de Atuação:', key="ramo_atuacao")
+    intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano")
+    publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo")
+    concorrentes = st.text_input('Concorrentes:', key="concorrentes")
+    site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes")
+    objetivos_de_marca = st.text_input('Objetivos de marca', key="objetivos_marca")
+    referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key = "referencias_marca")
 
         # Se o relatório já foi gerado, exiba os resultados
         if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
