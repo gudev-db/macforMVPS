@@ -72,7 +72,7 @@ if login():
         st.subheader("Suba os Arquivos Estratégicos de atualidades para a análise PEST (CSV, PDF ou DOCX)")
         pest_files = st.file_uploader("Escolha arquivos", type=["csv", "pdf", "docx"], accept_multiple_files=True)
 
-        if uploaded_file is not None:
+        if pest_files is not None:
       
 
             # Se o relatório já foi gerado, exiba os resultados
