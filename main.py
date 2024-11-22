@@ -23,6 +23,40 @@ def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
+from crewai_tools import BaseTool, tool
+import fitz  # PyMuPDF
+
+@tool("PDFSearchTool")
+def pdf_search_tool(pdf_file: str, search_term: str) -> str:
+    """
+    Tool for searching for a term in an uploaded PDF document.
+    - pdf_file: The path to the uploaded PDF file.
+    - search_term: The term to search for within the PDF.
+    
+    Returns a string with search results or a message indicating no results.
+    """
+    # Open the uploaded PDF
+    try:
+        document = fitz.open(pdf_file)  # Open the PDF file
+        
+        found_text = []
+        
+        # Loop through each page of the PDF
+        for page_num in range(document.page_count):
+            page = document.load_page(page_num)  # Load each page
+            text = page.get_text()  # Extract text from the page
+            
+            # If the search term is found on the page, add it to the results
+            if search_term.lower() in text.lower():
+                found_text.append(f"Page {page_num + 1}: {text[:200]}...")  # Preview of the first 200 characters
+        
+        if found_text:
+            return "\n".join(found_text)  # Return all matching pages
+        else:
+            return f"No occurrences of '{search_term}' found in the document."
+    
+    except Exception as e:
+        return f"An error occurred while processing the PDF: {str(e)}"
 
 # Função de login
 file_tool = PDFSearchTool()
@@ -107,7 +141,7 @@ if login():
                             backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST.",
                             allow_delegation=False,
                             llm=modelo_linguagem,
-                            tools = [file_tool]
+                            tools = [PDFSearchTool]
                         ),
                         Agent(
                             role="Criador do posicionamento de marca",
