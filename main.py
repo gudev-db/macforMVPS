@@ -106,8 +106,7 @@ if login():
                     else:
                         return f"No occurrences of '{search_term}' found in the document."
                 
-                except Exception as e:
-                    return f"An error occurred while processing the PDF: {str(e)}"
+                
 
         if pest_files is not None:
       
