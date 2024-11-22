@@ -194,7 +194,7 @@ if login():
                         ),
                         Task(
                             description="Análise PEST.",
-                            expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro. o arquivo {pest_files} possui informações sobre atualidades da realidade em que o {nome_do_cliente} está inserido.",
+                            expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro.",
                             agent=agentes[1],
                             output_file = 'pest.md'
                         ),
