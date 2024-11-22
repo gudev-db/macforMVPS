@@ -104,7 +104,7 @@ if login():
                     if found_text:
                         return "\n".join(found_text)  # Return all matching pages
                     else:
-                    return f"No occurrences of '{search_term}' found in the document."
+                        return f"No occurrences of '{search_term}' found in the document."
             
         except Exception as e:
             return f"An error occurred while processing the PDF: {str(e)}"
