@@ -107,7 +107,7 @@ if login():
                             backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST.",
                             allow_delegation=False,
                             llm=modelo_linguagem,
-                            tools = file_tool
+                            tools = [file_tool]
                         ),
                         Agent(
                             role="Criador do posicionamento de marca",
