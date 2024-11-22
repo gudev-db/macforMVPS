@@ -103,8 +103,7 @@ if login():
                     
                     if found_text:
                         return "\n".join(found_text)  # Return all matching pages
-                    else:
-                        return f"No occurrences of '{search_term}' found in the document."
+                    
                 
                 
 
