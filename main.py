@@ -6,7 +6,7 @@ import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
-from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool
+from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 
 # Configuração do ambiente da API
@@ -54,7 +54,19 @@ def login():
             st.error("Usuário ou senha incorretos.")
             return False
     return False
-
+# Definindo as opções para o SelectBox
+objetivos_opcoes = [
+    'Aumentar vendas',
+    'Melhorar reconhecimento de marca',
+    'Expandir mercado',
+    'Aumentar engajamento nas redes sociais',
+    'Lançar novo produto',
+    'Melhorar a experiência do cliente',
+    'Aumentar tráfego para o site',
+    'Fortalecer a lealdade do cliente',
+    'Melhorar a presença online',
+    'Ser líder no mercado online'
+]
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
@@ -69,11 +81,57 @@ if login():
         publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
         concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
         site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
-        objetivos_de_marca = st.text_input('Objetivos de marca', key="objetivos_marca", placeholder="Ex: Ser líder no mercado de moda online")
+
+
+# Criando o selectbox com as opções definidas
+        objetivos_de_marca = st.selectbox(
+    'Selecione os objetivos de marca',
+    objetivos_opcoes,
+    key="objetivos_marca"
+)
         referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key = "referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
         
-        st.subheader("Suba os Arquivos Estratégicos de atualidades para a análise PEST (CSV, PDF ou DOCX)")
-        pest_files = st.file_uploader("Escolha arquivos", type=["csv", "pdf", "docx"], accept_multiple_files=True)
+        st.subheader("Suba os Arquivos Estratégicos (PDF)")
+        pest_files = st.file_uploader("Escolha arquivos", type=["pdf"], accept_multiple_files=True)
+        market_files = st.file_uploader("Escolha arquivos", type=["csv"], accept_multiple_files=True)
+
+
+
+        import csv
+
+        @tool("CSVSearchTool")
+        def csv_search_tool(market_files: list, search_term: str) -> str:
+            """
+            Tool for searching for a term in multiple uploaded CSV files.
+            - market_files: A list of paths to the uploaded CSV files.
+            - search_term: The term to search for within the CSV files.
+            
+            Returns a string with search results or a message indicating no results.
+            """
+            try:
+                # Inicializa uma lista para armazenar os resultados encontrados
+                found_text = []
+        
+                # Loop através de cada arquivo CSV em market_files
+                for csv_file in market_files:
+                    with open(csv_file, newline='', encoding='utf-8') as file:
+                        reader = csv.reader(file)
+                        
+                        # Loop através de cada linha no CSV
+                        for row_num, row in enumerate(reader):
+                            # Junta todas as células da linha em uma string única para busca
+                            row_text = ' '.join(row)
+                            
+                            if search_term.lower() in row_text.lower():  # Busca insensível a maiúsculas/minúsculas
+                                found_text.append(f"File: {csv_file} - Row {row_num + 1}: {row_text[:200]}...")  # Preview de 200 caracteres
+                
+                if found_text:
+                    return "\n".join(found_text)  # Retorna todas as linhas correspondentes
+                else:
+                    return f"No occurrences of '{search_term}' found in the documents."
+            
+            except Exception as e:
+                return f"An error occurred while processing the CSV files: {str(e)}"
 
         @tool("PDFSearchTool")
         def pdf_search_tool(pdf_file: str, search_term: str) -> str:
@@ -144,7 +202,7 @@ if login():
                         Agent(
                             role="Analista PEST",
                             goal=f"Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                            backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST.",
+                            backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também.",
                             allow_delegation=False,
                             llm=modelo_linguagem,
                             tools = [PDFSearchTool()]
@@ -154,14 +212,16 @@ if login():
                             goal=f"Criar o posicionamento de marca adequado para {nome_cliente}, considerando o público-alvo {publico_alvo}, o {objetivos_de_marca} a análise SWOT, e o Golden Circle e a referencia de marca: {referencia_da_marca} em português brasileiro.",
                             backstory="Você é Al Ries, responsável por desenvolver o posicionamento de marca em português brasileiro.",
                             allow_delegation=False,
-                            llm=modelo_linguagem
+                            llm=modelo_linguagem,
+                            tools = [PDFSearchTool(),CSVSearchTool()]
                         ),
                         Agent(
                             role="Criador do Golden Circle",
-                            goal=f"Desenvolver o Golden Circle para {nome_cliente}, considerando o público-alvo '{publico_alvo}', SWOT, {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.", 
+                            goal=f"Desenvolver o Golden Circle para {nome_cliente}, considerando o público-alvo '{publico_alvo}', SWOT, {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro. Extraia informações de {market_files} para ter mais repertório também.", 
                             backstory="Você é Simon Sinek, desenvolvendo o Golden Circle em português brasileiro.",
                             allow_delegation=False,
-                            llm=modelo_linguagem
+                            llm=modelo_linguagem,
+                            tools = [PDFSearchTool(),CSVSearchTool()]
                         ),
                         Agent(
                             role="Criador da Brand Persona",
@@ -179,17 +239,19 @@ if login():
                         ),
                         Agent(
                             role="Criador da Matriz SWOT",
-                            goal=f"Desenvolver uma análise SWOT para {nome_cliente} considerando os concorrentes '{concorrentes}, o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.", 
+                            goal=f"Desenvolver uma análise SWOT para {nome_cliente} considerando os concorrentes '{concorrentes}, o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro. Extraia informações de {market_files} para ter mais repertório também.", 
                             backstory="Você é Michael Porter, desenvolvendo a análise SWOT em português brasileiro.",
                             allow_delegation=False,
-                            llm=modelo_linguagem
+                            llm=modelo_linguagem,
+                            tools = [PDFSearchTool(),CSVSearchTool()]
                         ),
                         Agent(
                             role="Criador do Tom de Voz",
                             goal=f"Definir o tom de voz de {nome_cliente} em português brasileiro.",
-                            backstory="Você é Ann Handley, desenvolvendo a voz da marca o objetivo de marca: {objetivo de marca} e a referencia de marca: {referencia_de_marca} o posicionamento, brand persona e golden circle em português brasileiro.",
+                            backstory="Você é Ann Handley, desenvolvendo a voz da marca o objetivo de marca: {objetivo de marca} e a referencia de marca: {referencia_de_marca} o posicionamento, brand persona e golden circle em português brasileiro. Extraia informações de {market_files} para ter mais repertório também.",
                             allow_delegation=False,
-                            llm=modelo_linguagem
+                            llm=modelo_linguagem,
+                            tools = [PDFSearchTool(),CSVSearchTool()]
                         )
                     ]
     
