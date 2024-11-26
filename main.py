@@ -196,7 +196,7 @@ if login():
                         Agent(
                             role="Líder e revisor geral de estratégia",
                             goal=f"Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.",
-                            backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
+                            backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
                             allow_delegation=False,
                             llm=modelo_linguagem
                         ),
