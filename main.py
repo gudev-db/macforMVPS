@@ -11,7 +11,8 @@ import os
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
-st.set_page_config(layout="wide")  # Isso faz o layout ficar mais largo
+st.set_page_config(layout="wide",
+                  page_icon="Screenshot Capture - 2024-11-26 - 20-34-00.png")  # Isso faz o layout ficar mais largo
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
