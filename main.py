@@ -12,7 +12,7 @@ import os
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
 st.set_page_config(layout="wide",
-                  page_icon="https://github.com/gudev-db/macforMVPS/blob/main/Screenshot%20Capture%20-%202024-11-26%20-%2020-34-58.png")  # Isso faz o layout ficar mais largo
+                  page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
