@@ -203,7 +203,7 @@ if login():
                         Agent(
                             role="Analista PEST",
                             goal=f"Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                            backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também.",
+                            backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.",
                             allow_delegation=False,
                             llm=modelo_linguagem,
                             tools = [PDFSearchTool()]
