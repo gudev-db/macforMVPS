@@ -92,8 +92,9 @@ if login():
         referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key = "referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
         
         st.subheader("Suba os Arquivos Estratégicos (PDF)")
-        pest_files = st.file_uploader("Escolha arquivos", type=["pdf"], accept_multiple_files=True)
-        market_files = st.file_uploader("Escolha arquivos", type=["csv"], accept_multiple_files=True)
+        pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+        st.subheader("Suba os Arquivos Estratégicos (CSV)")
+        market_files = st.file_uploader("Escolha arquivos csv para análise de mercado", type=["csv"], accept_multiple_files=True)
 
 
 
@@ -194,7 +195,7 @@ if login():
                         agentes = [
                         Agent(
                             role="Líder e revisor geral de estratégia",
-                            goal=f"Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca} em português brasileiro.",
+                            goal=f"Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.",
                             backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
                             allow_delegation=False,
                             llm=modelo_linguagem
