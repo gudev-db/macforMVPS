@@ -78,22 +78,18 @@ if login():
         # Inputs do cliente
         st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado. Preencha o campo abaixo e gere um documento de planejamento estratégico para poupar tempo dos seus analistas de marketing e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
          # Botões para escolher o tipo de documento
-        col1, col2, col3 = st.columns(3)
-    
-        with col1:
-            if st.button('Plano Estratégico de Marketing'):
-                st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
-                st.success('Você escolheu o Plano Estratégico de Marketing!')
-    
-        with col2:
-            if st.button('Planejamento de Cronograma de Projetos'):
-                st.session_state.tipo_documento = 'Planejamento de Cronograma de Projetos'
-                st.success('Você escolheu o Planejamento de Cronograma de Projetos!')
-    
-        with col3:
-            if st.button('Orçamento de Projetos'):
-                st.session_state.tipo_documento = 'Orçamento de Projetos'
-                st.success('Você escolheu o Orçamento de Projetos!')
+        if st.button('Plano Estratégico de Marketing'):
+            st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
+            st.success('Você escolheu o Plano Estratégico de Marketing!')
+        
+        if st.button('Planejamento de Cronograma de Projetos'):
+            st.session_state.tipo_documento = 'Planejamento de Cronograma de Projetos'
+            st.success('Você escolheu o Planejamento de Cronograma de Projetos!')
+        
+        if st.button('Orçamento de Projetos'):
+            st.session_state.tipo_documento = 'Orçamento de Projetos'
+            st.success('Você escolheu o Orçamento de Projetos!')
+
     
         # Exibindo o conteúdo relacionado ao tipo de documento escolhido
         if "tipo_documento" in st.session_state:
