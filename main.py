@@ -35,10 +35,11 @@ file_tool = PDFSearchTool()
 col1, col2 = st.columns([1, 6])  # O primeiro valor (1) define a largura da imagem e o segundo valor (6) define a largura do texto
 
 with col1:
-    st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)  # Logo da empresa
-
+    st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150, use_column_width=False)
+    
 with col2:
     st.markdown("<h1 style='text-align:left; display: flex; align-items: center;'>Macfor AI Solutions</h1>", unsafe_allow_html=True)
+
 
 
 st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado movido por agentes de inteligência artificial. Preencha os campos abaixo e gere documentos automáticos e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
