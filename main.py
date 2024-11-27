@@ -32,8 +32,14 @@ from crewai_tools import BaseTool, tool
 # Função de login
 file_tool = PDFSearchTool()
 
-st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
-st.title('Macfor AI Solutions')
+col1, col2 = st.columns([1, 6])  # O primeiro valor (1) define a largura da imagem e o segundo valor (6) define a largura do texto
+
+with col1:
+    st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)  # Logo da empresa
+
+with col2:
+    st.title('Macfor AI Solutions')  # Título
+
 
 
 
