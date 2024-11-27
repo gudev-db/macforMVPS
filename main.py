@@ -351,7 +351,7 @@ if login():
                               st.markdown(f"**Arquivo**: {tarefa.output_file}")
                               st.markdown(tarefa.output.raw)
 
-             elif tipo_documento == 'Planejamento de Cronograma de Projetos':
+            elif tipo_documento == 'Planejamento de Cronograma de Projetos':
                 st.subheader("Gerando o Planejamento de Cronograma de Projetos...")
                 # Aqui você pode colocar o código para gerar o planejamento do cronograma de projetos.
                 st.text('Preencha os campos abaixo para criar o cronograma de projetos.')
@@ -361,7 +361,7 @@ if login():
                 data_fim = st.date_input('Data de Fim:', key="data_fim")
                 # Código para gerar o cronograma...
 
-              elif tipo_documento == 'Orçamento de Projetos':
+            elif tipo_documento == 'Orçamento de Projetos':
                 st.subheader("Gerando o Orçamento de Projetos...")
                 # Aqui você pode colocar o código para gerar o orçamento de projetos.
                 st.text('Preencha os campos abaixo para criar o orçamento de projetos.')
