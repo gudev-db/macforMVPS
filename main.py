@@ -73,7 +73,7 @@ objetivos_opcoes = [
 if login():
     # Interface do Streamlit
         st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
-        st.title('Criação de Plano Estratégico e Tático de Marketing')
+        st.title('AutoPlan Macfor')
 
         # Inputs do cliente
 
