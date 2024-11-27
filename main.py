@@ -11,8 +11,12 @@ import os
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
-st.set_page_config(layout="wide",
-                  page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
+import streamlit as st
+from crewai_tools import PDFSearchTool
+from langchain.chat_models import ChatOpenAI
+
+# Configuração da página
+st.set_page_config(layout="wide", page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
@@ -25,15 +29,19 @@ def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
-from crewai_tools import BaseTool, tool
-
-
-
 # Função de login
 file_tool = PDFSearchTool()
 
-st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
-st.title('Macfor AI Solutions')
+# Layout para imagem do ícone e título
+col1, col2 = st.columns([1, 5])  # Define a largura das colunas
+
+with col1:
+    st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)  # Imagem do ícone
+
+with col2:
+    st.title('Macfor AI Solutions')  # Título
+
+
 
 
 
