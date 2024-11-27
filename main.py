@@ -78,7 +78,7 @@ if login():
         # Inputs do cliente
         st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado. Preencha o campo abaixo e gere um documento de planejamento estratégico para poupar tempo dos seus analistas de marketing e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
          # Botões para escolher o tipo de documento
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns(1)
     
         with col1:
             if st.button('Plano Estratégico de Marketing'):
