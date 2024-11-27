@@ -36,10 +36,12 @@ file_tool = PDFSearchTool()
 col1, col2 = st.columns([1, 5])  # Define a largura das colunas
 
 with col1:
-    st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)  # Imagem do ícone
+    # Usando a mesma imagem do "page_icon" aqui
+    st.image('Screenshot Capture - 2024-11-26 - 20-34-58.png', width=40)  # Ícone ao lado do título
 
 with col2:
     st.title('Macfor AI Solutions')  # Título
+
 
 
 
