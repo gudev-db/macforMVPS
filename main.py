@@ -76,6 +76,7 @@ if login():
         st.title('DocAI Macfor - Planejamento Estratégico de Marketing Automático')
 
         # Inputs do cliente
+        st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado. Preencha o campo abaixo e gere um documento de planejamento estratégico para poupar tempo dos seus analistas de marketing e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
 
         nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
         site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
