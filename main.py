@@ -35,10 +35,11 @@ file_tool = PDFSearchTool()
 col1, col2 = st.columns([1, 6])  # O primeiro valor (1) define a largura da imagem e o segundo valor (6) define a largura do texto
 
 with col1:
-    st.markdown("<img src='Screenshot Capture - 2024-11-26 - 20-28-31.png' width='150' style='margin-top: 15px;'>", unsafe_allow_html=True)  # Ajuste da margem
-
+    st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150, use_column_width=False)
+    
 with col2:
-    st.markdown("<h1 style='text-align:left; display: flex; align-items: center;'>AI Solutions</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:left; display: flex; align-items: center;'>Macfor AI Solutions</h1>", unsafe_allow_html=True)
+
 
 
 
