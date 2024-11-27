@@ -38,7 +38,7 @@ with col1:
     st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)  # Logo da empresa
 
 with col2:
-    st.title('Macfor AI Solutions')  # Título
+    st.title('AI Solutions')  # Título
 
 
 
