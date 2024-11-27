@@ -73,7 +73,7 @@ objetivos_opcoes = [
 if login():
     # Interface do Streamlit
         st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
-        st.title('AutoPlan Macfor')
+        st.title('DocAI Macfor')
 
         # Inputs do cliente
 
