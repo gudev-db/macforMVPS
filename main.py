@@ -34,7 +34,7 @@ file_tool = PDFSearchTool()
 
 st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
 st.title('Macfor AI Solutions')
-st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado movido por agentes de inteligência artificial. Preencha o campo abaixo e gere um documento de planejamento estratégico para poupar tempo dos seus analistas de marketing e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
+st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado movido por agentes de inteligência artificial. Preencha o campo abaixo e gere documentos automáticos e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
 
 
 def login():
@@ -226,14 +226,14 @@ if login():
                               Agent(
                                   role="Analista PEST",
                                   goal=f"Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                                  backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.",
+                                  backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
                                   allow_delegation=False,
                                   llm=modelo_linguagem,
                                   tools = [PDFSearchTool()]
                               ),
                               Agent(
                                   role="Criador do posicionamento de marca",
-                                  goal=f"Criar o posicionamento de marca adequado para {nome_cliente}, considerando o público-alvo {publico_alvo}, o {objetivos_de_marca} a análise SWOT, e o Golden Circle e a referencia de marca: {referencia_da_marca} em português brasileiro.  Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.",
+                                  goal=f"Criar o posicionamento de marca adequado para {nome_cliente}, considerando o público-alvo {publico_alvo}, o {objetivos_de_marca} a análise SWOT, e o Golden Circle e a referencia de marca: {referencia_da_marca} em português brasileiro.  Extraia informações sobre de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
                                   backstory="Você é Al Ries, responsável por desenvolver o posicionamento de marca em português brasileiro.",
                                   allow_delegation=False,
                                   llm=modelo_linguagem,
@@ -249,21 +249,21 @@ if login():
                               ),
                               Agent(
                                   role="Criador da Brand Persona",
-                                  goal=f"Definir a Brand Persona com nome real (como bruna, fernanda, etc) de {nome_cliente}, garantindo consistência na comunicação e levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.  Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.",
+                                  goal=f"Definir a Brand Persona com nome real (como bruna, fernanda, etc) de {nome_cliente}, garantindo consistência na comunicação e levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro.  Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
                                   backstory="Você é Marty Neumeier, criando a Brand Persona em português brasileiro.",
                                   allow_delegation=False,
                                   llm=modelo_linguagem
                               ),
                               Agent(
                                   role="Criador da Buyer Persona e Público-Alvo",
-                                  goal=f"Definir a buyer persona com nome real (como bruna, fernanda, etc) e o público-alvo de {nome_cliente} levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}, os {concorrentes} o posicionamento de marca e o golden circle em português brasileiro.  Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.",
+                                  goal=f"Definir a buyer persona com nome real (como bruna, fernanda, etc) e o público-alvo de {nome_cliente} levando em conta o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca}, os {concorrentes} o posicionamento de marca e o golden circle em português brasileiro.  Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
                                   backstory="Você é Adele Revella, conduzindo a criação da buyer persona em português brasileiro.",
                                   allow_delegation=False,
                                   llm=modelo_linguagem
                               ),
                               Agent(
                                   role="Criador da Matriz SWOT",
-                                  goal=f"Desenvolver uma análise SWOT para {nome_cliente} considerando os concorrentes '{concorrentes}, o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.", 
+                                  goal=f"Desenvolver uma análise SWOT para {nome_cliente} considerando os concorrentes '{concorrentes}, o objetivo de marca: {objetivos_de_marca} e a referencia de marca: {referencia_da_marca} em português brasileiro. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.", 
                                   backstory="Você é Michael Porter, desenvolvendo a análise SWOT em português brasileiro.",
                                   allow_delegation=False,
                                   llm=modelo_linguagem,
@@ -272,7 +272,7 @@ if login():
                               Agent(
                                   role="Criador do Tom de Voz",
                                   goal=f"Definir o tom de voz de {nome_cliente} em português brasileiro.",
-                                  backstory="Você é Ann Handley, desenvolvendo a voz da marca o objetivo de marca: {objetivo de marca} e a referencia de marca: {referencia_de_marca} o posicionamento, brand persona e golden circle em português brasileiro. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise. Use suas ferramentas para analisá-los.",
+                                  backstory="Você é Ann Handley, desenvolvendo a voz da marca o objetivo de marca: {objetivo de marca} e a referencia de marca: {referencia_de_marca} o posicionamento, brand persona e golden circle em português brasileiro. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
                                   allow_delegation=False,
                                   llm=modelo_linguagem,
                                   tools = [PDFSearchTool(),CSVSearchTool()]
