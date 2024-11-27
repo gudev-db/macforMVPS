@@ -72,7 +72,7 @@ objetivos_opcoes = [
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
-        col1, col2 = st.columns([3, 1])  # A primeira coluna será 3x maior que a segunda
+        col1, col2 = st.columns([1, 1])  # A primeira coluna será 3x maior que a segunda
 
         with col1:
             # Colocando o título na primeira coluna
