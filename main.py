@@ -33,7 +33,7 @@ def limpar_estado():
 file_tool = PDFSearchTool()
 
 # Layout para imagem do ícone e título
-col1, col2 = st.columns([1, 6])  # Define a largura das colunas
+col1, col2 = st.columns([1, 5])  # Define a largura das colunas
 
 with col1:
     # Usando a mesma imagem do "page_icon" aqui
