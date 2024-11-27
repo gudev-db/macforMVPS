@@ -72,16 +72,8 @@ objetivos_opcoes = [
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
-        col1, col2 = st.columns([1, 1])  # A primeira coluna será 3x maior que a segunda
-
-        with col1:
-            # Colocando o título na primeira coluna
-            st.title('DocAI')
-        
-        with col2:
-            # Colocando a imagem na segunda coluna
-            st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
-        st.subheader('Planejamento Estratégico de Marketing Automático')
+        st.image('Screenshot Capture - 2024-11-26 - 20-28-31.png', width=150)
+        st.title('DocAI Macfor')
 
         # Inputs do cliente
         st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado. Preencha o campo abaixo e gere um documento de planejamento estratégico para poupar tempo dos seus analistas de marketing e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
