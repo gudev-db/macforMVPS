@@ -207,67 +207,70 @@ def planej_mkt_page():
 
                     # Criando tarefas correspondentes aos agentes
                     tarefas = [
-                        Task(
-                            description="Criar a Matriz SWOT.",
-                            expected_output="Análise SWOT completa em formato de tabela em português brasileiro.",
-                            agent=agentes[6],
-                            output_file='SWOT.md'
-                        ),
-                        Task(
-                            description="Desenvolver o Golden Circle.",
-                            expected_output="Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
-                            agent=agentes[3],
-                            output_file='GC.md'
-                        ),
-                        Task(
-                            description="Criar o posicionamento de marca.",
-                            expected_output="Posicionamento de marca em uma única frase em português brasileiro.",
-                            agent=agentes[2],
-                            output_file='posMar.md'
-                        ),
-                        Task(
-                            description="Desenvolver a Matriz BCG.",
-                            expected_output="Matriz BCG com base nas informações de mercado e concorrência.",
-                            agent=agentes[1],
-                            output_file='bcg.md'
-                        ),
-                        Task(
-                            description="Estratégia de Pricing.",
-                            expected_output="Plano de pricing para {nome_cliente}, baseado na análise da concorrência.",
-                            agent=agentes[4],
-                            output_file='pricing.md'
-                        ),
-                        Task(
-                            description="Segmentação de Mercado.",
-                            expected_output="Plano de segmentação de mercado para {nome_cliente}.",
-                            agent=agentes[5],
-                            output_file='segmentacao.md'
-                        ),
-                        Task(
-                            description="Desenvolver Personas.",
-                            expected_output="Personas detalhadas para {nome_cliente}, baseadas nas características do público-alvo.",
-                            agent=agentes[6],
-                            output_file='personas.md'
-                        ),
-                        Task(
-                            description="Estratégia de Mídia Social.",
-                            expected_output="Plano de estratégia de mídia social para {nome_cliente}.",
-                            agent=agentes[7],
-                            output_file='midia_social.md'
-                        ),
-                        Task(
-                            description="Plano de Inbound Marketing.",
-                            expected_output="Plano de inbound marketing para atrair e converter leads.",
-                            agent=agentes[8],
-                            output_file='inbound.md'
-                        ),
+                              
+                              Task(
+                                  description="Criar a Matriz SWOT.",
+                                  expected_output="Análise SWOT completa em formato de tabela em português brasileiro.",
+                                  agent=agentes[6],
+                                  output_file = 'SWOT.md'
+                              ),
+                              Task(
+                                  description="Desenvolver o Golden Circle.",
+                                  expected_output="Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
+                                  agent=agentes[3],
+                                  output_file = 'GC.md'
+                              ),
+                              Task(
+                                  description="Criar o posicionamento de marca.",
+                                  expected_output="Posicionamento de marca em uma única frase em português brasileiro.",
+                                  agent=agentes[2],
+                                  output_file = 'posMar.md'
+                              ),
+                              Task(
+                                  description="Criar a Brand Persona.",
+                                  expected_output=f"Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro.",
+                                  agent=agentes[4],
+                                  output_file = 'BP.md'
+                              ),
+                              Task(
+                                  description="Definir a Buyer Persona e o Público-Alvo.",
+                                  expected_output="Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: nome fictício, idade, gênero, classe social, objetivos, dores, vontades em português brasileiro.", 
+                                  agent=agentes[5],
+                                  output_file = 'BuyerP.md'
+                              ),
+                              Task(
+                                  description="Definir o Tom de Voz.",
+                                  expected_output="Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.",
+                                  agent=agentes[7],
+                                  output_file = 'TV.md'
+                              ),
+                              Task(
+                                  description="Análise PEST.",
+                                  expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro.",
+                                  agent=agentes[1],
+                                  output_file = 'pest.md'
+                              ),
+                              Task(
+                                  description="Revisar a estratégia geral.",
+                                  expected_output="Revisão detalhada de cada uma das tarefas realizadas pelos agentes levando em conta os princípios de marketing para entender se há ponto de melhoria para objermos uma estratégia assertiva de acordo com os {objetivos  de marca} do {cliente} considerando o público-alvo em português brasileiro.",
+                                  agent=agentes[0],
+                                  output_file = 'revisao.md'),
+
+                               Task(
+                              description="Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
+                              expected_output="Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
+                              agent=agentes[8],
+                              output_file='estrategia_conteudo.md'
+                          ),
                         Task(
                             description="Plano de SEO.",
                             expected_output="Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
                             agent=agentes[9],
                             output_file='seo.md'
-                        ),
-                    ]
+                        )
+
+                        
+                          ]
 
                     # Processo do Crew
                     equipe = Crew(
