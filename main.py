@@ -289,6 +289,14 @@ if login():
                                   allow_delegation=False,
                                   llm=modelo_linguagem,
                                   tools = [PDFSearchTool(),CSVSearchTool()]
+                              ),
+
+                                agente_estrategia_conteudo = Agent(
+                                  role="Criador das editorias de conteúdo da marca",
+                                  goal="Criar as editorias de conteúdo para a marca, considerando quem ela é, os objetivos da marca e onde ela quer chegar.",
+                                  backstory="Você é Joe Pulizzi, especializado em criar estratégias de conteúdo de marcas, considerando o alinhamento com os objetivos da marca e o público-alvo.",
+                                  allow_delegation=False,
+                                  llm=modelo_linguagem
                               )
                           ]
           
@@ -341,7 +349,14 @@ if login():
                                   description="Revisar a estratégia geral.",
                                   expected_output="Revisão detalhada de cada uma das tarefas realizadas pelos agentes levando em conta os princípios de marketing para entender se há ponto de melhoria para objermos uma estratégia assertiva de acordo com os {objetivos  de marca} do {cliente} considerando o público-alvo em português brasileiro.",
                                   agent=agentes[0],
-                                  output_file = 'revisao.md')
+                                  output_file = 'revisao.md'),
+
+                               Task(
+                              description="Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
+                              expected_output="Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
+                              agent=agente_estrategia_conteudo,
+                              output_file='estrategia_conteudo.md'
+                          )
                           ]
           
                           # Processo do Crew
