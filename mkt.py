@@ -6,6 +6,7 @@ import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
+from crewai_tools import tool
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 
