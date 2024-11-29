@@ -71,19 +71,7 @@ def login():
             st.error("Usuário ou senha incorretos.")
             return False
     return False
-# Definindo as opções para o SelectBox
-objetivos_opcoes = [
-    'Aumentar vendas',
-    'Melhorar reconhecimento de marca',
-    'Expandir mercado',
-    'Aumentar engajamento nas redes sociais',
-    'Lançar novo produto',
-    'Melhorar a experiência do cliente',
-    'Aumentar tráfego para o site',
-    'Fortalecer a lealdade do cliente',
-    'Melhorar a presença online',
-    'Ser líder no mercado online'
-]
+
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
