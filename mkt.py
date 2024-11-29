@@ -9,6 +9,16 @@ from datetime import datetime
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 
+# Definindo a lista de opções para o selectbox
+objetivos_opcoes = [
+    "Aumentar a visibilidade da marca",
+    "Expandir a base de clientes",
+    "Melhorar a percepção da marca",
+    "Aumentar as vendas",
+    "Fortalecer o relacionamento com os clientes"
+]
+
+
 def planej_mkt_page():
     nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
     site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
