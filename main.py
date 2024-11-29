@@ -291,7 +291,7 @@ if login():
                                   tools = [PDFSearchTool(),CSVSearchTool()]
                               ),
 
-                                agente_estrategia_conteudo = Agent(
+                                Agent(
                                   role="Criador das editorias de conteúdo da marca",
                                   goal="Criar as editorias de conteúdo para a marca, considerando quem ela é, os objetivos da marca e onde ela quer chegar.",
                                   backstory="Você é Joe Pulizzi, especializado em criar estratégias de conteúdo de marcas, considerando o alinhamento com os objetivos da marca e o público-alvo.",
@@ -354,7 +354,7 @@ if login():
                                Task(
                               description="Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
                               expected_output="Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
-                              agent=agente_estrategia_conteudo,
+                              agent=agentes[8],
                               output_file='estrategia_conteudo.md'
                           )
                           ]
