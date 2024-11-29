@@ -12,16 +12,11 @@ import os
 
 # Definindo a lista de opções para o selectbox
 objetivos_opcoes = [
-    'Aumentar vendas',
-    'Melhorar reconhecimento de marca',
-    'Expandir mercado',
-    'Aumentar engajamento nas redes sociais',
-    'Lançar novo produto',
-    'Melhorar a experiência do cliente',
-    'Aumentar tráfego para o site',
-    'Fortalecer a lealdade do cliente',
-    'Melhorar a presença online',
-    'Ser líder no mercado online'
+    'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
+    'Entregar potenciais consumidores para a área comercial',
+    'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
+    'Fidelizar e reter um público fiel já convertido',
+    'Garantir que o público esteja engajado com os canais ou ações da marca'
 ]
 
 
