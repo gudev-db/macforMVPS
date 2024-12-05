@@ -37,9 +37,9 @@ def planej_mkt_page():
     )
     referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
     
-    st.subheader("Suba os Arquivos Estratégicos (PDF)")
+    st.subheader("Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
-    st.subheader("Suba os Arquivos Estratégicos (CSV)")
+    st.subheader("Suba os Arquivos Estratégicos (CSV) (Único ou múltiplos)")
     market_files = st.file_uploader("Escolha arquivos csv para análise de mercado", type=["csv"], accept_multiple_files=True)
 
     @tool("CSVSearchTool")
