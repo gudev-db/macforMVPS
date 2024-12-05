@@ -10,6 +10,18 @@ from crewai_tools import tool
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 
+# Inicializa o modelo LLM com OpenAI
+modelo_linguagem = ChatOpenAI(
+    model="gpt-4o-mini",
+    temperature=0.5,
+    frequency_penalty=0.5
+)
+
+def limpar_estado():
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+
+from crewai_tools import BaseTool, tool
 # Definindo a lista de opções para o selectbox
 objetivos_opcoes = [
     'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
