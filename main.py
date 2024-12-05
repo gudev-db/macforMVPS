@@ -15,14 +15,9 @@ api_key = os.getenv("OPENAI_API_KEY")
 st.set_page_config(layout="wide",
                   page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
 
-st.markdown("""
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-""", unsafe_allow_html=True)
+# Carregando o arquivo CSS para personalizar a fonte
+with open("style.css") as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
