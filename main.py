@@ -85,13 +85,7 @@ if login():
             st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
             st.success('Você escolheu o Plano Estratégico de Marketing!')
         
-        if st.button('Planejamento de Cronograma de Projetos'):
-            st.session_state.tipo_documento = 'Planejamento de Cronograma de Projetos'
-            st.success('Você escolheu o Planejamento de Cronograma de Projetos!')
         
-        if st.button('Orçamento de Projetos'):
-            st.session_state.tipo_documento = 'Orçamento de Projetos'
-            st.success('Você escolheu o Orçamento de Projetos!')
 
     
         # Exibindo o conteúdo relacionado ao tipo de documento escolhido
@@ -105,14 +99,6 @@ if login():
               
              
 
-            elif tipo_documento == 'Planejamento de Cronograma de Projetos':
-                st.subheader("Gerando o Planejamento de Cronograma de Projetos...")
-                # Aqui você pode colocar o código para gerar o planejamento do cronograma de projetos.
-                st.text('Preencha os campos abaixo para criar o cronograma de projetos.')
-                # Inputs para o cronograma de projetos (exemplo)
-                nome_projeto = st.text_input('Nome do Projeto:', key="nome_projeto", placeholder="Ex: Projeto X")
-                data_inicio = st.date_input('Data de Início:', key="data_inicio")
-                data_fim = st.date_input('Data de Fim:', key="data_fim")
-                # Código para gerar o cronograma...
+            
 
             
