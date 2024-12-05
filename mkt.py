@@ -119,169 +119,172 @@ def planej_mkt_page():
                 if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
+                    with st.spinner('Gerando o planejamento...'):
+
                     # Definindo os agentes
-                    agentes = [
-                        Agent(
-                            role="Líder e revisor geral de estratégia",
-                            goal=f"Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.",
-                            backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Analista PEST",
-                            goal=f"Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                            backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Analista SWOT",
-                            goal=f"Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.",
-                            backstory="Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Especialista em Matriz BCG",
-                            goal=f"Desenvolver a Matriz BCG para o {nome_cliente}, com base nas informações do mercado e concorrência disponíveis.",
-                            backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Consultor de Pricing",
-                            goal=f"Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.",
-                            backstory="Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Analista de Segmentação de Mercado",
-                            goal=f"Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.",
-                            backstory="Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Criador de Persona",
-                            goal=f"Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.",
-                            backstory="Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Estratégia de Mídia Social",
-                            goal=f"Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.",
-                            backstory="Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Especialista em Inbound Marketing",
-                            goal=f"Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
-                            backstory="Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                        Agent(
-                            role="Especialista em SEO",
-                            goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
-                            backstory="Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
-                            allow_delegation=False,
-                            llm=modelo_linguagem,
-                            tools=[PDFSearchTool(), CSVSearchTool()]
-                        ),
-                    ]
+                        agentes = [
+                            Agent(
+                                role="Líder e revisor geral de estratégia",
+                                goal=f"Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.",
+                                backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Analista PEST",
+                                goal=f"Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
+                                backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Analista SWOT",
+                                goal=f"Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.",
+                                backstory="Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Especialista em Matriz BCG",
+                                goal=f"Desenvolver a Matriz BCG para o {nome_cliente}, com base nas informações do mercado e concorrência disponíveis.",
+                                backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Consultor de Pricing",
+                                goal=f"Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.",
+                                backstory="Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Analista de Segmentação de Mercado",
+                                goal=f"Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.",
+                                backstory="Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Criador de Persona",
+                                goal=f"Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.",
+                                backstory="Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Estratégia de Mídia Social",
+                                goal=f"Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.",
+                                backstory="Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Especialista em Inbound Marketing",
+                                goal=f"Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
+                                backstory="Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                            Agent(
+                                role="Especialista em SEO",
+                                goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
+                                backstory="Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[PDFSearchTool(), CSVSearchTool()]
+                            ),
+                        ]
 
-                    # Criando tarefas correspondentes aos agentes
-                    tarefas = [
-                              
-                              Task(
-                                  description="Criar a Matriz SWOT.",
-                                  expected_output="Análise SWOT completa em formato de tabela em português brasileiro.",
-                                  agent=agentes[6],
-                                  output_file = 'SWOT.md'
-                              ),
-                              Task(
-                                  description="Desenvolver o Golden Circle.",
-                                  expected_output="Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
-                                  agent=agentes[3],
-                                  output_file = 'GC.md'
-                              ),
-                              Task(
-                                  description="Criar o posicionamento de marca.",
-                                  expected_output="Posicionamento de marca em uma única frase em português brasileiro.",
-                                  agent=agentes[2],
-                                  output_file = 'posMar.md'
-                              ),
-                              Task(
-                                  description="Criar a Brand Persona.",
-                                  expected_output=f"Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro.",
-                                  agent=agentes[4],
-                                  output_file = 'BP.md'
-                              ),
-                              Task(
-                                  description="Definir a Buyer Persona e o Público-Alvo.",
-                                  expected_output="Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: nome fictício, idade, gênero, classe social, objetivos, dores, vontades em português brasileiro.", 
-                                  agent=agentes[5],
-                                  output_file = 'BuyerP.md'
-                              ),
-                              Task(
-                                  description="Definir o Tom de Voz.",
-                                  expected_output="Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.",
-                                  agent=agentes[7],
-                                  output_file = 'TV.md'
-                              ),
-                              Task(
-                                  description="Análise PEST.",
-                                  expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro.",
-                                  agent=agentes[1],
-                                  output_file = 'pest.md'
-                              ),
-                              Task(
-                                  description="Revisar a estratégia geral.",
-                                  expected_output="Revisão detalhada de cada uma das tarefas realizadas pelos agentes levando em conta os princípios de marketing para entender se há ponto de melhoria para objermos uma estratégia assertiva de acordo com os {objetivos  de marca} do {cliente} considerando o público-alvo em português brasileiro.",
-                                  agent=agentes[0],
-                                  output_file = 'revisao.md'),
+                        # Criando tarefas correspondentes aos agentes
+                        tarefas = [
+                                
+                                Task(
+                                    description="Criar a Matriz SWOT.",
+                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro.",
+                                    agent=agentes[6],
+                                    output_file = 'SWOT.md'
+                                ),
+                                Task(
+                                    description="Desenvolver o Golden Circle.",
+                                    expected_output="Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
+                                    agent=agentes[3],
+                                    output_file = 'GC.md'
+                                ),
+                                Task(
+                                    description="Criar o posicionamento de marca.",
+                                    expected_output="Posicionamento de marca em uma única frase em português brasileiro.",
+                                    agent=agentes[2],
+                                    output_file = 'posMar.md'
+                                ),
+                                Task(
+                                    description="Criar a Brand Persona.",
+                                    expected_output=f"Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro.",
+                                    agent=agentes[4],
+                                    output_file = 'BP.md'
+                                ),
+                                Task(
+                                    description="Definir a Buyer Persona e o Público-Alvo.",
+                                    expected_output="Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: nome fictício, idade, gênero, classe social, objetivos, dores, vontades em português brasileiro.", 
+                                    agent=agentes[5],
+                                    output_file = 'BuyerP.md'
+                                ),
+                                Task(
+                                    description="Definir o Tom de Voz.",
+                                    expected_output="Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.",
+                                    agent=agentes[7],
+                                    output_file = 'TV.md'
+                                ),
+                                Task(
+                                    description="Análise PEST.",
+                                    expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro.",
+                                    agent=agentes[1],
+                                    output_file = 'pest.md'
+                                ),
+                                Task(
+                                    description="Revisar a estratégia geral.",
+                                    expected_output="Revisão detalhada de cada uma das tarefas realizadas pelos agentes levando em conta os princípios de marketing para entender se há ponto de melhoria para objermos uma estratégia assertiva de acordo com os {objetivos  de marca} do {cliente} considerando o público-alvo em português brasileiro.",
+                                    agent=agentes[0],
+                                    output_file = 'revisao.md'),
 
-                               Task(
-                              description="Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
-                              expected_output="Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
-                              agent=agentes[8],
-                              output_file='estrategia_conteudo.md'
-                          ),
-                        Task(
-                            description="Plano de SEO.",
-                            expected_output="Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
-                            agent=agentes[9],
-                            output_file='seo.md'
+                                Task(
+                                description="Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
+                                expected_output="Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
+                                agent=agentes[8],
+                                output_file='estrategia_conteudo.md'
+                            ),
+                            Task(
+                                description="Plano de SEO.",
+                                expected_output="Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
+                                agent=agentes[9],
+                                output_file='seo.md'
+                            )
+
+                            
+                            ]
+
+                        # Processo do Crew
+                        equipe = Crew(
+                            agents=agentes,
+                            tasks=tarefas,
+                            process=Process.hierarchical,
+                            manager_llm=modelo_linguagem,
+                            language='português brasileiro'
                         )
 
-                        
-                          ]
+                        # Executa as tarefas do processo
+                        resultado = equipe.kickoff()
 
-                    # Processo do Crew
-                    equipe = Crew(
-                        agents=agentes,
-                        tasks=tarefas,
-                        process=Process.hierarchical,
-                        manager_llm=modelo_linguagem,
-                        language='português brasileiro'
-                    )
-
-                    # Executa as tarefas do processo
-                    resultado = equipe.kickoff()
-
-                    for tarefa in tarefas:
-                        st.markdown(f"**Arquivo**: {tarefa.output_file}")
-                        st.markdown(tarefa.output.raw)
+                        for tarefa in tarefas:
+                            st.markdown(f"**Arquivo**: {tarefa.output_file}")
+                            st.markdown(tarefa.output.raw)
+                        st.success("Planejamento gerado com sucesso!")
