@@ -120,6 +120,8 @@ def planej_mkt_page():
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
                     # Definindo os agentes
+                     with st.spinner('O planejamento está sendo gerado. Por favor, aguarde...'):
+            try:
                     agentes = [
                         Agent(
                             role="Líder e revisor geral de estratégia",
@@ -285,3 +287,6 @@ def planej_mkt_page():
                     for tarefa in tarefas:
                         st.markdown(f"**Arquivo**: {tarefa.output_file}")
                         st.markdown(tarefa.output.raw)
+
+                        except Exception as e:
+                st.error(f'Ocorreu um erro durante o planejamento: {str(e)}')
