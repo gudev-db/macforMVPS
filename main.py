@@ -38,13 +38,13 @@ st.markdown(
     }
 
     /* Aplica a fonte aos títulos (st.title) */
-    .css-1v0mbdj h1 {
+    .css-1v0mbdj h1, .stTitle {
         font-family: 'Poppins', sans-serif !important;
         font-weight: 600 !important;
     }
 
-    /* Aplica a fonte nos textos gerados por st.text() e st.markdown() */
-    .stText, .stMarkdown, .stWrite, .stTextInput, .stTextArea {
+    /* Aplica a fonte nos textos gerados por st.text(), st.markdown(), st.write() */
+    .stText, .stMarkdown, .stWrite, .stTextInput, .stTextArea, .stTextBlock {
         font-family: 'Poppins', sans-serif !important;
         font-size: 18px !important;
     }
@@ -75,6 +75,17 @@ st.markdown(
     .css-1d391kg, .css-18e3th9, .css-1kyxreq {
         font-family: 'Poppins', sans-serif !important;
     }
+
+    /* Aplica a fonte no formulário de upload */
+    .stFileUploader, .stFileUploader > input {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Aplica a fonte ao texto da área de "arraste e solte arquivos" */
+    .stFileUploader .stFileUploader__drag_and_drop {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
     </style>
     """, unsafe_allow_html=True
 )
