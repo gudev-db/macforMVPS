@@ -17,6 +17,17 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
+def extrair_texto_pdf(pdf_files):
+    textos_extraidos = []
+    for pdf_file in pdf_files:
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        texto = ""
+        for page_num in range(len(pdf_reader.pages)):
+            page = pdf_reader.pages[page_num]
+            texto += page.extract_text()
+        textos_extraidos.append(texto)
+    return textos_extraidos
+
 def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
@@ -50,9 +61,8 @@ def planej_mkt_page():
     referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
     
     st.subheader("Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
-    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
-    st.subheader("Suba os Arquivos Estratégicos (CSV) (Único ou múltiplos)")
-    market_files = st.file_uploader("Escolha arquivos csv para análise de mercado", type=["csv"], accept_multiple_files=True)
+    pest_files1 = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+    pest_files = extrair_texto_pdf(pest_files1)
 
     @tool("CSVSearchTool")
     def csv_search_tool(market_files: list, search_term: str) -> str:
@@ -201,7 +211,7 @@ def planej_mkt_page():
                             ),
                             Agent(
                                 role="Especialista em Inbound Marketing",
-                                goal=f"Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
+                                goal=f"Em portugês brasileiro, Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
                                 backstory="Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -209,7 +219,7 @@ def planej_mkt_page():
                             ),
                             Agent(
                                 role="Especialista em SEO",
-                                goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
+                                goal=f"Em portugês brasileiro, Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
                                 backstory="Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -269,13 +279,13 @@ def planej_mkt_page():
                                     output_file = 'revisao.md'),
 
                                 Task(
-                                description="Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
+                                description="Em portugês brasileiro, Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
                                 expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
                                 agent=agentes[8],
                                 output_file='estrategia_conteudo.md'
                             ),
                             Task(
-                                description="Plano de SEO.",
+                                description="Plano de SEO Em portugês brasileiro.",
                                 expected_output="Em portugês brasileiro, Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, faça o Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
                                 agent=agentes[9],
                                 output_file='seo.md'
@@ -297,6 +307,5 @@ def planej_mkt_page():
                         resultado = equipe.kickoff()
 
                         for tarefa in tarefas:
-                            st.markdown(f"**Arquivo**: {tarefa.output_file}")
                             st.markdown(tarefa.output.raw)
                         st.success("Planejamento gerado com sucesso!")
