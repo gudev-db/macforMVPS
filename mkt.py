@@ -154,7 +154,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Analista SWOT",
                                 goal=f"Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.",
-                                backstory="Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.",
+                                backstory=f"Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -162,7 +162,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em Matriz BCG",
                                 goal=f"Desenvolver a Matriz BCG para o {nome_cliente}, com base nas informações do mercado e concorrência disponíveis.",
-                                backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
+                                backstory=f"Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -170,7 +170,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Consultor de Pricing",
                                 goal=f"Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.",
-                                backstory="Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
+                                backstory=f"Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -178,7 +178,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Analista de Segmentação de Mercado",
                                 goal=f"Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.",
-                                backstory="Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
+                                backstory=f"Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -186,7 +186,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Criador de Persona",
                                 goal=f"Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.",
-                                backstory="Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
+                                backstory=f"Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -194,7 +194,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Estratégia de Mídia Social",
                                 goal=f"Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.",
-                                backstory="Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
+                                backstory=f"Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -202,7 +202,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em Inbound Marketing",
                                 goal=f"Em portugês brasileiro, Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
-                                backstory="Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
+                                backstory=f"Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -210,7 +210,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em SEO",
                                 goal=f"Em portugês brasileiro, Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
-                                backstory="Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
+                                backstory=f"Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -222,19 +222,19 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro.",
+                                    expected_output=f"Análise SWOT completa em formato de tabela em português brasileiro.",
                                     agent=agentes[6],
                                     output_file = 'SWOT.md'
                                 ),
                                 Task(
                                     description="Desenvolver o Golden Circle.",
-                                    expected_output="Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
+                                    expected_output=f"Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
                                     agent=agentes[3],
                                     output_file = 'GC.md'
                                 ),
                                 Task(
                                     description="Criar o posicionamento de marca.",
-                                    expected_output="Posicionamento de marca em uma única frase em português brasileiro.",
+                                    expected_output=f"Posicionamento de marca em uma única frase em português brasileiro.",
                                     agent=agentes[2],
                                     output_file = 'posMar.md'
                                 ),
@@ -246,13 +246,13 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Definir a Buyer Persona e o Público-Alvo.",
-                                    expected_output="Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: nome fictício, idade, gênero, classe social, objetivos, dores, vontades em português brasileiro.", 
+                                    expected_output=f"Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: nome fictício, idade, gênero, classe social, objetivos, dores, vontades em português brasileiro.", 
                                     agent=agentes[5],
                                     output_file = 'BuyerP.md'
                                 ),
                                 Task(
                                     description="Definir o Tom de Voz.",
-                                    expected_output="Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.",
+                                    expected_output=f"Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.",
                                     agent=agentes[7],
                                     output_file = 'TV.md'
                                 ),
@@ -264,19 +264,19 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Revisar a estratégia geral.",
-                                    expected_output="Em portugês brasileiro, Revisão detalhada de cada uma das tarefas realizadas pelos agentes levando em conta os princípios de marketing para entender se há ponto de melhoria para objermos uma estratégia assertiva de acordo com os {objetivos  de marca} do {cliente} considerando o público-alvo em português brasileiro.",
+                                    expected_output=f"Em portugês brasileiro, Revisão detalhada de cada uma das tarefas realizadas pelos agentes levando em conta os princípios de marketing para entender se há ponto de melhoria para objermos uma estratégia assertiva de acordo com os {objetivos  de marca} do {cliente} considerando o público-alvo em português brasileiro.",
                                     agent=agentes[0],
                                     output_file = 'revisao.md'),
 
                                 Task(
                                 description="Em portugês brasileiro, Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
-                                expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
+                                expected_output=f"Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
                                 agent=agentes[8],
                                 output_file='estrategia_conteudo.md'
                             ),
                             Task(
                                 description="Plano de SEO Em portugês brasileiro.",
-                                expected_output="Em portugês brasileiro, Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, faça o Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
+                                expected_output=f"Em portugês brasileiro, Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, faça o Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
                                 agent=agentes[9],
                                 output_file='seo.md'
                             )
