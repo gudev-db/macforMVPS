@@ -172,6 +172,7 @@ python-dotenv==1.0.1
 pytube==15.0.0
 pytz==2024.2
 pyvis==0.3.2
+pywin32==308
 PyYAML==6.0.2
 qdrant-client==1.12.1
 referencing==0.35.1
@@ -197,7 +198,7 @@ starlette==0.41.3
 streamlit==1.40.1
 sympy==1.13.3
 tabulate==0.9.0
-tavily==0.3.4
+tavily-python==0.5.0
 tenacity==9.0.0
 tiktoken==0.7.0
 tokenizers==0.20.3
@@ -226,3 +227,4 @@ wrapt==1.16.0
 wsproto==1.2.0
 yarl==1.17.2
 zipp==3.21.0
+
