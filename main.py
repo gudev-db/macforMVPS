@@ -10,6 +10,7 @@ from mkt import planej_mkt_page
 from creative import criativos_posts_page
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
+import tavily
 
 
 # Configuração do ambiente da API
