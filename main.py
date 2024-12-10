@@ -18,25 +18,48 @@ st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+    </style>
+    """, unsafe_allow_html=True
+)
+st.markdown(
+    """
+    <style>
     html, body, [class*="css"] {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif !important;
         font-size: 18px;
         font-weight: 400;
         color: #091747;
+    }
+    
+    /* Estilo para cabeçalhos, texto e outros componentes */
+    .stText, .stMarkdown, .stHtml, .stWrite {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Estilo para os botões */
+    .stButton>button {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Estilo para seletores e campos de entrada */
+    .stSelectbox select, .stMultiselect select, .stTextInput input, .stTextArea textarea {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Estilo para o sidebar */
+    .css-1d391kg, .css-18e3th9 {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Estilo para a barra lateral, se houver */
+    .css-1kyxreq {
+        font-family: 'Poppins', sans-serif !important;
     }
     </style>
     """, unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <style>
-    .stButton>button {
-        font-family: 'Poppins', sans-serif;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
 
 
 # Configuração do ambiente da API
