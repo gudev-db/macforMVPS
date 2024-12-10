@@ -97,9 +97,7 @@ if login():
             st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
             st.success('Você escolheu o Plano Estratégico de Marketing!')
         
-        if st.button('Ideias de Criativos'):
-            st.session_state.tipo_documento = 'Ideias de Criativos'
-            st.success('Você escolheu Ideias de Criativos!')
+        
         
         
 
