@@ -28,6 +28,15 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    .stButton>button {
+        font-family: 'Poppins', sans-serif;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)
 
 
 # Configuração do ambiente da API
