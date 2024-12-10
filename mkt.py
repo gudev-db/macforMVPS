@@ -9,6 +9,7 @@ from datetime import datetime
 from crewai_tools import tool
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
+import PyPDF2
 
 
 # Inicializa o modelo LLM com OpenAI
@@ -18,6 +19,16 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
+def extrair_texto_pdf(pdf_files):
+    textos_extraidos = []
+    for pdf_file in pdf_files:
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        texto = ""
+        for page_num in range(len(pdf_reader.pages)):
+            page = pdf_reader.pages[page_num]
+            texto += page.extract_text()
+        textos_extraidos.append(texto)
+    return textos_extraidos
 
 def limpar_estado():
     for key in list(st.session_state.keys()):
@@ -52,7 +63,8 @@ def planej_mkt_page():
     referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
     
     st.subheader("Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
-    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+    pest_files1 = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+    pest_files = extrair_texto_pdf(pest_files1)
 
     @tool("CSVSearchTool")
     def csv_search_tool(market_files: list, search_term: str) -> str:
@@ -297,6 +309,8 @@ def planej_mkt_page():
                         resultado = equipe.kickoff()
 
                         for tarefa in tarefas:
+                            st.markdown(tarefa.output.raw)
+                        st.success("Planejamento gerado com sucesso!")
                             st.markdown(tarefa.output.raw)
                         st.success("Planejamento gerado com sucesso!")
                         st.success("Planejamento gerado com sucesso!")
