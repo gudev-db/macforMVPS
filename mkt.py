@@ -170,7 +170,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Consultor de Pricing",
                                 goal=f"Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.",
-                                backstory="Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
+                                backstory=f"Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -178,7 +178,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Analista de Segmentação de Mercado",
                                 goal=f"Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.",
-                                backstory="Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
+                                backstory=f"Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -186,7 +186,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Criador de Persona",
                                 goal=f"Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.",
-                                backstory="Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
+                                backstory=f"Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -194,7 +194,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Estratégia de Mídia Social",
                                 goal=f"Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.",
-                                backstory="Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
+                                backstory=f"Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -202,7 +202,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em Inbound Marketing",
                                 goal=f"Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
-                                backstory="Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
+                                backstory=f"Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
@@ -210,7 +210,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em SEO",
                                 goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
-                                backstory="Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
+                                backstory=f"Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
