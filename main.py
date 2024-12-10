@@ -18,36 +18,38 @@ st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
-    </style>
-    """, unsafe_allow_html=True
-)
-st.markdown(
-    """
-    <style>
+    /* Aplica a fonte Poppins a todo o HTML, corpo, e classes de Streamlit */
     html, body, [class*="css"] {
         font-family: 'Poppins', sans-serif !important;
         font-size: 18px;
         font-weight: 400;
         color: #091747;
     }
-    
-    /* Estilo para cabeçalhos, texto e outros componentes */
-    .stText, .stMarkdown, .stHtml, .stWrite {
+
+    /* Aplica a fonte nos títulos (st.title) */
+    .css-1v0mbdj h1 {
         font-family: 'Poppins', sans-serif !important;
+        font-weight: 600 !important;
     }
 
-    /* Estilo para os botões */
+    /* Aplica a fonte nos textos gerais (st.text e st.markdown) */
+    .stText, .stMarkdown, .stWrite, .stTextInput, .stTextArea {
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 18px !important;
+    }
+
+    /* Aplica a fonte nos botões */
     .stButton>button {
         font-family: 'Poppins', sans-serif !important;
+        font-size: 16px !important;
     }
 
-    /* Estilo para seletores e campos de entrada */
+    /* Aplica a fonte nos seletores e campos de entrada (ex: st.text_input, st.selectbox) */
     .stSelectbox select, .stMultiselect select, .stTextInput input, .stTextArea textarea {
         font-family: 'Poppins', sans-serif !important;
     }
 
-    /* Estilo para o sidebar */
+    /* Estilo para a sidebar */
     .css-1d391kg, .css-18e3th9 {
         font-family: 'Poppins', sans-serif !important;
     }
@@ -59,6 +61,7 @@ st.markdown(
     </style>
     """, unsafe_allow_html=True
 )
+
 
 
 
