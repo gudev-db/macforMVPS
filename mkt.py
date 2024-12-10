@@ -9,6 +9,8 @@ from datetime import datetime
 from crewai_tools import tool
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
+from tavily import TavilyClient
+
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
