@@ -21,7 +21,7 @@ modelo_linguagem = ChatOpenAI(
 
 # Step 1. Instantiating your TavilyClient
 from tavily import TavilyClient
-client = TavilyClient(api_key="T_API_KEY")
+client = TavilyClient(api_key='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')
 
 # Step 2. Executing a simple search query
 politic = client.search("Como está a situação política no brasil atualmente em um contexto geral?")
