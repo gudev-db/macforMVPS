@@ -15,7 +15,7 @@ from tavily import TavilyClient
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
-client = TavilyClient(api_key='T_API_KEY')
+client = TavilyClient(api_key='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')
 st.set_page_config(layout="wide",
                   page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
 
