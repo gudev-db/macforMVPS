@@ -15,10 +15,21 @@ from tavily import TavilyClient
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
 
+import streamlit as st
+
+# Importando a fonte Poppins via Google Fonts
 st.markdown(
     """
     <style>
-    /* Aplica a fonte Poppins a todo o HTML, corpo, e classes de Streamlit */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+    </style>
+    """, unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <style>
+    /* Aplica a fonte Poppins em todo o corpo da página */
     html, body, [class*="css"] {
         font-family: 'Poppins', sans-serif !important;
         font-size: 18px;
@@ -26,42 +37,47 @@ st.markdown(
         color: #091747;
     }
 
-    /* Aplica a fonte nos títulos (st.title) */
+    /* Aplica a fonte aos títulos (st.title) */
     .css-1v0mbdj h1 {
         font-family: 'Poppins', sans-serif !important;
         font-weight: 600 !important;
     }
 
-    /* Aplica a fonte nos textos gerais (st.text e st.markdown) */
+    /* Aplica a fonte nos textos gerados por st.text() e st.markdown() */
     .stText, .stMarkdown, .stWrite, .stTextInput, .stTextArea {
         font-family: 'Poppins', sans-serif !important;
         font-size: 18px !important;
     }
 
-    /* Aplica a fonte nos botões */
+    /* Aplica a fonte nos botões (st.button) */
     .stButton>button {
         font-family: 'Poppins', sans-serif !important;
         font-size: 16px !important;
     }
 
-    /* Aplica a fonte nos seletores e campos de entrada (ex: st.text_input, st.selectbox) */
-    .stSelectbox select, .stMultiselect select, .stTextInput input, .stTextArea textarea {
+    /* Aplica a fonte no Selectbox (st.selectbox) */
+    .stSelectbox select {
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 16px !important;
+    }
+
+    /* Aplica a fonte nos campos de entrada de texto (st.text_input, st.text_area) */
+    .stTextInput input, .stTextArea textarea {
         font-family: 'Poppins', sans-serif !important;
     }
 
-    /* Estilo para a sidebar */
-    .css-1d391kg, .css-18e3th9 {
+    /* Aplica a fonte aos títulos de qualquer outra seção (subtítulos, etc.) */
+    .stSubheader, .stHeader {
         font-family: 'Poppins', sans-serif !important;
     }
 
-    /* Estilo para a barra lateral, se houver */
-    .css-1kyxreq {
+    /* Aplica a fonte ao texto no sidebar e outros componentes */
+    .css-1d391kg, .css-18e3th9, .css-1kyxreq {
         font-family: 'Poppins', sans-serif !important;
     }
     </style>
     """, unsafe_allow_html=True
 )
-
 
 
 
