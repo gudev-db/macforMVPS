@@ -9,6 +9,7 @@ from datetime import datetime
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from mkt import planej_mkt_page
+from creative import criativos_posts_page
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
@@ -85,6 +86,10 @@ if login():
             st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
             st.success('Você escolheu o Plano Estratégico de Marketing!')
         
+        if st.button('Ideias de Criativos'):
+            st.session_state.tipo_documento = 'Ideias de Criativos'
+            st.success('Você escolheu Ideias de Criativos!')
+        
         
 
     
@@ -96,6 +101,10 @@ if login():
             if tipo_documento == 'Plano Estratégico de Marketing':
 
               planej_mkt_page()
+
+            if tipo_documento == 'Ideias de Criativos':
+
+              criativos_posts_page()
               
              
 
