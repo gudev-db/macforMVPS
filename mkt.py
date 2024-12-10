@@ -17,6 +17,20 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
+# Step 1. Instantiating your TavilyClient
+from tavily import TavilyClient
+client = TavilyClient(api_key="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")
+
+# Step 2. Executing a simple search query
+politic = client.search("Como está a situação política no brasil atualmente em um contexto geral?")
+economic = client.search("Como está a situação econômica no brasil atualmente em um contexto geral??")
+social = client.search("Como está a situação social no brasil atualmente em um contexto geral??")
+tec = client.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral??")
+
+
+# Step 3. That's it! You've done a Tavily Search!
+print(response)
+
 def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
@@ -146,7 +160,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Analista PEST",
                                 goal=f"Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                                backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Extraia informações sobre atualidades de {pest_files} para realizar a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
+                                backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Levando em conta {politic}, {economic}, {social} e {tec} realize a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
