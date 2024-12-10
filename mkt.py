@@ -28,9 +28,6 @@ social = client.search("Como está a situação social no brasil atualmente em u
 tec = client.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral??")
 
 
-# Step 3. That's it! You've done a Tavily Search!
-print(response)
-
 def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
