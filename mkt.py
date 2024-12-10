@@ -62,8 +62,7 @@ def planej_mkt_page():
     
     st.subheader("Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
-    st.subheader("Suba os Arquivos Estratégicos (CSV) (Único ou múltiplos)")
-    market_files = st.file_uploader("Escolha arquivos csv para análise de mercado", type=["csv"], accept_multiple_files=True)
+   
 
     @tool("CSVSearchTool")
     def csv_search_tool(market_files: list, search_term: str) -> str:
@@ -157,7 +156,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Analista PEST",
                                 goal=f"Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                                backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Levando em conta {politic}, {economic}, {social} e {tec} realize a análise PEST. Extraia informações de {market_files} para ter mais repertório também. Os arquivos em {pest_files} e {market_files} devem ter um efeito direto em sua análise aprenda sobre marketing com eles. Use suas ferramentas para analisá-los.",
+                                backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua análise PEST deve se basear em.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[PDFSearchTool(), CSVSearchTool()]
