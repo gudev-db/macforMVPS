@@ -38,7 +38,7 @@ from crewai_tools import BaseTool, tool
 # Função de login
 file_tool = PDFSearchTool()
 
-st.image('macLogo.png', width=500)
+st.image('macLogo.png', width=1500)
 #st.title('Macfor AI Solutions')
 
 
