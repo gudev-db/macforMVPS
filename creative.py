@@ -23,6 +23,14 @@ def criativos_posts_page():
     nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
     site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
     
+    # Coleta as informações adicionais de concorrentes
+    concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Empresa Y, Empresa Z")
+    site_concorrentes = st.text_input('Sites dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.empresa-y.com.br, www.empresa-z.com.br")
+    
+    # Coleta o intuito da campanha e o ramo de atuação
+    intuito_campanha = st.text_input('Intuito da Campanha:', key="intuito_campanha", placeholder="Ex: Aumentar a conscientização sobre o produto")
+    ramo_atuacao = st.text_input('Ramo de Atuação do Cliente:', key="ramo_atuacao", placeholder="Ex: Moda, Tecnologia, Saúde")
+    
     # Selectbox para o veículo de campanha (Google ou Meta)
     veiculo_campanha = st.selectbox("Escolha o Veículo de Campanha", ['Google', 'Meta','Linkedin','Tiktok'], key="veiculo_campanha")
     
@@ -47,28 +55,28 @@ def criativos_posts_page():
                     Agent(
                         role="Criador de Títulos de Post",
                         goal=f"Gerar 10 títulos criativos de posts para {nome_cliente}, focados em {objetivo_campanha} e público-alvo {publico_alvo} para o veículo {veiculo_campanha}.",
-                        backstory=f"Você é um especialista que fala português brasileiro em marketing digital, especializado em criar títulos de post criativos para campanhas no Google ou Meta. O cliente é {nome_cliente} e o objetivo é {objetivo_campanha}.",
+                        backstory=f"Você é um especialista que fala português brasileiro em marketing digital, especializado em criar títulos de post criativos para campanhas no Google ou Meta. O cliente é {nome_cliente}, o ramo de atuação é {ramo_atuacao}, o intuito da campanha é {intuito_campanha}, e o objetivo é {objetivo_campanha}. Concorrentes: {concorrentes}.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador de Descrições de Post",
                         goal=f"Gerar 10 descrições criativas para os posts de {nome_cliente} com o objetivo de {objetivo_campanha} e para o público {publico_alvo}.",
-                        backstory=f"Você é um especialista que fala português brasileiro em criar descrições criativas para posts de campanhas no Google ou Meta. O cliente é {nome_cliente} e o objetivo é {objetivo_campanha}.",
+                        backstory=f"Você é um especialista que fala português brasileiro em criar descrições criativas para posts de campanhas no Google ou Meta. O cliente é {nome_cliente}, o ramo de atuação é {ramo_atuacao}, o intuito da campanha é {intuito_campanha}, e o objetivo é {objetivo_campanha}. Concorrentes: {concorrentes}.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador de Texto para Site Link",
                         goal=f"Gerar 10 exemplos de texto para links de site para a campanha de {nome_cliente} com objetivo de {objetivo_campanha}.",
-                        backstory=f"Você é um especialista que fala português brasileiro em marketing digital, criando textos otimizados para links em campanhas de Google ou Meta. O cliente é {nome_cliente} e o objetivo é {objetivo_campanha}.",
+                        backstory=f"Você é um especialista que fala português brasileiro em marketing digital, criando textos otimizados para links em campanhas de Google ou Meta. O cliente é {nome_cliente}, o ramo de atuação é {ramo_atuacao}, o intuito da campanha é {intuito_campanha}, e o objetivo é {objetivo_campanha}. Concorrentes: {concorrentes}.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     ),
                     Agent(
                         role="Criador de Extensões de Frase de Destaque",
                         goal=f"Gerar 10 extensões de frase de destaque para a campanha de {nome_cliente}, focada em {objetivo_campanha}.",
-                        backstory=f"Você é um especialista que fala português brasileiro em criar extensões de frase de destaque para campanhas publicitárias no Google ou Meta. O cliente é {nome_cliente} e o objetivo é {objetivo_campanha}.",
+                        backstory=f"Você é um especialista que fala português brasileiro em criar extensões de frase de destaque para campanhas publicitárias no Google ou Meta. O cliente é {nome_cliente}, o ramo de atuação é {ramo_atuacao}, o intuito da campanha é {intuito_campanha}, e o objetivo é {objetivo_campanha}. Concorrentes: {concorrentes}.",
                         allow_delegation=False,
                         llm=modelo_linguagem
                     )
@@ -118,4 +126,5 @@ def criativos_posts_page():
                     st.markdown(tarefa.output.raw)
 
                 st.success("Criativos gerados com sucesso!")
+
 
