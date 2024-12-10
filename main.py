@@ -39,7 +39,7 @@ from crewai_tools import BaseTool, tool
 file_tool = PDFSearchTool()
 
 st.image('macLogo.png', width=500)
-st.title('Macfor AI Solutions')
+#st.title('Macfor AI Solutions')
 
 
 
