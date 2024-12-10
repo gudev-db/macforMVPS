@@ -12,6 +12,9 @@ from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSear
 import os
 from tavily import TavilyClient
 
+with open( "app\style.css" ) as css:
+    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
