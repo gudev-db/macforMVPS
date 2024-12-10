@@ -41,7 +41,6 @@ def criativos_posts_page():
     key="tipo_campanha"
 )
     
-    objetivo_campanha = st.text_input('Objetivo da Campanha:', key="objetivo_campanha", placeholder="Ex: Aumentar tráfego no site")
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
 
     # Botão para iniciar o processo de criação dos criativos
