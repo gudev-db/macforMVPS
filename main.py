@@ -15,8 +15,7 @@ from tavily import TavilyClient
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
 
-with open( "style.css" ) as css:
-    ( f'<style>{css.read()}</style>' , unsafe_allow_html= False)
+
 
 
 # Configuração do ambiente da API
