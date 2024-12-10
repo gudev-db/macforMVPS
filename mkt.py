@@ -21,11 +21,7 @@ modelo_linguagem = ChatOpenAI(
 
 client = TavilyClient(api_key='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')
 
-# Step 2. Executing a simple search query
-politic = client.search("Como está a situação política no brasil atualmente em um contexto geral?")
-economic = client.search("Como está a situação econômica no brasil atualmente em um contexto geral??")
-social = client.search("Como está a situação social no brasil atualmente em um contexto geral??")
-tec = client.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral??")
+
 
 
 def limpar_estado():
@@ -62,7 +58,11 @@ def planej_mkt_page():
     
     st.subheader("Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
-   
+    # Step 2. Executing a simple search query
+    politic = client.search(f"Como está a situação política no brasil atualmente em um contexto geral para a realização de um planejamento estratégico de marketing digital para {cliente_nome}?")
+    economic = client.search(f"Como está a situação econômica no brasil atualmente em um contexto geral para a realização de um planejamento estratégico de marketing digital para {cliente_nome}?")
+    social = client.search(f"Como está a situação social no brasil atualmente em um contexto geral para a realização de um planejamento estratégico de marketing digital para {cliente_nome}?")
+    tec = client.search(f"Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral para a realização de um planejamento estratégico de marketing digital para {cliente_nome}?")
 
     @tool("CSVSearchTool")
     def csv_search_tool(market_files: list, search_term: str) -> str:
