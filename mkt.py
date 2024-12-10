@@ -269,14 +269,14 @@ def planej_mkt_page():
                                     output_file = 'revisao.md'),
 
                                 Task(
-                                description="Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
+                                description="Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
                                 expected_output="Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
                                 agent=agentes[8],
                                 output_file='estrategia_conteudo.md'
                             ),
                             Task(
                                 description="Plano de SEO.",
-                                expected_output="Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
+                                expected_output="Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, faça o Plano de SEO para melhorar a visibilidade do site de {nome_cliente}.",
                                 agent=agentes[9],
                                 output_file='seo.md'
                             )
