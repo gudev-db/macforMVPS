@@ -6,10 +6,11 @@ import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
-from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
-import os
 from mkt import planej_mkt_page
 from creative import criativos_posts_page
+from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
+import os
+
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
