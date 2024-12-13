@@ -24,7 +24,8 @@ with open("style.css") as f:
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
-client = TavilyClient(api_key='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')
+t_api_key = os.getenv("T_API_KEY")
+client = TavilyClient(t_api_key=t_api_key)
 
 
 # Carregando o arquivo CSS para personalizar a fonte
