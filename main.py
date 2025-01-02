@@ -7,7 +7,7 @@ from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
 from mkt import planej_mkt_page
-from creative import criativos_posts_page
+from retrieve import visualizar_planejamentos
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
@@ -92,29 +92,28 @@ def login():
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
-        
-         # Botões para escolher o tipo de documento
-        if st.button('Plano Estratégico de Marketing'):
-            st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
-            st.success('Você escolheu o Plano Estratégico de Marketing!')
-        
-        
-        
-        
 
-    
-        # Exibindo o conteúdo relacionado ao tipo de documento escolhido
-        if "tipo_documento" in st.session_state:
-            tipo_documento = st.session_state.tipo_documento
+    # Botões para escolher o tipo de documento
+    if st.button('Plano Estratégico de Marketing'):
+        st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
+        st.success('Você escolheu o Plano Estratégico de Marketing!')
 
-          
-            if tipo_documento == 'Plano Estratégico de Marketing':
+    if st.button('Visualizar documentos gerados'):
+        st.session_state.tipo_documento = 'Visualizar documentos gerados'
+        st.success('Você escolheu Visualizar documentos gerados!')
 
-              planej_mkt_page()
+    # Exibindo o conteúdo relacionado ao tipo de documento escolhido
+    if "tipo_documento" in st.session_state:
+        tipo_documento = st.session_state.tipo_documento
 
-            if tipo_documento == 'Ideias de Criativos':
+        if tipo_documento == 'Plano Estratégico de Marketing':
+            # Chama a função para o planejamento de marketing
+            planej_mkt_page()
 
-              criativos_posts_page()
+        elif tipo_documento == 'Visualizar documentos gerados':
+            # Chama a função para visualizar os planejamentos salvos
+            visualizar_planejamentos()
+
               
              
 
