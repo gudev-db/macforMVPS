@@ -32,7 +32,7 @@ collection = db['auto_doc']
 def save_to_mongo(tarefas):
     # Prepare the document to be inserted into MongoDB
     task_outputs = {
-        "timestamp": datetime.datetime.now(),  # Add a timestamp to each document
+        "cliente": nome_cliente, 
         "SWOT": tarefas[0].output.raw,
         "GC": tarefas[1].output.raw,
         "Posicionamento_Marca": tarefas[2].output.raw,
