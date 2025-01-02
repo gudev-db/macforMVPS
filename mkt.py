@@ -21,7 +21,7 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
-client = TavilyClient(api_key='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')
+client1 = TavilyClient(api_key='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')
 
 # Connect to MongoDB
 client = MongoClient("mongodb+srv://cluster0.5iilj.mongodb.net/")
@@ -52,10 +52,10 @@ def save_to_mongo(tarefas):
 
 
 # Step 2. Executing a simple search query
-politic = client.search("Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-economic = client.search("Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-social = client.search("Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-tec = client.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+politic = client1.search("Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+economic = client1.search("Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+social = client1.search("Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+tec = client1.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
 
 
 def limpar_estado():
