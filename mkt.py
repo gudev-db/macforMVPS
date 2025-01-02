@@ -10,7 +10,10 @@ from crewai_tools import tool
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
-
+import streamlit as st
+from pymongo import MongoClient
+from crewai_tools import Task
+import datetime
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
@@ -20,6 +23,34 @@ modelo_linguagem = ChatOpenAI(
 )
 
 client = TavilyClient(api_key='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')
+
+# Connect to MongoDB
+client = MongoClient("mongodb+srv://cluster0.5iilj.mongodb.net/")
+db = client['arquivos_planejamento']  # Replace with your database name
+collection = db['auto_doc'] 
+
+# Function to save the .raw outputs in MongoDB
+def save_to_mongo(tarefas):
+    # Prepare the document to be inserted into MongoDB
+    task_outputs = {
+        "timestamp": datetime.datetime.now(),  # Add a timestamp to each document
+        "SWOT": tarefas[0].output.raw,
+        "GC": tarefas[1].output.raw,
+        "Posicionamento_Marca": tarefas[2].output.raw,
+        "Brand_Persona": tarefas[3].output.raw,
+        "Buyer_Persona": tarefas[4].output.raw,
+        "Tom_Voz": tarefas[5].output.raw,
+        "PEST": tarefas[6].output.raw,
+        "Revisao": tarefas[7].output.raw,
+        "Estrategia_Conteudo": tarefas[8].output.raw,
+        "Plano_SEO": tarefas[9].output.raw,
+    }
+
+    # Insert the document into MongoDB
+    collection.insert_one(task_outputs)
+    st.success("Planejamento gerado com sucesso e salvo no banco de dados!")
+
+
 
 # Step 2. Executing a simple search query
 politic = client.search("Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
@@ -306,6 +337,10 @@ def planej_mkt_page():
                         # Executa as tarefas do processo
                         resultado = equipe.kickoff()
 
+                        save_to_mongo(tarefas)
+
                         for tarefa in tarefas:
                             st.markdown(tarefa.output.raw)
                         st.success("Planejamento gerado com sucesso!")
+
+
