@@ -13,9 +13,7 @@ import os
 from tavily import TavilyClient
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
-                  page_icon="page-icon.png")  # Isso faz o layout ficar mais largo
-
-
+                  page_icon="page-icon.png")  
 
 
 
