@@ -34,29 +34,7 @@ import uuid
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-# Substituindo o 'nome_cliente' pelo gerador de ID no restante do código
-def save_to_mongo(tarefas):
-    # Gerar o ID único para o planejamento
-    id_planejamento = gerar_id_planejamento()
-    
-    # Prepare the document to be inserted into MongoDB
-    task_outputs = {
-        "id_planejamento": id_planejamento,  # Use o ID gerado como chave
-        "SWOT": tarefas[0].output.raw,
-        "GC": tarefas[1].output.raw,
-        "Posicionamento_Marca": tarefas[2].output.raw,
-        "Brand_Persona": tarefas[3].output.raw,
-        "Buyer_Persona": tarefas[4].output.raw,
-        "Tom_Voz": tarefas[5].output.raw,
-        "PEST": tarefas[6].output.raw,
-        "Revisao": tarefas[7].output.raw,
-        "Estrategia_Conteudo": tarefas[8].output.raw,
-        "Plano_SEO": tarefas[9].output.raw,
-    }
 
-    # Insert the document into MongoDB
-    collection.insert_one(task_outputs)
-    st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
 
 
 # Step 2. Executing a simple search query
@@ -160,6 +138,35 @@ def planej_mkt_page():
         
         except Exception as e:
             return f"An error occurred while processing the PDF: {str(e)}"
+
+
+
+
+
+    # Substituindo o 'nome_cliente' pelo gerador de ID no restante do código
+    def save_to_mongo(tarefas):
+        # Gerar o ID único para o planejamento
+        id_planejamento = gerar_id_planejamento()
+        
+        # Prepare the document to be inserted into MongoDB
+        task_outputs = {
+            "id_planejamento": id_planejamento,  # Use o ID gerado como chave
+            "cliente": nome_cliente,
+            "SWOT": tarefas[0].output.raw,
+            "GC": tarefas[1].output.raw,
+            "Posicionamento_Marca": tarefas[2].output.raw,
+            "Brand_Persona": tarefas[3].output.raw,
+            "Buyer_Persona": tarefas[4].output.raw,
+            "Tom_Voz": tarefas[5].output.raw,
+            "PEST": tarefas[6].output.raw,
+            "Revisao": tarefas[7].output.raw,
+            "Estrategia_Conteudo": tarefas[8].output.raw,
+            "Plano_SEO": tarefas[9].output.raw,
+        }
+    
+        # Insert the document into MongoDB
+        collection.insert_one(task_outputs)
+        st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
 
     if pest_files is not None:
         # Se o relatório já foi gerado, exiba os resultados
