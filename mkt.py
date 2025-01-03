@@ -59,12 +59,11 @@ def save_to_mongo(tarefas):
     st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
 
 
-
 # Step 2. Executing a simple search query
-politic = client1.search("Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-economic = client1.search("Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-social = client1.search("Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-tec = client1.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+politic = client.search("Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+economic = client.search("Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+social = client.search("Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+tec = client.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
 
 
 def limpar_estado():
@@ -103,11 +102,66 @@ def planej_mkt_page():
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
    
 
-    
+    @tool("CSVSearchTool")
+    def csv_search_tool(market_files: list, search_term: str) -> str:
+        """
+        Tool for searching for a term in multiple uploaded CSV files.
+        - market_files: A list of paths to the uploaded CSV files.
+        - search_term: The term to search for within the CSV files.
+        
+        Returns a string with search results or a message indicating no results.
+        """
+        try:
+            found_text = []
 
-    
+            for csv_file in market_files:
+                with open(csv_file, newline='', encoding='utf-8') as file:
+                    reader = csv.reader(file)
+                    
+                    for row_num, row in enumerate(reader):
+                        row_text = ' '.join(row)
+                        
+                        if search_term.lower() in row_text.lower():
+                            found_text.append(f"File: {csv_file} - Row {row_num + 1}: {row_text[:200]}...")  # Preview de 200 caracteres
+                        
+            if found_text:
+                return "\n".join(found_text)
+            else:
+                return f"No occurrences of '{search_term}' found in the documents."
+        
+        except Exception as e:
+            return f"An error occurred while processing the CSV files: {str(e)}"
 
-    if (0==0):
+    @tool("PDFSearchTool")
+    def pdf_search_tool(pdf_file: str, search_term: str) -> str:
+        """
+        Tool for searching for a term in an uploaded PDF document.
+        - pdf_file: The path to the uploaded PDF file.
+        - search_term: The term to search for within the PDF.
+        
+        Returns a string with search results or a message indicating no results.
+        """
+        try:
+            document = pest_files
+            found_text = []
+
+            for file in pest_files:
+                for page_num in range(document.page_count):
+                    page = document.load_page(page_num)
+                    text = page.get_text()
+                    
+                    if search_term.lower() in text.lower():
+                        found_text.append(f"Page {page_num + 1}: {text[:200]}...")  # Preview of the first 200 characters
+                
+                if found_text:
+                    return "\n".join(found_text)
+                else:
+                    return f"No occurrences of '{search_term}' found in the document."
+        
+        except Exception as e:
+            return f"An error occurred while processing the PDF: {str(e)}"
+
+    if pest_files is not None:
         # Se o relatório já foi gerado, exiba os resultados
         if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
             st.subheader("Relatório Gerado")
