@@ -103,35 +103,7 @@ def planej_mkt_page():
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
    
 
-    @tool("CSVSearchTool")
-    def csv_search_tool(market_files: list, search_term: str) -> str:
-        """
-        Tool for searching for a term in multiple uploaded CSV files.
-        - market_files: A list of paths to the uploaded CSV files.
-        - search_term: The term to search for within the CSV files.
-        
-        Returns a string with search results or a message indicating no results.
-        """
-        try:
-            found_text = []
-
-            for csv_file in market_files:
-                with open(csv_file, newline='', encoding='utf-8') as file:
-                    reader = csv.reader(file)
-                    
-                    for row_num, row in enumerate(reader):
-                        row_text = ' '.join(row)
-                        
-                        if search_term.lower() in row_text.lower():
-                            found_text.append(f"File: {csv_file} - Row {row_num + 1}: {row_text[:200]}...")  # Preview de 200 caracteres
-                        
-            if found_text:
-                return "\n".join(found_text)
-            else:
-                return f"No occurrences of '{search_term}' found in the documents."
-        
-        except Exception as e:
-            return f"An error occurred while processing the CSV files: {str(e)}"
+    
 
     @tool("PDFSearchTool")
     def pdf_search_tool(pdf_file: str, search_term: str) -> str:
