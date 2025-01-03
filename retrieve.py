@@ -9,7 +9,15 @@ from crewai_tools import PDFSearchTool, CSVSearchTool
 from tavily import TavilyClient
 import csv
 
+
+
 def visualizar_planejamentos():
+
+    # Connect to MongoDB
+    client = MongoClient("mongodb+srv://cluster0.5iilj.mongodb.net/")
+    db = client['arquivos_planejamento']  # Replace with your database name
+    collection = db['auto_doc'] 
+    
     # Consultar todos os documentos da coleção no MongoDB
     planejamentos = collection.find()  # Aqui estamos recuperando todos os documentos da coleção 'auto_doc'
     
