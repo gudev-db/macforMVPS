@@ -105,36 +105,9 @@ def planej_mkt_page():
 
     
 
-    @tool("PDFSearchTool")
-    def pdf_search_tool(pdf_file: str, search_term: str) -> str:
-        """
-        Tool for searching for a term in an uploaded PDF document.
-        - pdf_file: The path to the uploaded PDF file.
-        - search_term: The term to search for within the PDF.
-        
-        Returns a string with search results or a message indicating no results.
-        """
-        try:
-            document = pest_files
-            found_text = []
+    
 
-            for file in pest_files:
-                for page_num in range(document.page_count):
-                    page = document.load_page(page_num)
-                    text = page.get_text()
-                    
-                    if search_term.lower() in text.lower():
-                        found_text.append(f"Page {page_num + 1}: {text[:200]}...")  # Preview of the first 200 characters
-                
-                if found_text:
-                    return "\n".join(found_text)
-                else:
-                    return f"No occurrences of '{search_term}' found in the document."
-        
-        except Exception as e:
-            return f"An error occurred while processing the PDF: {str(e)}"
-
-    if pest_files is not None:
+    if (0==0):
         # Se o relatório já foi gerado, exiba os resultados
         if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
             st.subheader("Relatório Gerado")
