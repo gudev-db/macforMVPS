@@ -47,5 +47,3 @@ def visualizar_planejamentos():
         st.write("Planejamento não encontrado.")
 
 
-# Call the function to display the content
-visualizar_planejamentos()
