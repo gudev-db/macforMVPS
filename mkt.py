@@ -28,11 +28,20 @@ client = MongoClient("mongodb+srv://cluster0.5iilj.mongodb.net/")
 db = client['arquivos_planejamento']  # Replace with your database name
 collection = db['auto_doc'] 
 
-# Function to save the .raw outputs in MongoDB
+import uuid
+
+# Função para gerar um ID único para o planejamento
+def gerar_id_planejamento():
+    return str(uuid.uuid4())
+
+# Substituindo o 'nome_cliente' pelo gerador de ID no restante do código
 def save_to_mongo(tarefas):
+    # Gerar o ID único para o planejamento
+    id_planejamento = gerar_id_planejamento()
+    
     # Prepare the document to be inserted into MongoDB
     task_outputs = {
-        "cliente": nome_cliente, 
+        "id_planejamento": id_planejamento,  # Use o ID gerado como chave
         "SWOT": tarefas[0].output.raw,
         "GC": tarefas[1].output.raw,
         "Posicionamento_Marca": tarefas[2].output.raw,
@@ -47,7 +56,7 @@ def save_to_mongo(tarefas):
 
     # Insert the document into MongoDB
     collection.insert_one(task_outputs)
-    st.success("Planejamento gerado com sucesso e salvo no banco de dados!")
+    st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
 
 
 
