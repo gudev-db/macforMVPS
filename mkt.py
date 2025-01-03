@@ -24,7 +24,9 @@ modelo_linguagem = ChatOpenAI(
 client1 = TavilyClient(api_key='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')
 
 # Connect to MongoDB
-client = MongoClient("mongodb+srv://cluster0.5iilj.mongodb.net/")
+client = MongoClient(
+    "mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true"
+)
 db = client['arquivos_planejamento']  # Replace with your database name
 collection = db['auto_doc'] 
 
