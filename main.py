@@ -15,9 +15,7 @@ from tavily import TavilyClient
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="Screenshot Capture - 2024-11-26 - 20-34-58.png")  # Isso faz o layout ficar mais largo
 
-# Carregando o arquivo CSS para personalizar a fonte
-with open("style.css") as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 
 
 
