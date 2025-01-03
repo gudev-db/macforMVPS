@@ -30,7 +30,7 @@ def visualizar_planejamentos():
     if selected_planejamento:
         # Display the selected planejamento
         st.subheader(f"Planejamento para: {selected_planejamento.get('cliente')}")
-        st.markdown(f"**Data de Criação:** {selected_planejamento.get('timestamp')}")
+        
         
         # Exibindo as informações dos campos de planejamento (como SWOT, GC, etc.)
         st.markdown(f"**SWOT:** {selected_planejamento.get('SWOT')}")
