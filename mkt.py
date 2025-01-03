@@ -345,10 +345,11 @@ def planej_mkt_page():
                         # Executa as tarefas do processo
                         resultado = equipe.kickoff()
 
-                        save_to_mongo(tarefas)
-
                         for tarefa in tarefas:
                             st.markdown(tarefa.output.raw)
                         st.success("Planejamento gerado com sucesso!")
 
+                        save_to_mongo(tarefas)
+
+                        
 
