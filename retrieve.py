@@ -39,6 +39,4 @@ def visualizar_planejamentos():
         
         st.markdown("---")  # Separador visual entre os planejamentos
 
-# Adicionar um botão para visualizar os planejamentos já gerados
-if st.button('Visualizar Planejamentos Salvos'):
-    visualizar_planejamentos()
+
