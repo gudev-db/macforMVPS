@@ -22,9 +22,8 @@ def visualizar_planejamentos():
     planejamentos = collection.find()  # Aqui estamos recuperando todos os documentos da coleção 'auto_doc'
     
     # Se não houver documentos
-    if planejamentos.count() == 0:
-        st.write("Nenhum planejamento encontrado.")
-        return
+    if collection.count_documents({}) == 0:
+        st.write("Não há planejamentos registrados.")
     
     # Exibir os resultados no Streamlit
     st.subheader("Planejamentos Já Gerados")
