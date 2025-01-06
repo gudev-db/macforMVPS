@@ -43,12 +43,17 @@ def save_to_mongo(tarefas, nome_cliente):
         "id_planejamento": id_planejamento,  # Use o ID gerado como chave
         #"nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "SWOT": tarefas_pesquisa[0].output.raw,
+        "PEST": tarefas_pesquisa[1].output.raw,
+
+        
         "GC": tarefas_estrategica[0].output.raw,
         "Posicionamento_Marca": tarefas_estrategica[1].output.raw,
         "Brand_Persona": tarefas_estrategica[2].output.raw,
         "Buyer_Persona": tarefas_estrategica[3].output.raw,
         "Tom_Voz": tarefas_estrategica[4].output.raw,
-        "PEST": tarefas_pesquisa[1].output.raw,
+        
+
+        
         "Plano_Criativos": tarefas_midia[0].output.raw,
         "Plano_SEO": tarefas_midia[1].output.raw,
         "Plano_CRM": tarefas_midia[2].output.raw,
