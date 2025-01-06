@@ -373,10 +373,10 @@ def planej_mkt_page():
 
                                 Task(
                                 description=f'''
-                                Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta análise PEST: ({tarefas_pesquisa[1].output.raw}),
-                                Tom de Voz: ({tarefas_estrategica[4].output.raw}), Buyer Persona: ({tarefas_estrategica[3].output.raw}), Brand Persona: ({tarefas_estrategica[2].output.raw}), 
-                                Público alvo: ({publico_alvo}), posicionamento de marca:({tarefas_estrategica[1].output.raw}), análise SWOT: ({tarefas_pesquisa[0].output.raw}) e golden circle:
-                                ({tarefas_estrategica[0].output.raw})gerados, assim como a referencia
+                                Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta análise PEST: str({tarefas_pesquisa[1].output.raw}),
+                                Tom de Voz: str({tarefas_estrategica[4].output.raw}), Buyer Persona: str({tarefas_estrategica[3].output.raw}), Brand Persona: str({tarefas_estrategica[2].output.raw}), 
+                                Público alvo: str({publico_alvo}), posicionamento de marca:str({tarefas_estrategica[1].output.raw}), análise SWOT: str({tarefas_pesquisa[0].output.raw}) e golden circle:
+                                str({tarefas_estrategica[0].output.raw})gerados, assim como a referencia
                                 de marca enunciada em {referencia_da_marca},
                                 Criar as editorias de conteúdo da marca.",
                                 expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.''',
@@ -389,20 +389,20 @@ def planej_mkt_page():
     description=f'''
     Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital,
     Faça uma revisão geral de todo o planejamento estratégico gerado, incluindo as etapas de:
-    Levando em conta análise PEST: ({tarefas_pesquisa[1].output.raw}),
-    Tom de Voz: ({tarefas_estrategica[4].output.raw}), 
-    Buyer Persona: ({tarefas_estrategica[3].output.raw}), 
-    Brand Persona: ({tarefas_estrategica[2].output.raw}), 
-    Público alvo: ({publico_alvo}), 
-    Posicionamento de marca: ({tarefas_estrategica[1].output.raw}), 
-    Análise SWOT: ({tarefas_pesquisa[0].output.raw}) e Golden Circle: ({tarefas_estrategica[0].output.raw}),
+    Levando em conta análise PEST: str({tarefas_pesquisa[1].output.raw}),
+    Tom de Voz: str({tarefas_estrategica[4].output.raw}), 
+    Buyer Persona: str({tarefas_estrategica[3].output.raw}), 
+    Brand Persona: str({tarefas_estrategica[2].output.raw}), 
+    Público alvo: str({publico_alvo}), 
+    Posicionamento de marca: str({tarefas_estrategica[1].output.raw}), 
+    Análise SWOT: str({tarefas_pesquisa[0].output.raw}) e Golden Circle: ({tarefas_estrategica[0].output.raw}),
     assim como a referência de marca enunciada em {referencia_da_marca}, 
     
-    - Plano Criativos: ({tarefas_midia[0].output.raw}),
-    - Plano SEO: ({tarefas_midia[1].output.raw}),
-    - Plano CRM: ({tarefas_midia[2].output.raw}),
-    - Plano Design: ({tarefas_midia[3].output.raw}),
-    - Estratégia de Conteúdo: ({tarefas_midia[4].output.raw}).
+    - Plano Criativos: str({tarefas_midia[0].output.raw}),
+    - Plano SEO: str({tarefas_midia[1].output.raw}),
+    - Plano CRM: str({tarefas_midia[2].output.raw}),
+    - Plano Design: str({tarefas_midia[3].output.raw}),
+    - Estratégia de Conteúdo: str({tarefas_midia[4].output.raw}).
     ''',
     expected_output="Em português brasileiro, Revisão Geral do planejamento estratégico gerado em cada uma das etapas.",
     agent=agentes[0],
