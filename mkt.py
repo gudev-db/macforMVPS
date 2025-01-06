@@ -107,67 +107,10 @@ def planej_mkt_page():
     referencia_da_marca = st.text_input('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.")
     
     st.subheader("(Opcional) Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
-    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+    files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
    
 
-    @tool("CSVSearchTool")
-    def csv_search_tool(market_files: list, search_term: str) -> str:
-        """
-        Tool for searching for a term in multiple uploaded CSV files.
-        - market_files: A list of paths to the uploaded CSV files.
-        - search_term: The term to search for within the CSV files.
-        
-        Returns a string with search results or a message indicating no results.
-        """
-        try:
-            found_text = []
-
-            for csv_file in market_files:
-                with open(csv_file, newline='', encoding='utf-8') as file:
-                    reader = csv.reader(file)
-                    
-                    for row_num, row in enumerate(reader):
-                        row_text = ' '.join(row)
-                        
-                        if search_term.lower() in row_text.lower():
-                            found_text.append(f"File: {csv_file} - Row {row_num + 1}: {row_text[:200]}...")  # Preview de 200 caracteres
-                        
-            if found_text:
-                return "\n".join(found_text)
-            else:
-                return f"No occurrences of '{search_term}' found in the documents."
-        
-        except Exception as e:
-            return f"An error occurred while processing the CSV files: {str(e)}"
-
-    @tool("PDFSearchTool")
-    def pdf_search_tool(pdf_file: str, search_term: str) -> str:
-        """
-        Tool for searching for a term in an uploaded PDF document.
-        - pdf_file: The path to the uploaded PDF file.
-        - search_term: The term to search for within the PDF.
-        
-        Returns a string with search results or a message indicating no results.
-        """
-        try:
-            document = pest_files
-            found_text = []
-
-            for file in pest_files:
-                for page_num in range(document.page_count):
-                    page = document.load_page(page_num)
-                    text = page.get_text()
-                    
-                    if search_term.lower() in text.lower():
-                        found_text.append(f"Page {page_num + 1}: {text[:200]}...")  # Preview of the first 200 characters
-                
-                if found_text:
-                    return "\n".join(found_text)
-                else:
-                    return f"No occurrences of '{search_term}' found in the document."
-        
-        except Exception as e:
-            return f"An error occurred while processing the PDF: {str(e)}"
+    pest_files= PDFSearchTool(pdf=files)
 
     if pest_files is not None:
         # Se o relatório já foi gerado, exiba os resultados
@@ -477,7 +420,7 @@ def planej_mkt_page():
 
                         st.header('3. Etapa de Planejamento de Mídias')
                         for tarefa in tarefas_midia:
-                            st.markdown(tarefa_midia .output.raw)
+                            st.markdown(tarefas_midia .output.raw)
                         st.success("Etapa de planejamento de mídias gerada com sucesso!")
 
                         save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
