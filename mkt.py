@@ -34,7 +34,7 @@ import uuid
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-def save_to_mongo(tarefas, nome_cliente):
+def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -476,11 +476,11 @@ def planej_mkt_page():
                         st.success("Etapa estratégica gerada com sucesso!")
 
                         st.header('3. Etapa de Planejamento de Mídias')
-                        for tarefa in tarefas:
+                        for tarefa in tarefas_midia:
                             st.markdown(tarefa_midia .output.raw)
                         st.success("Etapa de planejamento de mídias gerada com sucesso!")
 
-                        save_to_mongo(tarefas, nome_cliente)
+                        save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
 
 
                         
