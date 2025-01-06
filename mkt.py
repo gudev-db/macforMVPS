@@ -408,7 +408,6 @@ def planej_mkt_page():
 
                         #Printando Tarefas
 
-                        "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
                         st.header('1. Etapa de Pesquisa de Mercado')
                         st.subheader('1.1 Análise SWOT')
                         st.markdown(tarefas_pesquisa[0].output.raw)
