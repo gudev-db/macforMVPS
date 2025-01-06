@@ -110,7 +110,7 @@ def planej_mkt_page():
     files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
    
 
-    pest_files= PDFSearchTool(pdf=files)
+    pest_files= PDFSearchTool(pdf=[files])
 
     if pest_files is not None:
         # Se o relatório já foi gerado, exiba os resultados
