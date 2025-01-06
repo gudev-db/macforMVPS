@@ -385,7 +385,7 @@ def planej_mkt_page():
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
                                     expected_output=f'''Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
-                                    Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_do_cliente} considerando seu {ramo_atuacao}, o 
+                                    Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} considerando seu {ramo_atuacao}, o 
                                     intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico algo {publico_alvo}.''',
                                     agent=agentes[9],
                                     output_file = 'SEO.md'
@@ -399,7 +399,7 @@ def planej_mkt_page():
                                     implementação de ferramentas de automação de marketing e o estabelecimento de programas de fidelidade e engajamento. 
                                     Além disso, é essencial otimizar o atendimento ao cliente, promover a retenção e maximizar o valor do cliente ao longo do 
                                     tempo, garantindo a integração de informações entre as equipes de marketing, vendas e atendimento para uma abordagem consistente e eficaz 
-                                    para {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o 
+                                    para {nome_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o 
                                     publico algo {publico_alvo}.''',
                                     agent=agentes[11],
                                     output_file = 'CRM.md'
@@ -415,7 +415,7 @@ def planej_mkt_page():
                                     identidade que seja 
                                     facilmente reconhecível e que se conecte emocionalmente com o público-alvo. 
                                     Além disso, é importante monitorar e ajustar continuamente a percepção da marca no mercado para manter sua relevância e diferenciá-la da concorrência para 
-                                    {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
+                                    {nome_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
                                     {publico_alvo}.''',
                                     agent=agentes[12],
                                     output_file = 'Marca_Design.md'
