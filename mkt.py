@@ -303,7 +303,11 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar a Brand Persona.",
-                                    expected_output=f"Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro.",
+                                    expected_output=f'''Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro. 
+                                    
+                                    -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
+                                    -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
+                                    -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?''',
                                     agent=agentes[4],
                                     output_file = 'BP.md'
                                 ),
@@ -312,20 +316,21 @@ def planej_mkt_page():
                                     expected_output='''Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
-                                    suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro.", 
+                                    suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. Crie duas buyer personas.", 
                                     agent=agentes[5],
                                     output_file = 'BuyerP.md'
                                 ),
                                 Task(
                                     description="Definir o Tom de Voz.",
-                                    expected_output="Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.",
+                                    expected_output='''Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. 
+                                    Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: 'tom é amigavel, para transparecer uma 
+                                    relação de confiança' com frases de exemplo de aplicação do tom em português brasileiro.''',
                                     agent=agentes[7],
                                     output_file = 'TV.md'
                                 )
                             ]
 
 
-                        #falta definir agentes de mídia
                        
                         tarefas_midia = [
 
