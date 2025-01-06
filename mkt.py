@@ -351,7 +351,7 @@ def planej_mkt_page():
                             #Marca/Design
                                 Task(
                                     description="Criar a estratégia de marca e design.",
-                                    expected_output=f'''Gerar uma identidade visual e posicionamento claros e coerentes, alinhados com os valores, missão e visão da empresa. 
+                                    expected_output=f'''Gerar guias para identidade visual e posicionamento claros e coerentes, alinhados com os valores, missão e visão da empresa. 
                                     Isso envolve a criação de um logotipo, paleta de cores, tipografia e outros elementos gráficos que transmitam a personalidade da marca, além de 
                                     definir uma voz e 
                                     tom consistentes na comunicação. A estratégia também deve garantir que a experiência do cliente seja reforçada por meio do design, criando uma 
@@ -420,7 +420,7 @@ def planej_mkt_page():
 
                         st.header('3. Etapa de Planejamento de Mídias')
                         for tarefa in tarefas_midia:
-                            st.markdown(tarefas_midia .output.raw)
+                            st.markdown(tarefa .output.raw)
                         st.success("Etapa de planejamento de mídias gerada com sucesso!")
 
                         save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
