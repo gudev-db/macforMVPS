@@ -333,7 +333,8 @@ def planej_mkt_page():
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
                                     expected_output=f'''Em portugês brasileiro, Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
                                     Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} considerando seu {ramo_atuacao}, o 
-                                    intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico algo {publico_alvo}.''',
+                                    intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico algo {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
+                                    seja vago e não seja raso.''',
                                     agent=agentes[9],
                                     output_file = 'SEO.md'
                                 ),
@@ -347,7 +348,8 @@ def planej_mkt_page():
                                     Além disso, é essencial otimizar o atendimento ao cliente, promover a retenção e maximizar o valor do cliente ao longo do 
                                     tempo, garantindo a integração de informações entre as equipes de marketing, vendas e atendimento para uma abordagem consistente e eficaz 
                                     para {nome_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o 
-                                    publico algo {publico_alvo}.''',
+                                    publico algo {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
+                                    seja vago e não seja raso.''',
                                     agent=agentes[11],
                                     output_file = 'CRM.md'
                                 ),
@@ -363,7 +365,8 @@ def planej_mkt_page():
                                     facilmente reconhecível e que se conecte emocionalmente com o público-alvo. 
                                     Além disso, é importante monitorar e ajustar continuamente a percepção da marca no mercado para manter sua relevância e diferenciá-la da concorrência para 
                                     {nome_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
-                                    {publico_alvo}.''',
+                                    {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de marca e design. Não
+                                    seja vago e não seja raso.''',
                                     agent=agentes[12],
                                     output_file = 'Marca_Design.md'
                                 ),
