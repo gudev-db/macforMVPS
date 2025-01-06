@@ -88,17 +88,7 @@ def login():
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
-    import streamlit as st
-    import streamlit.components.v1 as components
     
-    # Defina o HTML com os scripts externos para o BotPress Web Chat
-    html_code = """
-        <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-        <script src="https://files.bpcontent.cloud/2025/01/03/17/20250103174646-0AOMURNS.js"></script>
-    """
-    
-    # Exibir o HTML e os scripts na página Streamlit
-    components.html(html_code, height=600)
 
 
     # Botões para escolher o tipo de documento
