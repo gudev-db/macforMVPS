@@ -256,6 +256,14 @@ def planej_mkt_page():
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
+                            Agent(
+                                role="Especialista em Redes Sociais",
+                                goal=f"Estabelecer o plano de atuação em redes sociais de {nome_cliente} no planejamento estratégico, com base na análise do site e na concorrência.",
+                                backstory=f"Você é um especialista em marketing em redes sociais, com o objetivo de melhorar a visibilidade nas campanhas {nome_cliente}, com base na análise do conteúdo existente e da concorrência.",
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[]
+                            ),
                         ]
 
                         # Criando tarefas correspondentes aos agentes
@@ -353,7 +361,7 @@ def planej_mkt_page():
                                     
                                     
                                     ''',
-                                    agent=agentes[10],
+                                    agent=agentes[13],
                                     output_file = 'redes.md'
                                 ),
 
