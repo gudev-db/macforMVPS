@@ -29,7 +29,7 @@ def visualizar_planejamentos():
 
     if selected_planejamento:
         # Exibindo o nome do cliente
-        st.subheader(f"Planejamento para: {selected_planejamento.get('cliente')}")
+        st.subheader(f"Planejamento para: {selected_planejamento.get('nome_cliente')}")
         
         # Exibindo as seções do planejamento com subheaders e os dados respectivos
         st.header('1. Etapa de Pesquisa de Mercado')
