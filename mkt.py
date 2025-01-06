@@ -317,7 +317,7 @@ def planej_mkt_page():
                             # Criativos
                                 Task(
                                     description='''Criativos da campanha de marketing digital''',
-                                    expected_output='''Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
+                                    expected_output='''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
                                     {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
                                     {publico_alvo}.''',
                                     agent=agentes[10],
@@ -327,7 +327,7 @@ def planej_mkt_page():
                             #SEO
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
-                                    expected_output=f'''Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
+                                    expected_output=f'''Em portugês brasileiro, Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
                                     Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} considerando seu {ramo_atuacao}, o 
                                     intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico algo {publico_alvo}.''',
                                     agent=agentes[9],
@@ -337,7 +337,7 @@ def planej_mkt_page():
                             #CRM
                                 Task(
                                     description="Criar a estratégia de CRM.",
-                                    expected_output=f'''Uma abordagem centrada no cliente, visando segmentar e compreender profundamente as necessidades, comportamentos e expectativas 
+                                    expected_output=f'''Em portugês brasileiro, Uma abordagem centrada no cliente, visando segmentar e compreender profundamente as necessidades, comportamentos e expectativas 
                                     de diferentes grupos de clientes. Isso envolve a coleta e análise de dados relevantes, o desenvolvimento de estratégias de comunicação personalizadas, a 
                                     implementação de ferramentas de automação de marketing e o estabelecimento de programas de fidelidade e engajamento. 
                                     Além disso, é essencial otimizar o atendimento ao cliente, promover a retenção e maximizar o valor do cliente ao longo do 
@@ -351,7 +351,7 @@ def planej_mkt_page():
                             #Marca/Design
                                 Task(
                                     description="Criar a estratégia de marca e design.",
-                                    expected_output=f'''Gerar guias para identidade visual e posicionamento claros e coerentes, alinhados com os valores, missão e visão da empresa. 
+                                    expected_output=f'''Em portugês brasileiro, Gerar guias para identidade visual e posicionamento claros e coerentes, alinhados com os valores, missão e visão da empresa. 
                                     Isso envolve a criação de um logotipo, paleta de cores, tipografia e outros elementos gráficos que transmitam a personalidade da marca, além de 
                                     definir uma voz e 
                                     tom consistentes na comunicação. A estratégia também deve garantir que a experiência do cliente seja reforçada por meio do design, criando uma 
@@ -408,20 +408,40 @@ def planej_mkt_page():
 
                         #Printando Tarefas
 
+                        "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
                         st.header('1. Etapa de Pesquisa de Mercado')
-                        for tarefa in tarefas_pesquisa:
-                            st.markdown(tarefa.output.raw)
-                        st.success("Etapa de Pesquisa gerada com sucesso!")
+                        st.subheader('1.1 Análise SWOT')
+                        st.markdown(tarefas_pesquisa[0].output.raw)
+                        st.subheader('1.2 Análise PEST')
+                        st.markdown(tarefas_pesquisa[1].output.raw)
+                
 
                         st.header('2. Etapa de Estratégica')
-                        for tarefa in tarefas_estrategica:
-                            st.markdown(tarefa.output.raw)
-                        st.success("Etapa estratégica gerada com sucesso!")
-
+                        st.subheader('2.1 Golden Circle')
+                        st.markdown(tarefas_estrategica[0].output.raw)
+                        st.subheader('2.2 Posicionamento de Marca')
+                        st.markdown(tarefas_estrategica[1].output.raw)
+                        st.subheader('2.3 Brand Persona')
+                        st.markdown(tarefas_estrategica[2].output.raw)
+                        st.subheader('2.4 Buyer Persona')
+                        st.markdown(tarefas_estrategica[3].output.raw)
+                        st.subheader('2.5 Tom de Voz')
+                        st.markdown(tarefas_estrategica[4].output.raw)
+                        
+                
                         st.header('3. Etapa de Planejamento de Mídias')
-                        for tarefa in tarefas_midia:
-                            st.markdown(tarefa .output.raw)
-                        st.success("Etapa de planejamento de mídias gerada com sucesso!")
+                        st.subheader('3.1 Plano para Criativos')
+                        st.markdown(tarefas_midia[0].output.raw)
+                        st.subheader('3.2 Plano de SEO')
+                        st.markdown(tarefas_midia[1].output.raw)
+                        st.subheader('3.3 Plano de CRM')
+                        st.markdown(tarefas_midia[2].output.raw)
+                        st.subheader('3.4 Plano de Design/Marca')
+                        st.markdown(tarefas_midia[3].output.raw)
+                        st.subheader('3.5 Estratégia de Conteúdo')
+                        st.markdown(tarefas_midia[4].output.raw)
+
+                        
 
                         save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
 
