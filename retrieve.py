@@ -71,8 +71,7 @@ def visualizar_planejamentos():
         st.subheader('3.5 Estratégia de Conteúdo')
         st.markdown(f"**Estratégia de Conteúdo:** {selected_planejamento.get('Estrategia_Conteudo')}")
         
-        st.subheader('3.6 Revisão')
-        st.markdown(f"**Revisão:** {selected_planejamento.get('Revisao')}")
+        
     else:
         st.write("Planejamento não encontrado.")
 
