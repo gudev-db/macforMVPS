@@ -91,11 +91,14 @@ if login():
     import streamlit as st
     import streamlit.components.v1 as components
     
-    # Embed the BotPress web chat script
-    components.html("""
+    # Defina o HTML com os scripts externos para o BotPress Web Chat
+    html_code = """
         <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
         <script src="https://files.bpcontent.cloud/2025/01/03/17/20250103174646-0AOMURNS.js"></script>
-    """, height=600)
+    """
+    
+    # Exibir o HTML e os scripts na página Streamlit
+    components.html(html_code, height=600)
 
 
     # Botões para escolher o tipo de documento
