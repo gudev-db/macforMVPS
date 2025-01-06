@@ -56,19 +56,22 @@ def visualizar_planejamentos():
         st.markdown(f"**Tom de Voz:** {selected_planejamento.get('Tom_Voz')}")
         
         st.header('3. Etapa de Planejamento de Mídias')
-        st.subheader('3.1 Plano para Criativos')
+        st.subheader('3.1 Plano para Redes Sociais')
+        st.markdown(f"**Redes Sociais:** {selected_planejamento.get('Plano_Redes')}")
+
+        st.subheader('3.2 Plano para Criativos')
         st.markdown(f"**Criativos:** {selected_planejamento.get('Plano_Criativos')}")
         
-        st.subheader('3.2 Plano de SEO')
+        st.subheader('3.3 Plano de SEO')
         st.markdown(f"**Plano SEO:** {selected_planejamento.get('Plano_SEO')}")
         
-        st.subheader('3.3 Plano de CRM')
+        st.subheader('3.4 Plano de CRM')
         st.markdown(f"**Plano CRM:** {selected_planejamento.get('Plano_CRM')}")
         
-        st.subheader('3.4 Plano de Design/Marca')
+        st.subheader('3.5 Plano de Design/Marca')
         st.markdown(f"**Plano Design/Marca:** {selected_planejamento.get('Plano_Design')}")
         
-        st.subheader('3.5 Estratégia de Conteúdo')
+        st.subheader('3.6 Estratégia de Conteúdo')
         st.markdown(f"**Estratégia de Conteúdo:** {selected_planejamento.get('Estrategia_Conteudo')}")
 
        
