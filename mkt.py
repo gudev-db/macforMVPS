@@ -110,7 +110,7 @@ def planej_mkt_page():
     files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
    
 
-    pest_files= PDFSearchTool(pdf=[files])
+    #pest_files= PDFSearchTool(pdf=[files])
 
     if pest_files is not None:
         # Se o relatório já foi gerado, exiba os resultados
@@ -140,7 +140,7 @@ def planej_mkt_page():
                                 backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Analista PEST",
@@ -148,7 +148,7 @@ def planej_mkt_page():
                                 backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua análise PEST deve se basear em.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Analista SWOT",
@@ -156,7 +156,7 @@ def planej_mkt_page():
                                 backstory="Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Especialista em Matriz BCG",
@@ -164,7 +164,7 @@ def planej_mkt_page():
                                 backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Consultor de Pricing",
@@ -172,7 +172,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Analista de Segmentação de Mercado",
@@ -180,7 +180,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Criador de Persona",
@@ -188,7 +188,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Estratégia de Mídia Social",
@@ -196,7 +196,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Especialista em Inbound Marketing",
@@ -204,7 +204,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Especialista em SEO",
@@ -212,7 +212,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             Agent(
                                 role="Especialista em Criativos",
@@ -221,7 +221,7 @@ def planej_mkt_page():
                                 Tornando-as relevantes e fazendo com que o cliente atinja seus objetivos.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             
                             Agent(
@@ -231,7 +231,7 @@ def planej_mkt_page():
                                 saber para detalhar planos de como firmar e continuar relacionamentos estratégicos com clientes.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                             
                             Agent(
@@ -241,7 +241,7 @@ def planej_mkt_page():
                                 de uma forma coerente e chamativa.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
 
                             Agent(
@@ -250,7 +250,7 @@ def planej_mkt_page():
                                 backstory=f"Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
-                                tools=[pest_files]
+                                tools=[]
                             ),
                         ]
 
