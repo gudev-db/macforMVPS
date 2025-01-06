@@ -309,7 +309,10 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Definir a Buyer Persona e o Público-Alvo.",
-                                    expected_output="Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: nome fictício, idade, gênero, classe social, objetivos, dores, vontades em português brasileiro.", 
+                                    expected_output='''Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: 
+                                    nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
+                                    quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
+                                    suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro.", 
                                     agent=agentes[5],
                                     output_file = 'BuyerP.md'
                                 ),
@@ -329,9 +332,13 @@ def planej_mkt_page():
                              # Redes Sociais
                                 Task(
                                     description='''Definição de estratégia de abordagem de cada rede social''',
-                                    expected_output='''Em portugês brasileiro, definir a abordagem de cada rede social (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
+                                    expected_output='''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
                                     {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
                                     {publico_alvo}. 
+
+                                    Em seguida, detalhar:
+
+                                    
                                     Em facebook e instagram, definir o que deve ser feito em:
                                     - reels e stories
                                     - estático e carrossel
@@ -419,10 +426,29 @@ def planej_mkt_page():
                                 ),
 
                                 Task(
-                                description="Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
-                                expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
+                                description='''Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, 
+                                Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, 
+                                    análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos 
+                                    da marca e o público-alvo.''',
+                                expected_output='''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca. Classificamos as editorias em 
+5 pilares, que foram revistos e sugeridos para posicionar a marca, engajar, relacionar e gerar identificação com o público.
+
+                        Os 5 Pilares:
+                        - Institucional
+                        - Inspiração
+                        - Educação
+                        - Produtos/Serviços
+                        - Relacionamento
+                        
+                        Para cada um dos 5 pilares, definir:
+                        - objetivo
+                        - conteúdo
+                        - canal
+                        
+                        
+''',
                                 agent=agentes[8],
-                                output_file='estrategia_conteudo.md'
+                                output_file='estrategia_editoriais.md'
                             )
                             ]
 
