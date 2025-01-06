@@ -66,7 +66,7 @@ def visualizar_planejamentos():
         st.markdown(f"**Plano CRM:** {selected_planejamento.get('Plano_CRM')}")
         
         st.subheader('3.4 Plano de Design/Marca')
-        st.markdown(f"**Plano Design/Marca:** {selected_planejamento.get('Plano_Design_Marca')}")
+        st.markdown(f"**Plano Design/Marca:** {selected_planejamento.get('Plano_Design')}")
         
         st.subheader('3.5 Estratégia de Conteúdo')
         st.markdown(f"**Estratégia de Conteúdo:** {selected_planejamento.get('Estrategia_Conteudo')}")
