@@ -53,12 +53,12 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
         "Tom_Voz": tarefas_estrategica[4].output.raw,
         
 
-        
-        "Plano_Criativos": tarefas_midia[0].output.raw,
-        "Plano_SEO": tarefas_midia[1].output.raw,
-        "Plano_CRM": tarefas_midia[2].output.raw,
-        "Plano_Design": tarefas_midia[3].output.raw,
-        "Estrategia_Conteudo": tarefas_midia[4].output.raw,
+        "Plano_Redes": tarefas_midia[0].output.raw,
+        "Plano_Criativos": tarefas_midia[1].output.raw,
+        "Plano_SEO": tarefas_midia[2].output.raw,
+        "Plano_CRM": tarefas_midia[3].output.raw,
+        "Plano_Design": tarefas_midia[4].output.raw,
+        "Estrategia_Conteudo": tarefas_midia[5].output.raw,
     }
 
     # Insert the document into MongoDB
@@ -318,6 +318,45 @@ def planej_mkt_page():
                        
                         tarefas_midia = [
 
+                             # Redes Sociais
+                                Task(
+                                    description='''Definição de estratégia de abordagem de cada rede social''',
+                                    expected_output='''Em portugês brasileiro, definir a abordagem de cada rede social (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
+                                    {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
+                                    {publico_alvo}. 
+                                    Em facebook e instagram, definir o que deve ser feito em:
+                                    - reels e stories
+                                    - estático e carrossel
+                                    - conteúdo localizado
+
+                                    Em linkedin, definir o que deve ser feito em:
+                                    - Conteúdos educativos e informativos
+                                    - Depoimentos de sucesso
+                                    - Eventos e comemorações
+                                    - Tom de voz
+                                    - CTA’s  fortes
+
+                                    Em whatsapp, definir o que deve ser feito em:
+                                    - Canal 
+                                    - Lista de transmissão
+                                    - Análises regulares
+
+                                    Em Youtube, definir o que deve ser feito em termos de:
+                                    - shorts
+                                    - conteúdos de especialistas
+                                    - vídeos
+                                    - análises regulares
+
+                                    Em geral, também definir do's e don't's
+
+                                    
+                                    
+                                    
+                                    ''',
+                                    agent=agentes[10],
+                                    output_file = 'redes.md'
+                                ),
+
                             # Criativos
                                 Task(
                                     description='''Criativos da campanha de marketing digital''',
@@ -436,16 +475,18 @@ def planej_mkt_page():
                         
                 
                         st.header('3. Etapa de Planejamento de Mídias')
-                        st.subheader('3.1 Plano para Criativos')
+                        st.subheader('3.1 Plano para Redes')
                         st.markdown(tarefas_midia[0].output.raw)
-                        st.subheader('3.2 Plano de SEO')
+                        st.subheader('3.1 Plano para Criativos')
                         st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3.3 Plano de CRM')
+                        st.subheader('3.2 Plano de SEO')
                         st.markdown(tarefas_midia[2].output.raw)
-                        st.subheader('3.4 Plano de Design/Marca')
+                        st.subheader('3.3 Plano de CRM')
                         st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('3.5 Estratégia de Conteúdo')
+                        st.subheader('3.4 Plano de Design/Marca')
                         st.markdown(tarefas_midia[4].output.raw)
+                        st.subheader('3.5 Estratégia de Conteúdo')
+                        st.markdown(tarefas_midia[5].output.raw)
 
                         
 
