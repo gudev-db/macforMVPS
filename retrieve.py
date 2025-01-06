@@ -71,8 +71,7 @@ def visualizar_planejamentos():
         st.subheader('3.5 Estratégia de Conteúdo')
         st.markdown(f"**Estratégia de Conteúdo:** {selected_planejamento.get('Estrategia_Conteudo')}")
 
-        st.subheader('4. Revisão Geral')
-        st.markdown(f"**Revisão Geral do Planejamento Estratégico:** {selected_planejamento.get('Revisao_Geral')}")
+       
         
         
     else:
