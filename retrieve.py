@@ -57,7 +57,7 @@ def visualizar_planejamentos():
         
         st.header('3. Etapa de Planejamento de Mídias')
         st.subheader('3.1 Plano para Criativos')
-        st.markdown(f"**Criativos:** {selected_planejamento.get('Criativos')}")
+        st.markdown(f"**Criativos:** {selected_planejamento.get('Plano_Criativos')}")
         
         st.subheader('3.2 Plano de SEO')
         st.markdown(f"**Plano SEO:** {selected_planejamento.get('Plano_SEO')}")
