@@ -220,7 +220,7 @@ def planej_mkt_page():
                             ),
                             Agent(
                                 role="Especialista em Criativos",
-                                goal=f"Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}, aprendendo bastante sobre a marca em sua referencia de marca, conforme detalhada em {referencia_da_marca}.",
+                                goal=f"Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.",
                                 backstory=f'''Você é um especialista em Criativos de marketing digital, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
                                 Tornando-as relevantes e fazendo com que o cliente atinja seus objetivos.''',
                                 allow_delegation=False,
@@ -321,7 +321,7 @@ def planej_mkt_page():
                             # Criativos
                                 Task(
                                     description='''Criativos da campanha de marketing digital''',
-                                    expected_output='''Em portugês brasileiro, Criar 10 Criativos,usando originalidade (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
+                                    expected_output='''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
                                     {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
                                     {publico_alvo}.''',
                                     agent=agentes[10],
@@ -369,11 +369,8 @@ def planej_mkt_page():
                                 ),
 
                                 Task(
-                                description='''
-                                Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST,
-                                Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados,
-                                Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
-                                expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.''',
+                                description="Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
+                                expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.",
                                 agent=agentes[8],
                                 output_file='estrategia_conteudo.md'
                             )
@@ -450,6 +447,7 @@ def planej_mkt_page():
                         
 
                         save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
+
 
 
 
