@@ -59,9 +59,6 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
         "Plano_CRM": tarefas_midia[2].output.raw,
         "Plano_Design": tarefas_midia[3].output.raw,
         "Estrategia_Conteudo": tarefas_midia[4].output.raw,
-
-
-        "Revisao_Geral": final_task[0].output.raw,
     }
 
     # Insert the document into MongoDB
@@ -372,43 +369,14 @@ def planej_mkt_page():
                                 ),
 
                                 Task(
-                                description=f'''
-                                Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta análise PEST: str({tarefas_pesquisa[1].output.raw}),
-                                Tom de Voz: str({tarefas_estrategica[4].output.raw}), Buyer Persona: str({tarefas_estrategica[3].output.raw}), Brand Persona: str({tarefas_estrategica[2].output.raw}), 
-                                Público alvo: str({publico_alvo}), posicionamento de marca:str({tarefas_estrategica[1].output.raw}), análise SWOT: str({tarefas_pesquisa[0].output.raw}) e golden circle:
-                                str({tarefas_estrategica[0].output.raw})gerados, assim como a referencia
-                                de marca enunciada em {referencia_da_marca},
-                                Criar as editorias de conteúdo da marca.",
+                                description='''
+                                Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, Levando em conta a análise PEST,
+                                Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, análise SWOT e golden circle gerados,
+                                Criar as editorias de conteúdo da marca considerando a identidade, os objetivos da marca e o público-alvo.",
                                 expected_output="Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca.''',
                                 agent=agentes[8],
                                 output_file='estrategia_conteudo.md'
                             )
-                            ]
-
-                        final_task = [ Task(
-    description=f'''
-    Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital,
-    Faça uma revisão geral de todo o planejamento estratégico gerado, incluindo as etapas de:
-    Levando em conta análise PEST: str({tarefas_pesquisa[1].output.raw}),
-    Tom de Voz: str({tarefas_estrategica[4].output.raw}), 
-    Buyer Persona: str({tarefas_estrategica[3].output.raw}), 
-    Brand Persona: str({tarefas_estrategica[2].output.raw}), 
-    Público alvo: str({publico_alvo}), 
-    Posicionamento de marca: str({tarefas_estrategica[1].output.raw}), 
-    Análise SWOT: str({tarefas_pesquisa[0].output.raw}) e Golden Circle: ({tarefas_estrategica[0].output.raw}),
-    assim como a referência de marca enunciada em {referencia_da_marca}, 
-    
-    - Plano Criativos: str({tarefas_midia[0].output.raw}),
-    - Plano SEO: str({tarefas_midia[1].output.raw}),
-    - Plano CRM: str({tarefas_midia[2].output.raw}),
-    - Plano Design: str({tarefas_midia[3].output.raw}),
-    - Estratégia de Conteúdo: str({tarefas_midia[4].output.raw}).
-    ''',
-    expected_output="Em português brasileiro, Revisão Geral do planejamento estratégico gerado em cada uma das etapas.",
-    agent=agentes[0],
-    output_file='revisao.md'
-)
-
                             ]
 
                         # Processo do Crew
@@ -436,14 +404,6 @@ def planej_mkt_page():
                             language='português brasileiro'
                         )
 
-                        lider = Crew(
-                            agents=agentes,
-                            tasks=final_task,
-                            process=Process.hierarchical,
-                            manager_llm=modelo_linguagem,
-                            language='português brasileiro'
-                        )
-
                         # Executa as tarefas do processo
                         resultado_pesquisa = equipe_pesquisa.kickoff()
 
@@ -452,9 +412,6 @@ def planej_mkt_page():
 
                         # Executa as tarefas do processo
                         resultado_midia = equipe_midia.kickoff()
-
-                        # Revisao
-                        resultado_final = lider.kickoff()
 
                         #Printando Tarefas
 
@@ -490,13 +447,10 @@ def planej_mkt_page():
                         st.subheader('3.5 Estratégia de Conteúdo')
                         st.markdown(tarefas_midia[4].output.raw)
 
-                        st.header('4. Revisão Final')
-                        st.markdown(final_task[0].output.raw)
-                        
-
                         
 
                         save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
+
 
 
 
