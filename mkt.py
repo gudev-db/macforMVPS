@@ -223,7 +223,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em Criativos",
                                 goal=f"Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.",
-                                backstory=f'''Você é um especialista em Criativos de marketing digital, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
+                                backstory=f'''Você é um especialista em Criativos de marketing digital, você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
                                 Tornando-as relevantes e fazendo com que o cliente atinja seus objetivos.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -233,7 +233,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em CRM",
                                 goal=f"Desenvolver estratégias de CRM para o cliente: {nome_cliente}.",
-                                backstory=f'''Você é um especialista em CRM. Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
+                                backstory=f'''Você é um especialista em CRM. você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
                                 saber para detalhar planos de como firmar e continuar relacionamentos estratégicos com clientes.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -243,7 +243,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em Marca/Design",
                                 goal=f"Desenvolver ideias de Marca/Design do cliente: {nome_cliente}.",
-                                backstory=f'''Você é um especialista em Marca/Design, com o objetivo de melhorar a visibilidade de {nome_cliente} trazendo a sua marca
+                                backstory=f'''Você é um especialista em Marca/Design, você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade de {nome_cliente} trazendo a sua marca
                                 de uma forma coerente e chamativa.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -253,7 +253,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em SEO",
                                 goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
-                                backstory=f"Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
+                                backstory=f"Você é um especialista em SEO, você é analítico, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
@@ -261,7 +261,7 @@ def planej_mkt_page():
                             Agent(
                                 role="Especialista em Redes Sociais",
                                 goal=f"Estabelecer o plano de atuação em redes sociais de {nome_cliente} no planejamento estratégico, com base na análise do site e na concorrência.",
-                                backstory=f"Você é um especialista em marketing em redes sociais, com o objetivo de melhorar a visibilidade nas campanhas {nome_cliente}, com base na análise do conteúdo existente e da concorrência.",
+                                backstory=f"Você é um especialista em marketing em redes sociais, você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade nas campanhas {nome_cliente}, com base na análise do conteúdo existente e da concorrência.",
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
@@ -273,7 +273,7 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro. Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.",
+                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro. Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. Você estáa aqui para trazer conhecimento estratégico.",
                                     agent=agentes[6],
                                     output_file = 'SWOT.md'
                                 ),
@@ -359,7 +359,7 @@ def planej_mkt_page():
                                     - Depoimentos de sucesso
                                     - Eventos e comemorações
                                     - Tom de voz
-                                    - CTA’s  fortes
+                                    - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.
 
                                     Em whatsapp, definir o que deve ser feito em:
                                     - Canal 
