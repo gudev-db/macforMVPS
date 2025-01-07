@@ -444,6 +444,9 @@ def planej_mkt_page():
                                     contemple também o texto raspado do site conforme contido em: ({website_all_texts}),
 
                                     Tal relatório deve conter insights, análises e a apresentação dos dados brutos. Quero também pelo menos 7 sugestões de melhora para cada página em termos de SEO.
+                                    Quero sugestões práticas do que exatamente deve ser feito para melhorar o desempenho do site. 'diminua o tempo de carregamento' não é o suficiente. Siga como o fazê-lo.
+                                    Siga esse princípio para todas as suas sugestões. Você está aqui para oferecer soluções, não apenas diretrizes. Você é um especialista em SEO e tudo que engloba SEO,
+                                    inclusive partes extremamente técnicas.
                                     A análise deve ser feita e redigida sobre TODAS as páginas analisadas em {performance_metrics_df}.
 
                                     - relatório sobre a Saúde geral do site analizado
