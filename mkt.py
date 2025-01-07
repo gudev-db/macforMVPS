@@ -436,19 +436,23 @@ def planej_mkt_page():
                             #SEO
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
-                                    expected_output=f'''Considerando as métricas de performance do site do cliente: {site_cliente} detalhadas em ({performance_metrics_df}), assim
-                                    como o texto varrido do site conforme em ({website_all_texts}),
-                                    Em portugês brasileiro, realize um relatório minuciosamente detalhado de análise de performance do site como parte de seu planejamento
-                                    estratégico de SEO, incorpore os insights que você tira de sua análise para propor melhorias no site do cliente {nome_cliente}.
-                                    Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
-                                    Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
-                                    considerando seu ramo de atuação: {ramo_atuacao}, o 
-                                    intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
-                                    seja vago e não seja raso. Você é um especialista em SEO, capaz de ir no cerne do que gera um planejamento estratégico de SEO que retorna excelentes
-                                    resultados. Você é claro e detalhista e se comunica de forma excelente. Vá em grande detalhe e aborde todos os pontos de uma análise de SEO.''',
+                                    expected_output=f''' Em portugês brasileiro, Realizar um planejamento minuciosamente detalhado estratégico de Search Engine Optimization para {nome_cliente}.
+                                    
+                                    Tal planejamento deve conter um relatório sobre a performance do site do dito cliente: {site_cliente}
+                                    que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df})
+                                    contemple também o texto raspado do site conforme contido em: ({website_all_texts}),
+
+                                    Tal relatório deve conter insights, análises e a apresentação dos dados brutos.
+
+                                    Além desse relatório de performance de site, dê insights de palavras chave relevantes para {nome_cliente}, assim como mais valiosos insights
+                                    sobre SEO que devem estar contidos em diretrizes de um especialista que estudou minuciosamente todos os detalhes sobre o cliente e sabe o que
+                                    deve ser feito para fazer com que o cliente cresça. Você é um especialista em SEO.
+                                    Você é claro e detalhista e se comunica de forma excelente. Vá em grande detalhe e aborde todos os pontos de uma análise de SEO.''',
                                     agent=agentes[9],
                                     output_file = 'SEO.md'
                                 ),
+
+                            
 
                             #CRM
                                 Task(
