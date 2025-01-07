@@ -436,7 +436,11 @@ def planej_mkt_page():
                             #SEO
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
-                                    expected_output=f'''Considerando as métricas de performance do site do cliente: {site_cliente} detalhadas em {performance_metrics_df}, Em portugês brasileiro, Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
+                                    expected_output=f'''Considerando as métricas de performance do site do cliente: {site_cliente} detalhadas em ({performance_metrics_df}), assim
+                                    como o texto varrido do site conforme em ({website_all_texts}),
+                                    Em portugês brasileiro, realize um relatório minuciosamente detalhado de análise de performance do site como parte de seu planejamento
+                                    estratégico de SEO, incorpore os insights que você tira de sua análise para propor melhorias no site do cliente {nome_cliente}.
+                                    Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
                                     Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o 
                                     intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
