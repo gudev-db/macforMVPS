@@ -338,13 +338,15 @@ def planej_mkt_page():
                                 Task(
                                     description="Criar o posicionamento de marca.",
                                     expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
-                                    Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}''',
+                                    Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
+                                    , e o objetivo do planejamento estratégico {intuito_plano}''',
                                     agent=agentes[2],
                                     output_file = 'posMar.md'
                                 ),
                                 Task(
                                     description="Criar a Brand Persona.",
-                                    expected_output=f'''Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro. 
+                                    expected_output=f'''Brand Persona detalhada, alinhada com a marca do {nome_cliente} em português brasileiro considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
+                                    , e o objetivo do planejamento estratégico {intuito_plano}. 
                                     
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
@@ -354,7 +356,8 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Definir a Buyer Persona e o Público-Alvo.",
-                                    expected_output='''Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: 
+                                    expected_output=f'''Descrição detalhada da buyer persona considerando o público-alvo: {publico_alvo} e o 
+                                    objetivo do plano estratégico como descrito em {intuito_plano} com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
                                     suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
@@ -364,7 +367,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Definir o Tom de Voz.",
-                                    expected_output='''Descrição do tom de voz, na {pessoa}, incluindo nuvem de palavras e palavras proibidas. 
+                                    expected_output=f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. 
                                     Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
                                     relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.''',
                                     agent=agentes[7],
@@ -386,7 +389,8 @@ def planej_mkt_page():
                                     o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}. 
 
-                                    Em seguida, detalhar:
+                                    Em seguida, detalhar considerando o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo}:
 
                                     
                                     Em facebook e instagram, definir o que deve ser feito em:
@@ -412,11 +416,7 @@ def planej_mkt_page():
                                     - vídeos
                                     - análises regulares
 
-                                    Em geral, também definir do's e don't's
-
-                                    
-                                    
-                                    
+                                    Em geral, também definir do's e don't's                                                          
                                     ''',
                                     agent=agentes[13],
                                     output_file = 'redes.md'
@@ -441,7 +441,7 @@ def planej_mkt_page():
                                     considerando seu ramo de atuação: {ramo_atuacao}, o 
                                     intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
                                     seja vago e não seja raso. Você é um especialista em SEO, capaz de ir no cerne do que gera um planejamento estratégico de SEO que retorna excelentes
-                                    resultados. Você é claro e detalhista e se comunica de forma excelente.''',
+                                    resultados. Você é claro e detalhista e se comunica de forma excelente. Vá em grande detalhe e aborde todos os pontos de uma análise de SEO.''',
                                     agent=agentes[9],
                                     output_file = 'SEO.md'
                                 ),
@@ -456,7 +456,7 @@ def planej_mkt_page():
                                     tempo, garantindo a integração de informações entre as equipes de marketing, vendas e atendimento para uma abordagem consistente e eficaz 
                                     para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em :{intuito_plano} e o 
-                                    publico algo :{publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
+                                    publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
                                     seja vago e não seja raso.''',
                                     agent=agentes[11],
                                     output_file = 'CRM.md'
