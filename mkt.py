@@ -11,6 +11,8 @@ from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSear
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
+import SEO
+
 
 
 
@@ -114,7 +116,11 @@ def planej_mkt_page():
     economic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
     social = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
     tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-   
+
+
+    performance_metrics_df = SEO.check_website_performance(site_cliente)
+    website_all_texts = SEO.scrape_all_texts(site_cliente)
+
 
   
 
@@ -142,24 +148,29 @@ def planej_mkt_page():
                         agentes = [
                             Agent(
                                 role="Líder e revisor geral de estratégia",
-                                goal=f"Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.",
-                                backstory=f"Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no ramo de {ramo_atuacao} em português brasileiro.",
+                                goal=f'''Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir 
+                                alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.''',
+                                backstory=f'''Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento 
+                                avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no 
+                                ramo de {ramo_atuacao} em português brasileiro.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Analista PEST",
-                                goal=f"Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.",
-                                backstory=f"Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua análise PEST deve se basear em.",
+                                goal=f'''Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.''',
+                                backstory=f'''Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. 
+                                Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua 
+                                análise PEST deve se basear em.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Analista SWOT",
-                                goal=f"Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.",
-                                backstory="Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.",
+                                goal=f'''Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.''',
+                                backstory='''Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
@@ -174,56 +185,64 @@ def planej_mkt_page():
                             ),
                             Agent(
                                 role="Consultor de Pricing",
-                                goal=f"Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.",
-                                backstory=f"Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas de precificação com base na análise de mercado e concorrência.",
+                                goal=f'''Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.''',
+                                backstory=f'''Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas
+                                de precificação com base na análise de mercado e concorrência.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Analista de Segmentação de Mercado",
-                                goal=f"Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.",
-                                backstory=f"Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis para o planejamento de marketing.",
+                                goal=f'''Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.''',
+                                backstory=f'''Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis
+                                para o planejamento de marketing.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Criador de Persona",
-                                goal=f"Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.",
-                                backstory=f"Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para {nome_cliente}, que ajudem a direcionar a comunicação de marketing.",
+                                goal=f'''Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.''',
+                                backstory=f'''Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para 
+                                {nome_cliente}, que ajudem a direcionar a comunicação de marketing.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Estratégia de Mídia Social",
-                                goal=f"Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.",
-                                backstory=f"Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas plataformas de mídia social com base em dados do mercado.",
+                                goal=f'''Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.''',
+                                backstory=f'''Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas
+                                plataformas de mídia social com base em dados do mercado.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Especialista em Inbound Marketing",
-                                goal=f"Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.",
-                                backstory=f"Você é um especialista em inbound marketing, utilizando as melhores práticas para atrair e engajar clientes em potencial para {nome_cliente}.",
+                                goal=f'''Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.''',
+                                backstory=f'''Você é um especialista em inbound marketing, utilizando as melhores práticas 
+                                para atrair e engajar clientes em potencial para {nome_cliente}.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Especialista em SEO",
-                                goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
-                                backstory=f"Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
+                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site ({performance_metrics_df}) e na concorrência .''',
+                                backstory=f'''Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} 
+                                nos motores de busca, com base na análise do conteúdo existente e da concorrência.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Especialista em Criativos",
-                                goal=f"Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.",
-                                backstory=f'''Você é um especialista em Criativos de marketing digital, você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
+                                goal=f'''Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.''',
+                                backstory=f'''Você é um especialista em Criativos de marketing digital, você é original, detalhista, 
+                                minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu 
+                                extenso repertório profissional, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
                                 Tornando-as relevantes e fazendo com que o cliente atinja seus objetivos.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -232,8 +251,10 @@ def planej_mkt_page():
                             
                             Agent(
                                 role="Especialista em CRM",
-                                goal=f"Desenvolver estratégias de CRM para o cliente: {nome_cliente}.",
-                                backstory=f'''Você é um especialista em CRM. você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
+                                goal=f'''Desenvolver estratégias de CRM para o cliente: {nome_cliente}.''',
+                                backstory=f'''Você é um especialista em CRM. você é original, detalhista, minucioso, 
+                                criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso 
+                                repertório profissional, Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
                                 saber para detalhar planos de como firmar e continuar relacionamentos estratégicos com clientes.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -242,8 +263,10 @@ def planej_mkt_page():
                             
                             Agent(
                                 role="Especialista em Marca/Design",
-                                goal=f"Desenvolver ideias de Marca/Design do cliente: {nome_cliente}.",
-                                backstory=f'''Você é um especialista em Marca/Design, você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade de {nome_cliente} trazendo a sua marca
+                                goal=f'''Desenvolver ideias de Marca/Design do cliente: {nome_cliente}.''',
+                                backstory=f'''Você é um especialista em Marca/Design, você é original, detalhista, minucioso, criativo, 
+                                com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, 
+                                com o objetivo de melhorar a visibilidade de {nome_cliente} trazendo a sua marca
                                 de uma forma coerente e chamativa.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
@@ -252,16 +275,22 @@ def planej_mkt_page():
 
                             Agent(
                                 role="Especialista em SEO",
-                                goal=f"Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.",
-                                backstory=f"Você é um especialista em SEO, você é analítico, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do conteúdo existente e da concorrência.",
+                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.''',
+                                backstory=f'''Você é um especialista em SEO, você é analítico, detalhista, minucioso, criativo, 
+                                com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório 
+                                profissional, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do
+                                conteúdo existente e da concorrência.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
                             Agent(
                                 role="Especialista em Redes Sociais",
-                                goal=f"Estabelecer o plano de atuação em redes sociais de {nome_cliente} no planejamento estratégico, com base na análise do site e na concorrência.",
-                                backstory=f"Você é um especialista em marketing em redes sociais, você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade nas campanhas {nome_cliente}, com base na análise do conteúdo existente e da concorrência.",
+                                goal=f'''Estabelecer o plano de atuação em redes sociais de {nome_cliente} no planejamento estratégico, com base na análise do site e na concorrência.''',
+                                backstory=f'''Você é um especialista em marketing em redes sociais, 
+                                você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de 
+                                empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade nas campanhas 
+                                {nome_cliente}, com base na análise do conteúdo existente e da concorrência.''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
@@ -273,16 +302,19 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output='''Análise SWOT completa em formato de tabela em português brasileiro. 
+                                    expected_output=f'''Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}, 
+                                    realize a Análise SWOT completa em formato de tabela em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
-                                    Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. Você estáa aqui para trazer conhecimento estratégico. organize os pontos em bullets
+                                    Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
+                                    Você estáa aqui para trazer conhecimento estratégico. organize os pontos em bullets
                                     pra ficarem organizados dentro de cada segmento da tabela.''',
                                     agent=agentes[6],
                                     output_file = 'SWOT.md'
                                 ),
                                 Task(
                                     description="Análise PEST.",
-                                    expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro. 
+                                    expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
+                                    considerando     contexto político: {politic}, contexto econômico: {economic}, contexto social: {social}, contexto tecnológico: {tec}.
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.''',
                                     agent=agentes[1],
                                     output_file = 'pest.md'
@@ -297,13 +329,16 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Desenvolver o Golden Circle.",
-                                    expected_output="Golden Circle completo com 'how', 'why' e 'what' resumidos em uma frase cada em português brasileiro.",
+                                    expected_output=f'''Golden Circle completo com 'how', 'why' e 'what' resumidos 
+                                    em uma frase cada em português brasileiro. Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) 
+                                    :{website_all_texts}, e o objetivo do planejamento estratégico {intuito_plano}''',
                                     agent=agentes[3],
                                     output_file = 'GC.md'
                                 ),
                                 Task(
                                     description="Criar o posicionamento de marca.",
-                                    expected_output="Posicionamento de marca em uma única frase em português brasileiro.",
+                                    expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
+                                    Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}''',
                                     agent=agentes[2],
                                     output_file = 'posMar.md'
                                 ),
@@ -322,7 +357,8 @@ def planej_mkt_page():
                                     expected_output='''Descrição detalhada da buyer persona e do público-alvo com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
-                                    suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. Crie duas buyer personas.''', 
+                                    suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
+                                    Crie duas buyer personas.''', 
                                     agent=agentes[5],
                                     output_file = 'BuyerP.md'
                                 ),
@@ -343,7 +379,7 @@ def planej_mkt_page():
                              # Redes Sociais
                                 Task(
                                     description='''Definição de estratégia de abordagem de cada rede social''',
-                                    expected_output='''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social 
+                                    expected_output=f'''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social 
                                     (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
                                     {nome_do_cliente}. Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação específico: {ramo_atuacao}, 
@@ -389,7 +425,7 @@ def planej_mkt_page():
                             # Criativos
                                 Task(
                                     description='''Criativos da campanha de marketing digital''',
-                                    expected_output='''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
+                                    expected_output=f'''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
                                     {nome_do_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}.''',
@@ -400,7 +436,7 @@ def planej_mkt_page():
                             #SEO
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
-                                    expected_output=f'''Em portugês brasileiro, Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
+                                    expected_output=f'''Considerando as métricas de performance do site do cliente: {site_cliente} detalhadas em {performance_metrics_df}, Em portugês brasileiro, Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
                                     Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o 
                                     intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
@@ -445,12 +481,13 @@ def planej_mkt_page():
                                 ),
 
                                 Task(
-                                description='''Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, 
+                                description=f'''Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, 
                                 Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, 
                                     análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos 
                                     da marca e o público-alvo.''',
-                                expected_output='''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca. Classificamos as editorias em 
-5 pilares, que foram revistos e sugeridos para posicionar a marca, engajar, relacionar e gerar identificação com o público.
+                                expected_output=f'''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca ({intuito_plano}). 
+                                Classificamos as editorias em 
+                5 pilares, que foram revistos e sugeridos para posicionar a marca, engajar, relacionar e gerar identificação com o público.
 
                         Os 5 Pilares:
                         - Institucional
