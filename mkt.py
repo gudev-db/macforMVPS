@@ -67,11 +67,7 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
 
 
 
-# Step 2. Executing a simple search query
-politic = client1.search("Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-economic = client1.search("Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-social = client1.search("Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-tec = client1.search("Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+
 
 
 def limpar_estado():
@@ -112,6 +108,12 @@ def planej_mkt_page():
 )    
     st.subheader("(Opcional) Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+
+    # Step 2. Executing a simple search query
+    politic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+    economic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+    social = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+    tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
    
 
   
@@ -271,13 +273,13 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro.",
+                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro. Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.",
                                     agent=agentes[6],
                                     output_file = 'SWOT.md'
                                 ),
                                 Task(
                                     description="Análise PEST.",
-                                    expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro.",
+                                    expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro. Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.",
                                     agent=agentes[1],
                                     output_file = 'pest.md'
                                 )
