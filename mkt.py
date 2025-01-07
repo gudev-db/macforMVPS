@@ -381,7 +381,7 @@ def planej_mkt_page():
                                     description='''Definição de estratégia de abordagem de cada rede social''',
                                     expected_output=f'''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social 
                                     (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
-                                    {nome_do_cliente}. Quero soluções originais, personalizadas e pulo do gato
+                                    {nome_cliente}. Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação específico: {ramo_atuacao}, 
                                     o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}. 
@@ -426,7 +426,7 @@ def planej_mkt_page():
                                 Task(
                                     description='''Criativos da campanha de marketing digital''',
                                     expected_output=f'''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
-                                    {nome_do_cliente} Quero soluções originais, personalizadas e pulo do gato
+                                    {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}.''',
                                     agent=agentes[10],
