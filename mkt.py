@@ -337,8 +337,11 @@ def planej_mkt_page():
                              # Redes Sociais
                                 Task(
                                     description='''Definição de estratégia de abordagem de cada rede social''',
-                                    expected_output='''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
-                                    {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
+                                    expected_output='''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social 
+                                    (instagram, facebook, youtube, linkedin, whatsapp) para as campanhas de marketing digital para 
+                                    {nome_do_cliente}. Quero soluções originais, personalizadas e pulo do gato
+                                    considerando seu ramo de atuação específico: {ramo_atuacao}, 
+                                    o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}. 
 
                                     Em seguida, detalhar:
@@ -381,7 +384,8 @@ def planej_mkt_page():
                                 Task(
                                     description='''Criativos da campanha de marketing digital''',
                                     expected_output='''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
-                                    {nome_do_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
+                                    {nome_do_cliente} Quero soluções originais, personalizadas e pulo do gato
+                                    considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}.''',
                                     agent=agentes[10],
                                     output_file = 'Criativos.md'
@@ -391,9 +395,11 @@ def planej_mkt_page():
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
                                     expected_output=f'''Em portugês brasileiro, Plano detalhado que visa melhorar a posição de um site nos resultados dos motores de busca. 
-                                    Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} considerando seu {ramo_atuacao}, o 
-                                    intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico algo {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
-                                    seja vago e não seja raso.''',
+                                    Fazendo uso extensivo de conhecimentos de marketing digital. Para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
+                                    considerando seu ramo de atuação: {ramo_atuacao}, o 
+                                    intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de SEO. Não
+                                    seja vago e não seja raso. Você é um especialista em SEO, capaz de ir no cerne do que gera um planejamento estratégico de SEO que retorna excelentes
+                                    resultados. Você é claro e detalhista e se comunica de forma excelente.''',
                                     agent=agentes[9],
                                     output_file = 'SEO.md'
                                 ),
@@ -406,8 +412,9 @@ def planej_mkt_page():
                                     implementação de ferramentas de automação de marketing e o estabelecimento de programas de fidelidade e engajamento. 
                                     Além disso, é essencial otimizar o atendimento ao cliente, promover a retenção e maximizar o valor do cliente ao longo do 
                                     tempo, garantindo a integração de informações entre as equipes de marketing, vendas e atendimento para uma abordagem consistente e eficaz 
-                                    para {nome_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o 
-                                    publico algo {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
+                                    para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
+                                    considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em :{intuito_plano} e o 
+                                    publico algo :{publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
                                     seja vago e não seja raso.''',
                                     agent=agentes[11],
                                     output_file = 'CRM.md'
@@ -423,7 +430,8 @@ def planej_mkt_page():
                                     identidade que seja 
                                     facilmente reconhecível e que se conecte emocionalmente com o público-alvo. 
                                     Além disso, é importante monitorar e ajustar continuamente a percepção da marca no mercado para manter sua relevância e diferenciá-la da concorrência para 
-                                    {nome_cliente} considerando seu {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em {intuito_plano} e o publico alvo 
+                                    {nome_cliente}. Quero soluções originais, personalizadas e pulo do gato
+                                    considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de marca e design. Não
                                     seja vago e não seja raso.''',
                                     agent=agentes[12],
