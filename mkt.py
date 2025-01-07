@@ -273,13 +273,17 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output="Análise SWOT completa em formato de tabela em português brasileiro. Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. Você estáa aqui para trazer conhecimento estratégico.",
+                                    expected_output='''Análise SWOT completa em formato de tabela em português brasileiro. 
+                                    Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
+                                    Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. Você estáa aqui para trazer conhecimento estratégico. organize os pontos em bullets
+                                    pra ficarem organizados dentro de cada segmento da tabela.''',
                                     agent=agentes[6],
                                     output_file = 'SWOT.md'
                                 ),
                                 Task(
                                     description="Análise PEST.",
-                                    expected_output=f"Análise PEST com pelo menos 5 pontos em cada etapa em português brasileiro. Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.",
+                                    expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro. 
+                                    Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.''',
                                     agent=agentes[1],
                                     output_file = 'pest.md'
                                 )
