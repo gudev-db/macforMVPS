@@ -438,7 +438,7 @@ def planej_mkt_page():
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
                                     expected_output=f''' Em portugês brasileiro, Realizar um planejamento minuciosamente detalhado estratégico de Search Engine Optimization para {nome_cliente}.
                                     
-                                    Tal planejamento deve conter um relatório sobre a performance do site do dito cliente: {site_cliente}
+                                    Tal planejamento deve conter um relatório para cada página em {performance_metrics} sobre a performance do site do dito cliente: {site_cliente}
                                     que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df})
                                     contemple também o texto raspado do site conforme contido em: ({website_all_texts}),
 
