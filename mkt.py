@@ -498,7 +498,7 @@ def planej_mkt_page():
                                     description="Criar a estratégia de CRM.",
                                     expected_output=f'''
 
-                                    Gere um documento no formato abaixo adaptado para as necessidades({inuito_plano}) de {nome_cliente}
+                                    Gere um documento no formato abaixo adaptado para as necessidades({intuito_plano}) de {nome_cliente}
                                     
                                     Relatório de CRM para {nome_cliente}
 
