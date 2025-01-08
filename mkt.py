@@ -355,6 +355,7 @@ def planej_mkt_page():
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
                                     
+                                    - Defina seu nome (deve ser o nome de uma pessoa normal como fernando pessoa, maria crivellari, etc)
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
                                     -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?''',
@@ -445,22 +446,21 @@ def planej_mkt_page():
                             #SEO
                                 Task(
                                     description="Desenvolver o plano de SEO do planejamento estratégico.",
-                                    expected_output=f''' Em portugês brasileiro, Realizar um planejamento minuciosamente detalhado estratégico de Search Engine Optimization para {nome_cliente}
-                                    que deve conter as seguintes etapas:
+                                    expected_output=f''' Em portugês brasileiro, Um planejamento minuciosamente detalhado estratégico de Search Engine Optimization para {nome_cliente}
+                                    que contém as etapas:
                                     
                                     -Um relatório para TODAS as páginas em {performance_metrics_df} sobre a performance do site do dito cliente: {site_cliente}
                                     que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df})
-                                    contemple também o texto raspado do site conforme contido em: ({website_all_texts}),
-
-                                    Tal relatório deve conter insights, análises e a apresentação dos dados brutos. Quero também pelo menos 10 sugestões de melhora para cada página em termos de SEO.
-
-                                    organize esse relatório em uma tabela onde cada linha é uma de todas as páginas e cada coluna é uma métrica de cada página e a coluna final são as 10 sugestões de melhora.
+                                    , Tal relatório deve conter insights, análises e a apresentação dos dados brutos. Quero também pelo menos 
+                                    10 sugestões de melhora para cada página em termos de SEO 
+                                    organizado em uma tabela onde cada linha é uma de todas as páginas e cada coluna é uma métrica de cada página
+                                    e a coluna final são as 10 sugestões de melhora.
                                     
-                                    A análise deve ser feita e redigida sobre TODAS as páginas analisadas em {performance_metrics_df}.
+                                    análise feita e redigida sobre TODAS as páginas analisadas em {performance_metrics_df}.
 
-                                    - relatório sobre a Saúde geral do site analizado
+                                    - relatório sobre a Saúde geral do site analizado em {performance_metrics_df}
 
-                                    - pelo menos 10 sugestões de Otimizações na página (tags de título, meta descrições, etc.)
+                                    - pelo menos 10 sugestões de Otimizações por página (tags de título, meta descrições, etc.)
 
                                     
 
