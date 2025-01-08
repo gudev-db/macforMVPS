@@ -57,10 +57,11 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
 
         "Plano_Redes": tarefas_midia[0].output.raw,
         "Plano_Criativos": tarefas_midia[1].output.raw,
-        "Plano_SEO": tarefas_midia[2].output.raw,
-        "Plano_CRM": tarefas_midia[3].output.raw,
-        "Plano_Design": tarefas_midia[4].output.raw,
-        "Estrategia_Conteudo": tarefas_midia[5].output.raw,
+        "Plano_Saude_Site": tarefas_midia[2].output.raw,
+        "Plano_Palavras_Chave": tarefas_midia[3].output.raw,
+        "Plano_CRM": tarefas_midia[4].output.raw,
+        "Plano_Design": tarefas_midia[5].output.raw,
+        "Estrategia_Conteudo": tarefas_midia[6].output.raw,
     }
 
     # Insert the document into MongoDB
@@ -444,9 +445,11 @@ def planej_mkt_page():
                                 ),
 
                             #SEO
+                            #Saude Site
+                            
                                 Task(
-                                    description="Desenvolver o plano de SEO do planejamento estratégico.",
-                                    expected_output=f''' Em portugês brasileiro, Um planejamento minuciosamente detalhado estratégico de Search Engine Optimization para {nome_cliente}
+                                    description="Desenvolver relatório de performance do site do planejamento estratégico.",
+                                    expected_output=f''' Em portugês brasileiro, Um relatório minuciosamente detalhado sobre a saúde do site para {nome_cliente}
                                     que contém as etapas:
                                     
                                     -Um relatório para TODAS as páginas em {performance_metrics_df} sobre a performance do site do dito cliente: {site_cliente}
@@ -465,19 +468,27 @@ def planej_mkt_page():
                                     -Canonical Tag
                                     -10 sugestões de melhora
                                     
+                                
+                                    -Você é claro e detalhista, analítico e se comunica de forma excelente.''',
+                                    agent=agentes[9],
+                                    output_file = 'performance.md'
+                                ),
 
-                                    - relatório sobre a Saúde geral do site analizado em {performance_metrics_df}
-
-                                    - pelo menos 10 sugestões de Otimizações por página (tags de título, meta descrições, etc.)
-
+                            #Palavras Chave
+                            
+                            Task(
+                                    description="Desenvolver relatório de performance do site do planejamento estratégico.",
+                                    expected_output=f''' Em portugês brasileiro, Um relatório minuciosamente detalhado sobre sugestões de palavras chave para {nome_cliente}
+                                    considerando seu ramo de atuação {ramo_atuacao}, o público alvo {publico_alvo}
+                                    
                                     
 
                                     - Insights de palavras chave relevantes para {nome_cliente}, assim como mais valiosos insights
                                     sobre SEO que devem estar contidos em diretrizes de um especialista que estudou minuciosamente todos os detalhes sobre o cliente e sabe o que
                                     deve ser feito para fazer com que o cliente cresça. Você é um especialista em SEO.
-                                    Você é claro e detalhista e se comunica de forma excelente. Vá em grande detalhe e aborde todos os pontos de uma análise de SEO.''',
+                                    Você é claro e detalhista, criativo e se comunica de forma excelente.''',
                                     agent=agentes[9],
-                                    output_file = 'SEO.md'
+                                    output_file = 'keywords.md'
                                 ),
 
                             
@@ -485,16 +496,70 @@ def planej_mkt_page():
                             #CRM
                                 Task(
                                     description="Criar a estratégia de CRM.",
-                                    expected_output=f'''Em portugês brasileiro, Uma abordagem centrada no cliente, visando segmentar e compreender profundamente as necessidades, comportamentos e expectativas 
-                                    de diferentes grupos de clientes. Isso envolve a coleta e análise de dados relevantes, o desenvolvimento de estratégias de comunicação personalizadas, a 
-                                    implementação de ferramentas de automação de marketing e o estabelecimento de programas de fidelidade e engajamento. 
-                                    Além disso, é essencial otimizar o atendimento ao cliente, promover a retenção e maximizar o valor do cliente ao longo do 
-                                    tempo, garantindo a integração de informações entre as equipes de marketing, vendas e atendimento para uma abordagem consistente e eficaz 
-                                    para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
-                                    considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em :{intuito_plano} e o 
-                                    publico algo: {publico_alvo},e a referência da marca:
-                                    {referencia_da_marca}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
-                                    seja vago e não seja raso.''',
+                                    expected_output=f'''
+
+                                    Gere um documento no formato abaixo adaptado para as necessidades({inuito_plano}) de {nome_cliente}
+                                    
+                                    Relatório de CRM para {nome_cliente}
+
+                                        Objetivo: Desenvolver uma abordagem centrada no cliente, com foco em segmentação e compreensão profunda das necessidades, comportamentos e expectativas de diferentes grupos de clientes. A seguir, apresento um planejamento estratégico detalhado para atingir esse objetivo, considerando o ramo de atuação: {ramo_atuacao}, o intuito do plano: {intuito_plano}, o público-alvo: {publico_alvo} e a referência da marca: {referencia_da_marca}.
+                                        
+                                        1. Segmentação e Compreensão do Cliente
+                                        Análise de dados dos clientes:
+                                        Segmentação dos clientes por características demográficas, comportamentais e psicográficas.
+                                        Mapeamento das necessidades, expectativas e pontos de dor de cada grupo de clientes.
+                                        Objetivo: Obter uma compreensão clara dos diferentes perfis de clientes para personalizar as estratégias.
+                                        2. Coleta e Análise de Dados Relevantes
+                                        Fontes de dados a serem coletadas:
+                                        Histórico de compras (frequência, valores, produtos adquiridos).
+                                        Comportamento digital (interações no site, redes sociais, cliques, tempo de navegação).
+                                        Feedback de clientes (pesquisas de satisfação, Net Promoter Score - NPS).
+                                        Objetivo: Obter uma visão 360º do cliente para basear as ações de marketing e relacionamento.
+                                        3. Desenvolvimento de Estratégias de Comunicação Personalizadas
+                                        Canais a serem utilizados:
+                                        E-mail marketing, mensagens SMS, redes sociais, notificações push.
+                                        Mensagens personalizadas:
+                                        Criação de campanhas direcionadas para cada segmento (promoções, novos produtos, eventos especiais).
+                                        Personalização da comunicação com base em dados de compras e comportamento.
+                                        Objetivo: Maximizar a relevância e eficácia das mensagens enviadas, com base nas preferências do cliente.
+                                        4. Implementação de Ferramentas de Automação de Marketing
+                                        Ferramentas recomendadas:
+                                        Automação de e-mail (ex: envio de e-mails para abandono de carrinho).
+                                        CRM para centralização de dados de clientes, histórico e interações.
+                                        Objetivo: Automatizar a comunicação e personalizar a experiência de forma escalável.
+                                        5. Programas de Fidelidade e Engajamento
+                                        Desenvolvimento de programas de fidelidade:
+                                        Oferecer recompensas, pontos ou benefícios exclusivos para clientes frequentes.
+                                        Ações de engajamento:
+                                        Manter o cliente envolvido com a marca através de conteúdos exclusivos, eventos, ofertas especiais.
+                                        Objetivo: Aumentar a lealdade e a retenção dos clientes.
+                                        6. Otimização do Atendimento ao Cliente
+                                        Canais de atendimento:
+                                        Atendimento via chat, e-mail, WhatsApp, redes sociais.
+                                        Treinamento das equipes:
+                                        Capacitação da equipe de atendimento para oferecer um serviço personalizado e rápido.
+                                        Objetivo: Garantir uma excelente experiência para o cliente, resolvendo suas dúvidas e problemas de maneira eficiente.
+                                        7. Promoção da Retenção e Maximização do Valor do Cliente
+                                        Estratégias de retenção:
+                                        Programas de fidelização, follow-ups pós-compra, promoções personalizadas.
+                                        Ações para reengajar clientes inativos.
+                                        Maximização do valor do cliente (CLV):
+                                        Estratégias para aumentar o ticket médio e a frequência de compras (ex: upselling, cross-selling).
+                                        Objetivo: Maximizar o Lifetime Value (LTV) do cliente, promovendo sua permanência e aumentando suas compras ao longo do tempo.
+                                        8. Integração entre Equipes de Marketing, Vendas e Atendimento
+                                        Coordenação das equipes:
+                                        Compartilhamento de dados e informações entre marketing, vendas e atendimento.
+                                        Utilização de um CRM centralizado para manter todos os departamentos alinhados.
+                                        Objetivo: Criar uma abordagem consistente e eficaz em todas as interações com o cliente, garantindo uma comunicação sem falhas.
+                                        9. Soluções Personalizadas para {nome_cliente}
+                                        Considerações específicas:
+                                        Ajustar as estratégias para o ramo de atuação: {ramo_atuacao}, com foco em personalizar a experiência de acordo com as necessidades do público-alvo de {publico_alvo}.
+                                        Adaptar as campanhas de CRM com base na referência da marca: {referencia_da_marca}.
+                                        Objetivo: Criar soluções originais e eficazes que atendam às necessidades e expectativas de {nome_cliente}, alinhadas com sua identidade de marca.
+                                                                            
+                                    
+                                    
+                                    ''',
                                     agent=agentes[11],
                                     output_file = 'CRM.md'
                                 ),
@@ -606,14 +671,17 @@ def planej_mkt_page():
                         st.markdown(tarefas_midia[0].output.raw)
                         st.subheader('3.2 Plano para Criativos')
                         st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3.3 Plano de SEO')
+                        st.subheader('3.3 SEO)
+                        st.subheader('3.3.1 Análise de Saúde do Site')
                         st.markdown(tarefas_midia[2].output.raw)
-                        st.subheader('3.4 Plano de CRM')
+                        st.subheader('3.3.2 Sugestões de palavras chave')
                         st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('3.5 Plano de Design/Marca')
+                        st.subheader('3.4 Plano de CRM')
                         st.markdown(tarefas_midia[4].output.raw)
-                        st.subheader('3.6 Estratégia de Conteúdo')
+                        st.subheader('3.5 Plano de Design/Marca')
                         st.markdown(tarefas_midia[5].output.raw)
+                        st.subheader('3.6 Estratégia de Conteúdo')
+                        st.markdown(tarefas_midia[6].output.raw)
 
                         
 
