@@ -304,7 +304,8 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output=f'''Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}, 
+                                    expected_output=f'''Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts},e a referência da marca:
+                                    {referencia_da_marca},
                                     realize a Análise SWOT completa em formato de tabela em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
                                     Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
@@ -333,7 +334,8 @@ def planej_mkt_page():
                                     description="Desenvolver o Golden Circle.",
                                     expected_output=f'''Golden Circle completo com 'how', 'why' e 'what' resumidos 
                                     em uma frase cada em português brasileiro. Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) 
-                                    :{website_all_texts}, e o objetivo do planejamento estratégico {intuito_plano}''',
+                                    :{website_all_texts}, e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    {referencia_da_marca},''',
                                     agent=agentes[3],
                                     output_file = 'GC.md'
                                 ),
@@ -341,7 +343,8 @@ def planej_mkt_page():
                                     description="Criar o posicionamento de marca.",
                                     expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
                                     Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
-                                    , e o objetivo do planejamento estratégico {intuito_plano}''',
+                                    , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    {referencia_da_marca},''',
                                     agent=agentes[2],
                                     output_file = 'posMar.md'
                                 ),
@@ -349,7 +352,8 @@ def planej_mkt_page():
                                     description="Criar a Brand Persona.",
                                     expected_output=f'''Brand Persona detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
                                     seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
-                                    , e o objetivo do planejamento estratégico {intuito_plano}. 
+                                    , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    {referencia_da_marca},. 
                                     
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
@@ -390,7 +394,8 @@ def planej_mkt_page():
                                     {nome_cliente}. Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação específico: {ramo_atuacao}, 
                                     o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
-                                    {publico_alvo}. 
+                                    {publico_alvo},e a referência da marca:
+                                    {referencia_da_marca},. 
 
                                     Em seguida, detalhar considerando o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}:
@@ -431,7 +436,8 @@ def planej_mkt_page():
                                     expected_output=f'''Em portugês brasileiro, Criar 10 Criativos (título, descrição e tipo de imagem sugerida) para as campanhas de marketing digital para 
                                     {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
-                                    {publico_alvo}.''',
+                                    {publico_alvo},e a referência da marca:
+                                    {referencia_da_marca},.''',
                                     agent=agentes[10],
                                     output_file = 'Criativos.md'
                                 ),
@@ -478,7 +484,8 @@ def planej_mkt_page():
                                     tempo, garantindo a integração de informações entre as equipes de marketing, vendas e atendimento para uma abordagem consistente e eficaz 
                                     para {nome_cliente} Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em :{intuito_plano} e o 
-                                    publico algo: {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
+                                    publico algo: {publico_alvo},e a referência da marca:
+                                    {referencia_da_marca}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de CRM. Não
                                     seja vago e não seja raso.''',
                                     agent=agentes[11],
                                     output_file = 'CRM.md'
@@ -496,7 +503,8 @@ def planej_mkt_page():
                                     Além disso, é importante monitorar e ajustar continuamente a percepção da marca no mercado para manter sua relevância e diferenciá-la da concorrência para 
                                     {nome_cliente}. Quero soluções originais, personalizadas e pulo do gato
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
-                                    {publico_alvo}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de marca e design. Não
+                                    {publico_alvo} ,e a referência da marca:
+                                    {referencia_da_marca}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de marca e design. Não
                                     seja vago e não seja raso.''',
                                     agent=agentes[12],
                                     output_file = 'Marca_Design.md'
@@ -507,7 +515,8 @@ def planej_mkt_page():
                                 Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, 
                                     análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos 
                                     da marca e o público-alvo.''',
-                                expected_output=f'''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca ({intuito_plano}). 
+                                expected_output=f'''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca ({intuito_plano}) ,e a referência da marca:
+                                    {referencia_da_marca},. 
                                 Classificamos as editorias em 
                 5 pilares, que foram revistos e sugeridos para posicionar a marca, engajar, relacionar e gerar identificação com o público.
 
