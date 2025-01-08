@@ -63,7 +63,8 @@ def visualizar_planejamentos():
         st.markdown(f"**Criativos:** {selected_planejamento.get('Plano_Criativos')}")
         
         st.subheader('3.3 Plano de SEO')
-        st.markdown(f"**Plano SEO:** {selected_planejamento.get('Plano_SEO')}")
+        st.markdown(f"**Relatório de Saúde de Site:** {selected_planejamento.get('Plano_Saude_Site')}")
+        st.markdown(f"**Plano de Palavras Chave:** {selected_planejamento.get('Plano_Palavras_Chave')}")
         
         st.subheader('3.4 Plano de CRM')
         st.markdown(f"**Plano CRM:** {selected_planejamento.get('Plano_CRM')}")
