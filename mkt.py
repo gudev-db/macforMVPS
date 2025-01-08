@@ -671,7 +671,7 @@ def planej_mkt_page():
                         st.markdown(tarefas_midia[0].output.raw)
                         st.subheader('3.2 Plano para Criativos')
                         st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3.3 SEO)
+                        st.subheader('3.3 SEO')
                         st.subheader('3.3.1 Análise de Saúde do Site')
                         st.markdown(tarefas_midia[2].output.raw)
                         st.subheader('3.3.2 Sugestões de palavras chave')
