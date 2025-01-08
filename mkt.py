@@ -451,12 +451,20 @@ def planej_mkt_page():
                                     
                                     -Um relatório para TODAS as páginas em {performance_metrics_df} sobre a performance do site do dito cliente: {site_cliente}
                                     que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df})
-                                    , Tal relatório deve conter insights, análises e a apresentação dos dados brutos. Quero também pelo menos 
-                                    10 sugestões de melhora para cada página em termos de SEO 
-                                    organizado em uma tabela onde cada linha é uma de todas as páginas e cada coluna é uma métrica de cada página
-                                    e a coluna final são as 10 sugestões de melhora.
+                                    , Tal relatório deve conter insights, análises e a apresentação dos dados brutos no seguinte formato para cada página:
+
+                                    -URL
+                                    -Status Code
+                                    -Load Time (s)
+                                    -Content Length (KB)
+                                    -Title
+                                    -Meta Description
+                                    -H1 Tags'
+                                    -Word Count
+                                    -Robots Meta
+                                    -Canonical Tag
+                                    -10 sugestões de melhora
                                     
-                                    análise feita e redigida sobre TODAS as páginas analisadas em {performance_metrics_df}.
 
                                     - relatório sobre a Saúde geral do site analizado em {performance_metrics_df}
 
