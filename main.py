@@ -8,7 +8,7 @@ from langchain_openai import ChatOpenAI
 from datetime import datetime
 from mkt import planej_mkt_page
 from retrieve import visualizar_planejamentos
-from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
+#from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
 from midias import planej_midias_page
@@ -25,10 +25,6 @@ t_api_key1 = os.getenv("T_API_KEY")
 client = TavilyClient(api_key=t_api_key1)
 
 
-# Carregando o arquivo CSS para personalizar a fonte
-with open("style.css") as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
@@ -43,20 +39,8 @@ def limpar_estado():
 from crewai_tools import BaseTool, tool
 
 
-
-# Função de login
-file_tool = PDFSearchTool()
-
 st.image('macLogo.png', width=300)
 #st.title('Macfor AI Solutions')
-
-
-
-
-
-
-
-
 
 
 st.text('Empoderada por IA, a Macfor conta com um sistema gerador de documentos automatizado movido por agentes de inteligência artificial. Preencha os campos abaixo e gere documentos automáticos e otimizar o tempo de sua equipe. Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!')
@@ -89,19 +73,17 @@ def login():
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
-    
 
-
-    # Botões para escolher o tipo de documento
-    if st.button('Plano Estratégico de Marketing'):
+    # Botões para escolher o tipo de documento com unique keys
+    if st.button('Plano Estratégico de Pesquisa', key='mkt_1'):
         st.session_state.tipo_documento = 'Plano Estratégico e de Pesquisa'
         st.success('Você escolheu o Plano Estratégico e de Pesquisa!')
 
-    if st.button('Plano Estratégico de Marketing'):
+    if st.button('Plano Estratégico de Mídias', key='mkt_2'):
         st.session_state.tipo_documento = 'Plano Estratégico de Mídias'
         st.success('Você escolheu o Plano Estratégico de Mídias!')
 
-    if st.button('Visualizar documentos gerados'):
+    if st.button('Visualizar documentos gerados', key='view_1'):
         st.session_state.tipo_documento = 'Visualizar documentos gerados'
         st.success('Você escolheu Visualizar documentos gerados!')
 
@@ -112,15 +94,11 @@ if login():
         if tipo_documento == 'Plano Estratégico e de Pesquisa':
             planej_mkt_page()
           
-        if tipo_documento == 'Plano Estratégico de Mídias':
+        elif tipo_documento == 'Plano Estratégico de Mídias':
             planej_midias_page()
 
         elif tipo_documento == 'Visualizar documentos gerados':
             visualizar_planejamentos()
-
-              
-             
-
             
 
             
