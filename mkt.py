@@ -466,7 +466,7 @@ def planej_mkt_page():
                                     -Word Count
                                     -Robots Meta
                                     -Canonical Tag
-                                    -10 sugestões de melhora
+                                    -10 sugestões de melhora bem detalhadas. embasadas em expertise de SEO. pelo menos um parágrafo para cada sugestão de melhora para cada página.
                                     
                                 
                                     -Você é claro e detalhista, analítico e se comunica de forma excelente.''',
