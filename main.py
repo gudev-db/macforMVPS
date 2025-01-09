@@ -93,8 +93,12 @@ if login():
 
     # Botões para escolher o tipo de documento
     if st.button('Plano Estratégico de Marketing'):
-        st.session_state.tipo_documento = 'Plano Estratégico de Marketing'
-        st.success('Você escolheu o Plano Estratégico de Marketing!')
+        st.session_state.tipo_documento = 'Plano Estratégico e de Pesquisa'
+        st.success('Você escolheu o Plano Estratégico e de Pesquisa!')
+
+    if st.button('Plano Estratégico de Marketing'):
+        st.session_state.tipo_documento = 'Plano Estratégico de Mídias'
+        st.success('Você escolheu o Plano Estratégico de Mídias!')
 
     if st.button('Visualizar documentos gerados'):
         st.session_state.tipo_documento = 'Visualizar documentos gerados'
@@ -104,12 +108,13 @@ if login():
     if "tipo_documento" in st.session_state:
         tipo_documento = st.session_state.tipo_documento
 
-        if tipo_documento == 'Plano Estratégico de Marketing':
-            # Chama a função para o planejamento de marketing
+        if tipo_documento == 'Plano Estratégico e de Pesquisa':
             planej_mkt_page()
+          
+        if tipo_documento == 'Plano Estratégico de Mídias':
+            planej_midias_page()
 
         elif tipo_documento == 'Visualizar documentos gerados':
-            # Chama a função para visualizar os planejamentos salvos
             visualizar_planejamentos()
 
               
