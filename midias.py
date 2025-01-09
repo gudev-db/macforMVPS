@@ -37,7 +37,7 @@ import uuid
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_cliente):
+def save_to_mongo_midias(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -401,7 +401,7 @@ def planej_midias_page():
 
                         
 
-                        save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
+                        save_to_mongo_midias(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
 
 
 
