@@ -112,8 +112,8 @@ def planej_midias_page():
     tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
 
 
-    performance_metrics_df = SEO-tools.check_website_performance(site_cliente)
-    website_all_texts = SEO-tools.scrape_all_texts(site_cliente)
+    performance_metrics_df = SEOtools.check_website_performance(site_cliente)
+    website_all_texts = SEOtools.scrape_all_texts(site_cliente)
 
 
   
@@ -314,27 +314,27 @@ def planej_midias_page():
 
                                     
                                     Em facebook e instagram, definir o que deve ser feito em:
-                                    - reels e stories
-                                    - estático e carrossel
-                                    - conteúdo localizado
+                                    - reels e stories (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - estático e carrossel (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - conteúdo localizado (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
 
                                     Em linkedin, definir o que deve ser feito em:
-                                    - Conteúdos educativos e informativos
-                                    - Depoimentos de sucesso
-                                    - Eventos e comemorações
-                                    - Tom de voz 
+                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Depoimentos de sucesso (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Eventos e comemorações (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Tom de voz (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
                                     - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em whatsapp, definir o que deve ser feito em:
-                                    - Canal 
-                                    - Lista de transmissão 
-                                    - Análises regulares 
+                                    - Canal  (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Lista de transmissão (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
 
                                     Em Youtube, definir o que deve ser feito em termos de:
-                                    - shorts 
-                                    - conteúdos de especialistas
-                                    - vídeos 
-                                    - análises regulares 
+                                    - shorts (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - conteúdos de especialistas (pelo menos 5 sugestões)
+                                    - vídeos (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
