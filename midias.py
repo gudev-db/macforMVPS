@@ -12,7 +12,7 @@ import os
 from tavily import TavilyClient
 from pymongo import MongoClient
 import SEO-tools
-import equipe
+from equipe import agentes
 
 
 
@@ -369,7 +369,7 @@ def planej_midias_page():
                         # Processo do Crew
 
                         equipe_midia = Crew(
-                            agents=equipe.agentes,
+                            agents=agentes,
                             tasks=tarefas_midia,
                             process=Process.hierarchical,
                             manager_llm=modelo_linguagem,
