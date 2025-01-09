@@ -370,23 +370,21 @@ def planej_midias_page():
                                     que contém as etapas:
                                     
                                     -Um relatório para TODAS as páginas em {performance_metrics_df} sobre a performance do site do dito cliente: {site_cliente}
-                                    que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df})
-                                    , Tal relatório deve conter insights, análises e a apresentação dos dados brutos no seguinte formato para cada página:
+                                    que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df}):
 
-                                    -URL
-                                    -Status Code
-                                    -Load Time (s)
-                                    -Content Length (KB)
-                                    -Title
-                                    -Meta Description
-                                    -H1 Tags'
-                                    -Word Count
-                                    -Robots Meta
-                                    -Canonical Tag
-                                    -10 sugestões de melhora bem detalhadas. embasadas em expertise de SEO. pelo menos um parágrafo para cada sugestão de melhora para cada página.
-                                    
-                                
-                                    -Você é claro e detalhista, analítico e se comunica de forma excelente.''',
+                                    para cada uma das páginas, retornar:
+                                        -URL
+                                        -Status Code
+                                        -Load Time (s)
+                                        -Content Length (KB)
+                                        -Title
+                                        -Meta Description
+                                        -H1 Tags'
+                                        -Word Count
+                                        -Robots Meta
+                                        -Canonical Tag
+                                        -Sugestões detalhadas para melhora da página.
+                           ''',
                                     agent=agentes[9],
                                     output_file = 'performance.md'
                                 ),
