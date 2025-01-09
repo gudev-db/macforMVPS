@@ -20,7 +20,7 @@ import SEOtools
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0.5,
+    temperature=0.3,
     frequency_penalty=0.5
 )
 
@@ -82,6 +82,25 @@ objetivos_opcoes = [
 
 
 def planej_midias_page():
+
+    st.subheader('1 Plano para Redes')
+                        st.markdown(tarefas_midia[0].output.raw)
+                        st.subheader('2 Plano para Criativos')
+                        st.markdown(tarefas_midia[1].output.raw)
+                        st.subheader('3 SEO')
+                        st.subheader('3.1 Análise de Saúde do Site')
+                        st.markdown(tarefas_midia[2].output.raw)
+                        st.subheader('3.2 Sugestões de palavras chave')
+                        st.markdown(tarefas_midia[3].output.raw)
+                        st.subheader('4 Plano de CRM')
+                        st.markdown(tarefas_midia[4].output.raw)
+                        st.subheader('5 Plano de Design/Marca')
+                        st.markdown(tarefas_midia[5].output.raw)
+                        st.subheader('6 Estratégia de Conteúdo')
+                        st.markdown(tarefas_midia[6].output.raw)
+
+    st.title('Planejamento de Mídias')
+    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
     nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
     site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
     ramo_atuacao = st.text_input('Ramo de Atuação:', key="ramo_atuacao", placeholder="Ex: E-commerce de Moda")
@@ -314,27 +333,27 @@ def planej_midias_page():
 
                                     
                                     Em facebook e instagram, definir o que deve ser feito em:
-                                    - reels e stories (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
-                                    - estático e carrossel (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - reels e stories (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    - estático e carrossel (pelo menos 5 sugestões práticas e originais do que deve ser feito)
                                     - conteúdo localizado (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
 
                                     Em linkedin, definir o que deve ser feito em:
-                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
-                                    - Depoimentos de sucesso (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
-                                    - Eventos e comemorações (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    - Depoimentos de sucesso (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    - Eventos e comemorações (pelo menos 5 sugestões práticas e originais do que deve ser feito)
                                     - Tom de voz (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
                                     - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em whatsapp, definir o que deve ser feito em:
-                                    - Canal  (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
-                                    - Lista de transmissão (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
-                                    - Análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - Canal  (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    - Lista de transmissão (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    - Análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito)
 
                                     Em Youtube, definir o que deve ser feito em termos de:
-                                    - shorts (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - shorts (pelo menos 5 sugestões práticas e originais do que deve ser feito)
                                     - conteúdos de especialistas (pelo menos 5 sugestões)
-                                    - vídeos (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
-                                    - análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    - vídeos (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    - análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito)
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
@@ -536,21 +555,21 @@ def planej_midias_page():
 
                         #Printando Tarefas
 
-                        st.header('3. Etapa de Planejamento de Mídias')
-                        st.subheader('3.1 Plano para Redes')
+                        st.header('Planejamento de Mídias')
+                        st.subheader('1 Plano para Redes')
                         st.markdown(tarefas_midia[0].output.raw)
-                        st.subheader('3.2 Plano para Criativos')
+                        st.subheader('2 Plano para Criativos')
                         st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3.3 SEO')
-                        st.subheader('3.3.1 Análise de Saúde do Site')
+                        st.subheader('3 SEO')
+                        st.subheader('3.1 Análise de Saúde do Site')
                         st.markdown(tarefas_midia[2].output.raw)
-                        st.subheader('3.3.2 Sugestões de palavras chave')
+                        st.subheader('3.2 Sugestões de palavras chave')
                         st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('3.4 Plano de CRM')
+                        st.subheader('4 Plano de CRM')
                         st.markdown(tarefas_midia[4].output.raw)
-                        st.subheader('3.5 Plano de Design/Marca')
+                        st.subheader('5 Plano de Design/Marca')
                         st.markdown(tarefas_midia[5].output.raw)
-                        st.subheader('3.6 Estratégia de Conteúdo')
+                        st.subheader('6 Estratégia de Conteúdo')
                         st.markdown(tarefas_midia[6].output.raw)
 
                         
