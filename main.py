@@ -11,6 +11,7 @@ from retrieve import visualizar_planejamentos
 from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
+from midias import planej_midias_page
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="page-icon.png")  
