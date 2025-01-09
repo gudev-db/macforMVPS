@@ -351,7 +351,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar a Brand Persona.",
-                                    expected_output=f'''Brand Persona detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
+                                    expected_output=f'''5 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
                                     seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
@@ -370,14 +370,14 @@ def planej_mkt_page():
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
                                     suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
-                                    Crie duas buyer personas.''', 
+                                    Crie oito buyer personas.''', 
                                     agent=agentes[5],
                                     output_file = 'BuyerP.md'
                                 ),
                                 Task(
                                     description="Definir o Tom de Voz.",
                                     expected_output=f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. 
-                                    Retorne entre 3 a 5 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
+                                    Retorne entre 10 a 15 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
                                     relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.''',
                                     agent=agentes[7],
                                     output_file = 'TV.md'
@@ -404,27 +404,27 @@ def planej_mkt_page():
 
                                     
                                     Em facebook e instagram, definir o que deve ser feito em:
-                                    - reels e stories
-                                    - estático e carrossel
-                                    - conteúdo localizado
+                                    - reels e stories (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - estático e carrossel (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - conteúdo localizado (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em linkedin, definir o que deve ser feito em:
-                                    - Conteúdos educativos e informativos
-                                    - Depoimentos de sucesso
-                                    - Eventos e comemorações
-                                    - Tom de voz
-                                    - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.
+                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Depoimentos de sucesso (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Eventos e comemorações (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Tom de voz (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em whatsapp, definir o que deve ser feito em:
-                                    - Canal 
-                                    - Lista de transmissão
-                                    - Análises regulares
+                                    - Canal  (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Lista de transmissão (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Análises regulares (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em Youtube, definir o que deve ser feito em termos de:
-                                    - shorts
-                                    - conteúdos de especialistas
-                                    - vídeos
-                                    - análises regulares
+                                    - shorts (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - conteúdos de especialistas (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - vídeos (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - análises regulares (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
