@@ -11,7 +11,7 @@ from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSear
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
-import SEO-tools
+import SEOtools
 from equipe import agentes
 
 
@@ -112,8 +112,8 @@ def planej_mkt_page():
     tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
 
 
-    performance_metrics_df = SEO-tools.check_website_performance(site_cliente)
-    website_all_texts = SEO-tools.scrape_all_texts(site_cliente)
+    performance_metrics_df = SEOtools.check_website_performance(site_cliente)
+    website_all_texts = SEOtools.scrape_all_texts(site_cliente)
 
 
   
