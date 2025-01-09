@@ -342,7 +342,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar o posicionamento de marca.",
-                                    expected_output=f'''Pelo menos 10 Posicionamentos de marca em uma única frase em português brasileiro. 
+                                    expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
                                     Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},''',
@@ -351,7 +351,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar a Brand Persona.",
-                                    expected_output=f'''5 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
+                                    expected_output=f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
                                     seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
@@ -404,27 +404,27 @@ def planej_mkt_page():
 
                                     
                                     Em facebook e instagram, definir o que deve ser feito em:
-                                    - reels e stories (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - estático e carrossel (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - conteúdo localizado (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - reels e stories
+                                    - estático e carrossel
+                                    - conteúdo localizado
 
                                     Em linkedin, definir o que deve ser feito em:
-                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - Depoimentos de sucesso (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - Eventos e comemorações (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - Tom de voz (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Conteúdos educativos e informativos
+                                    - Depoimentos de sucesso
+                                    - Eventos e comemorações
+                                    - Tom de voz 
                                     - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Em whatsapp, definir o que deve ser feito em:
-                                    - Canal  (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - Lista de transmissão (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - Análises regulares (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - Canal 
+                                    - Lista de transmissão 
+                                    - Análises regulares 
 
                                     Em Youtube, definir o que deve ser feito em termos de:
-                                    - shorts (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - conteúdos de especialistas (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - vídeos (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
-                                    - análises regulares (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - shorts 
+                                    - conteúdos de especialistas
+                                    - vídeos 
+                                    - análises regulares 
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
