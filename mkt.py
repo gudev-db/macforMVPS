@@ -342,7 +342,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar o posicionamento de marca.",
-                                    expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
+                                    expected_output=f'''Pelo menos 10 Posicionamentos de marca em uma única frase em português brasileiro. 
                                     Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},''',
