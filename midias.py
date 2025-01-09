@@ -313,35 +313,35 @@ def planej_midias_page():
                                     {publico_alvo},e a referência da marca:
                                     {referencia_da_marca},. 
 
-                                    você deve garantir uma vantagem competitiva contra o concorrente: {concorrentes}. seu site foi raspado e esse foi o retorno: (info_concorrente).
+                                    você deve garantir uma vantagem competitiva contra o concorrente: {concorrentes}. seu site foi raspado e esse foi o retorno: ({info_concorrente}).
 
                                     
                                     Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}, Em facebook e instagram, definir o que deve ser feito em:
-                                    - reels e stories (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - estático e carrossel (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - conteúdo localizado (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - 5 ideias de reels e stories 
+                                    - 5 ideias de estático e carrossel 
+                                    - 5 ideias de conteúdo localizado 
 
                                     Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}, Em linkedin, definir o que deve ser feito em:
-                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - Depoimentos de sucesso (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - Eventos e comemorações (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - Tom de voz (pelo menos 5 sugestões práticas e originais do que deve ser feito  de forma bem detalhada)
-                                    - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
+                                    - 5 ideias deConteúdos educativos e informativos 
+                                    - 5 ideias deDepoimentos de sucesso 
+                                    - 5 ideias deEventos e comemorações 
+                                    - Tom de voz 
+                                    - 5 ideias de CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
                                     Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}, Em whatsapp, definir o que deve ser feito em:
-                                    - Canal  (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - Lista de transmissão (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - Análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - 5 ideias de Canal  
+                                    - 5 ideias de Lista de transmissão 
+                                    - 5 ideias de Análises regulares 
 
                                     Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo}, Em Youtube, definir o que deve ser feito em termos de:
-                                    - shorts (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - conteúdos de especialistas (pelo menos 5 sugestões de forma bem detalhada)
-                                    - vídeos (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
-                                    - análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - 5 ideias de shorts 
+                                    - 5 ideias de conteúdos de especialistas 
+                                    - 5 ideias de vídeos
+                                    - 5 ideias de análises regulares 
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
