@@ -11,7 +11,7 @@ from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSear
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
-import SEO-tools
+import SEOtools
 #from equipe import agentes
 
 
