@@ -314,32 +314,35 @@ def planej_midias_page():
                                     {publico_alvo},e a referência da marca:
                                     {referencia_da_marca},. 
 
-                                    Em seguida, detalhar considerando o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
-                                    {publico_alvo}:
+                                    
 
                                     
-                                    Em facebook e instagram, definir o que deve ser feito em:
-                                    - reels e stories (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - estático e carrossel (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - conteúdo localizado (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo}, Em facebook e instagram, definir o que deve ser feito em:
+                                    - reels e stories (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - estático e carrossel (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - conteúdo localizado (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
 
-                                    Em linkedin, definir o que deve ser feito em:
-                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - Depoimentos de sucesso (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - Eventos e comemorações (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - Tom de voz (pelo menos 5 sugestões práticas e originais do que deve ser feito levando em conta ramo de atuação: {ramo_atuacao}, intuito fo plano estratégico: {intuito_plano} e público alvo: {publico_alvo})
+                                    Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo}, Em linkedin, definir o que deve ser feito em:
+                                    - Conteúdos educativos e informativos (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - Depoimentos de sucesso (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - Eventos e comemorações (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - Tom de voz (pelo menos 5 sugestões práticas e originais do que deve ser feito  de forma bem detalhada)
                                     - CTA’s  fortes (defina-as em grande detalhe. seja original, traga soluções pulo do gato para o caso específico de atuação. você é um especialista em redes sociais e cta's.) (pelo menos 5 sugestões, com motivo do porque seriam interessantes)
 
-                                    Em whatsapp, definir o que deve ser feito em:
-                                    - Canal  (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - Lista de transmissão (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - Análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo}, Em whatsapp, definir o que deve ser feito em:
+                                    - Canal  (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - Lista de transmissão (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - Análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
 
-                                    Em Youtube, definir o que deve ser feito em termos de:
-                                    - shorts (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - conteúdos de especialistas (pelo menos 5 sugestões)
-                                    - vídeos (pelo menos 5 sugestões práticas e originais do que deve ser feito)
-                                    - análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito)
+                                    Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo}, Em Youtube, definir o que deve ser feito em termos de:
+                                    - shorts (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - conteúdos de especialistas (pelo menos 5 sugestões de forma bem detalhada)
+                                    - vídeos (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
+                                    - análises regulares (pelo menos 5 sugestões práticas e originais do que deve ser feito de forma bem detalhada)
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
