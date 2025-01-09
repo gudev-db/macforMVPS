@@ -43,8 +43,9 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
     
     # Prepare the document to be inserted into MongoDB
     task_outputs = {
-        "id_planejamento": nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
+        "id_planejamento":'Plano Estratégico e de Planejamento' +'_'+ nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
+        "tipo_plano": 'Plano Estratégico e de Planejamento',
         "SWOT": tarefas_pesquisa[0].output.raw,
         "PEST": tarefas_pesquisa[1].output.raw,
 
