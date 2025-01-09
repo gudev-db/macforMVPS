@@ -83,23 +83,9 @@ objetivos_opcoes = [
 
 def planej_midias_page():
 
-    st.subheader('1 Plano para Redes')
-                        st.markdown(tarefas_midia[0].output.raw)
-                        st.subheader('2 Plano para Criativos')
-                        st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3 SEO')
-                        st.subheader('3.1 Análise de Saúde do Site')
-                        st.markdown(tarefas_midia[2].output.raw)
-                        st.subheader('3.2 Sugestões de palavras chave')
-                        st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('4 Plano de CRM')
-                        st.markdown(tarefas_midia[4].output.raw)
-                        st.subheader('5 Plano de Design/Marca')
-                        st.markdown(tarefas_midia[5].output.raw)
-                        st.subheader('6 Estratégia de Conteúdo')
-                        st.markdown(tarefas_midia[6].output.raw)
+    st.subheader('Planejamento de Mídias')
+                   
 
-    st.title('Planejamento de Mídias')
     st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
     nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
     site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
