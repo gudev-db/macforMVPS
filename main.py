@@ -83,6 +83,10 @@ if login():
         st.session_state.tipo_documento = 'Plano Estratégico de Mídias'
         st.success('Você escolheu o Plano Estratégico de Mídias!')
 
+    if st.button('Plano de CRM', key='mkt_3'):
+        st.session_state.tipo_documento = 'Plano de CRM'
+        st.success('Você escolheu o Plano de CRM!')
+
     if st.button('Visualizar documentos gerados', key='view_1'):
         st.session_state.tipo_documento = 'Visualizar documentos gerados'
         st.success('Você escolheu Visualizar documentos gerados!')
@@ -96,6 +100,9 @@ if login():
           
         elif tipo_documento == 'Plano Estratégico de Mídias':
             planej_midias_page()
+
+        elif tipo_documento == 'Plano de CRM':
+            planej_crm_page()
 
         elif tipo_documento == 'Visualizar documentos gerados':
             visualizar_planejamentos()
