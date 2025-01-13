@@ -43,9 +43,9 @@ def save_to_mongo_crm(tarefas_crm, nome_cliente):
     
     # Prepare the document to be inserted into MongoDB
     task_outputs = {
-        "id_planejamento": nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
+        "id_planejamento": nome_cliente + '_' + 'CRM' + '_' + id_planejamento,  # Use o ID gerado como chave
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
-        
+        "tipo_planejamento": 'CRM',
         "Plano_Estrategia_CRM": tarefas_crm[0].output.raw,
         "Plano_Analise_Dados_CRM": tarefas_crm[1].output.raw,
         "Plano_Gestao_Leads_CRM": tarefas_crm[2].output.raw,
@@ -81,7 +81,7 @@ objetivos_opcoes = [
 
 
 def planej_crm_page():
-    st.subheader('Planejamento de Mídias')
+    st.subheader('Planejamento de CRM')
 
     st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
     
@@ -199,7 +199,7 @@ def planej_crm_page():
                 if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
-                    with st.spinner('Gerando o planejamento de mídias...'):
+                    with st.spinner('Gerando o planejamento de CRM...'):
 
                         agentes_crm = [
     Agent(
