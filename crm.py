@@ -37,7 +37,7 @@ import uuid
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-def save_to_mongo_midias(tarefas_midia, nome_cliente):
+def save_to_mongo_crm(tarefas_crm, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -45,21 +45,20 @@ def save_to_mongo_midias(tarefas_midia, nome_cliente):
     task_outputs = {
         "id_planejamento": nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
-       
         
-
-        "Plano_Redes": tarefas_midia[0].output.raw,
-        "Plano_Criativos": tarefas_midia[1].output.raw,
-        "Plano_Saude_Site": tarefas_midia[2].output.raw,
-        "Plano_Palavras_Chave": tarefas_midia[3].output.raw,
-        "Plano_CRM": tarefas_midia[4].output.raw,
-        "Plano_Design": tarefas_midia[5].output.raw,
-        "Estrategia_Conteudo": tarefas_midia[6].output.raw,
+        "Plano_Estrategia_CRM": tarefas_crm[0].output.raw,
+        "Plano_Analise_Dados_CRM": tarefas_crm[1].output.raw,
+        "Plano_Gestao_Leads_CRM": tarefas_crm[2].output.raw,
+        "Plano_Gestao_Relacionamento_CRM": tarefas_crm[3].output.raw,
+        "Plano_Analise_Performance_CRM": tarefas_crm[4].output.raw,
+        "Plano_Automacao_CRM": tarefas_crm[5].output.raw,
+        "Plano_Consultoria_SLA_CRM": tarefas_crm[6].output.raw,
     }
 
     # Insert the document into MongoDB
     collection.insert_one(task_outputs)
-    st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
+    st.success(f"Planejamento de CRM gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
+
 
 
 
@@ -81,12 +80,12 @@ objetivos_opcoes = [
 ]
 
 
-def planej_midias_page():
-
+def planej_crm_page():
     st.subheader('Planejamento de Mídias')
-                   
 
     st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
+    
+    # Informações gerais do cliente
     nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
     site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
     ramo_atuacao = st.text_input('Ramo de Atuação:', key="ramo_atuacao", placeholder="Ex: E-commerce de Moda")
@@ -95,31 +94,90 @@ def planej_midias_page():
     concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
     site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
 
-    # Criando o selectbox com as opções definidas
+    # Objetivos de marca
     objetivos_de_marca = st.selectbox(
         'Selecione os objetivos de marca',
-        objetivos_opcoes,
+        objetivos_opcoes,  # Substitua 'objetivos_opcoes' com a lista de opções de objetivos que você deseja
         key="objetivos_marca"
     )
+
     referencia_da_marca = st.text_area(
-    'O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?',
-    key="referencias_marca",
-    placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.",
-    height=200  # Adjust the height in pixels as needed
-)    
-    st.subheader("(Opcional) Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
-    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+        'O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?',
+        key="referencias_marca",
+        placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.",
+        height=200  # Ajuste a altura conforme necessário
+    )
 
-    # Step 2. Executing a simple search query
-    politic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    economic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-    social = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-    tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+    # Perguntas relacionadas ao serviço de CRM
+    possui_ferramenta_crm = st.selectbox(
+        'A empresa possui ferramenta de CRM?',
+        ['Sim', 'Não'],
+        key="possui_ferramenta_crm"
+    )
+
+    maturidade_crm = st.selectbox(
+        'Qual é o nível de maturidade em CRM (histórico)?',
+        ['Iniciante', 'Intermediário', 'Avançado'],
+        key="maturidade_crm"
+    )
+
+    objetivo_crm = st.text_input(
+        'Qual o objetivo ao utilizar o CRM?',
+        key="objetivo_crm",
+        placeholder="Ex: Melhorar a gestão de leads, otimizar relacionamento com clientes"
+    )
+
+    canais_disponiveis = st.text_input(
+        'Quais canais de comunicação estão disponíveis?',
+        key="canais_disponiveis",
+        placeholder="Ex: E-mail, WhatsApp, Redes sociais"
+    )
+
+    perfil_empresa = st.selectbox(
+        'Qual é o perfil da empresa?',
+        ['B2B', 'B2C'],
+        key="perfil_empresa"
+    )
+
+    metas_crm = st.text_input(
+        'Quais metas a serem alcançadas com o CRM?',
+        key="metas_crm",
+        placeholder="Ex: Aumentar a taxa de conversão em 20%"
+    )
+
+    descricao_negocio = st.text_area(
+        'Descrição do negócio:',
+        key="descricao_negocio",
+        placeholder="Ex: Empresa especializada em produtos eletrônicos."
+    )
+
+    tamanho_base = st.selectbox(
+        'Qual o tamanho da base de dados de clientes?',
+        ['Pequena', 'Média', 'Grande'],
+        key="tamanho_base"
+    )
 
 
-    performance_metrics_df = SEOtools.check_website_performance(site_cliente)
-    website_all_texts = SEOtools.scrape_all_texts(site_cliente)
+    tom_voz = st.text_area(
+        'Qual o tom de voz desejado para a comunicação?',
+        
+        key="tom_voz",
+         placeholder="Ex: Formal, informal, outro..."
+    )
 
+    fluxos_ou_emails = st.text_area(
+        'Quais fluxos e/ou e-mails deseja trabalhar?',
+        key="fluxos_ou_emails",
+        placeholder="Ex: E-mail de boas-vindas, fluxos de nutrição de leads"
+    )
+
+    sla_entre_marketing_vendas = st.selectbox(
+        'Há algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads?',
+        ['Sim', 'Não'],
+        key="sla_entre_marketing_vendas"
+    )
+
+    pest_files = 1
 
   
 
@@ -143,237 +201,277 @@ def planej_midias_page():
                 else:
                     with st.spinner('Gerando o planejamento de mídias...'):
 
-                        agentes = [
-                            Agent(
-                                role="Líder e revisor geral de estratégia",
-                                goal=f'''Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir 
-                                alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.''',
-                                backstory=f'''Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento 
-                                avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no 
-                                ramo de {ramo_atuacao} em português brasileiro.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista PEST",
-                                goal=f'''Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.''',
-                                backstory=f'''Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. 
-                                Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua 
-                                análise PEST deve se basear em. Você está realizando essa análise PEST para o cliente {nome_cliente} que é do setor de atuação {ramo_atuacao}.
-                                O intuito do planejamento estratégico está explicitado em {intuito_plano}. Você possui uma vasta experiência em desenvolver análises PEST relevantes,
-                                perspicazes e detalhadas. Você sabe exatamente como extrair informações relevantes para o crescimento de seus clientes.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista SWOT",
-                                goal=f'''Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.''',
-                                backstory='''Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Matriz BCG",
-                                goal=f"Desenvolver a Matriz BCG para o {nome_cliente}, com base nas informações do mercado e concorrência disponíveis.",
-                                backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Consultor de Pricing",
-                                goal=f'''Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.''',
-                                backstory=f'''Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas
-                                de precificação com base na análise de mercado e concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista de Segmentação de Mercado",
-                                goal=f'''Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.''',
-                                backstory=f'''Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis
-                                para o planejamento de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Criador de Persona",
-                                goal=f'''Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.''',
-                                backstory=f'''Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para 
-                                {nome_cliente}, que ajudem a direcionar a comunicação de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Estratégia de Mídia Social",
-                                goal=f'''Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.''',
-                                backstory=f'''Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas
-                                plataformas de mídia social com base em dados do mercado.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Inbound Marketing",
-                                goal=f'''Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.''',
-                                backstory=f'''Você é um especialista em inbound marketing, utilizando as melhores práticas 
-                                para atrair e engajar clientes em potencial para {nome_cliente}.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site ({performance_metrics_df}) e na concorrência .''',
-                                backstory=f'''Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} 
-                                nos motores de busca, com base na análise do conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Criativos",
-                                goal=f'''Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.''',
-                                backstory=f'''Você é um especialista em Criativos de marketing digital, você é original, detalhista, 
-                                minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu 
-                                extenso repertório profissional, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
-                                Tornando-as relevantes e fazendo com que o cliente atinja seus objetivos.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            
-                            Agent(
-                                role="Especialista em CRM",
-                                goal=f'''Desenvolver estratégias de CRM para o cliente: {nome_cliente}.''',
-                                backstory=f'''Você é um especialista em CRM. você é original, detalhista, minucioso, 
-                                criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso 
-                                repertório profissional, Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
-                                saber para detalhar planos de como firmar e continuar relacionamentos estratégicos com clientes.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            
-                            Agent(
-                                role="Especialista em Marca/Design",
-                                goal=f'''Desenvolver ideias de Marca/Design do cliente: {nome_cliente}.''',
-                                backstory=f'''Você é um especialista em Marca/Design, você é original, detalhista, minucioso, criativo, 
-                                com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, 
-                                com o objetivo de melhorar a visibilidade de {nome_cliente} trazendo a sua marca
-                                de uma forma coerente e chamativa.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
+                        agentes_crm = [
+    Agent(
+        role="Estratégia Geral de CRM",
+        goal=f'''Desenvolver e executar a estratégia geral de CRM para {nome_cliente}, levando em consideração o ramo de atuação ({ramo_atuacao}), 
+        os objetivos de marca ({objetivos_de_marca}), o público-alvo ({publico_alvo}), o tom de voz ({tom_voz}), os canais de comunicação disponíveis 
+        ({canais_disponiveis}), e as metas a serem alcançadas ({metas_crm}). A estratégia deve estar alinhada com os valores e diferenciais da marca 
+        ({referencia_da_marca}) e o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em CRM com ampla experiência em desenvolver e executar estratégias de CRM para empresas como {nome_cliente}, 
+        que atuam no ramo de {ramo_atuacao}. Com base nas informações coletadas, como os objetivos de marca ({objetivos_de_marca}), público-alvo 
+        ({publico_alvo}), tom de voz ({tom_voz}) e canais de comunicação ({canais_disponiveis}), você criará uma estratégia de CRM personalizada, 
+        que alinha todas as iniciativas com os valores e diferenciais de {nome_cliente}. Além disso, é importante garantir que as metas de CRM 
+        ({metas_crm}) sejam atingidas, otimizando os fluxos e campanhas de comunicação de acordo com o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Análise de Dados CRM",
+        goal=f'''Analisar os dados de clientes de {nome_cliente}, segmentando-os com base nos dados coletados de público-alvo ({publico_alvo}), 
+        metas de CRM ({metas_crm}), canais de comunicação ({canais_disponiveis}) e a base de clientes disponível ({tamanho_base}). 
+        Identificar padrões de comportamento para otimizar os fluxos de comunicação e campanhas de marketing. A análise deve considerar as 
+        segmentações e o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um analista de dados especializado em CRM. Sua missão é segmentar a base de dados de clientes de {nome_cliente}, 
+        utilizando os dados coletados, como o perfil do público-alvo ({publico_alvo}), canais de comunicação disponíveis ({canais_disponiveis}), 
+        tamanho da base de dados ({tamanho_base}), e as metas de CRM ({metas_crm}). Você usará essas informações para identificar padrões 
+        e otimizar os fluxos de comunicação e as campanhas de marketing de maneira eficaz, alinhando todas as ações com o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Gestão de Leads e Fluxos CRM",
+        goal=f'''Desenvolver e implementar fluxos de CRM para {nome_cliente}, com foco em nutrição de leads e melhoria da jornada do cliente. 
+        Utilizando canais de comunicação disponíveis ({canais_disponiveis}), com base nos objetivos de CRM ({objetivo_crm}) e metas ({metas_crm}). 
+        Criar fluxos personalizados e campanhas direcionadas para o público-alvo ({publico_alvo}) e conforme o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em CRM com foco na criação e otimização de fluxos de nutrição de leads para {nome_cliente}. 
+        Considerando os canais de comunicação disponíveis ({canais_disponiveis}), os objetivos de CRM ({objetivo_crm}), metas a serem alcançadas ({metas_crm}), 
+        e o perfil do público-alvo ({publico_alvo}), sua missão é desenvolver fluxos de CRM e campanhas de nutrição de leads que aumentem a conversão 
+        e melhorem o engajamento do público-alvo. Todos os fluxos devem estar alinhados com o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Gestão de Relacionamento com Clientes",
+        goal=f'''Desenvolver e implementar estratégias de gestão de relacionamento com clientes para {nome_cliente}, com foco em fidelização e 
+        retenção, utilizando dados de público-alvo ({publico_alvo}), canais de comunicação ({canais_disponiveis}), e metas de CRM ({metas_crm}). 
+        Criar campanhas personalizadas para melhorar o engajamento ao longo da jornada do cliente, ajustadas ao perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em CRM com foco em gestão de relacionamento com clientes (CRM). Sua missão é desenvolver 
+        estratégias personalizadas de fidelização e retenção para {nome_cliente}, utilizando os dados do público-alvo ({publico_alvo}), canais 
+        de comunicação ({canais_disponiveis}) e as metas de CRM ({metas_crm}). Ao longo da jornada do cliente, você criará campanhas 
+        personalizadas, alinhadas com o perfil da empresa ({perfil_empresa}), visando aumentar a satisfação e a longevidade dos clientes.''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Análise de Performance de CRM",
+        goal=f'''Analisar a performance das estratégias de CRM implementadas para {nome_cliente}, ajustando conforme necessário com base em 
+        métricas de sucesso, taxas de conversão e feedback dos clientes. Verificar a aderência dos resultados com as metas de CRM ({metas_crm}) 
+        e ajustar os fluxos e campanhas conforme as necessidades do público-alvo ({publico_alvo}) e o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em análise de performance de CRM. Sua missão é avaliar e monitorar os resultados das estratégias de CRM 
+        implementadas para {nome_cliente}. Você utilizará métricas de sucesso, taxas de conversão e feedback dos clientes para ajustar as 
+        campanhas de CRM e garantir que as metas de CRM ({metas_crm}) sejam atingidas. A análise deve estar alinhada com os dados de público-alvo 
+        ({publico_alvo}) e o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Especialista em Automação de CRM",
+        goal=f'''Desenvolver e implementar automações de CRM para {nome_cliente}, com foco em otimizar o gerenciamento de leads e a comunicação 
+        com clientes em diferentes estágios da jornada de compra. As automações devem ser baseadas nos canais de comunicação disponíveis 
+        ({canais_disponiveis}) e ajustadas ao perfil do público-alvo ({publico_alvo}). Assegurar que todos os fluxos automatizados atendam 
+        às metas de CRM ({metas_crm}).''',
+        backstory=f'''Você é um especialista em automação de CRM. Sua missão é otimizar o gerenciamento de leads e a comunicação com clientes 
+        em {nome_cliente}, usando os canais de comunicação disponíveis ({canais_disponiveis}) e garantindo que os fluxos de CRM sejam automatizados 
+        para aumentar a eficiência, melhorar a personalização e alcançar as metas de CRM ({metas_crm}). As automações devem ser criadas com base 
+        nas necessidades do público-alvo ({publico_alvo}) e adaptadas ao perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Consultor de SLA CRM",
+        goal=f'''Analisar o SLA (Service Level Agreement) entre marketing e vendas para {nome_cliente}, garantindo que as expectativas 
+        de tempo e qualidade na geração de leads sejam cumpridas, utilizando o CRM para ajustar os fluxos e otimizar a colaboração entre as 
+        equipes. Verificar como as metas de CRM ({metas_crm}) e os canais de comunicação ({canais_disponiveis}) podem impactar essa colaboração.''',
+        backstory=f'''Você é um consultor de CRM especializado em gerenciar a relação entre marketing e vendas. Sua missão é garantir que o SLA 
+        (Service Level Agreement) entre essas equipes seja cumprido, melhorando o alinhamento e a colaboração para gerar leads de qualidade. 
+        Você utilizará os dados de metas de CRM ({metas_crm}), canais de comunicação ({canais_disponiveis}), e a segmentação do público-alvo 
+        ({publico_alvo}) para otimizar os fluxos e melhorar a comunicação e colaboração entre marketing e vendas.''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    )
+]
 
-                            Agent(
-                                role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.''',
-                                backstory=f'''Você é um especialista em SEO, você é analítico, detalhista, minucioso, criativo, 
-                                com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório 
-                                profissional, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do
-                                conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Redes Sociais",
-                                goal=f'''Estabelecer o plano de atuação em redes sociais de {nome_cliente} no planejamento estratégico, com base na análise do site e na concorrência.''',
-                                backstory=f'''Você é um especialista em marketing em redes sociais, 
-                                você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de 
-                                empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade nas campanhas 
-                                {nome_cliente}, com base na análise do conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                        ]
 
 
 
 
                        
                         tarefas_crm = [
-                            
+    # Task de Estratégia Geral de CRM
+    Task(
+        description="Criar a estratégia geral de CRM para o cliente.",
+        expected_output=f'''
+        Relatório de Estratégia de CRM para {nome_cliente}
 
-                            #CRM
-                                Task(
-                                    description="Criar a estratégia de CRM.",
-                                    expected_output=f'''
+        Objetivo: Desenvolver uma estratégia de CRM centrada no cliente, focada em segmentação e personalização da experiência para {nome_cliente}, 
+        considerando os seguintes parâmetros:
+        
+        1. Ramo de atuação: {ramo_atuacao}
+        2. Intuito do plano estratégico: {intuito_plano}
+        3. Público-alvo: {publico_alvo}
+        4. Canais disponíveis: {canais_disponiveis}
+        5. Metas a serem alcançadas: {metas_crm}
+        
+        Estratégia:
+        - A segmentação de clientes será realizada com base nas características demográficas, comportamentais e psicográficas.
+        - Análise do comportamento do cliente em canais digitais, interações em redes sociais, compras anteriores, entre outros.
+        - Estratégias de comunicação personalizadas, utilizando canais como e-mail marketing, SMS, WhatsApp e redes sociais.
+        
+        Objetivo: Criar um alinhamento estratégico entre as equipes de marketing, vendas e atendimento para garantir a execução das metas e alcançar o 
+        sucesso no relacionamento com os clientes.
+        ''',
+        agent=agentes_crm[0],  # Agente de Estratégia Geral de CRM
+        output_file='estrategia_crm.md'
+    ),
+    
+    # Task de Análise de Dados CRM
+    Task(
+        description="Analisar a base de dados de clientes e segmentá-los para estratégias de CRM.",
+        expected_output=f'''
+        Relatório de Análise de Dados CRM para {nome_cliente}
 
-                                    Gere um documento no formato abaixo adaptado para as necessidades({intuito_plano}) de {nome_cliente}
-                                    
-                                    Relatório de CRM para {nome_cliente}
+        Objetivo: Realizar uma análise detalhada da base de dados de clientes de {nome_cliente}, segmentando-os com base nos dados demográficos, 
+        comportamentais e psicográficos, de acordo com os parâmetros:
 
-                                        Objetivo: Desenvolver uma abordagem centrada no cliente, com foco em segmentação e compreensão profunda das necessidades, comportamentos e expectativas de diferentes grupos de clientes. A seguir, apresento um planejamento estratégico detalhado para atingir esse objetivo, considerando o ramo de atuação: {ramo_atuacao}, o intuito do plano: {intuito_plano}, o público-alvo: {publico_alvo} e a referência da marca: {referencia_da_marca}.
-                                        
-                                        1. Segmentação e Compreensão do Cliente
-                                        Análise de dados dos clientes:
-                                        Segmentação dos clientes por características demográficas, comportamentais e psicográficas.
-                                        Mapeamento das necessidades, expectativas e pontos de dor de cada grupo de clientes.
-                                        Objetivo: Obter uma compreensão clara dos diferentes perfis de clientes para personalizar as estratégias.
-                                        2. Coleta e Análise de Dados Relevantes
-                                        Fontes de dados a serem coletadas:
-                                        Histórico de compras (frequência, valores, produtos adquiridos).
-                                        Comportamento digital (interações no site, redes sociais, cliques, tempo de navegação).
-                                        Feedback de clientes (pesquisas de satisfação, Net Promoter Score - NPS).
-                                        Objetivo: Obter uma visão 360º do cliente para basear as ações de marketing e relacionamento.
-                                        3. Desenvolvimento de Estratégias de Comunicação Personalizadas
-                                        Canais a serem utilizados:
-                                        E-mail marketing, mensagens SMS, redes sociais, notificações push.
-                                        Mensagens personalizadas:
-                                        Criação de campanhas direcionadas para cada segmento (promoções, novos produtos, eventos especiais).
-                                        Personalização da comunicação com base em dados de compras e comportamento.
-                                        Objetivo: Maximizar a relevância e eficácia das mensagens enviadas, com base nas preferências do cliente.
-                                        4. Implementação de Ferramentas de Automação de Marketing
-                                        Ferramentas recomendadas:
-                                        Automação de e-mail (ex: envio de e-mails para abandono de carrinho).
-                                        CRM para centralização de dados de clientes, histórico e interações.
-                                        Objetivo: Automatizar a comunicação e personalizar a experiência de forma escalável.
-                                        5. Programas de Fidelidade e Engajamento
-                                        Desenvolvimento de programas de fidelidade:
-                                        Oferecer recompensas, pontos ou benefícios exclusivos para clientes frequentes.
-                                        Ações de engajamento:
-                                        Manter o cliente envolvido com a marca através de conteúdos exclusivos, eventos, ofertas especiais.
-                                        Objetivo: Aumentar a lealdade e a retenção dos clientes.
-                                        6. Otimização do Atendimento ao Cliente
-                                        Canais de atendimento:
-                                        Atendimento via chat, e-mail, WhatsApp, redes sociais.
-                                        Treinamento das equipes:
-                                        Capacitação da equipe de atendimento para oferecer um serviço personalizado e rápido.
-                                        Objetivo: Garantir uma excelente experiência para o cliente, resolvendo suas dúvidas e problemas de maneira eficiente.
-                                        7. Promoção da Retenção e Maximização do Valor do Cliente
-                                        Estratégias de retenção:
-                                        Programas de fidelização, follow-ups pós-compra, promoções personalizadas.
-                                        Ações para reengajar clientes inativos.
-                                        Maximização do valor do cliente (CLV):
-                                        Estratégias para aumentar o ticket médio e a frequência de compras (ex: upselling, cross-selling).
-                                        Objetivo: Maximizar o Lifetime Value (LTV) do cliente, promovendo sua permanência e aumentando suas compras ao longo do tempo.
-                                        8. Integração entre Equipes de Marketing, Vendas e Atendimento
-                                        Coordenação das equipes:
-                                        Compartilhamento de dados e informações entre marketing, vendas e atendimento.
-                                        Utilização de um CRM centralizado para manter todos os departamentos alinhados.
-                                        Objetivo: Criar uma abordagem consistente e eficaz em todas as interações com o cliente, garantindo uma comunicação sem falhas.
-                                        9. Soluções Personalizadas para {nome_cliente}
-                                        Considerações específicas:
-                                        Ajustar as estratégias para o ramo de atuação: {ramo_atuacao}, com foco em personalizar a experiência de acordo com as necessidades do público-alvo de {publico_alvo}.
-                                        Adaptar as campanhas de CRM com base na referência da marca: {referencia_da_marca}.
-                                        Objetivo: Criar soluções originais e eficazes que atendam às necessidades e expectativas de {nome_cliente}, alinhadas com sua identidade de marca.
-                                                                            
-                                    
-                                    
-                                    ''',
-                                    agent=agentes[11],
-                                    output_file = 'CRM.md'
-                                )]
+        1. Tamanho da base: {tamanho_base}
+        2. Público-alvo: {publico_alvo}
+        3. Canais de comunicação disponíveis: {canais_disponiveis}
+        
+        Análise:
+        - Identificação dos segmentos de clientes com maior potencial de conversão.
+        - Padrões de comportamento e interações nos canais de comunicação.
+        - Comportamento de compra e fidelidade à marca.
+        
+        Objetivo: Identificar os perfis mais rentáveis e desenvolver campanhas personalizadas para cada grupo, melhorando as taxas de conversão.
+        ''',
+        agent=agentes_crm[1],  # Agente de Análise de Dados CRM
+        output_file='analise_dados_crm.md'
+    ),
+    
+    # Task de Gestão de Leads e Fluxos CRM
+    Task(
+        description="Desenvolver e implementar fluxos de CRM para nutrição de leads.",
+        expected_output=f'''
+        Relatório de Gestão de Leads e Fluxos CRM para {nome_cliente}
+
+        Objetivo: Criar fluxos de nutrição de leads para aumentar a conversão e melhorar a jornada do cliente. Considerando os seguintes aspectos:
+
+        1. Objetivos de CRM: {objetivo_crm}
+        2. Metas a serem alcançadas: {metas_crm}
+        3. Público-alvo: {publico_alvo}
+        4. Canais disponíveis: {canais_disponiveis}
+
+        Estratégia de Fluxos:
+        - Desenvolvimento de campanhas de e-mail marketing, SMS e redes sociais com base no comportamento do cliente.
+        - Fluxos de automação para nutrição de leads, incluindo e-mails personalizados, ofertas e promoções.
+        - Análise do estágio do funil para adaptar os fluxos e garantir conversão eficiente.
+
+        Objetivo: Melhorar a jornada do cliente e aumentar a conversão de leads qualificados, utilizando automação de marketing e personalização.
+        ''',
+        agent=agentes_crm[2],  # Agente de Gestão de Leads e Fluxos CRM
+        output_file='gestao_leads_fluxos_crm.md'
+    ),
+    
+    # Task de Gestão de Relacionamento com Clientes
+    Task(
+        description="Desenvolver e implementar estratégias de gestão de relacionamento com clientes.",
+        expected_output=f'''
+        Relatório de Gestão de Relacionamento com Clientes para {nome_cliente}
+
+        Objetivo: Criar e implementar estratégias focadas na fidelização e retenção de clientes, considerando as seguintes informações:
+
+        1. Público-alvo: {publico_alvo}
+        2. Canais de comunicação disponíveis: {canais_disponiveis}
+        3. Metas a serem alcançadas: {metas_crm}
+        
+        Estratégia:
+        - Criação de programas de fidelidade para clientes frequentes.
+        - Ações de engajamento contínuo, como conteúdos exclusivos e promoções personalizadas.
+        - Implementação de comunicação omnicanal, oferecendo uma experiência consistente em todos os canais.
+
+        Objetivo: Aumentar a lealdade dos clientes e maximizar o Lifetime Value (LTV), melhorando a retenção e o engajamento ao longo do tempo.
+        ''',
+        agent=agentes_crm[3],  # Agente de Gestão de Relacionamento com Clientes
+        output_file='gestao_relacionamento_crm.md'
+    ),
+    
+    # Task de Análise de Performance de CRM
+    Task(
+        description="Monitorar e analisar a performance das ações de CRM.",
+        expected_output=f'''
+        Relatório de Análise de Performance de CRM para {nome_cliente}
+
+        Objetivo: Avaliar a eficácia das estratégias de CRM e ajustar conforme necessário. Para isso, será analisada a seguinte performance:
+
+        1. Metas de CRM: {metas_crm}
+        2. Canais de comunicação: {canais_disponiveis}
+        3. Feedback dos clientes: (ex: NPS, pesquisas de satisfação)
+
+        Indicadores de Performance:
+        - Taxa de conversão de leads.
+        - Retenção de clientes e aumento do LTV.
+        - Satisfação do cliente e impacto nas campanhas de fidelização.
+
+        Objetivo: Ajustar as campanhas e fluxos de CRM para melhorar a performance com base em dados de interação, conversão e satisfação do cliente.
+        ''',
+        agent=agentes_crm[4],  # Agente de Análise de Performance de CRM
+        output_file='analise_performance_crm.md'
+    ),
+    
+    # Task de Automação de CRM
+    Task(
+        description="Desenvolver automações de CRM para personalização e escalabilidade.",
+        expected_output=f'''
+        Relatório de Automação de CRM para {nome_cliente}
+
+        Objetivo: Implementar ferramentas de automação para personalizar a experiência do cliente e escalabilidade das ações. Considerando os seguintes dados:
+
+        1. Canais de comunicação disponíveis: {canais_disponiveis}
+        2. Público-alvo: {publico_alvo}
+        3. Metas de CRM: {metas_crm}
+
+        Automação:
+        - Automação de e-mails para abandono de carrinho e promoções personalizadas.
+        - Integração de ferramentas de CRM para centralizar dados e otimizar a comunicação com clientes.
+        - Utilização de notificações push, SMS e e-mail marketing automatizados.
+
+        Objetivo: Otimizar a gestão de leads e melhorar a comunicação com o cliente de forma escalável, sem perder a personalização.
+        ''',
+        agent=agentes_crm[5],  # Agente de Automação de CRM
+        output_file='automacao_crm.md'
+    ),
+    
+    # Task de Consultoria de SLA CRM
+    Task(
+        description="Analisar e ajustar o SLA entre marketing e vendas.",
+        expected_output=f'''
+        Relatório de SLA CRM para {nome_cliente}
+
+        Objetivo: Analisar o SLA entre as equipes de marketing e vendas, garantindo a efetividade do processo de geração de leads. Para isso, considera-se:
+
+        1. Metas de CRM: {metas_crm}
+        2. Público-alvo: {publico_alvo}
+        3. Canais de comunicação: {canais_disponiveis}
+
+        Estratégia de SLA:
+        - Definição de prazos e expectativas para cada etapa do processo de conversão de leads.
+        - Alinhamento entre marketing e vendas sobre os critérios de qualificação de leads e feedback contínuo.
+
+        Objetivo: Garantir um fluxo de trabalho eficiente entre marketing e vendas, para maximizar a conversão de leads qualificados.
+        ''',
+        agent=agentes_crm[6],  # Agente de Consultoria de SLA CRM
+        output_file='sla_crm.md'
+    )
+]
+
 
                         # Processo do Crew
 
@@ -389,28 +487,28 @@ def planej_midias_page():
                         # Executa as tarefas do processo
                         resultado_midia = equipe_midia.kickoff()
 
-                        #Printando Tarefas
+                        # Printando Tarefas de CRM
 
-                        st.header('Planejamento de Mídias')
-                        st.subheader('1 Plano para Redes')
-                        st.markdown(tarefas_midia[0].output.raw)
-                        st.subheader('2 Plano para Criativos')
-                        st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3 SEO')
-                        st.subheader('3.1 Análise de Saúde do Site')
-                        st.markdown(tarefas_midia[2].output.raw)
-                        st.subheader('3.2 Sugestões de palavras chave')
-                        st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('4 Plano de CRM')
-                        st.markdown(tarefas_midia[4].output.raw)
-                        st.subheader('5 Plano de Design/Marca')
-                        st.markdown(tarefas_midia[5].output.raw)
-                        st.subheader('6 Estratégia de Conteúdo')
-                        st.markdown(tarefas_midia[6].output.raw)
+                        st.header('Planejamento de CRM')
+                        st.subheader('1. Estratégia Geral de CRM')
+                        st.markdown(tarefas_crm[0].output.raw)
+                        st.subheader('2. Análise de Dados CRM')
+                        st.markdown(tarefas_crm[1].output.raw)
+                        st.subheader('3. Gestão de Leads e Fluxos CRM')
+                        st.markdown(tarefas_crm[2].output.raw)
+                        st.subheader('4. Gestão de Relacionamento com Clientes')
+                        st.markdown(tarefas_crm[3].output.raw)
+                        st.subheader('5. Análise de Performance de CRM')
+                        st.markdown(tarefas_crm[4].output.raw)
+                        st.subheader('6. Automação de CRM')
+                        st.markdown(tarefas_crm[5].output.raw)
+                        st.subheader('7. Consultoria de SLA CRM')
+                        st.markdown(tarefas_crm[6].output.raw)
+
 
                         
 
-                        save_to_mongo_midias(tarefas_midia , nome_cliente)
+                        save_to_mongo_crm(tarefas_crm , nome_cliente)
 
 
 
