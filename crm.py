@@ -476,7 +476,7 @@ def planej_crm_page():
                         # Processo do Crew
 
                         equipe_crm = Crew(
-                            agents=agentes,
+                            agents=agentes_crm,
                             tasks=tarefas_crm,
                             process=Process.hierarchical,
                             manager_llm=modelo_linguagem,
