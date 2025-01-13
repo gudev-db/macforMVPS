@@ -12,6 +12,7 @@ from retrieve import visualizar_planejamentos
 import os
 from tavily import TavilyClient
 from midias import planej_midias_page
+from crm import planej_crm_page
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="page-icon.png")  
