@@ -485,7 +485,7 @@ def planej_crm_page():
 
 
                         # Executa as tarefas do processo
-                        resultado_midia = equipe_midia.kickoff()
+                        resultado_crm = equipe_crm.kickoff()
 
                         # Printando Tarefas de CRM
 
