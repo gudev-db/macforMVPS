@@ -371,12 +371,10 @@ def planej_mkt_page():
                                 Task(
                                     description="Criar o posicionamento de marca.",
                                     expected_output=f'''Em português brasileiro,. 
+                            
                                     
-                                    Considerando
-                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
-                                    {referencia_da_marca} e o ramo de atuação: ({ramo_atuacao}), 
+                                    5 Posicionamentos de marca como esses para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao}:
                                     
-                                    e usando como Exemplos de excelentes posicionamento de marcas  em termos de formato, tom e quantidade de palavras: 
                                     "Pense diferente."
                                     "Abra a felicidade."
                                     "Just do it."
@@ -398,7 +396,7 @@ def planej_mkt_page():
                                     "Inspire o mundo, crie o futuro."
                                     "Vamos juntos para o futuro.",
 
-                                    gerar 5 propostas de posicionamento de marca
+                                    
                                     
                                     ''',
                                     agent=agentes[2],
