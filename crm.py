@@ -47,14 +47,17 @@ def save_to_mongo_crm(tarefas_crm, nome_cliente):
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "tipo_planejamento": 'CRM',
         "Plano_Estrategia_CRM": tarefas_crm[0].output.raw,
-        "Plano_Contato": tarefas_crm[1].output.raw,
-        "Plano_Analise_Dados_CRM": tarefas_crm[2].output.raw,
-        "Plano_Automacao_CRM": tarefas_crm[3].output.raw,
+        "Plano_Contato_Email": tarefas_crm[1].output.raw,
+        "Plano_Contato_SMS_WhatsApp": tarefas_crm[2].output.raw,
+        "Plano_Contato_NPS": tarefas_crm[3].output.raw,
+        "Plano_Analise_Dados_CRM": tarefas_crm[4].output.raw,
+        "Plano_Automacao_CRM": tarefas_crm[5].output.raw,
     }
 
     # Insert the document into MongoDB
     collection.insert_one(task_outputs)
     st.success(f"Planejamento de CRM gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
+
 
 
 
@@ -322,18 +325,39 @@ def planej_crm_page():
         output_file='estrategia_crm.md'
     ),
 
-    # Task de Estratégia de contato com o cliente
+    # Task de Estratégia de contato com o cliente Email
     Task(
         description="estratégia de contato com o cliente.",
         expected_output=f'''
 
-        - Ideias de **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
-        - Ideias de **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
-        - Ideia de **NPS Score***: Definir questionário de NPS Score.
+        - Ideias de **E-mail Marketing**: 10 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
         ''',
         agent=agentes_crm[2],
         output_file='estrategia_crm.md'
     ),
+                            
+    # Task de Estratégia de contato com o cliente SMS Whatsapp
+    Task(
+        description="estratégia de contato com o cliente.",
+        expected_output=f'''
+
+        - Ideias de **SMS e WhatsApp**: 10 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
+        ''',
+        agent=agentes_crm[2],
+        output_file='estrategia_crm.md'
+    ),
+
+     # Task de Estratégia de contato com o cliente NPS
+    Task(
+        description="estratégia de contato com o cliente.",
+        expected_output=f'''
+
+        -**NPS Score***: Definir questionário de NPS Score.
+        ''',
+        agent=agentes_crm[2],
+        output_file='estrategia_crm.md'
+    ),
+                            
     
     # Task de Análise de Dados CRM
     Task(
@@ -414,14 +438,18 @@ def planej_crm_page():
                         st.header('Planejamento de CRM')
                         st.subheader('1. Estratégia Geral de CRM')
                         st.markdown(tarefas_crm[0].output.raw)
-                        st.subheader('2. Gestão de contato com o cliente')
+                        st.subheader('2. Gestão de contato com o cliente - Email')
                         st.markdown(tarefas_crm[1].output.raw)
-
-                        st.subheader('3. Gestão de análise de dados de Clientes')
+                        st.subheader('3. Gestão de contato com o cliente - SMS/Whatsapp')
                         st.markdown(tarefas_crm[2].output.raw)
-
-                        st.subheader('4. Automação de CRM')
+                        st.subheader('4. Gestão de contato com o cliente - NPS')
                         st.markdown(tarefas_crm[3].output.raw)
+
+                        st.subheader('5. Gestão de análise de dados de Clientes')
+                        st.markdown(tarefas_crm[4].output.raw)
+
+                        st.subheader('6. Automação de CRM')
+                        st.markdown(tarefas_crm[5].output.raw)
 
 
 
