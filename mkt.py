@@ -103,6 +103,38 @@ def planej_mkt_page():
     placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.",
     height=200  # Adjust the height in pixels as needed
 )    
+
+    # Pergunta quantos elementos de pesquisa o usuário deseja
+    num_elementos = st.selectbox('Quantos elementos de pesquisa você quer que o agente realize?', [0, 1, 2, 3, 4, 5], key="num_elementos")
+    
+    # Lista para armazenar os valores dos campos de texto
+    assuntos_pesquisa = []
+    
+    # Cria dinamicamente os campos de texto com base no número selecionado
+    for i in range(num_elementos):
+        # Cria um campo de texto para cada elemento de pesquisa
+        pesquisa = st.text_input(f'Elemento de pesquisa {i + 1}:', key=f"pesquisa_{i}")
+        assuntos_pesquisa.append(pesquisa)
+    
+    # Exibe os valores preenchidos (opcional)
+    if assuntos_pesquisa:
+        st.write("Assuntos preenchidos:", assuntos_pesquisa)
+    
+    # Realiza a busca separada para cada assunto de pesquisa usando client1.search()
+    if assuntos_pesquisa:
+        # Armazenando as respostas da busca
+        respostas = []
+        
+        for assunto in assuntos_pesquisa:
+            # Gerando a consulta para cada pesquisa
+            query = f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no contexto brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital, relacionado ao seguinte tema: {assunto}?"
+            
+            # Realizando a busca com client1
+            resposta = client1.search(query)  # Supondo que `client1.search()` retorna uma resposta
+            respostas.append(resposta)
+    
+
+
     st.subheader("(Opcional) Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
@@ -318,7 +350,15 @@ def planej_mkt_page():
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.''',
                                     agent=agentes[1],
                                     output_file = 'pest.md'
+                                ),
+                                Task(
+                                    description="Pesquisa de tendências.",
+                                    expected_output=f'''Análise de tendências consideranto as respostas da pesquisa obtidas em ({', '.join(respostas)})
+                                    Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
+                                    agent=agentes[1],
+                                    output_file = 'tendencia.md'
                                 )
+                            
                             
                         ]
 
@@ -415,6 +455,8 @@ def planej_mkt_page():
                         st.markdown(tarefas_pesquisa[0].output.raw)
                         st.subheader('1.2 Análise PEST')
                         st.markdown(tarefas_pesquisa[1].output.raw)
+                        st.subheader('1.3 Análise de tendências')
+                        st.markdown(tarefas_pesquisa[2].output.raw)
                 
 
                         st.header('2. Etapa de Estratégica')
