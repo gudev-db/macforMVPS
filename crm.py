@@ -47,12 +47,13 @@ def save_to_mongo_crm(tarefas_crm, nome_cliente):
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "tipo_planejamento": 'CRM',
         "Plano_Estrategia_CRM": tarefas_crm[0].output.raw,
-        "Plano_Analise_Dados_CRM": tarefas_crm[1].output.raw,
-        "Plano_Gestao_Leads_CRM": tarefas_crm[2].output.raw,
-        "Plano_Gestao_Relacionamento_CRM": tarefas_crm[3].output.raw,
-        "Plano_Analise_Performance_CRM": tarefas_crm[4].output.raw,
-        "Plano_Automacao_CRM": tarefas_crm[5].output.raw,
-        "Plano_Consultoria_SLA_CRM": tarefas_crm[6].output.raw,
+        "Plano_Contato": tarefas_crm[1].output.raw,
+        "Plano_Analise_Dados_CRM": tarefas_crm[2].output.raw,
+        "Plano_Gestao_Leads_CRM": tarefas_crm[3].output.raw,
+        "Plano_Gestao_Relacionamento_CRM": tarefas_crm[4].output.raw,
+        "Plano_Analise_Performance_CRM": tarefas_crm[5].output.raw,
+        "Plano_Automacao_CRM": tarefas_crm[6].output.raw,
+        "Plano_Consultoria_SLA_CRM": tarefas_crm[7].output.raw,
     }
 
     # Insert the document into MongoDB
@@ -321,12 +322,32 @@ def planej_crm_page():
 
         **Ações e Segmentação**:
         - **Segmentação de Clientes**: Criar 10 segmentos principais dos clientes com base em: **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis}, **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
-  
+
+
+        ''',
+        agent=agentes_crm[0],
+        output_file='estrategia_crm.md'
+    ),
+
+    # Task de Estratégia Geral de CRM
+    Task(
+        description="Criar a estratégia geral de CRM para o cliente.",
+        expected_output=f'''
+        **Estratégia Geral de CRM para {nome_cliente}**
+
+        **Objetivo:** Desenvolver a estratégia de contato com cliente (redigir emails, mensagens):
+
+        1. **Ramo de atuação**: {ramo_atuacao}
+        2. **Intuito do plano estratégico**: {intuito_plano}
+        3. **Público-alvo**: {publico_alvo}
+        4. **Canais disponíveis**: {canais_disponiveis}
+        5. **Metas de CRM**: {metas_crm}
+
+       
 
         **Canais de Comunicação e Estratégias**:
-        - **E-mail Marketing**: redigir exatamente 3 emails a serem enviados para e-mail marketing.
-        - **SMS e WhatsApp**: redigir  exatamente 3 mensagens a serem enviados para e-mail marketing.
-        - **Redes Sociais**: detalhar exatamente 3 propostas de anúncios considerando a rede em **Canais disponíveis**: {canais_disponiveis}.
+        - **E-mail Marketing**: 5 emails devidamente redigidos a serem enviados para e-mail marketing.
+        - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
 
         ''',
         agent=agentes_crm[0],
