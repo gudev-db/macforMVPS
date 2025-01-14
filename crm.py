@@ -49,16 +49,13 @@ def save_to_mongo_crm(tarefas_crm, nome_cliente):
         "Plano_Estrategia_CRM": tarefas_crm[0].output.raw,
         "Plano_Contato": tarefas_crm[1].output.raw,
         "Plano_Analise_Dados_CRM": tarefas_crm[2].output.raw,
-        "Plano_Gestao_Leads_CRM": tarefas_crm[3].output.raw,
-        "Plano_Gestao_Relacionamento_CRM": tarefas_crm[4].output.raw,
-        "Plano_Analise_Performance_CRM": tarefas_crm[5].output.raw,
-        "Plano_Automacao_CRM": tarefas_crm[6].output.raw,
-        "Plano_Consultoria_SLA_CRM": tarefas_crm[7].output.raw,
+        "Plano_Automacao_CRM": tarefas_crm[3].output.raw,
     }
 
     # Insert the document into MongoDB
     collection.insert_one(task_outputs)
     st.success(f"Planejamento de CRM gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
+
 
 
 
@@ -384,66 +381,9 @@ def planej_crm_page():
         output_file='analise_dados_crm.md'
     ),
     
-    # Task de Gestão de Leads e Fluxos CRM
-    Task(
-        description="Desenvolver e implementar fluxos de CRM para nutrição de leads.",
-        expected_output=f'''
-        **Gestão de Leads e Fluxos CRM para {nome_cliente}**
-
-        **Objetivo:** Desenvolver e automatizar fluxos de nutrição para leads com potencial de conversão.
-
-        **Fluxos de Nutrição de Leads**:
-        - **Fluxo 1 - Bem-vindo**: 
-            - E-mail inicial de boas-vindas com 10% de desconto.
-            - Follow-up com uma série de e-mails educativos sobre os principais produtos.
-        - **Fluxo 2 - Abandono de Carrinho**:
-            - Enviar um e-mail 2 horas após o abandono com um lembrete e 5% de desconto.
-            - SMS de lembrete 24 horas após o abandono com código exclusivo de 10% de desconto.
-        - **Fluxo 3 - Reengajamento de Leads**:
-            - Enviar um e-mail com uma pesquisa de satisfação e um cupom de desconto para reengajar leads inativos.
-
-        **Metas de CRM**:
-        - Aumentar a taxa de conversão em 15% para leads que abandonaram o carrinho.
-        - Engajar 25% dos leads inativos com a série de reengajamento.
-
-        **Plano de Ação**:
-        - Criar automações para enviar os fluxos de nutrição.
-        - Acompanhar as taxas de conversão de cada fluxo e ajustar os gatilhos conforme necessário.
-        ''',
-        agent=agentes_crm[2],
-        output_file='gestao_leads_fluxos_crm.md'
-    ),
+   
     
-    # Task de Gestão de Relacionamento com Clientes
-    Task(
-        description="Desenvolver e implementar estratégias de gestão de relacionamento com clientes.",
-        expected_output=f'''
-        **Gestão de Relacionamento com Clientes para {nome_cliente}**
-
-        **Objetivo:** Criar e implementar estratégias para fidelização e retenção de clientes.
-
-        **Ações Estratégicas**:
-        - **Programa de Fidelidade**:
-            - Criar um sistema de pontos para cada compra, onde o cliente ganha 1 ponto a cada R$ 10 gastos.
-            - Oferecer benefícios exclusivos, como descontos de 10% e acesso antecipado a promoções para clientes que atingirem 500 pontos.
-        - **Conteúdo Exclusivo**:
-            - Enviar um e-mail mensal com dicas exclusivas sobre novos produtos e tendências do mercado, direcionados ao público-alvo.
-        - **Promoções Personalizadas**:
-            - Criar campanhas específicas de aniversário com descontos de 15% para clientes frequentes.
-
-        **Objetivo**:
-        - Aumentar a lealdade do cliente e o Lifetime Value (LTV) com ações de engajamento contínuo.
-        - Monitorar a retenção de clientes ao longo de 6 meses.
-
-        **Plano de Ação**:
-        - Implementar o programa de fidelidade no sistema de CRM.
-        - Criar uma sequência de e-mails para engajamento contínuo.
-        - Planejar campanhas de reativação de clientes inativos com descontos e ofertas personalizadas.
-        ''',
-        agent=agentes_crm[3],
-        output_file='gestao_relacionamento_crm.md'
-    ),
-    
+  
     # Task de Análise de Performance de CRM
     Task(
         description="Monitorar e analisar a performance das ações de CRM.",
@@ -492,14 +432,12 @@ def planej_crm_page():
                         st.markdown(tarefas_crm[0].output.raw)
                         st.subheader('2. Gestão de contato com o cliente')
                         st.markdown(tarefas_crm[1].output.raw)
-                        st.subheader('3. Gestão de Análise de Dados')
+
+                        st.subheader('3. Gestão de análise de dados de Clientes')
                         st.markdown(tarefas_crm[2].output.raw)
-                        st.subheader('4. Gestão de Relacionamento com Clientes')
+
+                        st.subheader('4. Automação de CRM')
                         st.markdown(tarefas_crm[3].output.raw)
-                        st.subheader('5. Análise de Performance de CRM')
-                        st.markdown(tarefas_crm[4].output.raw)
-                        st.subheader('6. Automação de CRM')
-                        st.markdown(tarefas_crm[5].output.raw)
 
 
 
