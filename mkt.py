@@ -48,6 +48,7 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
         "tipo_plano": 'Plano Estratégico e de Planejamento',
         "SWOT": tarefas_pesquisa[0].output.raw,
         "PEST": tarefas_pesquisa[1].output.raw,
+        "Tendencias": tarefas_pesquisa[2].output.raw,
 
         
         "GC": tarefas_estrategica[0].output.raw,
@@ -120,8 +121,8 @@ def planej_mkt_page():
     economic = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
     social = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
     tec = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    tend_novids = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as recentes tendências de mercado para {tendencias}?")
-    tend_ramo = client1.search(f"Considerando o cliente {nome_cliente}, Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?")
+    tend_novids = client1.search(f"Considerando o cliente {nome_cliente}, Quais as recentes tendências de mercado para {tendencias}?")
+    tend_ramo = client1.search(f"Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?")
 
     performance_metrics_df = SEOtools.check_website_performance(site_cliente)
     website_all_texts = SEOtools.scrape_all_texts(site_cliente)
@@ -453,7 +454,7 @@ def planej_mkt_page():
                         
                 
                     
-                        save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia , nome_cliente)
+                        save_to_mongo(tarefas_pesquisa,tarefas_estrategica , nome_cliente)
 
 
 
