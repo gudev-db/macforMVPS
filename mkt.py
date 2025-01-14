@@ -372,31 +372,31 @@ def planej_mkt_page():
                                     description="Criar o posicionamento de marca.",
                                     expected_output=f'''10 Posicionamentos de marca em uma única frase em português brasileiro. 
                                     
-                                    Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
+                                    Considerando o seguinte contexto (texto raspado do site do cliente) :({website_all_texts})
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca}. 
                                     
-                                    Exemplos de excelentes posicionamento de marcas que devem ser usadas como referência são: 
-                                    Apple: "Pense diferente."
-                                    Coca-Cola: "Abra a felicidade."
-                                    Nike: "Just do it."
-                                    Tesla: "Acelere a transição do mundo para energia sustentável."
-                                    McDonald's: "Amo muito tudo isso."
-                                    Red Bull: "Red Bull te dá asas."
-                                    Amazon: "Compre tudo o que você ama."
-                                    L’Oréal: "Porque você vale muito."
-                                    Pepsi: "Viva a vida ao máximo."
-                                    Mercedes-Benz: "O melhor ou nada."
-                                    Google: "Organizar as informações do mundo e torná-las acessíveis e úteis."
-                                    BMW: "A máquina de condução definitiva."
-                                    Disney: "Onde os sonhos se tornam realidade."
-                                    Adidas: "Impossible is nothing."
-                                    Heineken: "Abra a boa cerveja."
-                                    Ikea: "Para um dia a dia melhor em casa."
-                                    Sony: "Be moved."
-                                    Ford: "Go further."
-                                    Samsung: "Inspire o mundo, crie o futuro."
-                                    Toyota: "Vamos juntos para o futuro."
+                                    Exemplos de excelentes posicionamento de marcas que devem ser usadas como inspitação e referência são: 
+                                    "Pense diferente."
+                                    "Abra a felicidade."
+                                    "Just do it."
+                                    "Acelere a transição do mundo para energia sustentável."
+                                    "Amo muito tudo isso."
+                                    "Red Bull te dá asas."
+                                    "Compre tudo o que você ama."
+                                    "Porque você vale muito."
+                                    "Viva a vida ao máximo."
+                                    "O melhor ou nada."
+                                    "Organizar as informações do mundo e torná-las acessíveis e úteis."
+                                    "A máquina de condução definitiva."
+                                    "Onde os sonhos se tornam realidade."
+                                    "Impossible is nothing."
+                                    "Abra a boa cerveja."
+                                    "Para um dia a dia melhor em casa."
+                                    "Be moved."
+                                    "Go further."
+                                    "Inspire o mundo, crie o futuro."
+                                    "Vamos juntos para o futuro."
                                     
                                     ''',
                                     agent=agentes[2],
@@ -430,7 +430,7 @@ def planej_mkt_page():
                                 Task(
                                     description="Definir o Tom de Voz.",
                                     expected_output=f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. 
-                                    Retorne entre 10 a 15 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
+                                    Retorne 10 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
                                     relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.''',
                                     agent=agentes[7],
                                     output_file = 'TV.md'
