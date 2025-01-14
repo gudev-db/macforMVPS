@@ -47,8 +47,8 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica, nome_cliente):
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "tipo_plano": 'Plano Estratégico e de Planejamento',
         "SWOT": tarefas_pesquisa[0].output.raw,
-        "PEST": tarefas_pesquisa[1].output.raw,
-        "Tendencias": tarefas_pesquisa[2].output.raw,
+        "PEST": tarefas_pesquisa[2].output.raw,
+        "Tendencias": tarefas_pesquisa[1].output.raw,
 
         
         "GC": tarefas_estrategica[0].output.raw,
@@ -334,6 +334,15 @@ def planej_mkt_page():
                                     output_file = 'SWOT.md'
                                 ),
                                 Task(
+                                    description="Pesquisa de tendências.",
+                                    expected_output=f'''em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids}) e 
+                                    tendências de ramo de atuação do cliente: ({tend_ramo}).
+                                    
+                                    Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
+                                    agent=agentes[15],
+                                    output_file = 'tendencia.md'
+                                ),
+                                Task(
                                     description="Análise PEST.",
                                     expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
                                     considerando     contexto político: {politic}, contexto econômico: {economic}, contexto social: {social}, contexto tecnológico: {tec}.
@@ -341,15 +350,6 @@ def planej_mkt_page():
                                     agent=agentes[1],
                                     output_file = 'pest.md'
                                 ),
-                                Task(
-                                    description="Pesquisa de tendências.",
-                                    expected_output=f'''Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids}) e 
-                                    tendências de ramo de atuação do cliente: ({tend_ramo}).
-                                    
-                                    Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
-                                    agent=agentes[15],
-                                    output_file = 'tendencia.md'
-                                )
                             
                             
                         ]
@@ -471,9 +471,9 @@ def planej_mkt_page():
                         st.subheader('1.1 Análise SWOT')
                         st.markdown(tarefas_pesquisa[0].output.raw)
                         st.subheader('1.2 Análise PEST')
-                        st.markdown(tarefas_pesquisa[1].output.raw)
-                        st.subheader('1.3 Análise de tendências')
                         st.markdown(tarefas_pesquisa[2].output.raw)
+                        st.subheader('1.3 Análise de tendências')
+                        st.markdown(tarefas_pesquisa[1].output.raw)
                 
 
                         st.header('2. Etapa de Estratégica')
