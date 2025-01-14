@@ -303,6 +303,17 @@ def planej_mkt_page():
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
+                            Agent(
+                                role="Analista de Tendências",
+                                goal=f'''Analista de tendências de mercado em prol do cliente: {nome_cliente} para o  planejamento estratégico.''',
+                                backstory=f'''Você é um especialista em marketing e análise de tendências no ramo de atuação {ramo_atuacao}, 
+                                você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de 
+                                empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de encontrar aspectos chaves no mercado
+                                para o melhor aproveitamento de marketing.''',
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[]
+                            ),
                         ]
 
                     
@@ -336,7 +347,7 @@ def planej_mkt_page():
                                     tendências de ramo de atuação do cliente: ({tend_ramo}).
                                     
                                     Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
-                                    agent=agentes[1],
+                                    agent=agentes[15],
                                     output_file = 'tendencia.md'
                                 )
                             
