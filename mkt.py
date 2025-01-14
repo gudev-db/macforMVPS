@@ -37,7 +37,7 @@ import uuid
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_cliente):
+def save_to_mongo(tarefas_pesquisa,tarefas_estrategica, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -370,7 +370,8 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar o posicionamento de marca.",
-                                    expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
+                                    expected_output=f'''10 Posicionamentos de marca em uma única frase em português brasileiro. 
+                                    
                                     Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca}. 
