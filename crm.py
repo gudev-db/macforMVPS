@@ -414,12 +414,9 @@ def planej_crm_page():
     Task(
         description="estratégia de contato NPS com o cliente.",
         expected_output=f'''
-
-         O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}.
-
         
 
-        -**NPS Score***: Definir questionário de NPS Score.
+        -Questionário de NPS score que se adeque para o cliente {nome_cliente} e seu ramo de atuação {ramo_atuacao}.
         ''',
         agent=agentes_crm[2],
         output_file='estrategia_nps_crm.md'
@@ -454,7 +451,7 @@ def planej_crm_page():
 
 
         **Plano de Ação**:
-        - Criar uma proposta bem aprofundada e bem detalhada de como será o melhor fluxo de CRM.
+        - delinear aprodundada e detalhadamente o fluxo de CRM.
         ''',
         agent=agentes_crm[1],
         output_file='fluxo_crm.md'
