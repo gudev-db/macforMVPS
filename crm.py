@@ -20,7 +20,7 @@ import SEOtools
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0.3,
+    temperature=0.125,
     frequency_penalty=0.5
 )
 
@@ -318,7 +318,9 @@ def planej_crm_page():
         5. **Metas de CRM**: {metas_crm}
 
         **Ações e Segmentação**:
-        - **Segmentação de Clientes**: Criar 10 segmentos principais dos clientes com base em: **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis}, **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
+        - **Segmentação de Clientes**: Definir formas de segmentar clientes com base em: 
+        **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis},
+        **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
 
 
         ''',
@@ -345,7 +347,7 @@ def planej_crm_page():
         **Canais de Comunicação e Estratégias**:
         - **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
         - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
-
+        - **NPS Score***: Definir questionário de NPS Score.
         ''',
         agent=agentes_crm[2],
         output_file='estrategia_crm.md'
