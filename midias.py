@@ -551,11 +551,9 @@ def planej_midias_page():
                         st.markdown(tarefas_midia[2].output.raw)
                         st.subheader('3.2 Sugestões de palavras chave')
                         st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('4 Plano de CRM')
-                        st.markdown(tarefas_midia[4].output.raw)
-                        st.subheader('5 Plano de Design/Marca')
+                        st.subheader('4 Plano de Design/Marca')
                         st.markdown(tarefas_midia[5].output.raw)
-                        st.subheader('6 Estratégia de Conteúdo')
+                        st.subheader('5 Estratégia de Conteúdo')
                         st.markdown(tarefas_midia[6].output.raw)
 
                         
