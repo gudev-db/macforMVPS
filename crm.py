@@ -309,26 +309,27 @@ def planej_crm_page():
     Task(
         description="Criar a estratégia geral de CRM para o cliente.",
         expected_output=f'''
-        Relatório de Estratégia de CRM para {nome_cliente}
+        **Estratégia Geral de CRM para {nome_cliente}**
 
-        Objetivo: Desenvolver uma estratégia de CRM centrada no cliente, focada em segmentação e personalização da experiência para {nome_cliente}, 
-        considerando os seguintes parâmetros:
-        
-        1. Ramo de atuação: {ramo_atuacao}
-        2. Intuito do plano estratégico: {intuito_plano}
-        3. Público-alvo: {publico_alvo}
-        4. Canais disponíveis: {canais_disponiveis}
-        5. Metas a serem alcançadas: {metas_crm}
-        
-        Estratégia:
-        - A segmentação de clientes será realizada com base nas características demográficas, comportamentais e psicográficas.
-        - Análise do comportamento do cliente em canais digitais, interações em redes sociais, compras anteriores, entre outros.
-        - Estratégias de comunicação personalizadas, utilizando canais como e-mail marketing, SMS, WhatsApp e redes sociais.
-        
-        Objetivo: Criar um alinhamento estratégico entre as equipes de marketing, vendas e atendimento para garantir a execução das metas e alcançar o 
-        sucesso no relacionamento com os clientes.
+        **Objetivo:** Desenvolver a estratégia de CRM com ações claras e concretas, considerando os seguintes parâmetros:
+
+        1. **Ramo de atuação**: {ramo_atuacao}
+        2. **Intuito do plano estratégico**: {intuito_plano}
+        3. **Público-alvo**: {publico_alvo}
+        4. **Canais disponíveis**: {canais_disponiveis}
+        5. **Metas de CRM**: {metas_crm}
+
+        **Ações e Segmentação**:
+        - **Segmentação de Clientes**: Criar 10 segmentos principais dos clientes com base em: **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis}, **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
+  
+
+        **Canais de Comunicação e Estratégias**:
+        - **E-mail Marketing**: redigir exatamente 3 emails a serem enviados para e-mail marketing.
+        - **SMS e WhatsApp**: redigir  exatamente 3 mensagens a serem enviados para e-mail marketing.
+        - **Redes Sociais**: detalhar exatamente 3 propostas de anúncios considerando a rede em **Canais disponíveis**: {canais_disponiveis}.
+
         ''',
-        agent=agentes_crm[0],  # Agente de Estratégia Geral de CRM
+        agent=agentes_crm[0],
         output_file='estrategia_crm.md'
     ),
     
@@ -336,23 +337,29 @@ def planej_crm_page():
     Task(
         description="Analisar a base de dados de clientes e segmentá-los para estratégias de CRM.",
         expected_output=f'''
-        Relatório de Análise de Dados CRM para {nome_cliente}
+        **Análise de Dados de Clientes para {nome_cliente}**
 
-        Objetivo: Realizar uma análise detalhada da base de dados de clientes de {nome_cliente}, segmentando-os com base nos dados demográficos, 
-        comportamentais e psicográficos, de acordo com os parâmetros:
+        **Objetivo:** Segmentação da base de clientes com base em dados demográficos, comportamentais e psicográficos, para criar campanhas personalizadas.
 
-        1. Tamanho da base: {tamanho_base}
-        2. Público-alvo: {publico_alvo}
-        3. Canais de comunicação disponíveis: {canais_disponiveis}
-        
-        Análise:
-        - Identificação dos segmentos de clientes com maior potencial de conversão.
-        - Padrões de comportamento e interações nos canais de comunicação.
-        - Comportamento de compra e fidelidade à marca.
-        
-        Objetivo: Identificar os perfis mais rentáveis e desenvolver campanhas personalizadas para cada grupo, melhorando as taxas de conversão.
+        **Segmentação de Clientes**:
+        - **Clientes Frequentes**: Compraram mais de 5 vezes nos últimos 12 meses.
+        - **Clientes de Alto Valor**: Gasto médio superior a R$ 500 por compra nos últimos 3 meses.
+        - **Clientes em Risco de Churn**: Não realizaram compras nos últimos 6 meses e não abriram e-mails de campanhas anteriores.
+
+        **Ações Específicas**:
+        - Para **Clientes Frequentes**: Enviar um e-mail personalizado com recomendações de produtos com base nas compras anteriores e um desconto exclusivo de 10%.
+        - Para **Clientes de Alto Valor**: Oferecer benefícios exclusivos, como frete grátis, em troca de uma recomendação nas redes sociais.
+        - Para **Clientes em Risco de Churn**: Enviar um e-mail com uma pesquisa de satisfação e um desconto de 20% para reengajá-los.
+
+        **Base de Dados Necessária**:
+        - Verificar o histórico de compras, dados demográficos e interação com campanhas anteriores.
+        - Extração dos dados de e-mails abertos e taxas de cliques.
+
+        **Plano de Ação**:
+        - Criar uma lista segmentada para cada grupo no CRM.
+        - Implementar campanhas automatizadas para cada segmento.
         ''',
-        agent=agentes_crm[1],  # Agente de Análise de Dados CRM
+        agent=agentes_crm[1],
         output_file='analise_dados_crm.md'
     ),
     
@@ -360,23 +367,29 @@ def planej_crm_page():
     Task(
         description="Desenvolver e implementar fluxos de CRM para nutrição de leads.",
         expected_output=f'''
-        Relatório de Gestão de Leads e Fluxos CRM para {nome_cliente}
+        **Gestão de Leads e Fluxos CRM para {nome_cliente}**
 
-        Objetivo: Criar fluxos de nutrição de leads para aumentar a conversão e melhorar a jornada do cliente. Considerando os seguintes aspectos:
+        **Objetivo:** Desenvolver e automatizar fluxos de nutrição para leads com potencial de conversão.
 
-        1. Objetivos de CRM: {objetivo_crm}
-        2. Metas a serem alcançadas: {metas_crm}
-        3. Público-alvo: {publico_alvo}
-        4. Canais disponíveis: {canais_disponiveis}
+        **Fluxos de Nutrição de Leads**:
+        - **Fluxo 1 - Bem-vindo**: 
+            - E-mail inicial de boas-vindas com 10% de desconto.
+            - Follow-up com uma série de e-mails educativos sobre os principais produtos.
+        - **Fluxo 2 - Abandono de Carrinho**:
+            - Enviar um e-mail 2 horas após o abandono com um lembrete e 5% de desconto.
+            - SMS de lembrete 24 horas após o abandono com código exclusivo de 10% de desconto.
+        - **Fluxo 3 - Reengajamento de Leads**:
+            - Enviar um e-mail com uma pesquisa de satisfação e um cupom de desconto para reengajar leads inativos.
 
-        Estratégia de Fluxos:
-        - Desenvolvimento de campanhas de e-mail marketing, SMS e redes sociais com base no comportamento do cliente.
-        - Fluxos de automação para nutrição de leads, incluindo e-mails personalizados, ofertas e promoções.
-        - Análise do estágio do funil para adaptar os fluxos e garantir conversão eficiente.
+        **Metas de CRM**:
+        - Aumentar a taxa de conversão em 15% para leads que abandonaram o carrinho.
+        - Engajar 25% dos leads inativos com a série de reengajamento.
 
-        Objetivo: Melhorar a jornada do cliente e aumentar a conversão de leads qualificados, utilizando automação de marketing e personalização.
+        **Plano de Ação**:
+        - Criar automações para enviar os fluxos de nutrição.
+        - Acompanhar as taxas de conversão de cada fluxo e ajustar os gatilhos conforme necessário.
         ''',
-        agent=agentes_crm[2],  # Agente de Gestão de Leads e Fluxos CRM
+        agent=agentes_crm[2],
         output_file='gestao_leads_fluxos_crm.md'
     ),
     
@@ -384,22 +397,29 @@ def planej_crm_page():
     Task(
         description="Desenvolver e implementar estratégias de gestão de relacionamento com clientes.",
         expected_output=f'''
-        Relatório de Gestão de Relacionamento com Clientes para {nome_cliente}
+        **Gestão de Relacionamento com Clientes para {nome_cliente}**
 
-        Objetivo: Criar e implementar estratégias focadas na fidelização e retenção de clientes, considerando as seguintes informações:
+        **Objetivo:** Criar e implementar estratégias para fidelização e retenção de clientes.
 
-        1. Público-alvo: {publico_alvo}
-        2. Canais de comunicação disponíveis: {canais_disponiveis}
-        3. Metas a serem alcançadas: {metas_crm}
-        
-        Estratégia:
-        - Criação de programas de fidelidade para clientes frequentes.
-        - Ações de engajamento contínuo, como conteúdos exclusivos e promoções personalizadas.
-        - Implementação de comunicação omnicanal, oferecendo uma experiência consistente em todos os canais.
+        **Ações Estratégicas**:
+        - **Programa de Fidelidade**:
+            - Criar um sistema de pontos para cada compra, onde o cliente ganha 1 ponto a cada R$ 10 gastos.
+            - Oferecer benefícios exclusivos, como descontos de 10% e acesso antecipado a promoções para clientes que atingirem 500 pontos.
+        - **Conteúdo Exclusivo**:
+            - Enviar um e-mail mensal com dicas exclusivas sobre novos produtos e tendências do mercado, direcionados ao público-alvo.
+        - **Promoções Personalizadas**:
+            - Criar campanhas específicas de aniversário com descontos de 15% para clientes frequentes.
 
-        Objetivo: Aumentar a lealdade dos clientes e maximizar o Lifetime Value (LTV), melhorando a retenção e o engajamento ao longo do tempo.
+        **Objetivo**:
+        - Aumentar a lealdade do cliente e o Lifetime Value (LTV) com ações de engajamento contínuo.
+        - Monitorar a retenção de clientes ao longo de 6 meses.
+
+        **Plano de Ação**:
+        - Implementar o programa de fidelidade no sistema de CRM.
+        - Criar uma sequência de e-mails para engajamento contínuo.
+        - Planejar campanhas de reativação de clientes inativos com descontos e ofertas personalizadas.
         ''',
-        agent=agentes_crm[3],  # Agente de Gestão de Relacionamento com Clientes
+        agent=agentes_crm[3],
         output_file='gestao_relacionamento_crm.md'
     ),
     
@@ -407,68 +427,25 @@ def planej_crm_page():
     Task(
         description="Monitorar e analisar a performance das ações de CRM.",
         expected_output=f'''
-        Relatório de Análise de Performance de CRM para {nome_cliente}
+        **Análise de Performance de CRM para {nome_cliente}**
 
-        Objetivo: Avaliar a eficácia das estratégias de CRM e ajustar conforme necessário. Para isso, será analisada a seguinte performance:
+        **Objetivo:** Avaliar a eficácia das campanhas de CRM e ajustar conforme necessário.
 
-        1. Metas de CRM: {metas_crm}
-        2. Canais de comunicação: {canais_disponiveis}
-        3. Feedback dos clientes: (ex: NPS, pesquisas de satisfação)
+        **Indicadores a Monitorar**:
+        - **Taxa de Conversão de Leads**: Acompanhar a taxa de conversão de cada fluxo de nutrição e campanha de abandono de carrinho.
+        - **Retenção de Clientes**: Monitorar a retenção mensal de clientes que participam do programa de fidelidade.
+        - **Satisfação do Cliente**: Analisar o Net Promoter Score (NPS) e os resultados de pesquisas de satisfação.
 
-        Indicadores de Performance:
-        - Taxa de conversão de leads.
-        - Retenção de clientes e aumento do LTV.
-        - Satisfação do cliente e impacto nas campanhas de fidelização.
+        **Ações de Ajuste**:
+        - Ajustar campanhas de e-mail marketing com base na taxa de abertura e cliques.
+        - Refinar os fluxos de nutrição de leads para melhorar a taxa de conversão, com foco no envio de conteúdo relevante.
 
-        Objetivo: Ajustar as campanhas e fluxos de CRM para melhorar a performance com base em dados de interação, conversão e satisfação do cliente.
+        **Plano de Ação**:
+        - Gerar relatórios semanais de desempenho.
+        - Ajustar campanhas com base em métricas de sucesso e feedback dos clientes.
         ''',
-        agent=agentes_crm[4],  # Agente de Análise de Performance de CRM
+        agent=agentes_crm[4],
         output_file='analise_performance_crm.md'
-    ),
-    
-    # Task de Automação de CRM
-    Task(
-        description="Desenvolver automações de CRM para personalização e escalabilidade.",
-        expected_output=f'''
-        Relatório de Automação de CRM para {nome_cliente}
-
-        Objetivo: Implementar ferramentas de automação para personalizar a experiência do cliente e escalabilidade das ações. Considerando os seguintes dados:
-
-        1. Canais de comunicação disponíveis: {canais_disponiveis}
-        2. Público-alvo: {publico_alvo}
-        3. Metas de CRM: {metas_crm}
-
-        Automação:
-        - Automação de e-mails para abandono de carrinho e promoções personalizadas.
-        - Integração de ferramentas de CRM para centralizar dados e otimizar a comunicação com clientes.
-        - Utilização de notificações push, SMS e e-mail marketing automatizados.
-
-        Objetivo: Otimizar a gestão de leads e melhorar a comunicação com o cliente de forma escalável, sem perder a personalização.
-        ''',
-        agent=agentes_crm[5],  # Agente de Automação de CRM
-        output_file='automacao_crm.md'
-    ),
-    
-    # Task de Consultoria de SLA CRM
-    Task(
-        description="Analisar e ajustar o SLA entre marketing e vendas.",
-        expected_output=f'''
-        Relatório de SLA CRM para {nome_cliente}
-
-        Objetivo: Analisar o SLA entre as equipes de marketing e vendas, garantindo a efetividade do processo de geração de leads. Para isso, considera-se:
-
-        1. Metas de CRM: {metas_crm}
-        2. Público-alvo: {publico_alvo}
-        3. Canais de comunicação: {canais_disponiveis}
-
-        Estratégia de SLA:
-        - Definição de prazos e expectativas para cada etapa do processo de conversão de leads.
-        - Alinhamento entre marketing e vendas sobre os critérios de qualificação de leads e feedback contínuo.
-
-        Objetivo: Garantir um fluxo de trabalho eficiente entre marketing e vendas, para maximizar a conversão de leads qualificados.
-        ''',
-        agent=agentes_crm[6],  # Agente de Consultoria de SLA CRM
-        output_file='sla_crm.md'
     )
 ]
 
