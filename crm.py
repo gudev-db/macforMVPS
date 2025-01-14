@@ -181,6 +181,9 @@ def planej_crm_page():
 
     pest_files = 1
 
+    crm_tools = client1.search("Quais são as 10 melhores ferramentas de CRM e por quê?")
+
+
   
 
     if pest_files is not None:
@@ -548,7 +551,7 @@ def planej_crm_page():
         Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
         Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
 
-        **Objetivo:** citar 5 sugestões de softwares de CRM para uso que sejam o melhor encaixe para as necessidades do cliente. com um parágrafo explicando o porquê.
+        **Objetivo:** com base na pesquisa feita em crm_tools: ({crm_tools}), citar 5 sugestões de softwares de CRM para uso que sejam o melhor encaixe para as necessidades do cliente. com um parágrafo explicando o porquê.
         ''',
         agent=agentes_crm[4],
         output_file='software_crm.md'
