@@ -52,6 +52,7 @@ def save_to_mongo_crm(tarefas_crm, nome_cliente):
         "Plano_Contato_NPS": tarefas_crm[3].output.raw,
         "Plano_Analise_Dados_CRM": tarefas_crm[4].output.raw,
         "Plano_Automacao_CRM": tarefas_crm[5].output.raw,
+        "Recomend_Software": tarefas_crm[6].output.raw
     }
 
     # Insert the document into MongoDB
