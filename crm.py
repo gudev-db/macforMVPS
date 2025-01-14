@@ -312,6 +312,26 @@ def planej_crm_page():
         expected_output=f'''
         **Estratégia Geral de CRM para {nome_cliente}**
 
+        Informações Gerais do Cliente:
+
+        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
+        Objetivos da Marca:
+        
+        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
+        Informações sobre o CRM:
+        
+        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+        A maturidade em CRM da empresa é {maturidade_crm}.
+        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+        O perfil da empresa é {perfil_empresa}.
+        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+        A descrição do negócio é: {descricao_negocio}.
+        O tamanho da base de dados de clientes é {tamanho_base}.
+        O tom de voz desejado para a comunicação é {tom_voz}.
+        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
+
      
 
         **Ações e Segmentação**:
@@ -391,6 +411,26 @@ def planej_crm_page():
         description="estratégia de contato com o cliente.",
         expected_output=f'''
 
+        Informações Gerais do Cliente:
+
+        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
+        Objetivos da Marca:
+        
+        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
+        Informações sobre o CRM:
+        
+        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+        A maturidade em CRM da empresa é {maturidade_crm}.
+        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+        O perfil da empresa é {perfil_empresa}.
+        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+        A descrição do negócio é: {descricao_negocio}.
+        O tamanho da base de dados de clientes é {tamanho_base}.
+        O tom de voz desejado para a comunicação é {tom_voz}.
+        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
+
         -**NPS Score***: Definir questionário de NPS Score.
         ''',
         agent=agentes_crm[2],
@@ -454,6 +494,26 @@ def planej_crm_page():
         description="Monitorar e analisar a performance das ações de CRM.",
         expected_output=f'''
         **Análise de Performance de CRM para {nome_cliente}**
+
+        Informações Gerais do Cliente:
+
+        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
+        Objetivos da Marca:
+        
+        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
+        Informações sobre o CRM:
+        
+        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+        A maturidade em CRM da empresa é {maturidade_crm}.
+        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+        O perfil da empresa é {perfil_empresa}.
+        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+        A descrição do negócio é: {descricao_negocio}.
+        O tamanho da base de dados de clientes é {tamanho_base}.
+        O tom de voz desejado para a comunicação é {tom_voz}.
+        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
 
         **Objetivo:** Avaliar a eficácia das campanhas de CRM e ajustar conforme necessário.
 
