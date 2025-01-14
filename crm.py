@@ -329,7 +329,7 @@ def planej_crm_page():
         output_file='estrategia_crm.md'
     ),
 
-    # Task de Estratégia Geral de CRM
+    # Task de Estratégia de contato com o cliente
     Task(
         description="Criar a estratégia geral de CRM de contato com o cliente.",
         expected_output=f'''
@@ -350,7 +350,7 @@ def planej_crm_page():
         - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
 
         ''',
-        agent=agentes_crm[0],
+        agent=agentes_crm[2],
         output_file='estrategia_crm.md'
     ),
     
@@ -490,9 +490,9 @@ def planej_crm_page():
                         st.header('Planejamento de CRM')
                         st.subheader('1. Estratégia Geral de CRM')
                         st.markdown(tarefas_crm[0].output.raw)
-                        st.subheader('2. Análise de Dados CRM')
+                        st.subheader('2. Gestão de contato com o cliente')
                         st.markdown(tarefas_crm[1].output.raw)
-                        st.subheader('3. Gestão de Leads e Fluxos CRM')
+                        st.subheader('3. Gestão de Análise de Dados')
                         st.markdown(tarefas_crm[2].output.raw)
                         st.subheader('4. Gestão de Relacionamento com Clientes')
                         st.markdown(tarefas_crm[3].output.raw)
@@ -500,8 +500,7 @@ def planej_crm_page():
                         st.markdown(tarefas_crm[4].output.raw)
                         st.subheader('6. Automação de CRM')
                         st.markdown(tarefas_crm[5].output.raw)
-                        st.subheader('7. Consultoria de SLA CRM')
-                        st.markdown(tarefas_crm[6].output.raw)
+
 
 
                         
