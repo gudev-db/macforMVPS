@@ -370,13 +370,13 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Criar o posicionamento de marca.",
-                                    expected_output=f'''10 Posicionamentos de marca em uma única frase em português brasileiro sem colocar o nome do cliente nelas. 
+                                    expected_output=f'''5 Posicionamentos de marca em uma única frase em português brasileiro sem colocar o nome do cliente nelas. 
                                     
-                                    Considerando o seguinte contexto (texto raspado do site do cliente) :({website_all_texts})
-                                    , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
-                                    {referencia_da_marca}. 
+                                    - Considerando
+                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    {referencia_da_marca} e o ramo de atuação: ({ramo_atuacao}). 
                                     
-                                    Exemplos de excelentes posicionamento de marcas que devem ser usadas como inspitação e referência são: 
+                                    - Exemplos de excelentes posicionamento de marcas que devem ser usadas como inspitação e referência em termos de formato, tom e quantidade de palavras são: 
                                     "Pense diferente."
                                     "Abra a felicidade."
                                     "Just do it."
