@@ -324,15 +324,12 @@ def planej_crm_page():
 
     # Task de Estratégia de contato com o cliente
     Task(
-        description="Criar a estratégia geral de CRM de contato com o cliente.",
+        description="estratégia de contato com o cliente.",
         expected_output=f'''
-           com base em: 
-        **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis},
-        **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
 
-        - **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
-        - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
-        - **NPS Score***: Definir questionário de NPS Score.
+        - Ideias de **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
+        - Ideias de **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
+        - Ideia de **NPS Score***: Definir questionário de NPS Score.
         ''',
         agent=agentes_crm[2],
         output_file='estrategia_crm.md'
