@@ -80,6 +80,8 @@ def visualizar_planejamentos():
         st.markdown(f"**4. Gestão de Contato com o Cliente - NPS:** {selected_planejamento.get('Plano_Contato_NPS')}")
         st.markdown(f"**5. Gestão de Análise de Dados de Clientes:** {selected_planejamento.get('Plano_Analise_Dados_CRM')}")
         st.markdown(f"**6. Automação de CRM:** {selected_planejamento.get('Plano_Automacao_CRM')}")
+        st.markdown(f"**7. Softwares Recomendados:** {selected_planejamento.get('Recomend_Software')}")
+        
 
 
  
