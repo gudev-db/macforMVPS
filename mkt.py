@@ -48,6 +48,7 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica,tarefas_midia, nome_clien
         "tipo_plano": 'Plano Estratégico e de Planejamento',
         "SWOT": tarefas_pesquisa[0].output.raw,
         "PEST": tarefas_pesquisa[1].output.raw,
+        "Tendencias": tarefas_pesquisa[2].output.raw
 
         
         "GC": tarefas_estrategica[0].output.raw,
@@ -116,22 +117,8 @@ def planej_mkt_page():
         pesquisa = st.text_input(f'Elemento de pesquisa {i + 1}:', key=f"pesquisa_{i}")
         assuntos_pesquisa.append(pesquisa)
     
-    # Exibe os valores preenchidos (opcional)
-    if assuntos_pesquisa:
-        st.write("Assuntos preenchidos:", assuntos_pesquisa)
     
-    # Realiza a busca separada para cada assunto de pesquisa usando client1.search()
-    if assuntos_pesquisa:
-        # Armazenando as respostas da busca
-        respostas = []
-        
-        for assunto in assuntos_pesquisa:
-            # Gerando a consulta para cada pesquisa
-            query = f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no contexto brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital, relacionado ao seguinte tema: {assunto}?"
-            
-            # Realizando a busca com client1
-            resposta = client1.search(query)  # Supondo que `client1.search()` retorna uma resposta
-            respostas.append(resposta)
+    
     
 
 
@@ -147,6 +134,21 @@ def planej_mkt_page():
 
     performance_metrics_df = SEOtools.check_website_performance(site_cliente)
     website_all_texts = SEOtools.scrape_all_texts(site_cliente)
+
+    respostas = []
+
+    # Realiza a busca separada para cada assunto de pesquisa usando client1.search()
+    if assuntos_pesquisa:
+        # Armazenando as respostas da busca
+        
+        
+        for assunto in assuntos_pesquisa:
+            # Gerando a consulta para cada pesquisa
+            query = f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no contexto brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital, relacionado ao seguinte tema: {assunto}?"
+            
+            # Realizando a busca com client1
+            resposta = client1.search(query)  # Supondo que `client1.search()` retorna uma resposta
+            respostas.append(resposta)
 
 
   
