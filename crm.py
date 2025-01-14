@@ -370,7 +370,7 @@ def planej_crm_page():
         Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
         Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
 
-        - Ideias de **E-mail Marketing**: 10 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
+        - Ideias de **E-mail Marketing**: 10 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (dois parágrafos chamativos, personalizados e não genéricos), 4: CTA.
         ''',
         agent=agentes_crm[2],
         output_file='estrategia_crm.md'
@@ -440,7 +440,7 @@ def planej_crm_page():
     
     # Task de Análise de Dados CRM
     Task(
-        description="Analisar a base de dados de clientes e segmentá-los para estratégias de CRM.",
+        description="Delineamento de propostas de fluxo de CRM.",
         expected_output=f'''
         Informações Gerais do Cliente:
 
@@ -462,25 +462,12 @@ def planej_crm_page():
         Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
         Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
 
-        **Objetivo:** Segmentação da base de clientes com base em dados demográficos, comportamentais e psicográficos, para criar campanhas personalizadas.
+        **Objetivo:** Delineamento de propostas de fluxo de CRM..
 
-        **Segmentação de Clientes**:
-        - **Clientes Frequentes**: Compraram mais de 5 vezes nos últimos 12 meses.
-        - **Clientes de Alto Valor**: Gasto médio superior a R$ 500 por compra nos últimos 3 meses.
-        - **Clientes em Risco de Churn**: Não realizaram compras nos últimos 6 meses e não abriram e-mails de campanhas anteriores.
-
-        **Ações Específicas**:
-        - Para **Clientes Frequentes**: Enviar um e-mail personalizado com recomendações de produtos com base nas compras anteriores e um desconto exclusivo de 10%.
-        - Para **Clientes de Alto Valor**: Oferecer benefícios exclusivos, como frete grátis, em troca de uma recomendação nas redes sociais.
-        - Para **Clientes em Risco de Churn**: Enviar um e-mail com uma pesquisa de satisfação e um desconto de 20% para reengajá-los.
-
-        **Base de Dados Necessária**:
-        - Verificar o histórico de compras, dados demográficos e interação com campanhas anteriores.
-        - Extração dos dados de e-mails abertos e taxas de cliques.
+        *
 
         **Plano de Ação**:
-        - Criar uma lista segmentada para cada grupo no CRM.
-        - Implementar campanhas automatizadas para cada segmento.
+        - Criar uma proposta bem aprofundada e bem detalhada de como será o melhor fluxo de CRM.
         ''',
         agent=agentes_crm[1],
         output_file='analise_dados_crm.md'
@@ -562,7 +549,7 @@ def planej_crm_page():
                         st.subheader('4. Gestão de contato com o cliente - NPS')
                         st.markdown(tarefas_crm[3].output.raw)
 
-                        st.subheader('5. Gestão de análise de dados de Clientes')
+                        st.subheader('5. Delineamento de fluxo de CRM')
                         st.markdown(tarefas_crm[4].output.raw)
 
                         st.subheader('6. Automação de CRM')
