@@ -346,7 +346,7 @@ def planej_crm_page():
        
 
         **Canais de Comunicação e Estratégias**:
-        - **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal, 4: CTA.
+        - **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
         - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
 
         ''',
