@@ -331,7 +331,7 @@ def planej_crm_page():
 
     # Task de Estratégia Geral de CRM
     Task(
-        description="Criar a estratégia geral de CRM para o cliente.",
+        description="Criar a estratégia geral de CRM de contato com o cliente.",
         expected_output=f'''
         **Estratégia Geral de CRM para {nome_cliente}**
 
@@ -346,7 +346,7 @@ def planej_crm_page():
        
 
         **Canais de Comunicação e Estratégias**:
-        - **E-mail Marketing**: 5 emails devidamente redigidos a serem enviados para e-mail marketing.
+        - **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal, 4: CTA.
         - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
 
         ''',
