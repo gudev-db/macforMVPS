@@ -117,11 +117,11 @@ def planej_mkt_page():
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
     # Step 2. Executing a simple search query
-    politic = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    economic = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    social = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    tec = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    tend_novids = client1.search(f"Considerando o cliente {nome_cliente}, Quais as recentes tendências de mercado para {tendencias}?")
+    politic = client1.search(f"Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?")
+    economic = client1.search(f"Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?")
+    social = client1.search(f"Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?")
+    tec = client1.search(f"Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?")
+    tend_novids = client1.search(f"Quais as recentes tendências de mercado para {tendencias}?")
     tend_ramo = client1.search(f"Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?")
 
     performance_metrics_df = SEOtools.check_website_performance(site_cliente)
