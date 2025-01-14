@@ -373,7 +373,7 @@ def planej_crm_page():
         - Ideias de **E-mail Marketing**: 10 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (dois parágrafos chamativos, personalizados e não genéricos), 4: CTA.
         ''',
         agent=agentes_crm[2],
-        output_file='estrategia_crm.md'
+        output_file='estrategia_email_crm.md'
     ),
                             
     # Task de Estratégia de contato com o cliente SMS Whatsapp
@@ -403,7 +403,7 @@ def planej_crm_page():
         - Ideias de **SMS e WhatsApp**: 10 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
         ''',
         agent=agentes_crm[2],
-        output_file='estrategia_crm.md'
+        output_file='estrategia_sms_crm.md'
     ),
 
      # Task de Estratégia de contato com o cliente NPS
@@ -434,11 +434,11 @@ def planej_crm_page():
         -**NPS Score***: Definir questionário de NPS Score.
         ''',
         agent=agentes_crm[2],
-        output_file='estrategia_crm.md'
+        output_file='estrategia_nps_crm.md'
     ),
                             
     
-    # Task de Análise de Dados CRM
+    # Fluxo CRM
     Task(
         description="Delineamento de propostas de fluxo de CRM.",
         expected_output=f'''
@@ -470,7 +470,7 @@ def planej_crm_page():
         - Criar uma proposta bem aprofundada e bem detalhada de como será o melhor fluxo de CRM.
         ''',
         agent=agentes_crm[1],
-        output_file='analise_dados_crm.md'
+        output_file='fluxo_crm.md'
     ),
     
    
@@ -520,6 +520,38 @@ def planej_crm_page():
         agent=agentes_crm[4],
         output_file='analise_performance_crm.md'
     )
+
+,    # Task de Análise de Performance de CRM
+    Task(
+        description="Monitorar e analisar a performance das ações de CRM.",
+        expected_output=f'''
+        **Análise de Performance de CRM para {nome_cliente}**
+
+        Informações Gerais do Cliente:
+
+        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
+        Objetivos da Marca:
+        
+        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
+        Informações sobre o CRM:
+        
+        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+        A maturidade em CRM da empresa é {maturidade_crm}.
+        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+        O perfil da empresa é {perfil_empresa}.
+        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+        A descrição do negócio é: {descricao_negocio}.
+        O tamanho da base de dados de clientes é {tamanho_base}.
+        O tom de voz desejado para a comunicação é {tom_voz}.
+        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
+
+        **Objetivo:** citar 5 sugestões de softwares de CRM para uso que sejam o melhor encaixe para as necessidades do cliente. com um parágrafo explicando o porquê.
+        ''',
+        agent=agentes_crm[4],
+        output_file='software_crm.md'
+    )
 ]
 
 
@@ -554,6 +586,9 @@ def planej_crm_page():
 
                         st.subheader('6. Automação de CRM')
                         st.markdown(tarefas_crm[5].output.raw)
+
+                        st.subheader('7. Software de CRM')
+                        st.markdown(tarefas_crm[6].output.raw)
 
 
 
