@@ -104,34 +104,11 @@ def planej_mkt_page():
     height=200  # Adjust the height in pixels as needed
 )    
 
-    # Pergunta quantos elementos de pesquisa o usuário deseja
-    num_elementos = st.selectbox('Quantos elementos de pesquisa você quer que o agente realize?', [0, 1, 2, 3, 4, 5], key="num_elementos")
-    
-    # Lista para armazenar os valores dos campos de texto
-    assuntos_pesquisa = []
-    
-    # Cria dinamicamente os campos de texto com base no número selecionado
-    for i in range(num_elementos):
-        # Cria um campo de texto para cada elemento de pesquisa
-        pesquisa = st.text_input(f'Elemento de pesquisa {i + 1}:', key=f"pesquisa_{i}")
-        assuntos_pesquisa.append(pesquisa)
-    
-    # Exibe os valores preenchidos (opcional)
-    if assuntos_pesquisa:
-        st.write("Assuntos preenchidos:", assuntos_pesquisa)
-    
-    # Realiza a busca separada para cada assunto de pesquisa usando client1.search()
-    if assuntos_pesquisa:
-        # Armazenando as respostas da busca
-        respostas = []
-        
-        for assunto in assuntos_pesquisa:
-            # Gerando a consulta para cada pesquisa
-            query = f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no contexto brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital, relacionado ao seguinte tema: {assunto}?"
-            
-            # Realizando a busca com client1
-            resposta = client1.search(query)  # Supondo que `client1.search()` retorna uma resposta
-            respostas.append(resposta)
+    # Tendências
+    tendencias = st.text_input('Quais tendências gostaria que o agente pesquisasse?',placeholder="Ex: IA, otimização de CRM, ...")
+
+
+  
     
 
 
@@ -139,11 +116,12 @@ def planej_mkt_page():
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
     # Step 2. Executing a simple search query
-    politic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    economic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-    social = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-    tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-
+    politic = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+    economic = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+    social = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+    tec = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
+    tend_novids = client1.search(f"Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as recentes tendências de mercado para {tendencias}?")
+    tend_ramo = client1.search(f"Considerando o cliente {nome_cliente}, Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?")
 
     performance_metrics_df = SEOtools.check_website_performance(site_cliente)
     website_all_texts = SEOtools.scrape_all_texts(site_cliente)
@@ -353,7 +331,9 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Pesquisa de tendências.",
-                                    expected_output=f'''Análise de tendências consideranto as respostas da pesquisa obtidas em ({', '.join(respostas)})
+                                    expected_output=f'''Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids}) e 
+                                    tendências de ramo de atuação do cliente: ({tend_ramo}).
+                                    
                                     Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
                                     agent=agentes[1],
                                     output_file = 'tendencia.md'
