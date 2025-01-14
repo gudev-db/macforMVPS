@@ -135,11 +135,12 @@ def planej_mkt_page():
     performance_metrics_df = SEOtools.check_website_performance(site_cliente)
     website_all_texts = SEOtools.scrape_all_texts(site_cliente)
 
-    respostas = []
+    
 
     # Realiza a busca separada para cada assunto de pesquisa usando client1.search()
     if assuntos_pesquisa:
         # Armazenando as respostas da busca
+        respostas = []
         
         
         for assunto in assuntos_pesquisa:
