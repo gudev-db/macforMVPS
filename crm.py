@@ -309,16 +309,10 @@ def planej_crm_page():
         expected_output=f'''
         **Estratégia Geral de CRM para {nome_cliente}**
 
-        **Objetivo:** Desenvolver a estratégia de CRM com ações claras e concretas, considerando os seguintes parâmetros:
-
-        1. **Ramo de atuação**: {ramo_atuacao}
-        2. **Intuito do plano estratégico**: {intuito_plano}
-        3. **Público-alvo**: {publico_alvo}
-        4. **Canais disponíveis**: {canais_disponiveis}
-        5. **Metas de CRM**: {metas_crm}
+     
 
         **Ações e Segmentação**:
-        - **Segmentação de Clientes**: Definir formas de segmentar clientes com base em: 
+        - **Segmentação de Clientes**: Definição de segmentação de clientes com base em: 
         **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis},
         **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
 
@@ -332,19 +326,10 @@ def planej_crm_page():
     Task(
         description="Criar a estratégia geral de CRM de contato com o cliente.",
         expected_output=f'''
-        **Estratégia Geral de CRM para {nome_cliente}**
+           com base em: 
+        **Público-alvo**: {publico_alvo}, **Canais disponíveis**: {canais_disponiveis},
+        **Metas de CRM**: {metas_crm} e **Intuito do plano estratégico**: {intuito_plano}
 
-        **Objetivo:** Desenvolver a estratégia de contato com cliente (redigir emails, mensagens):
-
-        1. **Ramo de atuação**: {ramo_atuacao}
-        2. **Intuito do plano estratégico**: {intuito_plano}
-        3. **Público-alvo**: {publico_alvo}
-        4. **Canais disponíveis**: {canais_disponiveis}
-        5. **Metas de CRM**: {metas_crm}
-
-       
-
-        **Canais de Comunicação e Estratégias**:
         - **E-mail Marketing**: 5 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (pelo menos 3 frases), 4: CTA.
         - **SMS e WhatsApp**: 5 mensagens devidamente redigidas a serem enviados para marketing direto com o consumidor.
         - **NPS Score***: Definir questionário de NPS Score.
