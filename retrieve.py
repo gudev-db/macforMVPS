@@ -70,14 +70,14 @@ def visualizar_planejamentos():
    
         
         st.subheader('3.4 Plano de CRM')
-        st.markdown(f"**Plano de Estratégia Geral de CRM:** {selected_planejamento.get('Plano_Estrategia_CRM')}")
-        st.markdown(f"**Plano de Contato Direto:** {selected_planejamento.get('Plano_Contato')}")
-        st.markdown(f"**Plano de Análise de Dados:** {selected_planejamento.get('Plano_Analise_Dados_CRM')}")
-        st.markdown(f"**Plano de Gestão de Leads:** {selected_planejamento.get('Plano_Gestao_Leads_CRM')}")
-        st.markdown(f"**Plano de Gestão de Relacionamento:** {selected_planejamento.get('Plano_Gestao_Relacionamento_CRM')}")
-        st.markdown(f"**Plano de Análise de Performance:** {selected_planejamento.get('Plano_Analise_Performance_CRM')}")
-        st.markdown(f"**Plano de automação CRM:** {selected_planejamento.get('Plano_Automacao_CRM')}")
-        st.markdown(f"**Plano de Consultoria SLA CRM:** {selected_planejamento.get('Plano_Consultoria_SLA_CRM')}")
+        
+        st.markdown(f"**1. Estratégia Geral de CRM:** {selected_planejamento.get('Plano_Estrategia_CRM')}")
+        st.markdown(f"**2. Gestão de Contato com o Cliente - Email:** {selected_planejamento.get('Plano_Contato_Email')}")
+        st.markdown(f"**3. Gestão de Contato com o Cliente - SMS/WhatsApp:** {selected_planejamento.get('Plano_Contato_SMS_WhatsApp')}")
+        st.markdown(f"**4. Gestão de Contato com o Cliente - NPS:** {selected_planejamento.get('Plano_Contato_NPS')}")
+        st.markdown(f"**5. Gestão de Análise de Dados de Clientes:** {selected_planejamento.get('Plano_Analise_Dados_CRM')}")
+        st.markdown(f"**6. Automação de CRM:** {selected_planejamento.get('Plano_Automacao_CRM')}")
+
 
  
         
