@@ -39,6 +39,9 @@ def visualizar_planejamentos():
         
         st.subheader('1.2 Análise PEST')
         st.markdown(f"**PEST:** {selected_planejamento.get('PEST')}")
+
+        st.subheader('1.3 Análise de Tendências')
+        st.markdown(f"**PEST:** {selected_planejamento.get('Tendencias')}")
         
         st.header('2. Etapa de Estratégica')
         st.subheader('2.1 Golden Circle')
