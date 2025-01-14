@@ -373,7 +373,31 @@ def planej_mkt_page():
                                     expected_output=f'''Posicionamento de marca em uma única frase em português brasileiro. 
                                     Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
                                     , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
-                                    {referencia_da_marca},''',
+                                    {referencia_da_marca}. 
+                                    
+                                    Exemplos de excelentes posicionamento de marcas que devem ser usadas como referência são: 
+                                    Apple: "Pense diferente."
+                                    Coca-Cola: "Abra a felicidade."
+                                    Nike: "Just do it."
+                                    Tesla: "Acelere a transição do mundo para energia sustentável."
+                                    McDonald's: "Amo muito tudo isso."
+                                    Red Bull: "Red Bull te dá asas."
+                                    Amazon: "Compre tudo o que você ama."
+                                    L’Oréal: "Porque você vale muito."
+                                    Pepsi: "Viva a vida ao máximo."
+                                    Mercedes-Benz: "O melhor ou nada."
+                                    Google: "Organizar as informações do mundo e torná-las acessíveis e úteis."
+                                    BMW: "A máquina de condução definitiva."
+                                    Disney: "Onde os sonhos se tornam realidade."
+                                    Adidas: "Impossible is nothing."
+                                    Heineken: "Abra a boa cerveja."
+                                    Ikea: "Para um dia a dia melhor em casa."
+                                    Sony: "Be moved."
+                                    Ford: "Go further."
+                                    Samsung: "Inspire o mundo, crie o futuro."
+                                    Toyota: "Vamos juntos para o futuro."
+                                    
+                                    ''',
                                     agent=agentes[2],
                                     output_file = 'posMar.md'
                                 ),
