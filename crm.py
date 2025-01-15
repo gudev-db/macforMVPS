@@ -206,29 +206,103 @@ def planej_crm_page():
                 else:
                     with st.spinner('Gerando o planejamento de CRM...'):
 
-                        import yaml
-                        
-                        # Step 1: Load the YAML file
-                        with open('crm_agents.yaml', 'r', encoding='utf-8') as file:
-                            agents_data = yaml.safe_load(file)
-                        
-                        # Step 2: Create a function to convert YAML data to Agent objects
-                        def create_agents_from_yaml(agents_data):
-                            agents = []
-                            for agent_data in agents_data['agentes_crm']:
-                                agent = Agent(
-                                    role=agent_data['role'],
-                                    goal=agent_data['goal'],
-                                    backstory=agent_data['backstory'],
-                                    allow_delegation=agent_data['allow_delegation'],
-                                    llm=agent_data['llm'],  # Make sure this points to your LLM model or class
-                                    tools=agent_data['tools']
-                                )
-                                agents.append(agent)
-                            return agents
-                        
-                        # Step 3: Create the agents from YAML data
-                        agentes_crm = create_agents_from_yaml(agents_data)
+                        agentes_crm = [
+    Agent(
+        role="Estratégia Geral de CRM",
+        goal=f'''Desenvolver e executar a estratégia geral de CRM para {nome_cliente}, levando em consideração o ramo de atuação ({ramo_atuacao}), 
+        os objetivos de marca ({objetivos_de_marca}), o público-alvo ({publico_alvo}), o tom de voz ({tom_voz}), os canais de comunicação disponíveis 
+        ({canais_disponiveis}), e as metas a serem alcançadas ({metas_crm}). A estratégia deve estar alinhada com os valores e diferenciais da marca 
+        ({referencia_da_marca}) e o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em CRM com ampla experiência em desenvolver e executar estratégias de CRM para empresas como {nome_cliente}, 
+        que atuam no ramo de {ramo_atuacao}. Com base nas informações coletadas, como os objetivos de marca ({objetivos_de_marca}), público-alvo 
+        ({publico_alvo}), tom de voz ({tom_voz}) e canais de comunicação ({canais_disponiveis}), você criará uma estratégia de CRM personalizada, 
+        que alinha todas as iniciativas com os valores e diferenciais de {nome_cliente}. Além disso, é importante garantir que as metas de CRM 
+        ({metas_crm}) sejam atingidas, otimizando os fluxos e campanhas de comunicação de acordo com o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Análise de Dados CRM",
+        goal=f'''Analisar os dados de clientes de {nome_cliente}, segmentando-os com base nos dados coletados de público-alvo ({publico_alvo}), 
+        metas de CRM ({metas_crm}), canais de comunicação ({canais_disponiveis}) e a base de clientes disponível ({tamanho_base}). 
+        Identificar padrões de comportamento para otimizar os fluxos de comunicação e campanhas de marketing. A análise deve considerar as 
+        segmentações e o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um analista de dados especializado em CRM. Sua missão é segmentar a base de dados de clientes de {nome_cliente}, 
+        utilizando os dados coletados, como o perfil do público-alvo ({publico_alvo}), canais de comunicação disponíveis ({canais_disponiveis}), 
+        tamanho da base de dados ({tamanho_base}), e as metas de CRM ({metas_crm}). Você usará essas informações para identificar padrões 
+        e otimizar os fluxos de comunicação e as campanhas de marketing de maneira eficaz, alinhando todas as ações com o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Gestão de Leads e Fluxos CRM",
+        goal=f'''Desenvolver e implementar fluxos de CRM para {nome_cliente}, com foco em nutrição de leads e melhoria da jornada do cliente. 
+        Utilizando canais de comunicação disponíveis ({canais_disponiveis}), com base nos objetivos de CRM ({objetivo_crm}) e metas ({metas_crm}). 
+        Criar fluxos personalizados e campanhas direcionadas para o público-alvo ({publico_alvo}) e conforme o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em CRM com foco na criação e otimização de fluxos de nutrição de leads para {nome_cliente}. 
+        Considerando os canais de comunicação disponíveis ({canais_disponiveis}), os objetivos de CRM ({objetivo_crm}), metas a serem alcançadas ({metas_crm}), 
+        e o perfil do público-alvo ({publico_alvo}), sua missão é desenvolver fluxos de CRM e campanhas de nutrição de leads que aumentem a conversão 
+        e melhorem o engajamento do público-alvo. Todos os fluxos devem estar alinhados com o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Gestão de Relacionamento com Clientes",
+        goal=f'''Desenvolver e implementar estratégias de gestão de relacionamento com clientes para {nome_cliente}, com foco em fidelização e 
+        retenção, utilizando dados de público-alvo ({publico_alvo}), canais de comunicação ({canais_disponiveis}), e metas de CRM ({metas_crm}). 
+        Criar campanhas personalizadas para melhorar o engajamento ao longo da jornada do cliente, ajustadas ao perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em CRM com foco em gestão de relacionamento com clientes (CRM). Sua missão é desenvolver 
+        estratégias personalizadas de fidelização e retenção para {nome_cliente}, utilizando os dados do público-alvo ({publico_alvo}), canais 
+        de comunicação ({canais_disponiveis}) e as metas de CRM ({metas_crm}). Ao longo da jornada do cliente, você criará campanhas 
+        personalizadas, alinhadas com o perfil da empresa ({perfil_empresa}), visando aumentar a satisfação e a longevidade dos clientes.''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Análise de Performance de CRM",
+        goal=f'''Analisar a performance das estratégias de CRM implementadas para {nome_cliente}, ajustando conforme necessário com base em 
+        métricas de sucesso, taxas de conversão e feedback dos clientes. Verificar a aderência dos resultados com as metas de CRM ({metas_crm}) 
+        e ajustar os fluxos e campanhas conforme as necessidades do público-alvo ({publico_alvo}) e o perfil da empresa ({perfil_empresa}).''',
+        backstory=f'''Você é um especialista em análise de performance de CRM. Sua missão é avaliar e monitorar os resultados das estratégias de CRM 
+        implementadas para {nome_cliente}. Você utilizará métricas de sucesso, taxas de conversão e feedback dos clientes para ajustar as 
+        campanhas de CRM e garantir que as metas de CRM ({metas_crm}) sejam atingidas. A análise deve estar alinhada com os dados de público-alvo 
+        ({publico_alvo}) e o perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Especialista em Automação de CRM",
+        goal=f'''Desenvolver e implementar automações de CRM para {nome_cliente}, com foco em otimizar o gerenciamento de leads e a comunicação 
+        com clientes em diferentes estágios da jornada de compra. As automações devem ser baseadas nos canais de comunicação disponíveis 
+        ({canais_disponiveis}) e ajustadas ao perfil do público-alvo ({publico_alvo}). Assegurar que todos os fluxos automatizados atendam 
+        às metas de CRM ({metas_crm}).''',
+        backstory=f'''Você é um especialista em automação de CRM. Sua missão é otimizar o gerenciamento de leads e a comunicação com clientes 
+        em {nome_cliente}, usando os canais de comunicação disponíveis ({canais_disponiveis}) e garantindo que os fluxos de CRM sejam automatizados 
+        para aumentar a eficiência, melhorar a personalização e alcançar as metas de CRM ({metas_crm}). As automações devem ser criadas com base 
+        nas necessidades do público-alvo ({publico_alvo}) e adaptadas ao perfil da empresa ({perfil_empresa}).''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    ),
+    Agent(
+        role="Consultor de SLA CRM",
+        goal=f'''Analisar o SLA (Service Level Agreement) entre marketing e vendas para {nome_cliente}, garantindo que as expectativas 
+        de tempo e qualidade na geração de leads sejam cumpridas, utilizando o CRM para ajustar os fluxos e otimizar a colaboração entre as 
+        equipes. Verificar como as metas de CRM ({metas_crm}) e os canais de comunicação ({canais_disponiveis}) podem impactar essa colaboração.''',
+        backstory=f'''Você é um consultor de CRM especializado em gerenciar a relação entre marketing e vendas. Sua missão é garantir que o SLA 
+        (Service Level Agreement) entre essas equipes seja cumprido, melhorando o alinhamento e a colaboração para gerar leads de qualidade. 
+        Você utilizará os dados de metas de CRM ({metas_crm}), canais de comunicação ({canais_disponiveis}), e a segmentação do público-alvo 
+        ({publico_alvo}) para otimizar os fluxos e melhorar a comunicação e colaboração entre marketing e vendas.''',
+        allow_delegation=False,
+        llm=modelo_linguagem,
+        tools=[]
+    )
+]
 
 
 
@@ -505,6 +579,7 @@ def planej_crm_page():
                         
 
                         save_to_mongo_crm(tarefas_crm , nome_cliente)
+
 
 
 
