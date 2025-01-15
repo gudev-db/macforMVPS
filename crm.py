@@ -207,7 +207,6 @@ def planej_crm_page():
                     with st.spinner('Gerando o planejamento de CRM...'):
 
                         import yaml
-                        from crm_agents import Agent  
                         
                         # Step 1: Load the YAML file
                         with open('crm_agents.yaml', 'r', encoding='utf-8') as file:
