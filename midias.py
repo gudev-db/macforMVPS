@@ -298,22 +298,22 @@ def planej_midias_page():
                                     Ele encapsula a essência da campanha e é utilizado em diversos materiais de comunicação, como anúncios,
                                     banners, redes sociais, embalagens de produtos, entre outros.
                                     O objetivo do Key Visual é criar uma identidade visual forte e reconhecível 
-                                    que ressoe com o público-alvo e reforce a mensagem da marca.
+                                    que ressoe com o público-alvo e reforce a mensagem da marca;
 
-                                    - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente como refer explicitados em: {vis_chave}.
+                                    - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente como refer explicitados em: {vis_chave};
+                                    - Considerando {ramo_atuacao}, 
+                                    o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo},e a referência da marca:
+                                    {referencia_da_marca};
 
                                     Key Visual:
                                     
-                                    - Definição detalhada da Imagem Principal: Pode ser uma fotografia, ilustração ou gráfico que capta a atenção e transmite a mensagem central.
-                                    - Definição detalhada da Tipografia: A escolha das fontes deve complementar a imagem e reforçar a identidade da marca.
-                                    - Definição detalhada das Cores: A paleta de cores deve ser coerente com a identidade visual da marca e ajudar a criar uma sensação de unidade.
-                                    - Definição detalhada dos Elementos Gráficos: Ícones, padrões ou outros elementos visuais que adicionem profundidade e interesse.
+                                    - Definição detalhada da Imagem Principal: Defina exatamente o que deve ser a imagem.
+                                    - Definição detalhada da Tipografia: Defina exatamente a fonte e como ela complementa a imagem escolhida.
+                                    - Definição detalhada das Cores: Defina exatamente a palleta de cores.
+                                    - Definição detalhada dos Elementos Gráficos: Defina exatamente os elementos gráficos que compõem a Key Visual do cliente {nome_cliente}.
                                     
-                                    Serão soluções originais, personalizadas, detalhadas, explicitadas e pulo do gato
-                                    considerando seu ramo de atuação específico: {ramo_atuacao}, 
-                                    o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
-                                    {publico_alvo},e a referência da marca:
-                                    {referencia_da_marca},. 
+                                    
 
                                     
 
