@@ -18,7 +18,7 @@ from pymongo import MongoClient
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
     temperature=0.5,
-    frequency_penalty=0.5
+    frequency_penalty=0.4
 )
 
 client1 = TavilyClient(api_key='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')
@@ -280,6 +280,17 @@ def planej_midias_page():
                                 llm=modelo_linguagem,
                                 tools=[]
                             ),
+                            Agent(
+                                role="Especialista em Key Visual Identity",
+                                goal=f'''Estabelecer o Key Visual de {nome_cliente} no planejamento estratégico.''',
+                                backstory=f'''Você é um especialista em marketing em Key Visuals, 
+                                você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de 
+                                empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade nas campanhas 
+                                {nome_cliente}, com base na análise do conteúdo existente e da concorrência. Você não oferece diretrizes, você fala exatamente o que deve ser feito.''',
+                                allow_delegation=False,
+                                llm=modelo_linguagem,
+                                tools=[]
+                            ),
                         ]
 
 
@@ -300,6 +311,8 @@ def planej_midias_page():
                                     O objetivo do Key Visual é criar uma identidade visual forte e reconhecível 
                                     que ressoe com o público-alvo e reforce a mensagem da marca;
 
+                        
+
                                     - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente como refer explicitados em: {vis_chave};
                                     - Considerando {ramo_atuacao}, 
                                     o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
@@ -319,7 +332,7 @@ def planej_midias_page():
 
                                                                                      
                                     ''',
-                                    agent=agentes[13],
+                                    agent=agentes[15],
                                     output_file = 'KV.md'
                                 ),
 
