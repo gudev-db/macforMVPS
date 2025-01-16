@@ -74,17 +74,6 @@ def visualizar_planejamentos():
         st.markdown(f"**Plano de Palavras Chave:** {selected_planejamento.get('Plano_Palavras_Chave')}")
 
 
-         task_outputs = {
-        "id_planejamento": 'Plano de Mídias' +'_'+ nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
-        "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
-        "tipo_plano": 'Plano de Mídias',
-        "KV": tarefas_midia[0].output.raw,
-        "Plano_Redes": tarefas_midia[1].output.raw,
-        "Plano_Criativos": tarefas_midia[2].output.raw,
-        "Plano_Palavras_Chave": tarefas_midia[3].output.raw,
-        "Plano_Design": tarefas_midia[4].output.raw,
-        "Estrategia_Conteudo": tarefas_midia[5].output.raw,
-    }
 
    
         
