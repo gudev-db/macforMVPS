@@ -146,11 +146,8 @@ def planej_midias_page():
                             Agent(
                                 role="Analista PEST",
                                 goal=f'''Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.''',
-                                backstory=f'''Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. 
-                                Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua 
-                                análise PEST deve se basear em. Você está realizando essa análise PEST para o cliente {nome_cliente} que é do setor de atuação {ramo_atuacao}.
-                                O intuito do planejamento estratégico está explicitado em {intuito_plano}. Você possui uma vasta experiência em desenvolver análises PEST relevantes,
-                                perspicazes e detalhadas. Você sabe exatamente como extrair informações relevantes para o crescimento de seus clientes.''',
+                                backstory=f'''
+                                ''',
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
