@@ -334,7 +334,6 @@ def planej_midias_page():
                                     {publico_alvo},e a referência da marca:
                                     {referencia_da_marca},. 
 
-                                    você deve garantir uma vantagem competitiva contra o concorrente: {concorrentes}. seu site foi raspado e esse foi o retorno: ({info_concorrente}).
 
                                     
                                     Levando em conta o ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
