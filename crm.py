@@ -374,7 +374,9 @@ def planej_crm_page():
         Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
 
         - Proposta de fluxo de CRM que melhor atenda as necessidades do cliente e se melhor encaixe com suas características de negócio. Cada etapa extremamente detalhada com exatamente
-        o que deve ser feito e porque. O Fluxo deve deliear o passo a passo da interação com os leads desde o primeiro até o último contato de forma bem detalhada e justificada.
+        o que deve ser feito e porque. O Fluxo deve deliear o passo a passo da interação com os leads desde o primeiro até o último contato de forma bem detalhada e justificada. Detalhando o 
+        canal de contato, tempo de duração de cada etapa, tom a ser utilizado, ação personalizada para o case específico do cliente {nome_cliente} para cada segmento de seu setor de atuação:
+        {ramo_atuacao}.
         ''',
         agent=agentes_crm[2],
         output_file='estrategia_fluxo_crm.md'
