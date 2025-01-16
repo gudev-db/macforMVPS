@@ -351,7 +351,7 @@ def planej_crm_page():
     # Task de Fluxo de CRM
     Task(
         description="Fluxo de CRM.",
-        expected_output=f'''
+        expected_output=f''' Em português brasileiro,
 
         Informações Gerais do Cliente:
 
