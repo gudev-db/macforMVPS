@@ -17,7 +17,7 @@ from pymongo import MongoClient
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0.5,
+    temperature=0.23,
     frequency_penalty=0.4
 )
 
