@@ -7,12 +7,9 @@ from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
 from crewai_tools import tool
-#from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
-import SEOtools
-#from equipe import agentes
 
 
 
@@ -46,13 +43,12 @@ def save_to_mongo_midias(tarefas_midia, nome_cliente):
         "id_planejamento": 'Plano de Mídias' +'_'+ nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "tipo_plano": 'Plano de Mídias',
-        "Plano_Redes": tarefas_midia[0].output.raw,
-        "Plano_Criativos": tarefas_midia[1].output.raw,
-        "Plano_Saude_Site": tarefas_midia[2].output.raw,
+        "KV": tarefas_midia[0].output.raw,
+        "Plano_Redes": tarefas_midia[1].output.raw,
+        "Plano_Criativos": tarefas_midia[2].output.raw,
         "Plano_Palavras_Chave": tarefas_midia[3].output.raw,
-        "Plano_CRM": tarefas_midia[4].output.raw,
-        "Plano_Design": tarefas_midia[5].output.raw,
-        "Estrategia_Conteudo": tarefas_midia[6].output.raw,
+        "Plano_Design": tarefas_midia[4].output.raw,
+        "Estrategia_Conteudo": tarefas_midia[5].output.raw,
     }
 
     # Insert the document into MongoDB
@@ -113,6 +109,9 @@ def planej_midias_page():
     economic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
     social = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
     tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
+
+
+    vis_chave = client1.search("Quais são os elementos visuais chave utilizados em campanhas de marketing por empresas no ramo de atuação: {ramo_atuacao}?")
 
 
     performance_metrics_df = SEOtools.check_website_performance(site_cliente)
@@ -302,7 +301,42 @@ def planej_midias_page():
                        
                         tarefas_midia = [
 
-                             # Redes Sociais
+                             # KV
+                                Task(
+                                    description='''Definição de Key Visual da estratégia de marca da empresa''',
+                                    expected_output=f'''
+                                    
+                                    Em portugês brasileiro, definir o Key Visual de
+                                    {nome_cliente}, que serve como a principal imagem de uma campanha de marketing ou comunicação.
+                                    Ele encapsula a essência da campanha e é utilizado em diversos materiais de comunicação, como anúncios,
+                                    banners, redes sociais, embalagens de produtos, entre outros.
+                                    O objetivo do Key Visual é criar uma identidade visual forte e reconhecível 
+                                    que ressoe com o público-alvo e reforce a mensagem da marca.
+
+                                    - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente explicitados em: {vis_chave}.
+
+                                    O Key Visual é composto pelos seguintes elementos:
+                                    
+                                    - Imagem Principal: Pode ser uma fotografia, ilustração ou gráfico que capta a atenção e transmite a mensagem central.
+                                    - Tipografia: A escolha das fontes deve complementar a imagem e reforçar a identidade da marca.
+                                    - Cores: A paleta de cores deve ser coerente com a identidade visual da marca e ajudar a criar uma sensação de unidade.
+                                    - Elementos Gráficos: Ícones, padrões ou outros elementos visuais que adicionem profundidade e interesse.
+                                    
+                                    Quero soluções originais, personalizadas e pulo do gato
+                                    considerando seu ramo de atuação específico: {ramo_atuacao}, 
+                                    o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
+                                    {publico_alvo},e a referência da marca:
+                                    {referencia_da_marca},. 
+
+                                    
+
+                                                                                     
+                                    ''',
+                                    agent=agentes[13],
+                                    output_file = 'KV.md'
+                                ),
+
+# Redes Sociais
                                 Task(
                                     description='''Definição de estratégia de abordagem de cada rede social''',
                                     expected_output=f'''Em portugês brasileiro, primeiro, definir em linhas gerais a abordagem de cada rede social 
@@ -361,33 +395,7 @@ def planej_midias_page():
                                     output_file = 'Criativos.md'
                                 ),
 
-                            #SEO
-                            #Saude Site
-                            
-                                Task(
-                                    description="Desenvolver relatório de performance do site do planejamento estratégico.",
-                                    expected_output=f''' Em portugês brasileiro, Um relatório minuciosamente detalhado sobre a saúde do site para {nome_cliente}
-                                    que contém as etapas:
-                                    
-                                    -Um relatório para TODAS as páginas em {performance_metrics_df} sobre a performance do site do dito cliente: {site_cliente}
-                                    que detalha todas as métricas observadas página por página, conforme explicitado em: ({performance_metrics_df}):
 
-                                    para cada uma das páginas, retornar:
-                                        -URL
-                                        -Status Code
-                                        -Load Time (s)
-                                        -Content Length (KB)
-                                        -Title
-                                        -Meta Description
-                                        -H1 Tags'
-                                        -Word Count
-                                        -Robots Meta
-                                        -Canonical Tag
-                                        -Sugestões detalhadas para melhora da página.
-                           ''',
-                                    agent=agentes[9],
-                                    output_file = 'performance.md'
-                                ),
 
                             #Palavras Chave
                             
@@ -408,77 +416,7 @@ def planej_midias_page():
 
                             
 
-                            #CRM
-                                Task(
-                                    description="Criar a estratégia de CRM.",
-                                    expected_output=f'''
-
-                                    Gere um documento no formato abaixo adaptado para as necessidades({intuito_plano}) de {nome_cliente}
-                                    
-                                    Relatório de CRM para {nome_cliente}
-
-                                        Objetivo: Desenvolver uma abordagem centrada no cliente, com foco em segmentação e compreensão profunda das necessidades, comportamentos e expectativas de diferentes grupos de clientes. A seguir, apresento um planejamento estratégico detalhado para atingir esse objetivo, considerando o ramo de atuação: {ramo_atuacao}, o intuito do plano: {intuito_plano}, o público-alvo: {publico_alvo} e a referência da marca: {referencia_da_marca}.
-                                        
-                                        1. Segmentação e Compreensão do Cliente
-                                        Análise de dados dos clientes:
-                                        Segmentação dos clientes por características demográficas, comportamentais e psicográficas.
-                                        Mapeamento das necessidades, expectativas e pontos de dor de cada grupo de clientes.
-                                        Objetivo: Obter uma compreensão clara dos diferentes perfis de clientes para personalizar as estratégias.
-                                        2. Coleta e Análise de Dados Relevantes
-                                        Fontes de dados a serem coletadas:
-                                        Histórico de compras (frequência, valores, produtos adquiridos).
-                                        Comportamento digital (interações no site, redes sociais, cliques, tempo de navegação).
-                                        Feedback de clientes (pesquisas de satisfação, Net Promoter Score - NPS).
-                                        Objetivo: Obter uma visão 360º do cliente para basear as ações de marketing e relacionamento.
-                                        3. Desenvolvimento de Estratégias de Comunicação Personalizadas
-                                        Canais a serem utilizados:
-                                        E-mail marketing, mensagens SMS, redes sociais, notificações push.
-                                        Mensagens personalizadas:
-                                        Criação de campanhas direcionadas para cada segmento (promoções, novos produtos, eventos especiais).
-                                        Personalização da comunicação com base em dados de compras e comportamento.
-                                        Objetivo: Maximizar a relevância e eficácia das mensagens enviadas, com base nas preferências do cliente.
-                                        4. Implementação de Ferramentas de Automação de Marketing
-                                        Ferramentas recomendadas:
-                                        Automação de e-mail (ex: envio de e-mails para abandono de carrinho).
-                                        CRM para centralização de dados de clientes, histórico e interações.
-                                        Objetivo: Automatizar a comunicação e personalizar a experiência de forma escalável.
-                                        5. Programas de Fidelidade e Engajamento
-                                        Desenvolvimento de programas de fidelidade:
-                                        Oferecer recompensas, pontos ou benefícios exclusivos para clientes frequentes.
-                                        Ações de engajamento:
-                                        Manter o cliente envolvido com a marca através de conteúdos exclusivos, eventos, ofertas especiais.
-                                        Objetivo: Aumentar a lealdade e a retenção dos clientes.
-                                        6. Otimização do Atendimento ao Cliente
-                                        Canais de atendimento:
-                                        Atendimento via chat, e-mail, WhatsApp, redes sociais.
-                                        Treinamento das equipes:
-                                        Capacitação da equipe de atendimento para oferecer um serviço personalizado e rápido.
-                                        Objetivo: Garantir uma excelente experiência para o cliente, resolvendo suas dúvidas e problemas de maneira eficiente.
-                                        7. Promoção da Retenção e Maximização do Valor do Cliente
-                                        Estratégias de retenção:
-                                        Programas de fidelização, follow-ups pós-compra, promoções personalizadas.
-                                        Ações para reengajar clientes inativos.
-                                        Maximização do valor do cliente (CLV):
-                                        Estratégias para aumentar o ticket médio e a frequência de compras (ex: upselling, cross-selling).
-                                        Objetivo: Maximizar o Lifetime Value (LTV) do cliente, promovendo sua permanência e aumentando suas compras ao longo do tempo.
-                                        8. Integração entre Equipes de Marketing, Vendas e Atendimento
-                                        Coordenação das equipes:
-                                        Compartilhamento de dados e informações entre marketing, vendas e atendimento.
-                                        Utilização de um CRM centralizado para manter todos os departamentos alinhados.
-                                        Objetivo: Criar uma abordagem consistente e eficaz em todas as interações com o cliente, garantindo uma comunicação sem falhas.
-                                        9. Soluções Personalizadas para {nome_cliente}
-                                        Considerações específicas:
-                                        Ajustar as estratégias para o ramo de atuação: {ramo_atuacao}, com foco em personalizar a experiência de acordo com as necessidades do público-alvo de {publico_alvo}.
-                                        Adaptar as campanhas de CRM com base na referência da marca: {referencia_da_marca}.
-                                        Objetivo: Criar soluções originais e eficazes que atendam às necessidades e expectativas de {nome_cliente}, alinhadas com sua identidade de marca.
-                                                                            
-                                    
-                                    
-                                    ''',
-                                    agent=agentes[11],
-                                    output_file = 'CRM.md'
-                                ),
-
+                           
                             #Marca/Design
                                 Task(
                                     description="Criar a estratégia de marca e design.",
@@ -499,9 +437,8 @@ def planej_midias_page():
                                 ),
 
                                 Task(
-                                description=f'''Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital, 
-                                Levando em conta a análise PEST, Tom de Voz, Buyer Persona, Brando Persona, Público alvo, posicionamento de marca, 
-                                    análise SWOT e golden circle gerados, Criar as editorias de conteúdo da marca considerando a identidade, os objetivos 
+                                description=f'''Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital,
+                                Criar as editorias de conteúdo da marca considerando a identidade, os objetivos 
                                     da marca e o público-alvo.''',
                                 expected_output=f'''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca ({intuito_plano}) ,e a referência da marca:
                                     {referencia_da_marca},. 
@@ -541,20 +478,21 @@ def planej_midias_page():
 
                         #Printando Tarefas
 
-                        st.header('Planejamento de Mídias')
-                        st.subheader('1 Plano para Redes')
+                        st.header('Plano de Redes Sociais e Mídias')
+                        st.subheader('1 Plano de Key Visual')
                         st.markdown(tarefas_midia[0].output.raw)
-                        st.subheader('2 Plano para Criativos')
+                        st.subheader('2 Plano para Redes')
                         st.markdown(tarefas_midia[1].output.raw)
-                        st.subheader('3 SEO')
-                        st.subheader('3.1 Análise de Saúde do Site')
+                        st.subheader('3 Plano para Criativos - Redes')
                         st.markdown(tarefas_midia[2].output.raw)
-                        st.subheader('3.2 Sugestões de palavras chave')
+                        st.subheader('4 SEO')
+                        st.subheader('4.1 Sugestões de palavras chave')
                         st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('4 Plano de Design/Marca')
+                        st.subheader('5 Plano de Design/Marca')
+                        st.markdown(tarefas_midia[4].output.raw)
+                        st.subheader('6 Estratégia de Conteúdo')
                         st.markdown(tarefas_midia[5].output.raw)
-                        st.subheader('5 Estratégia de Conteúdo')
-                        st.markdown(tarefas_midia[6].output.raw)
+
 
                         
 
