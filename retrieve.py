@@ -59,16 +59,32 @@ def visualizar_planejamentos():
         st.subheader('2.5 Tom de Voz')
         st.markdown(f"**Tom de Voz:** {selected_planejamento.get('Tom_Voz')}")
         
-        st.header('3. Etapa de Planejamento de Mídias')
-        st.subheader('3.1 Plano para Redes Sociais')
+        st.header('3. Etapa de Planejamento de Mídias e Redes Sociais')
+
+        st.subheader('3.1 Visual')
+
+        st.markdown(f"**Estruturação do KV:** {selected_planejamento.get('KV')}")
+
         st.markdown(f"**Redes Sociais:** {selected_planejamento.get('Plano_Redes')}")
 
         st.subheader('3.2 Plano para Criativos')
         st.markdown(f"**Criativos:** {selected_planejamento.get('Plano_Criativos')}")
         
         st.subheader('3.3 Plano de SEO')
-        st.markdown(f"**Relatório de Saúde de Site:** {selected_planejamento.get('Plano_Saude_Site')}")
         st.markdown(f"**Plano de Palavras Chave:** {selected_planejamento.get('Plano_Palavras_Chave')}")
+
+
+         task_outputs = {
+        "id_planejamento": 'Plano de Mídias' +'_'+ nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
+        "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
+        "tipo_plano": 'Plano de Mídias',
+        "KV": tarefas_midia[0].output.raw,
+        "Plano_Redes": tarefas_midia[1].output.raw,
+        "Plano_Criativos": tarefas_midia[2].output.raw,
+        "Plano_Palavras_Chave": tarefas_midia[3].output.raw,
+        "Plano_Design": tarefas_midia[4].output.raw,
+        "Estrategia_Conteudo": tarefas_midia[5].output.raw,
+    }
 
    
         
