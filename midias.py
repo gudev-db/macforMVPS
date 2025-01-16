@@ -104,20 +104,10 @@ def planej_midias_page():
     st.subheader("(Opcional) Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
-    # Step 2. Executing a simple search query
-    politic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital?")
-    economic = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-    social = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-    tec = client1.search("Considerando o cliente {nome_cliente} no ramo de atuação {ramo_atuacao}, Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para planejamento estratégico de marketing digital??")
-
-
+   
     vis_chave = client1.search("Quais são os elementos visuais chave utilizados em campanhas de marketing por empresas no ramo de atuação: {ramo_atuacao}?")
 
 
-    performance_metrics_df = SEOtools.check_website_performance(site_cliente)
-    website_all_texts = SEOtools.scrape_all_texts(site_cliente)
-
-    info_concorrente = SEOtools.scrape_all_texts(site_concorrentes)
 
   
 
