@@ -215,7 +215,7 @@ def planej_midias_page():
                             ),
                             Agent(
                                 role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site ({performance_metrics_df}) e na concorrência .''',
+                                goal=f'''Melhorar o SEO de {nome_cliente}.''',
                                 backstory=f'''Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} 
                                 nos motores de busca, com base na análise do conteúdo existente e da concorrência.''',
                                 allow_delegation=False,
