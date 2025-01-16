@@ -20,7 +20,7 @@ import SEOtools
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0.125,
+    temperature=0.225,
     frequency_penalty=0.5
 )
 
@@ -47,12 +47,11 @@ def save_to_mongo_crm(tarefas_crm, nome_cliente):
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "tipo_planejamento": 'CRM',
         "Plano_Estrategia_CRM": tarefas_crm[0].output.raw,
-        "Plano_Contato_Email": tarefas_crm[1].output.raw,
-        "Plano_Contato_SMS_WhatsApp": tarefas_crm[2].output.raw,
-        "Plano_Contato_NPS": tarefas_crm[3].output.raw,
-        "Plano_Analise_Dados_CRM": tarefas_crm[4].output.raw,
-        "Plano_Automacao_CRM": tarefas_crm[5].output.raw,
-        "Recomend_Software": tarefas_crm[6].output.raw
+        "Plano_Fluxo_CRM": tarefas_crm[1].output.raw,
+        "Plano_Contato_Email": tarefas_crm[2].output.raw,
+        "Plano_Contato_SMS_WhatsApp": tarefas_crm[3].output.raw,
+        "Plano_Contato_NPS": tarefas_crm[4].output.raw,
+        "Recomend_Software": tarefas_crm[5].output.raw
     }
 
     # Insert the document into MongoDB
@@ -349,9 +348,9 @@ def planej_crm_page():
         output_file='estrategia_crm.md'
     ),
 
-    # Task de Estratégia de contato com o cliente Email
+    # Task de Fluxo de CRM
     Task(
-        description="estratégia de contato com o cliente.",
+        description="Fluxo de CRM.",
         expected_output=f'''
 
         Informações Gerais do Cliente:
@@ -374,15 +373,16 @@ def planej_crm_page():
         Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
         Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
 
-        - Ideias de **E-mail Marketing**: 10 emails devidamente redigidos com campos de 1: Assunto; 2: Saudações, 3: Corpo Principal (dois parágrafos chamativos, personalizados e não genéricos), 4: CTA.
+        - Proposta de fluxo de CRM que melhor atenda as necessidades do cliente e se melhor encaixe com suas características de negócio. Cada etapa extremamente detalhada com exatamente
+        o que deve ser feito e porque.
         ''',
         agent=agentes_crm[2],
-        output_file='estrategia_email_crm.md'
+        output_file='estrategia_fluxo_crm.md'
     ),
                             
     # Task de Estratégia de contato com o cliente SMS Whatsapp
     Task(
-        description="estratégia de contato com o cliente.",
+        description="estratégia de contato com o cliente por mensagem.",
         expected_output=f'''
         Informações Gerais do Cliente:
 
@@ -409,6 +409,37 @@ def planej_crm_page():
         agent=agentes_crm[2],
         output_file='estrategia_sms_crm.md'
     ),
+,
+                            
+    # Task de Estratégia de contato com o cliente email
+    Task(
+        description="estratégia de contato com o cliente po email.",
+        expected_output=f'''
+        Informações Gerais do Cliente:
+
+        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
+        Objetivos da Marca:
+        
+        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
+        Informações sobre o CRM:
+        
+        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+        A maturidade em CRM da empresa é {maturidade_crm}.
+        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+        O perfil da empresa é {perfil_empresa}.
+        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+        A descrição do negócio é: {descricao_negocio}.
+        O tamanho da base de dados de clientes é {tamanho_base}.
+        O tom de voz desejado para a comunicação é {tom_voz}.
+        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
+
+        - Ideias de **Email**: 10 emails devidamente redigidos a serem enviados para marketing direto com o consumidor.
+        ''',
+        agent=agentes_crm[2],
+        output_file='estrategia_email_crm.md'
+    ),
 
      # Task de Estratégia de contato com o cliente NPS
     Task(
@@ -422,90 +453,9 @@ def planej_crm_page():
         output_file='estrategia_nps_crm.md'
     ),
                             
-    
-    # Fluxo CRM
-    Task(
-        description="Delineamento de propostas de fluxo de CRM.",
-        expected_output=f'''
-        Informações Gerais do Cliente:
-
-        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
-        Objetivos da Marca:
-        
-        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
-        Informações sobre o CRM:
-        
-        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
-        A maturidade em CRM da empresa é {maturidade_crm}.
-        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
-        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
-        O perfil da empresa é {perfil_empresa}.
-        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
-        A descrição do negócio é: {descricao_negocio}.
-        O tamanho da base de dados de clientes é {tamanho_base}.
-        O tom de voz desejado para a comunicação é {tom_voz}.
-        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
-        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
-
-        **Objetivo:** Delineamento de propostas de fluxo de CRM..
-
-
-        **Plano de Ação**:
-        - delinear aprodundada e detalhadamente o fluxo de CRM.
-        ''',
-        agent=agentes_crm[1],
-        output_file='fluxo_crm.md'
-    ),
-    
    
-    
-  
+
     # Task de Análise de Performance de CRM
-    Task(
-        description="Monitorar e analisar a performance das ações de CRM.",
-        expected_output=f'''
-        **Análise de Performance de CRM para {nome_cliente}**
-
-        Informações Gerais do Cliente:
-
-        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
-        Objetivos da Marca:
-        
-        O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
-        Informações sobre o CRM:
-        
-        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
-        A maturidade em CRM da empresa é {maturidade_crm}.
-        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
-        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
-        O perfil da empresa é {perfil_empresa}.
-        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
-        A descrição do negócio é: {descricao_negocio}.
-        O tamanho da base de dados de clientes é {tamanho_base}.
-        O tom de voz desejado para a comunicação é {tom_voz}.
-        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
-        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
-
-        **Objetivo:** Avaliar a eficácia das campanhas de CRM e ajustar conforme necessário.
-
-        **Indicadores a Monitorar**:
-        - **Taxa de Conversão de Leads**: Acompanhar a taxa de conversão de cada fluxo de nutrição e campanha de abandono de carrinho.
-        - **Retenção de Clientes**: Monitorar a retenção mensal de clientes que participam do programa de fidelidade.
-        - **Satisfação do Cliente**: Analisar o Net Promoter Score (NPS) e os resultados de pesquisas de satisfação.
-
-        **Ações de Ajuste**:
-        - Ajustar campanhas de e-mail marketing com base na taxa de abertura e cliques.
-        - Refinar os fluxos de nutrição de leads para melhorar a taxa de conversão, com foco no envio de conteúdo relevante.
-
-        **Plano de Ação**:
-        - Gerar relatórios semanais de desempenho.
-        - Ajustar campanhas com base em métricas de sucesso e feedback dos clientes.
-        ''',
-        agent=agentes_crm[4],
-        output_file='analise_performance_crm.md'
-    )
-
-,    # Task de Análise de Performance de CRM
     Task(
         description="Monitorar e analisar a performance das ações de CRM.",
         expected_output=f'''
@@ -558,21 +508,18 @@ def planej_crm_page():
                         st.header('Planejamento de CRM')
                         st.subheader('1. Estratégia Geral de CRM')
                         st.markdown(tarefas_crm[0].output.raw)
-                        st.subheader('2. Gestão de contato com o cliente - Email')
+                        st.subheader('1.1 Fluxo Geral de CRM')
                         st.markdown(tarefas_crm[1].output.raw)
-                        st.subheader('3. Gestão de contato com o cliente - SMS/Whatsapp')
+                        st.subheader('2. Gestão de contato com o cliente - Email')
                         st.markdown(tarefas_crm[2].output.raw)
-                        st.subheader('4. Gestão de contato com o cliente - NPS')
+                        st.subheader('3. Gestão de contato com o cliente - SMS/Whatsapp')
                         st.markdown(tarefas_crm[3].output.raw)
-
-                        st.subheader('5. Delineamento de fluxo de CRM')
+                        st.subheader('4. Gestão de contato com o cliente - NPS')
                         st.markdown(tarefas_crm[4].output.raw)
 
-                        st.subheader('6. Automação de CRM')
-                        st.markdown(tarefas_crm[5].output.raw)
 
                         st.subheader('7. Software de CRM')
-                        st.markdown(tarefas_crm[6].output.raw)
+                        st.markdown(tarefas_crm[5].output.raw)
 
 
 
