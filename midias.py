@@ -17,7 +17,7 @@ from pymongo import MongoClient
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0.3,
+    temperature=0.5,
     frequency_penalty=0.5
 )
 
@@ -300,16 +300,16 @@ def planej_midias_page():
                                     O objetivo do Key Visual é criar uma identidade visual forte e reconhecível 
                                     que ressoe com o público-alvo e reforce a mensagem da marca.
 
-                                    - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente explicitados em: {vis_chave}.
+                                    - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente como refer explicitados em: {vis_chave}.
 
-                                    O Key Visual é composto pelos seguintes elementos:
+                                    Key Visual:
                                     
-                                    - Imagem Principal: Pode ser uma fotografia, ilustração ou gráfico que capta a atenção e transmite a mensagem central.
-                                    - Tipografia: A escolha das fontes deve complementar a imagem e reforçar a identidade da marca.
-                                    - Cores: A paleta de cores deve ser coerente com a identidade visual da marca e ajudar a criar uma sensação de unidade.
-                                    - Elementos Gráficos: Ícones, padrões ou outros elementos visuais que adicionem profundidade e interesse.
+                                    - Definição detalhada da Imagem Principal: Pode ser uma fotografia, ilustração ou gráfico que capta a atenção e transmite a mensagem central.
+                                    - Definição detalhada da Tipografia: A escolha das fontes deve complementar a imagem e reforçar a identidade da marca.
+                                    - Definição detalhada das Cores: A paleta de cores deve ser coerente com a identidade visual da marca e ajudar a criar uma sensação de unidade.
+                                    - Definição detalhada dos Elementos Gráficos: Ícones, padrões ou outros elementos visuais que adicionem profundidade e interesse.
                                     
-                                    Quero soluções originais, personalizadas e pulo do gato
+                                    Serão soluções originais, personalizadas, detalhadas, explicitadas e pulo do gato
                                     considerando seu ramo de atuação específico: {ramo_atuacao}, 
                                     o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo},e a referência da marca:
