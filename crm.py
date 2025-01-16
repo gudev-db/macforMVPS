@@ -409,7 +409,7 @@ def planej_crm_page():
         agent=agentes_crm[2],
         output_file='estrategia_sms_crm.md'
     ),
-,
+
                             
     # Task de Estratégia de contato com o cliente email
     Task(
@@ -518,7 +518,7 @@ def planej_crm_page():
                         st.markdown(tarefas_crm[4].output.raw)
 
 
-                        st.subheader('7. Software de CRM')
+                        st.subheader('5. Software de CRM')
                         st.markdown(tarefas_crm[5].output.raw)
 
 
@@ -526,7 +526,6 @@ def planej_crm_page():
                         
 
                         save_to_mongo_crm(tarefas_crm , nome_cliente)
-
 
 
 
