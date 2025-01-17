@@ -1,7 +1,0 @@
-/* Definindo a fonte Poppins para todo o aplicativo */
-* {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Se você quiser garantir que o Poppins seja carregado, adicione a seguinte linha para importar a fonte do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
