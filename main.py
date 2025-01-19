@@ -21,6 +21,7 @@ st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
 
 
 
+gemini_api_key = os.getenv("GEM_API_KEY")
 
 
 # Configuração do ambiente da API
