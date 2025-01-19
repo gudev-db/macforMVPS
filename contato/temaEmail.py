@@ -8,6 +8,7 @@ genai.configure(api_key=gemini_api_key)
 
 # Function to generate email themes and display results
 def gen_temas_emails():
+    llm = genai.GenerativeModel("gemini-1.5-flash")
     st.subheader("Informações do remetente")
     
     # Input fields for sender's details
@@ -33,7 +34,7 @@ def gen_temas_emails():
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 """
                 try:
-                    response = genai.generate_content(prompt, model="gemini-1.5-flash")
+                    response = llm.generate_content(prompt)
                     st.success("Temas e emails gerados com sucesso!")
                     st.subheader("Temas e Emails")
                     st.markdown(response.result)
