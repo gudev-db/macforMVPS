@@ -84,10 +84,19 @@ objetivos_opcoes = [
 
 
 
-
 def planej_mkt_page():
     # Buscar todos os clientes do banco de dados
-    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
+    clientes = list(db_clientes.find({}, {
+        "_id": 0, 
+        "nome": 1, 
+        "site": 1, 
+        "ramo": 1, 
+        "concorrentes": 1, 
+        "intuito": 1, 
+        "publicoAlvo": 1, 
+        "referenciaMarca": 1, 
+        "siteConcorrentes": 1
+    }))
 
     # Criar uma lista para o selectbox
     opcoes_clientes = [cliente["nome"] for cliente in clientes]
@@ -100,19 +109,36 @@ def planej_mkt_page():
 
     # Preencher os campos automaticamente com as informações do cliente
     if cliente_info:
-        site_cliente = cliente_info["site"]
-        ramo_atuacao = cliente_info["ramo"]
+        site_cliente = cliente_info.get("site", "")
+        ramo_atuacao = cliente_info.get("ramo", "")
+        concorrentes = cliente_info.get("concorrentes", "")
+        site_concorrentes = cliente_info.get("siteConcorrentes", "")
+        intuito_plano = cliente_info.get("intuito", "")
+        publico_alvo = cliente_info.get("publicoAlvo", "")
+        referencia_marca = cliente_info.get("referenciaMarca", "")
     else:
         site_cliente = ""
         ramo_atuacao = ""
+        concorrentes = ""
+        site_concorrentes = ""
+        intuito_plano = ""
+        publico_alvo = ""
+        referencia_marca = ""
 
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
     st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
-    intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
-    publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
-    concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
-    site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
+    st.text_input('Concorrentes:', value=concorrentes, key="concorrentes")
+    st.text_input('Site dos Concorrentes:', value=site_concorrentes, key="site_concorrentes")
+    st.text_input('Intuito do Plano Estratégico:', value=intuito_plano, key="intuito_plano")
+    st.text_input('Público-Alvo:', value=publico_alvo, key="publico_alvo")
+    st.text_area(
+        'Referência da Marca:', 
+        value=referencia_marca, 
+        key="referencia_marca", 
+        height=200  
+    )
+
 
     # Criando o selectbox com as opções definidas
     objetivos_de_marca = st.selectbox(
@@ -120,12 +146,7 @@ def planej_mkt_page():
         objetivos_opcoes,
         key="objetivos_marca"
     )
-    referencia_da_marca = st.text_area(
-    'O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?',
-    key="referencias_marca",
-    placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.",
-    height=200  # Adjust the height in pixels as needed
-)    
+   
 
     # Tendências
     tendencias = st.text_input('Quais tendências gostaria que o agente pesquisasse?',placeholder="Ex: IA, otimização de CRM, ...")
