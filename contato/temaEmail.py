@@ -29,9 +29,10 @@ def gen_temas_emails():
             with st.spinner("Gerando temas e emails..."):
                 # Generate email themes using the Gemini model
                 prompt = f"""
-                Crie 10 temas de emails específicos para cada uma das segmentações de leads conforme {destinatarios}. 
+                Crie pelo menos 5 temas de emails específicos para CADA UMA das segmentações de leads conforme {destinatarios}. 
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
+                Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE.
                 """
                 try:
                     response = llm.generate_content(prompt)
