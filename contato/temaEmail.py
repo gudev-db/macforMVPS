@@ -37,7 +37,7 @@ def gen_temas_emails():
                     response = llm.generate_content(prompt)
                     st.success("Temas e emails gerados com sucesso!")
                     st.subheader("Temas e Emails")
-                    st.markdown(response.result)
+                    st.markdown(response.text)
                 except Exception as e:
                     st.error(f"Erro ao gerar temas e emails: {e}")
 
