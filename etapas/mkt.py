@@ -96,7 +96,7 @@ def planej_mkt_page():
     nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
 
     # Obter as informações do cliente selecionado
-    cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente_selecionado), None)
+    cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
 
     # Preencher os campos automaticamente com as informações do cliente
     if cliente_info:
