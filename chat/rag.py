@@ -66,13 +66,7 @@ def mistral_rag_app():
         response_text = response.choices[0].message.content
         return response_text
 
-    # Set up the Streamlit app configuration
-    st.set_page_config(
-        page_title="Mistral RAG App",
-        page_icon="🔍",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+   
 
     # Initialize session state for chat history and PDF context
     if 'chat_history' not in st.session_state:
@@ -126,6 +120,6 @@ def mistral_rag_app():
     st.markdown("""
     <hr>
     <div style="text-align: center;">
-        <small>Powered by Mistral</small>
+        <small>Macfor AI</small>
     </div>
     """, unsafe_allow_html=True)
