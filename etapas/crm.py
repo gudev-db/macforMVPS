@@ -29,6 +29,10 @@ client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5
 db = client['arquivos_planejamento']  # Replace with your database name
 collection = db['auto_doc'] 
 
+banco = client["arquivos_planejamento"]
+db_clientes = banco["clientes"]  #info clientes
+
+
 import uuid
 
 # Função para gerar um ID único para o planejamento
