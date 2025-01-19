@@ -12,6 +12,7 @@ import os
 from tavily import TavilyClient
 from etapas.midias import planej_midias_page
 from etapas.crm import planej_crm_page
+from chat.rag import mistral_rag_app
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="static/page-icon.png")  
