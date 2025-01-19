@@ -130,7 +130,7 @@ def gen_temas_emails():
                                 backstory=f'''Você é um analista de mídias, detalhista, criativo, multicultural. Você regige temas e emails para nutrição de leads''',
                                 allow_delegation=False,
                                 llm=llm,
-                                tools=[]
+                                tools=[])
                            
                         ]
 
@@ -173,7 +173,6 @@ def gen_temas_emails():
                       
                     
                         save_to_mongo_temas(tarefas_tema, nome_cliente)
-
 
 
 
