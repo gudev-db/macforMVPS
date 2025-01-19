@@ -32,7 +32,7 @@ def gen_temas_emails():
                 Crie um cronograma anual de temas de emails específicos para CADA UMA das segmentações de leads conforme {destinatarios} com fins de nutrição de leads. 
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
-                Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela.
+                Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
                 """
                 try:
                     response = llm.generate_content(prompt)
