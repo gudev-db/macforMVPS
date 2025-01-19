@@ -15,7 +15,7 @@ from midias import planej_midias_page
 from crm import planej_crm_page
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
-                  page_icon="/static/page-icon.png")  
+                  page_icon="static/page-icon.png")  
 
 
 
@@ -40,7 +40,7 @@ def limpar_estado():
 from crewai_tools import BaseTool, tool
 
 
-st.image('/static/macLogo.png', width=300)
+st.image('static/macLogo.png', width=300)
 #st.title('Macfor AI Solutions')
 
 
