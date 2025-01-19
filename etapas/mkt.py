@@ -120,7 +120,7 @@ def planej_mkt_page():
         site_concorrentes = cliente_info.get("siteConcorrentes", "")
         intuito_plano = cliente_info.get("intuito", "")
         publico_alvo = cliente_info.get("publicoAlvo", "")
-        referencia_marca = cliente_info.get("referenciaMarca", "")
+        referencia_da_marca = cliente_info.get("referenciaMarca", "")
     else:
         site_cliente = ""
         ramo_atuacao = ""
@@ -128,7 +128,7 @@ def planej_mkt_page():
         site_concorrentes = ""
         intuito_plano = ""
         publico_alvo = ""
-        referencia_marca = ""
+        referencia_da_marca = ""
 
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
