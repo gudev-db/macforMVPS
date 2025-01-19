@@ -33,7 +33,7 @@ def gen_temas_emails():
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 """
                 try:
-                    response = genai.generate_text(prompt, model="gemini-1.5-flash")
+                    response = genai.generate_content(prompt, model="gemini-1.5-flash")
                     st.success("Temas e emails gerados com sucesso!")
                     st.subheader("Temas e Emails")
                     st.markdown(response.result)
