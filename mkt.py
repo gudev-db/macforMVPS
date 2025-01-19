@@ -7,12 +7,9 @@ from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
 from crewai_tools import tool
-from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
-import SEOtools
-#from equipe import agentes
 
 
 
@@ -124,8 +121,6 @@ def planej_mkt_page():
     tend_novids = client1.search(f"Quais as recentes tendências de mercado para {tendencias}?")
     tend_ramo = client1.search(f"Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?")
 
-    performance_metrics_df = SEOtools.check_website_performance(site_cliente)
-    website_all_texts = SEOtools.scrape_all_texts(site_cliente)
 
 
   
@@ -238,7 +233,7 @@ def planej_mkt_page():
                             ),
                             Agent(
                                 role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site ({performance_metrics_df}) e na concorrência .''',
+                                goal=f'''Melhorar o SEO de {nome_cliente}''',
                                 backstory=f'''Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} 
                                 nos motores de busca, com base na análise do conteúdo existente e da concorrência.''',
                                 allow_delegation=False,
@@ -323,7 +318,7 @@ def planej_mkt_page():
                                 
                                 Task(
                                     description="Criar a Matriz SWOT.",
-                                    expected_output=f'''Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts},e a referência da marca:
+                                    expected_output=f'''Considerando o seguinte contexto a referência da marca:
                                     {referencia_da_marca},
                                     realize a Análise SWOT completa em formato de tabela em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
@@ -362,8 +357,8 @@ def planej_mkt_page():
                                 Task(
                                     description="Desenvolver o Golden Circle.",
                                     expected_output=f'''Golden Circle completo com 'how', 'why' e 'what' resumidos 
-                                    em uma frase cada em português brasileiro. Considerando o seguinte contexto (texto raspado do site do cliente {nome_cliente}) 
-                                    :{website_all_texts}, e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    em uma frase cada em português brasileiro. Considerando o seguinte contexto 
+                                     e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},''',
                                     agent=agentes[3],
                                     output_file = 'GC.md'
@@ -407,8 +402,9 @@ def planej_mkt_page():
                                 Task(
                                     description="Criar a Brand Persona.",
                                     expected_output=f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
-                                    seguinte contexto (texto raspado do site do cliente {nome_cliente}) :{website_all_texts}
-                                    , e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    seguinte contexto 
+                                    
+                                    o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
                                     
                                     - Defina seu nome (deve ser o nome de uma pessoa normal como fernando pessoa, maria crivellari, etc)
