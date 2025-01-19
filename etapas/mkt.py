@@ -107,8 +107,8 @@ def planej_mkt_page():
         ramo_atuacao = ""
 
     # Exibir os campos preenchidos com os dados do cliente
-    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente", disabled=True)
-    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao", disabled=True)
+    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
+    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
     intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
     concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
