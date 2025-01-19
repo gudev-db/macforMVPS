@@ -116,7 +116,7 @@ def gen_temas_emails():
         else:
             # Validação de entrada e geração de relatório
             if st.button('Iniciar Planejamento'):
-                if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
+                if not nome_cliente or not ramo_atuacao:
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
                     with st.spinner('Gerando o planejamento...'):
