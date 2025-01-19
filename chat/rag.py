@@ -82,7 +82,7 @@ def mistral_rag_app():
     with st.sidebar:
         st.title('Mistral RAG Chatbot')
         st.button('Clear Chat History', on_click=clear_chat_history, type='primary')
-        uploaded_file = st.file_uploader("Upload your PDF file", type=["pdf"], help="Upload your PDF file here.")
+        uploaded_file = st.file_uploader("Suba seu arquivo PDF aqui!", type=["pdf"], help="Upload your PDF file here.")
         if uploaded_file is not None:
             st.success("PDF File Uploaded!")
             text = extract_text_from_pdf(uploaded_file.read())
@@ -91,11 +91,11 @@ def mistral_rag_app():
             st.session_state.pdf_context = text
 
     # Main interface
-    st.header('Mistral RAG Chatbot')
-    st.subheader('Upload a PDF and ask questions!')
+    st.header('Chat PDF')
+    st.subheader('Suba seu PDF e faça perguntas!')
 
     # Display the chat interface
-    prompt = st.chat_input("Ask a question about the PDF:", key="user_input")
+    prompt = st.chat_input("Faça uma pergunta sobre seu PDF:", key="user_input")
 
     # Handle the user prompt and generate response
     if prompt:
