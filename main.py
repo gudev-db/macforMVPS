@@ -37,6 +37,9 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
+genai.configure(api_key=gemini_api_key)
+llm = genai.GenerativeModel("gemini-1.5-flash")
+
 def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
