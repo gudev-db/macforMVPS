@@ -79,7 +79,7 @@ def gen_temas_emails():
   
     
     # Selectbox para escolher o cliente
-    nome_cliente = st.text('Digite o nome do remetente dos emails:')
+    nome_cliente = st.text_input('Digite o nome do remetente dos emails:')
 
     # Exibir os campos preenchidos com os dados do cliente
     ramo_atuacao = st.text_input('Ramo de Atuação:')
