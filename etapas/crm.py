@@ -13,7 +13,12 @@ from pymongo import MongoClient
 
 
 
+# Configuração do ambiente da API
+api_key = os.getenv("OPENAI_API_KEY")
+t_api_key1 = os.getenv("T_API_KEY")
 
+
+client = TavilyClient(api_key=t_api_key1)
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
