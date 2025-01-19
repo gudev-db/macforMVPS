@@ -7,8 +7,7 @@ from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
 from etapas.mkt import planej_mkt_page
-from retrieve import visualizar_planejamentos
-#from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
+from tools.retrieve import visualizar_planejamentos
 import os
 from tavily import TavilyClient
 from etapas.midias import planej_midias_page
@@ -75,38 +74,41 @@ def login():
 if login():
     # Interface do Streamlit
 
-    # Botões para escolher o tipo de documento com unique keys
-    if st.button('Plano Estratégico de Pesquisa', key='mkt_1'):
-        st.session_state.tipo_documento = 'Plano Estratégico e de Pesquisa'
-        st.success('Você escolheu o Plano Estratégico e de Pesquisa!')
+    # Sidebar com selectbox para escolher o tipo de documento
+    menu_options = [
+        "Selecione uma opção",  # Valor inicial padrão
+        "Plano Estratégico e de Pesquisa",
+        "Plano Estratégico de Mídias",
+        "Plano de CRM",
+        "Visualizar documentos gerados"
+    ]
 
-    if st.button('Plano Estratégico de Mídias', key='mkt_2'):
-        st.session_state.tipo_documento = 'Plano Estratégico de Mídias'
-        st.success('Você escolheu o Plano Estratégico de Mídias!')
+    # Guardando a escolha do usuário na session state
+    tipo_documento = st.sidebar.selectbox(
+        "Escolha o que deseja fazer:",
+        menu_options,
+        key="menu_options"  # Chave única para armazenar no session_state
+    )
 
-    if st.button('Plano de CRM', key='mkt_3'):
-        st.session_state.tipo_documento = 'Plano de CRM'
-        st.success('Você escolheu o Plano de CRM!')
-
-    if st.button('Visualizar documentos gerados', key='view_1'):
-        st.session_state.tipo_documento = 'Visualizar documentos gerados'
-        st.success('Você escolheu Visualizar documentos gerados!')
+    if tipo_documento != "Selecione uma opção":  # Ignorar a opção padrão
+        st.session_state.tipo_documento = tipo_documento
+        st.sidebar.success(f"Você escolheu: {tipo_documento}!")
 
     # Exibindo o conteúdo relacionado ao tipo de documento escolhido
     if "tipo_documento" in st.session_state:
         tipo_documento = st.session_state.tipo_documento
 
-        if tipo_documento == 'Plano Estratégico e de Pesquisa':
+        if tipo_documento == "Plano Estratégico e de Pesquisa":
             planej_mkt_page()
-          
-        elif tipo_documento == 'Plano Estratégico de Mídias':
+
+        elif tipo_documento == "Plano Estratégico de Mídias":
             planej_midias_page()
 
-        elif tipo_documento == 'Plano de CRM':
+        elif tipo_documento == "Plano de CRM":
             planej_crm_page()
 
-        elif tipo_documento == 'Visualizar documentos gerados':
+        elif tipo_documento == "Visualizar documentos gerados":
             visualizar_planejamentos()
-            
+
 
             
