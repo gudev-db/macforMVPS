@@ -139,8 +139,8 @@ def planej_mkt_page():
     st.text_input('Público-Alvo:', value=publico_alvo, key="publico_alvo")
     st.text_area(
         'Referência da Marca:', 
-        value=referencia_marca, 
-        key="referencia_marca", 
+        value=referencia_da_marca, 
+        key="referencia_da_marca", 
         height=200  
     )
 
