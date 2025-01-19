@@ -6,13 +6,13 @@ import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
-from mkt import planej_mkt_page
+from etapas.mkt import planej_mkt_page
 from retrieve import visualizar_planejamentos
 #from crewai_tools import FileReadTool, WebsiteSearchTool, PDFSearchTool, CSVSearchTool
 import os
 from tavily import TavilyClient
-from midias import planej_midias_page
-from crm import planej_crm_page
+from etapas.midias import planej_midias_page
+from etapas.crm import planej_crm_page
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="static/page-icon.png")  
