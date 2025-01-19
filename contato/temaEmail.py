@@ -22,7 +22,7 @@ def gen_temas_emails():
     st.subheader("Informações do(s) destinatário(s)")
     destinatarios = st.text_input("Caracterize os destinatários:")
     
-    if st.button("Gerar Temas e Emails"):
+    if st.button("Gerar Temas de Emails"):
         if not nome_cliente or not ramo_atuacao or not destinatarios:
             st.warning("Por favor, preencha todas as informações.")
         else:
@@ -32,13 +32,18 @@ def gen_temas_emails():
                 Crie 10 temas de emails específicos para cada uma das segmentações de leads conforme {destinatarios}. 
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
-                Para cada tema, redija também o email.
                 """
                 try:
                     response = llm.generate_content(prompt)
                     st.success("Temas e emails gerados com sucesso!")
-                    st.subheader("Temas e Emails")
+                    st.subheader("Temas")
                     st.markdown(response.text)
+                    
+                    emails = llm.generate_content(f'''Dados os temas em {response.text}, redija um email para cada um deles. Lembre que você é a empresa {nome_cliente} e está
+                    nutrindo seus leads''')
+                    st.subheader("Emails")
+                    st.markdown(emails.text)
+                    
                 except Exception as e:
                     st.error(f"Erro ao gerar temas e emails: {e}")
 
