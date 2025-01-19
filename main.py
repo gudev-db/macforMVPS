@@ -19,11 +19,6 @@ st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
 
 
 
-load_dotenv()
-
-api_key = os.getenv('OPENAI_API_KEY')
-MISTRAL_API_KEY = os.getenv('MISTRAL_API_KEY')
-t_api_key1 = os.getenv('T_API_KEY')
 
 
 # Configuração do ambiente da API
