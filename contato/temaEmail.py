@@ -11,6 +11,8 @@ import os
 from tavily import TavilyClient
 from pymongo import MongoClient
 import google.generativeai as genai
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 
 # Configuração do ambiente da API
