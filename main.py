@@ -13,7 +13,7 @@ from tavily import TavilyClient
 from etapas.midias import planej_midias_page
 from etapas.crm import planej_crm_page
 import google.generativeai as genai
-from contato.temaEmail import gen_temas_email
+from contato.temaEmail import gen_temas_emails
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="static/page-icon.png")  
