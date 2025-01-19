@@ -23,7 +23,7 @@ gemini_api_key = os.getenv("GEM_API_KEY")
 client = TavilyClient(api_key=t_api_key1)
 
 genai.configure(api_key=gemini_api_key)
-llm = genai.GenerativeModel("gemini-1.5-flash")
+llm = genai.GenerativeModel("models/gemini-1.5-flash")
 
 client1 = TavilyClient(api_key='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')
 
