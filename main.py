@@ -12,6 +12,7 @@ import os
 from tavily import TavilyClient
 from etapas.midias import planej_midias_page
 from etapas.crm import planej_crm_page
+from contato.temaEmail import gen_temas_email
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="static/page-icon.png")  
@@ -84,7 +85,8 @@ if login():
         "Plano Estratégico e de Pesquisa",
         "Plano Estratégico de Mídias",
         "Plano de CRM",
-        "Visualizar documentos gerados"
+        "Visualizar documentos gerados",
+        "Conteúdo de Nutrição de Leads"
     ]
 
     # Guardando a escolha do usuário na session state
@@ -113,6 +115,10 @@ if login():
 
         elif tipo_documento == "Visualizar documentos gerados":
             visualizar_planejamentos()
+        
+        elif tipo_documento == "Conteúdo de Nutrição de Leads":
+            gen_temas_emails()
+
 
 
 
