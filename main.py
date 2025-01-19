@@ -80,7 +80,8 @@ if login():
         "Plano Estratégico e de Pesquisa",
         "Plano Estratégico de Mídias",
         "Plano de CRM",
-        "Visualizar documentos gerados"
+        "Visualizar documentos gerados",
+        "Conversar com Documentos"
     ]
 
     # Guardando a escolha do usuário na session state
@@ -109,6 +110,9 @@ if login():
 
         elif tipo_documento == "Visualizar documentos gerados":
             visualizar_planejamentos()
+
+        elif tipo_documento == "Conversar com Documentos":
+            mistral_rag_app()
 
 
             
