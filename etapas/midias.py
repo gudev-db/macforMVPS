@@ -77,13 +77,33 @@ objetivos_opcoes = [
 
 def planej_midias_page():
 
-    st.subheader('Planejamento de Mídias')
+    st.subheader('Planejamento de Mídias e Redes')
                    
 
     st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
-    nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa X")
-    site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresa-x.com.br")
-    ramo_atuacao = st.text_input('Ramo de Atuação:', key="ramo_atuacao", placeholder="Ex: E-commerce de Moda")
+    # Buscar todos os clientes do banco de dados
+    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
+
+    # Criar uma lista para o selectbox
+    opcoes_clientes = [cliente["nome"] for cliente in clientes]
+
+    # Selectbox para escolher o cliente
+    nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
+
+    # Obter as informações do cliente selecionado
+    cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
+
+    # Preencher os campos automaticamente com as informações do cliente
+    if cliente_info:
+        site_cliente = cliente_info["site"]
+        ramo_atuacao = cliente_info["ramo"]
+    else:
+        site_cliente = ""
+        ramo_atuacao = ""
+
+    # Exibir os campos preenchidos com os dados do cliente
+    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
+    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
     intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
     concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
