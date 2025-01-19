@@ -23,7 +23,12 @@ gemini_api_key = os.getenv("GEM_API_KEY")
 client = TavilyClient(api_key=t_api_key1)
 
 genai.configure(api_key=gemini_api_key)
-llm = genai.GenerativeModel("models/gemini-1.5-flash")
+# call gemini model
+llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash',
+                            verbose=True,
+                            temperature=0.5,
+                            goggle_api_key=api_key)   
+
 
 client1 = TavilyClient(api_key='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')
 
