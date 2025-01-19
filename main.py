@@ -84,8 +84,7 @@ if login():
         "Plano Estratégico e de Pesquisa",
         "Plano Estratégico de Mídias",
         "Plano de CRM",
-        "Visualizar documentos gerados",
-        "Conversar com Documentos"
+        "Visualizar documentos gerados"
     ]
 
     # Guardando a escolha do usuário na session state
