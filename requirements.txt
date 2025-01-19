@@ -45,6 +45,7 @@ executing==2.1.0
 fastapi==0.115.5
 fastavro==1.9.7
 filelock==3.16.1
+filetype==1.2.0
 flatbuffers==24.3.25
 frozenlist==1.5.0
 fsspec==2024.10.0
@@ -104,8 +105,9 @@ lancedb==0.16.0
 langchain==0.3.7
 langchain-cohere==0.3.1
 langchain-community==0.3.7
-langchain-core==0.3.19
+langchain-core==0.3.30
 langchain-experimental==0.3.3
+langchain-google-genai==2.0.9
 langchain-openai==0.2.9
 langchain-text-splitters==0.3.2
 langsmith==0.1.143
