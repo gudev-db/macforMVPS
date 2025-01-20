@@ -17,9 +17,7 @@ from pymongo import MongoClient
 api_key = os.getenv("OPENAI_API_KEY")
 t_api_key1 = os.getenv("T_API_KEY")
 
-# Configure the Gemini API
-gemini_api_key = os.getenv("GEM_API_KEY")
-genai.configure(api_key=gemini_api_key)
+
 
 client = TavilyClient(api_key=t_api_key1)
 
