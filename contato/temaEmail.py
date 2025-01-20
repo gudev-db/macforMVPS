@@ -31,6 +31,10 @@ def gen_temas_emails():
                 prompt = f"""
                 Crie um cronograma anual de temas de emails específicos para CADA UMA das segmentações de leads conforme {destinatarios} com fins de nutrição de leads. 
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. 
+
+                Extraia de todo o seu conhecimento as especificidades de cada segmento dos destinatários e entenda o que de fato, em cada mês, iria pegar as suas atenções
+                no que se diz respeito a datas comemorativas e características locais. Engaja, nutra, conquiste os leads.
+                
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
                 Seja claro, preciso e prático. Não me dê diretrizes, crie os temas que eu preciso para eu colocar diretamente em produção.
