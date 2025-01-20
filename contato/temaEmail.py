@@ -33,7 +33,7 @@ def gen_temas_emails():
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. 
 
                 Extraia de todo o seu conhecimento as especificidades de cada segmento dos destinatários e entenda o que de fato, em cada mês, iria pegar as suas atenções
-                no que se diz respeito a datas comemorativas e características locais. Engaja, nutre, conquiste os leads.
+                no que se diz respeito a datas comemorativas e características locais. Engaja, nutra, conquiste os leads.
                 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
@@ -45,22 +45,12 @@ def gen_temas_emails():
                     st.subheader("Temas")
                     st.markdown(response.text)
                     
-                    # Allow user to select a theme for email generation
-                    tema_selecionado = st.selectbox("Escolha um tema para gerar emails", response.text.split("\n"))
-                    
-                    # Generate 5 email suggestions based on the selected theme
-                    if tema_selecionado:
-                        st.subheader("Sugestões de Emails")
-                        email_prompt = f'''
-                        Com base no tema selecionado: "{tema_selecionado}", escreva 5 sugestões de emails detalhados para enviar aos leads.
-                        O remetente dos emails é {nome_cliente}, e o objetivo é nutrir e engajar os leads de forma personalizada.
-                        '''
-                        try:
-                            email_suggestions = llm.generate_content(email_prompt)
-                            st.markdown(email_suggestions.text)
-                        except Exception as e:
-                            st.error(f"Erro ao gerar sugestões de emails: {e}")
+                    emails = llm.generate_content(f'''Dados os temas em {response.text}, redija um email para cada um deles (ESCREVA PARA TODOS SEM FALTA). Lembre que você é a empresa {nome_cliente} e está
+                    nutrindo seus leads. Faça um output organizado. Redija cada email para cada segmento em cada mês sem falta e sem resumir e sem cortes. Faça para TODOS.''')
+                    st.subheader("Emails")
+                    st.markdown(emails.text)
                     
                 except Exception as e:
                     st.error(f"Erro ao gerar temas e emails: {e}")
+
 
