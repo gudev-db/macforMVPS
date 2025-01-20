@@ -14,6 +14,8 @@ from etapas.midias import planej_midias_page
 from etapas.crm import planej_crm_page
 import google.generativeai as genai
 from contato.temaEmail import gen_temas_emails
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 st.set_page_config(layout="wide",page_title="Macfor AutoDoc",
                   page_icon="static/page-icon.png")  
@@ -38,6 +40,11 @@ modelo_linguagem = ChatOpenAI(
     temperature=0.5,
     frequency_penalty=0.5
 )
+
+# call gemini model
+modelo_linguagem = ChatGoogleGenerativeAI(model='gemini-1.5-flash',
+                            temperature=0.5,
+                            goggle_api_key=gemini_api_key) 
 
 genai.configure(api_key=gemini_api_key)
 llm = genai.GenerativeModel("gemini-1.5-flash")
