@@ -10,6 +10,8 @@ from crewai_tools import tool
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
+from langchain_google_genai import ChatGoogleGenerativeAI
+import google.generativeai as genai
 
 
 # Configuração do ambiente da API
@@ -22,7 +24,12 @@ genai.configure(api_key=gemini_api_key)
 
 client = TavilyClient(api_key=t_api_key1)
 
-
+# Inicializa o modelo LLM com OpenAI
+modelo_linguagem = ChatOpenAI(
+    model="gpt-4o-mini",
+    temperature=0.5,
+    frequency_penalty=0.5
+)
 
 # call gemini model
 modelo_linguagem = ChatGoogleGenerativeAI(model='gemini-1.5-flash',
