@@ -41,10 +41,7 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
-# call gemini model
-modelo_linguagem = ChatGoogleGenerativeAI(model='gemini-1.5-flash',
-                            temperature=0.5,
-                            goggle_api_key=gemini_api_key) 
+
 
 genai.configure(api_key=gemini_api_key)
 llm = genai.GenerativeModel("gemini-1.5-flash")
