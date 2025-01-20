@@ -33,6 +33,7 @@ def gen_temas_emails():
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
+                Seja claro, preciso e prático. Não me dê diretrizes, crie os temas que eu preciso para eu colocar diretamente em produção.
                 """
                 try:
                     response = llm.generate_content(prompt)
