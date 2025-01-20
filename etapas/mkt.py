@@ -16,15 +16,18 @@ from pymongo import MongoClient
 api_key = os.getenv("OPENAI_API_KEY")
 t_api_key1 = os.getenv("T_API_KEY")
 
+# Configure the Gemini API
+gemini_api_key = os.getenv("GEM_API_KEY")
+genai.configure(api_key=gemini_api_key)
 
 client = TavilyClient(api_key=t_api_key1)
 
-# Inicializa o modelo LLM com OpenAI
-modelo_linguagem = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0.5,
-    frequency_penalty=0.5
-)
+
+
+# call gemini model
+modelo_linguagem = ChatGoogleGenerativeAI(model='gemini-1.5-flash',
+                            temperature=0.5,
+                            goggle_api_key=gemini_api_key) 
 
 client1 = TavilyClient(api_key='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')
 
