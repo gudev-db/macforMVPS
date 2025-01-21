@@ -104,7 +104,7 @@ def planej_mkt_page():
 
     url = "https://duckduckgo8.p.rapidapi.com/"
     
-    querystring = {"q":f"{tendencias}"}
+    querystring = {"q":f"tendencias em {ramo_atuacao}"}
     
     headers = {
     	"x-rapidapi-key": rapid_key,
