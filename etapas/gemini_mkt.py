@@ -23,7 +23,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output,golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)    # Gerar o ID único para o planejamento
+def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output,golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente):    # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
     # Prepara o documento a ser inserido no MongoDB
