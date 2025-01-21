@@ -93,6 +93,7 @@ def planej_mkt_page():
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
     concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
     site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
+    tendaux = st.text_input('Tendências de interesse:', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc")
 
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
@@ -118,7 +119,7 @@ def planej_mkt_page():
 
     url = "https://duckduckgo8.p.rapidapi.com/"
     
-    querystring = {"q":f"tendencias em {ramo_atuacao}"}
+    querystring = {"q":f"tendencias em {tendaux}"}
     
     headers = {
     	"x-rapidapi-key": rapid_key,
