@@ -190,6 +190,21 @@ def planej_crm_page():
 
     crm_tools = client1.search("Quais são as 10 melhores ferramentas de CRM e por quê?")
 
+    #DUCK DUCK GO SEARCH de tendências de CRM
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring = {"q":f"Quais são as tendências de CRM mais atuais?"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring)
+    
+    tend_crm = response.text
+
 
 
 
@@ -239,7 +254,8 @@ def planej_crm_page():
                         extremamente eficaz e detalhado de nutrição de leads que melhor atenda as necessidades do cliente e se melhor encaixe com suas características de negócio. Cada etapa extremamente detalhada com exatamente
                         o que deve ser feito e porque. O Fluxo deve deliear o passo a passo da interação com os leads desde o primeiro até o último contato de forma bem detalhada e justificada. Detalhando o 
                         canal de contato, tempo de duração de cada etapa, tom a ser utilizado, ação personalizada para o case específico do cliente {nome_cliente} para cada segmento de seu setor de atuação:
-                        {ramo_atuacao}.
+                        {ramo_atuacao}. Leve em consideração como isso seria aplicado levando em conta as ferramentas de CRM mais atuais explicitadas em: ({crm_tools}), assim como
+                        a pesquisa de tendências de CRM explicitada em: ({tend_crm}).
                         '''
                         fluxo_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
