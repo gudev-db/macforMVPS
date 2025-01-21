@@ -93,13 +93,7 @@ def planej_crm_page():
     concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
     site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
 
-    # Objetivos de marca
-    objetivos_de_marca = st.selectbox(
-        'Selecione os objetivos de marca',
-        objetivos_opcoes,  # Substitua 'objetivos_opcoes' com a lista de opções de objetivos que você deseja
-        key="objetivos_marca"
-    )
-
+    
     objetivos_opcoes = [
     'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
     'Entregar potenciais consumidores para a área comercial',
@@ -107,6 +101,14 @@ def planej_crm_page():
     'Fidelizar e reter um público fiel já convertido',
     'Garantir que o público esteja engajado com os canais ou ações da marca'
 ]
+    # Objetivos de marca
+    objetivos_de_marca = st.selectbox(
+        'Selecione os objetivos de marca',
+        objetivos_opcoes,  # Substitua 'objetivos_opcoes' com a lista de opções de objetivos que você deseja
+        key="objetivos_marca"
+    )
+
+
 
     referencia_da_marca = st.text_area(
         'O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?',
