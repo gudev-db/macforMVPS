@@ -169,8 +169,8 @@ def planej_midias_page():
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
-                            )
                             ),
+                          
                             Agent(
                                 role="Especialista em Criativos",
                                 goal=f'''Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.''',
