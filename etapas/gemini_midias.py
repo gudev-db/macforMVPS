@@ -23,7 +23,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_midias(tarefas_midia, nome_cliente):
+def save_to_mongo_midias(kv_output,redes_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -32,12 +32,11 @@ def save_to_mongo_midias(tarefas_midia, nome_cliente):
         "id_planejamento": 'Plano de Mídias' + '_' + nome_cliente + '_' + id_planejamento,
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de Mídias',
-        "KV": tarefas_midia[0].output.raw,
-        "Plano_Redes": tarefas_midia[1].output.raw,
-        "Plano_Criativos": tarefas_midia[2].output.raw,
-        "Plano_Palavras_Chave": tarefas_midia[3].output.raw,
-        "Plano_Design": tarefas_midia[4].output.raw,
-        "Estrategia_Conteudo": tarefas_midia[5].output.raw,
+        "KV": kv_output,
+        "Plano_Redes": redes_output,
+        "Plano_Criativos": criativos_output,
+        "Plano_Palavras_Chave": palavras_chave_output,
+        "Estrategia_Conteudo": estrategia_conteudo_output,
     }
 
     # Insere o documento no MongoDB
@@ -270,4 +269,4 @@ def planej_midias_page():
                         st.markdown(estrategia_conteudo_output)
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_midias(tarefas_midia, nome_cliente)
+                        save_to_mongo_midias(kv_output,redes_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
