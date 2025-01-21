@@ -213,12 +213,12 @@ def planej_mkt_page():
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        prompt_SWOT = f'''Considerando o seguinte contexto a referência da marca:
-                                    {referencia_da_marca},
-                                    realize a Análise SWOT completa em formato de tabela em português brasileiro. 
+                        prompt_SWOT = f'''Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
+                                    {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
+                                    realize a Análise SWOT completa em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
                                     Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
-                                    Você estáa aqui para trazer conhecimento estratégico. organize os pontos em bullets
+                                    Você está aqui para trazer conhecimento estratégico. organize os pontos em bullets
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
