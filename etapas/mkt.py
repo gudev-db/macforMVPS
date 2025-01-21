@@ -460,8 +460,8 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Pesquisa de tendências.",
-                                    expected_output=f'''em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids}) e 
-                                    tendências de ramo de atuação do cliente: ({tend_ramo}).
+                                    expected_output=f'''em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
+                                    tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}).
                                     
                                     Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
                                     agent=agentes[15],
