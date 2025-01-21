@@ -349,9 +349,11 @@ def planej_midias_page():
 
                                     Key Visual:
                                     
-                                    - Definição detalhada da Imagem Principal: Defina exatamente o que deve ser a imagem.
-                                    - Definição detalhada da Tipografia: Defina exatamente a fonte e como ela complementa a imagem escolhida.
-                                    - Definição detalhada das Cores: Defina exatamente a palleta de cores.
+                                    - Definição detalhada da Imagem Principal: Definição exata do que deve ser a imagem com justificativa detalhada e extensa do porquê usando repertório
+                                    de nível especialista e acadêmico do porque a imagem foi escolhida.
+                                    - Definição detalhada da Tipografia: Fonte exata que foi escolhida e como ela complementa a imagem escolhida com justificativa de especialista
+                                    em nível acadêmico.
+                                    - Definição detalhada das Cores: Definição exata da palleta de cores com justificativa especialista de nível acadêmica.
                                     - Definição detalhada dos Elementos Gráficos: Defina exatamente os elementos gráficos que compõem a Key Visual do cliente {nome_cliente}.
                                     
                                     
