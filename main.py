@@ -10,7 +10,7 @@ from etapas.mkt import planej_mkt_page
 from tools.retrieve import visualizar_planejamentos
 import os
 from tavily import TavilyClient
-from etapas.midias import planej_midias_page
+from etapas.gemini_midias import planej_midias_page
 from etapas.crm import planej_crm_page
 import google.generativeai as genai
 from contato.temaEmail import gen_temas_emails
