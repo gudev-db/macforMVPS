@@ -160,69 +160,7 @@ def planej_midias_page():
                     with st.spinner('Gerando o planejamento de mídias...'):
 
                         agentes = [
-                            Agent(
-                                role="Líder e revisor geral de estratégia",
-                                goal=f'''Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir 
-                                alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.''',
-                                backstory=f'''Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento 
-                                avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no 
-                                ramo de {ramo_atuacao} em português brasileiro.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista PEST",
-                                goal=f'''Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.''',
-                                backstory=f'''
-                                ''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista SWOT",
-                                goal=f'''Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.''',
-                                backstory='''Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Matriz BCG",
-                                goal=f"Desenvolver a Matriz BCG para o {nome_cliente}, com base nas informações do mercado e concorrência disponíveis.",
-                                backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Consultor de Pricing",
-                                goal=f'''Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.''',
-                                backstory=f'''Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas
-                                de precificação com base na análise de mercado e concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista de Segmentação de Mercado",
-                                goal=f'''Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.''',
-                                backstory=f'''Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis
-                                para o planejamento de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Criador de Persona",
-                                goal=f'''Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.''',
-                                backstory=f'''Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para 
-                                {nome_cliente}, que ajudem a direcionar a comunicação de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
+                           
                             Agent(
                                 role="Estratégia de Mídia Social",
                                 goal=f'''Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.''',
@@ -231,24 +169,7 @@ def planej_midias_page():
                                 allow_delegation=False,
                                 llm=modelo_linguagem,
                                 tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Inbound Marketing",
-                                goal=f'''Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.''',
-                                backstory=f'''Você é um especialista em inbound marketing, utilizando as melhores práticas 
-                                para atrair e engajar clientes em potencial para {nome_cliente}.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}.''',
-                                backstory=f'''Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} 
-                                nos motores de busca, com base na análise do conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
+                            )
                             ),
                             Agent(
                                 role="Especialista em Criativos",
@@ -262,17 +183,7 @@ def planej_midias_page():
                                 tools=[]
                             ),
                             
-                            Agent(
-                                role="Especialista em CRM",
-                                goal=f'''Desenvolver estratégias de CRM para o cliente: {nome_cliente}.''',
-                                backstory=f'''Você é um especialista em CRM. você é original, detalhista, minucioso, 
-                                criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso 
-                                repertório profissional, Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
-                                saber para detalhar planos de como firmar e continuar relacionamentos estratégicos com clientes.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
+                           
                             
                             Agent(
                                 role="Especialista em Marca/Design",
@@ -347,7 +258,7 @@ def planej_midias_page():
                                     {publico_alvo},e a referência da marca:
                                     {referencia_da_marca};
 
-                                    Key Visual:
+                                    Key Visual (2 parágrafos extensos, completos, detalhistas para cada etapa):
                                     
                                     - Definição detalhada da Imagem Principal: Definição exata do que deve ser a imagem com justificativa detalhada e extensa do porquê usando repertório
                                     de nível especialista e acadêmico do porque a imagem foi escolhida levando em conta o ramo de atuação {ramo_atuacao} e publico alvo {publico_alvo}.
@@ -362,7 +273,7 @@ def planej_midias_page():
 
                                                                                      
                                     ''',
-                                    agent=agentes[15],
+                                    agent=agentes[5],
                                     output_file = 'KV.md'
                                 ),
 
@@ -408,7 +319,7 @@ def planej_midias_page():
 
                                     Em geral, também definir do's e don't's                                                          
                                     ''',
-                                    agent=agentes[13],
+                                    agent=agentes[4],
                                     output_file = 'redes.md'
                                 ),
 
@@ -420,7 +331,7 @@ def planej_midias_page():
                                     considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
                                     {publico_alvo},e a referência da marca:
                                     {referencia_da_marca},.''',
-                                    agent=agentes[10],
+                                    agent=agentes[1],
                                     output_file = 'Criativos.md'
                                 ),
 
@@ -439,7 +350,7 @@ def planej_midias_page():
                                     sobre SEO que devem estar contidos em diretrizes de um especialista que estudou minuciosamente todos os detalhes sobre o cliente e sabe o que
                                     deve ser feito para fazer com que o cliente cresça. Você é um especialista em SEO.
                                     Você é claro e detalhista, criativo e se comunica de forma excelente.''',
-                                    agent=agentes[9],
+                                    agent=agentes[3],
                                     output_file = 'keywords.md'
                                 ),
 
@@ -461,7 +372,7 @@ def planej_midias_page():
                                     {publico_alvo} ,e a referência da marca:
                                     {referencia_da_marca}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de marca e design. Não
                                     seja vago e não seja raso.''',
-                                    agent=agentes[12],
+                                    agent=agentes[2],
                                     output_file = 'Marca_Design.md'
                                 ),
 
@@ -472,7 +383,8 @@ def planej_midias_page():
                                 expected_output=f'''Em portugês brasileiro, Editorias de conteúdo detalhadas e alinhadas com os objetivos da marca ({intuito_plano}) ,e a referência da marca:
                                     {referencia_da_marca},. 
                                 Classificamos as editorias em 
-                5 pilares, que foram revistos e sugeridos para posicionar a marca, engajar, relacionar e gerar identificação com o público.
+                5 pilares, que foram revistos e sugeridos para posicionar a marca, engajar, relacionar e gerar identificação com o público. Seja detalhista, minucioso, prático, completo. 2 parágrafos
+                extensos para cada etapa.
 
                         Os 5 Pilares:
                         - Institucional
@@ -486,7 +398,7 @@ def planej_midias_page():
                         - conteúdo
                         - canal'''
                         ,
-                                agent=agentes[8],
+                                agent=agentes[0],
                                 output_file='estrategia_editoriais.md'
                             )
                             ]
