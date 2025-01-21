@@ -93,7 +93,7 @@ if login():
     menu_options = [
         "Selecione uma opção",  # Valor inicial padrão
         "Plano Estratégico e de Pesquisa",
-        "Plano Estratégico de Mídias",
+        "Plano Estratégico de Redes e Mídias",
         "Plano de CRM",
         "Visualizar documentos gerados",
         "Conteúdo de Nutrição de Leads"
@@ -117,7 +117,7 @@ if login():
         if tipo_documento == "Plano Estratégico e de Pesquisa":
             planej_mkt_page()
 
-        elif tipo_documento == "Plano Estratégico de Mídias":
+        elif tipo_documento == "Plano Estratégico de Redes e Mídias":
             planej_midias_page()
 
         elif tipo_documento == "Plano de CRM":
