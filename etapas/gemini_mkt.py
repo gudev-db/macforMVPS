@@ -3,6 +3,18 @@ import google.generativeai as genai
 import uuid
 import os
 from pymongo import MongoClient
+from datetime import datetime
+import os
+from tavily import TavilyClient
+from pymongo import MongoClient
+import requests
+
+# Configuração do ambiente da API
+api_key = os.getenv("OPENAI_API_KEY")
+t_api_key1 = os.getenv("T_API_KEY")
+rapid_key = os.getenv("RAPID_API")
+
+
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
