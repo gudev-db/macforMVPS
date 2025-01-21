@@ -251,7 +251,7 @@ def planej_midias_page():
                                     que ressoe com o público-alvo e reforce a mensagem da marca;
 
                         
-
+                                    
                                     - Considere os elementos visuais chave comumentes utilizados no ramo de atuação do cliente como refer explicitados em: {vis_chave};
                                     - Considerando {ramo_atuacao}, 
                                     o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
@@ -260,7 +260,7 @@ def planej_midias_page():
 
                                     Key Visual (2 parágrafos extensos, completos, detalhistas para cada etapa):
                                     
-                                    - Definição detalhada da Imagem Principal: Definição exata do que deve ser a imagem com justificativa detalhada e extensa do porquê usando repertório
+                                    - Definição detalhada da Imagem Conceito (imagem conceito com diversos elementos visuais que são repetidas): Definição exata do que deve ser a imagem com justificativa detalhada e extensa do porquê usando repertório
                                     de nível especialista e acadêmico do porque a imagem foi escolhida levando em conta o ramo de atuação {ramo_atuacao} e publico alvo {publico_alvo}.
                                     - Definição detalhada da Tipografia: Fonte exata que foi escolhida e como ela complementa a imagem escolhida com justificativa de especialista
                                     em nível acadêmico.
