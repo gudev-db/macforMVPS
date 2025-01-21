@@ -38,7 +38,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_CRM(kv_output,redes_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente):
+def save_to_mongo_CRM(fluxo_output, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
