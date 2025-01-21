@@ -350,7 +350,7 @@ def planej_midias_page():
                                     Key Visual:
                                     
                                     - Definição detalhada da Imagem Principal: Definição exata do que deve ser a imagem com justificativa detalhada e extensa do porquê usando repertório
-                                    de nível especialista e acadêmico do porque a imagem foi escolhida.
+                                    de nível especialista e acadêmico do porque a imagem foi escolhida levando em conta o ramo de atuação {ramo_atuacao} e publico alvo {publico_alvo}.
                                     - Definição detalhada da Tipografia: Fonte exata que foi escolhida e como ela complementa a imagem escolhida com justificativa de especialista
                                     em nível acadêmico.
                                     - Definição detalhada das Cores: Definição exata da palleta de cores com justificativa especialista de nível acadêmica.
