@@ -9,6 +9,7 @@ from datetime import datetime
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
+import requests
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
