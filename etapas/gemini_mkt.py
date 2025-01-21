@@ -179,7 +179,7 @@ def planej_mkt_page():
     )
     
     tend_novids1 = client1.search(
-        f'''Quais as recentes tendências de mercado para {tendencias}?''',
+        f'''Quais as recentes tendências de mercado para {ramo_atuacao}?''',
         days=days, 
         max_results=max_results
     )
