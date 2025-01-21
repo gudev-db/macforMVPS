@@ -213,7 +213,9 @@ def planej_mkt_page():
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        prompt_SWOT = f'''Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
+                        prompt_SWOT = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        
+                        Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
                                     {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
                                     realize a Análise SWOT completa em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
@@ -222,13 +224,17 @@ def planej_mkt_page():
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_tendencias = f'''em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
+                        prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        
+                        em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
                                     tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}).
                                     
                                     Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.'''
                         tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
 
-                        prompt_PEST = f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
+                        prompt_PEST = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        
+                        Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
                                     considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic}, contexto social: ({social})
                                     e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). Leve em conta as tendencias em ({tendencias_output}).
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
