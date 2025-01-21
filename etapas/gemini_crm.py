@@ -100,6 +100,14 @@ def planej_crm_page():
         key="objetivos_marca"
     )
 
+    objetivos_opcoes = [
+    'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
+    'Entregar potenciais consumidores para a área comercial',
+    'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
+    'Fidelizar e reter um público fiel já convertido',
+    'Garantir que o público esteja engajado com os canais ou ações da marca'
+]
+
     referencia_da_marca = st.text_area(
         'O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?',
         key="referencias_marca",
