@@ -357,24 +357,7 @@ def planej_midias_page():
                             
 
                            
-                            #Marca/Design
-                                Task(
-                                    description="Criar a estratégia de marca e design.",
-                                    expected_output=f'''Em portugês brasileiro, Gerar guias para identidade visual e posicionamento claros e coerentes, alinhados com os valores, missão e visão da empresa. 
-                                    Isso envolve a criação de um logotipo, paleta de cores, tipografia e outros elementos gráficos que transmitam a personalidade da marca, além de 
-                                    definir uma voz e 
-                                    tom consistentes na comunicação. A estratégia também deve garantir que a experiência do cliente seja reforçada por meio do design, criando uma 
-                                    identidade que seja 
-                                    facilmente reconhecível e que se conecte emocionalmente com o público-alvo. 
-                                    Além disso, é importante monitorar e ajustar continuamente a percepção da marca no mercado para manter sua relevância e diferenciá-la da concorrência para 
-                                    {nome_cliente}. Quero soluções originais, personalizadas e pulo do gato
-                                    considerando seu ramo de atuação: {ramo_atuacao}, o intuito do planejamento estratégico conforme detalhado em: {intuito_plano} e o publico alvo: 
-                                    {publico_alvo} ,e a referência da marca:
-                                    {referencia_da_marca}. Suas guias serão práticas, claras, não genéricas. Você deve fornecer praticamente o que deve ser feito em termos de marca e design. Não
-                                    seja vago e não seja raso.''',
-                                    agent=agentes[2],
-                                    output_file = 'Marca_Design.md'
-                                ),
+                           
 
                                 Task(
                                 description=f'''Sendo o mais detalhista possível e com a profundidade de um especialista em marketing digital,
@@ -429,10 +412,8 @@ def planej_midias_page():
                         st.subheader('4 SEO')
                         st.subheader('4.1 Sugestões de palavras chave')
                         st.markdown(tarefas_midia[3].output.raw)
-                        st.subheader('5 Plano de Design/Marca')
+                        st.subheader('5 Estratégia de Conteúdo')
                         st.markdown(tarefas_midia[4].output.raw)
-                        st.subheader('6 Estratégia de Conteúdo')
-                        st.markdown(tarefas_midia[5].output.raw)
 
 
                         
