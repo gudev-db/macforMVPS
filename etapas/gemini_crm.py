@@ -237,17 +237,16 @@ def planej_crm_page():
                         O objetivo de marca selecionado para {nome_cliente} é {objetivos_de_marca}. A marca se destaca por {referencia_da_marca}.
                         Informações sobre o CRM:
                         
-                        {nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
-                        A maturidade em CRM da empresa é {maturidade_crm}.
-                        O principal objetivo ao utilizar o CRM é {objetivo_crm}.
-                        Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
-                        O perfil da empresa é {perfil_empresa}.
-                        As metas que a empresa busca alcançar com o CRM são {metas_crm}.
-                        A descrição do negócio é: {descricao_negocio}.
-                        O tamanho da base de dados de clientes é {tamanho_base}.
-                        O tom de voz desejado para a comunicação é {tom_voz}.
-                        Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
-                        Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
+                        -{nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+                        -A maturidade em CRM da empresa é {maturidade_crm}.
+                        -O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+                        -Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+                        -O perfil da empresa é {perfil_empresa}.
+                        -As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+                        -O tamanho da base de dados de clientes é {tamanho_base}.
+                        -O tom de voz desejado para a comunicação é {tom_voz}.
+                        -Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+                        -Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
                 
                         - Proposta de fluxo de CRM de um especialista com embasamento extremamente aprofundado, detalhado e acadêmico do porque de cada etapa com um cronomgrama 
                         extremamente eficaz e detalhado de nutrição de leads que melhor atenda as necessidades do cliente e se melhor encaixe com suas características de negócio. Cada etapa extremamente detalhada com exatamente
