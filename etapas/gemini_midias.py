@@ -180,7 +180,7 @@ def planej_midias_page():
                         Cada criativo deve incluir:
                         
                         1. **Título**: Seja criativo, objetivo e alinhado com a proposta de valor da marca.
-                        2. **Descrição**: Detalhe como a mensagem se conecta emocionalmente ao público e contribui para a conversão.
+                        2. **Descrição**: Corpo de texto do anúncio.
                         3. **Tipo de Imagem Sugerida**: Indique qual estilo de imagem ou elemento visual deve ser usado (foto, ilustração, gráfico, etc.) e explique por que esse tipo de imagem é o mais eficaz para o público e o ramo de atuação.
                         
                         Seja original e proponha ideias que possam ser executadas com um alto impacto.
