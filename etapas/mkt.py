@@ -175,9 +175,11 @@ def planej_mkt_page():
 
     import requests
 
+    #DUCK DUCK GO SEARCH de tendências
+
     url = "https://duckduckgo8.p.rapidapi.com/"
     
-    querystring = {"q":"Tendências do agronegócio brasileiro"}
+    querystring = {"q":f"{tendencias}"}
     
     headers = {
     	"x-rapidapi-key": rapid_key,
@@ -186,8 +188,28 @@ def planej_mkt_page():
     
     response = requests.get(url, headers=headers, params=querystring)
     
-    # Salvando o conteúdo da resposta como string
-    retorno_noticias = response.text
+    tend_novids2 = response.text
+
+    #DUCK DUCK GO SEARCH PEST
+
+    #SOCIAL
+    querystring_social = {"q":f"Novidades no âmbito social no brasil"}
+    
+    response_social = requests.get(url, headers=headers, params=querystring_social)
+    
+    tend_social_duck = response_social.text
+
+    #Tecnológico
+    querystring_tec = {"q":f"Novidades no âmbito tecnológico no brasil"}
+    
+    response_tec = requests.get(url, headers=headers, params=querystring_tec)
+    
+    tend_tec_duck = response_tec.text
+
+    
+
+
+    #TAVILY PEST
     
     politic = client1.search(
         f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
@@ -217,7 +239,7 @@ def planej_mkt_page():
         max_results=max_results
     )
     
-    tend_novids = client1.search(
+    tend_novids2 = client1.search(
         f'''Quais as recentes tendências de mercado para {tendencias}?''',
         days=days, 
         max_results=max_results
@@ -448,7 +470,8 @@ def planej_mkt_page():
                                 Task(
                                     description="Análise PEST.",
                                     expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
-                                    considerando     contexto político: {politic}, contexto econômico: {economic}, contexto social: {social}, contexto tecnológico: {tec}.
+                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic}, contexto social: ({social})
+                                    e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}).
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.''',
                                     agent=agentes[1],
                                     output_file = 'pest.md'
