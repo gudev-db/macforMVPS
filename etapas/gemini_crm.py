@@ -154,11 +154,7 @@ def planej_crm_page():
         placeholder="Ex: Aumentar a taxa de conversão em 20%"
     )
 
-    descricao_negocio = st.text_area(
-        'Descrição do negócio:',
-        key="descricao_negocio",
-        placeholder="Ex: Empresa especializada em produtos eletrônicos."
-    )
+
 
     tamanho_base = st.selectbox(
         'Qual o tamanho da base de dados de clientes?',
