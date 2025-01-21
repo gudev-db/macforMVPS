@@ -1,7 +1,13 @@
 import streamlit as st
 import google.generativeai as genai
 import uuid
+from pymongo import MongoClient
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+from datetime import datetime
 import os
+from tavily import TavilyClient
 from pymongo import MongoClient
 
 # Configuração do Gemini API
