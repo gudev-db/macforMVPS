@@ -16,6 +16,7 @@ from pymongo import MongoClient
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
 t_api_key1 = os.getenv("T_API_KEY")
+rapid_key = os.getenv("RAPID_API")
 
 
 
@@ -171,6 +172,22 @@ def planej_mkt_page():
     # Set parameters for the search
     days = 90
     max_results = 15
+
+    import requests
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring = {"q":"Tendências do agronegócio brasileiro"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring)
+    
+    # Salvando o conteúdo da resposta como string
+    retorno_noticias = response.text
     
     politic = client1.search(
         f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
