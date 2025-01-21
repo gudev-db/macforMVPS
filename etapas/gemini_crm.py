@@ -47,7 +47,7 @@ def save_to_mongo_CRM(fluxo_output, nome_cliente):
     
     # Prepara o documento a ser inserido no MongoDB
     task_outputs = {
-        "id_planejamento": 'Plano de Mídias' + '_' + nome_cliente + '_' + id_planejamento,
+        "id_planejamento": 'Plano de CRM' + '_' + nome_cliente + '_' + id_planejamento,
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de CRM',
         "Fluxo": fluxo_output,
@@ -62,7 +62,7 @@ def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
-# Função principal da página de planejamento de mídias
+# Função principal da página de planejamento de CRM
 def planej_crm_page():
     st.subheader('Planejamento de CRM')
 
@@ -223,7 +223,7 @@ def planej_crm_page():
                 if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
-                    with st.spinner('Gerando o planejamento de mídias...'):
+                    with st.spinner('Gerando o fluxo de CRM...'):
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
