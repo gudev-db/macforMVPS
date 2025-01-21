@@ -17,6 +17,8 @@ genai.configure(api_key=gemini_api_key)
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
 t_api_key1 = os.getenv("T_API_KEY")
+rapid_key = os.getenv("RAPID_API")
+
 
 
 client = TavilyClient(api_key=t_api_key1)
