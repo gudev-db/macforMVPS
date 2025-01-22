@@ -130,6 +130,22 @@ def planej_mkt_page():
     
     tend_novids2 = response.text
 
+
+  #DUCK DUCK GO SEARCH de tendências
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring2 = {"q":f"dados econômicos relevantes no brasil"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring2)
+    
+    dados_econ_brasil = response.text
+
     #DUCK DUCK GO SEARCH PEST
 
     #SOCIAL
@@ -226,16 +242,23 @@ def planej_mkt_page():
 
                         prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing.
                         
-                        em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
+                        em português brasileiro, -
+                        
+                                    -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
                                     tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}).
+
+                                    -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil})
                                     
-                                    Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.'''
+                                    -Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.
+
+'''
                         tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
 
                         prompt_PEST = f'''Você é Philip Kotler, especialista em administração de marketing.
                         
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
-                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic}, contexto social: ({social})
+                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic} e dados econômicos
+                                    relevantes: ({dados_econ_brasil}), contexto social: ({social})
                                     e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). Leve em conta as tendencias em ({tendencias_output}).
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
                         
