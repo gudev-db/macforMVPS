@@ -261,13 +261,8 @@ def planej_crm_page():
 
                         prompt_indicadores = f''' Em português brasileiro,
                 
-                        Informações Gerais do Cliente:
-                
-                        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
-                        Objetivos da Marca:
+                        Indicadores chave para o monitoramento do fluxo de CRM proposto em: ({fluxo_output}).
                         
-                        levando em conta o fluxo de CRM proposto em: ({fluxo_output}), quais são os indicadores chaves a serem monitorados para garantir o andamento do mesmo?. Detalhe-os de forma
-                        aprofundada e completa, justificando o uso de cada um.
                         '''
                         indicadores_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
