@@ -146,6 +146,38 @@ def planej_mkt_page():
     
     dados_econ_brasil = response.text
 
+
+ #DUCK DUCK GO SEARCH de ferramentas
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring2)
+    
+    ferramentas_rel = response.text
+
+
+ #DUCK DUCK GO SEARCH de concorrência
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring5 = {"q":f"novidades sobre {concorrentes}"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring5)
+    
+    novids_conc = response.text
+
     #DUCK DUCK GO SEARCH PEST
 
     #SOCIAL
@@ -248,7 +280,15 @@ def planej_mkt_page():
                                     tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
 
-                                    -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil})
+                                    -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+
+                                    -Comente sobre as ferramentas relevantes no setor de atuação do cliente explicitadas em ({ferramentas_rel}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+
+                                    -Considerando {concorrentes} como a concorrência direta de {nome_cliente}, redija sobre as notícias sobre o concorrente explicitadas em {novids_conc} e como o
+                                    cliente {nome_cliente} pode superar isso. Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
                                     
                                     -Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.
 
