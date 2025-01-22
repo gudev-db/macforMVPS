@@ -41,7 +41,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_CRM(fluxo_output, nome_cliente):
+def save_to_mongo_CRM(fluxo_output,indicadores_output, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -51,6 +51,7 @@ def save_to_mongo_CRM(fluxo_output, nome_cliente):
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de CRM',
         "Fluxo": fluxo_output,
+        "Indicadores": indicadores_output,
     }
 
     # Insere o documento no MongoDB
@@ -257,12 +258,28 @@ def planej_crm_page():
                         '''
                         fluxo_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
+
+                        prompt_indicadores = f''' Em português brasileiro,
+                
+                        Informações Gerais do Cliente:
+                
+                        O nome do cliente é {nome_cliente}, e seu site oficial pode ser acessado em {site_cliente}. A empresa está inserida no ramo de {ramo_atuacao} e o intuito principal deste plano estratégico é {intuito_plano}. O público-alvo da empresa são {publico_alvo}, e seus principais concorrentes incluem {concorrentes}, cujos sites são {site_concorrentes}.
+                        Objetivos da Marca:
+                        
+                        levando em conta o fluxo de CRM proposto em: ({fluxo_output}), quais são os indicadores chaves a serem monitorados para garantir o andamento do mesmo?. Detalhe-os de forma
+                        aprofundada e completa, justificando o uso de cada um.
+                        '''
+                        indicadores_output = modelo_linguagem.generate_content(prompt_fluxo).text
+
                       
 
                         # Exibe os resultados na interface
                         st.header('Plano de Fluxo de CRM')
+                        st.subheader('Fluxo')
                         st.markdown(fluxo_output)
+                        st.subheader('Indicadores Chave')
+                        st.markdown(indicadores_output)
                         
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_CRM(fluxo_output, nome_cliente)
+                        save_to_mongo_CRM(fluxo_output,indicadores_output, nome_cliente)
