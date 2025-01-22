@@ -112,7 +112,7 @@ def planej_mkt_page():
     opcoes_clientes = [cliente["nome"] for cliente in clientes]
 
     # Selectbox para escolher o cliente
-    nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
+    nome_cliente = st.text_input('Nome do cliente')
 
     # Obter as informações do cliente selecionado
     cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
