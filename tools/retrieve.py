@@ -80,11 +80,9 @@ def visualizar_planejamentos():
         st.subheader('3.4 Plano de CRM')
         
         st.markdown(f"**3.4.1. Estratégia Geral de CRM:** {selected_planejamento.get('Plano_Estrategia_CRM')}")
-        st.markdown(f"**3.4.1.1. Fluxo Geral de CRM:** {selected_planejamento.get('Plano_Fluxo_CRM')}")
-        st.markdown(f"**3.4.2. Gestão de Contato com o Cliente - Email:** {selected_planejamento.get('Plano_Contato_Email')}")
-        st.markdown(f"**3.4.3. Gestão de Contato com o Cliente - SMS/WhatsApp:** {selected_planejamento.get('Plano_Contato_SMS_WhatsApp')}")
-        st.markdown(f"**3.4.4. Gestão de Contato com o Cliente - NPS:** {selected_planejamento.get('Plano_Contato_NPS')}")
-        st.markdown(f"**3.4.5. Softwares Recomendados:** {selected_planejamento.get('Recomend_Software')}")
+        st.markdown(f"**3.4.1.1 Fluxo Geral de CRM:** {selected_planejamento.get('Fluxo')}")
+        st.markdown(f"**3.4.1.2 Gestão de Contato com o Cliente - Email:** {selected_planejamento.get('Indicadores')}")
+
         
 
 
