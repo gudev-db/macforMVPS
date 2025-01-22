@@ -169,7 +169,9 @@ def planej_midias_page():
                         redes_output = modelo_linguagem.generate_content(prompt_redes).text
 
                         prompt_criativos = f"""
-                        Crie 10 criativos para as campanhas de marketing digital de {nome_cliente}, considerando os seguintes pontos:
+                        Crie 10 criativos para as campanhas de marketing digital em um nível bem detalhado, aprodundado,
+                        oriundos da concepção de um especialista em nível acadêmico sobre marketing digital, que referencia e justifica todas
+                        as suas escolhas. Para {nome_cliente}, considerando os seguintes pontos:
 
                         - Ramo de atuação: {ramo_atuacao}.
                         - Intuito estratégico do plano: {intuito_plano}.
@@ -180,7 +182,10 @@ def planej_midias_page():
                         
                         1. **Título**: Seja criativo, objetivo e alinhado com a proposta de valor da marca.
                         2. **Descrição**: Corpo de texto do anúncio.
-                        3. **Tipo de Imagem Sugerida**: Indique qual estilo de imagem ou elemento visual deve ser usado (foto, ilustração, gráfico, etc.) e explique por que esse tipo de imagem é o mais eficaz para o público e o ramo de atuação.
+                        3. **Tipo de Imagem ou Vídeo Sugerido**: Indique qual estilo de imagem ou elemento visual deve ser usado (foto, ilustração, gráfico, etc.) e explique por que esse tipo de imagem é o mais eficaz para o público e o ramo de atuação.
+                        4. **Formato de anúncio**: Indique qual o formato. Estático, Vídeo, Carrossel, etc
+                        5. **Tipo de campanha**: Search, Pmax, etc ...
+
                         
                         Seja original e proponha ideias que possam ser executadas com um alto impacto.
 
