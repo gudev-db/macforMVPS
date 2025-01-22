@@ -37,7 +37,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output,golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente):    # Gerar o ID único para o planejamento
+def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente):    # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
     # Prepara o documento a ser inserido no MongoDB
@@ -49,6 +49,7 @@ def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output,golden_output,po
             "Análise_SWOT": SWOT_output,
             "Análise_PEST": PEST_output,
             "Análise_Tendências": tendencias_output,
+            "Análise_Concorrência": concorrencias_output,
         },
         "Etapa_2_Estrategica": {
             "Golden_Circle": golden_output,
@@ -278,7 +279,7 @@ def planej_mkt_page():
                         
                                     -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
                                     tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
-                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Em bullet points pra cada tendencia e 2-3 paragrafos pra cada bullet point
 
                                     -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
@@ -286,14 +287,26 @@ def planej_mkt_page():
                                     -Comente sobre as ferramentas relevantes no setor de atuação do cliente explicitadas em ({ferramentas_rel}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
 
-                                    -Considerando {concorrentes} como a concorrência direta de {nome_cliente}, redija sobre as notícias sobre o concorrente explicitadas em {novids_conc} e como o
-                                    cliente {nome_cliente} pode superar isso. Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
-                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
                                     
                                     -Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.
 
 '''
                         tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
+
+
+                        prompt_concorrencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        
+                        em português brasileiro, -
+                        
+                                    
+
+                                    -Considerando {concorrentes} como a concorrência direta de {nome_cliente}, redija sobre as notícias sobre o concorrente explicitadas em {novids_conc} e como o
+                                    cliente {nome_cliente} pode superar isso. Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+                                    
+
+'''
+                        concorrencias_output = modelo_linguagem.generate_content(prompt_concorrencias).text
 
                         prompt_PEST = f'''Você é Philip Kotler, especialista em administração de marketing.
                         
@@ -387,6 +400,10 @@ def planej_mkt_page():
                         st.markdown(PEST_output)
                         st.subheader('1.3 Análise de tendências')
                         st.markdown(tendencias_output)
+                        st.subheader('1.4 Análise de concorrências')
+                        st.markdown(concorrencias_output)
+
+                        
                 
 
                         st.header('2. Etapa de Estratégica')
@@ -402,4 +419,4 @@ def planej_mkt_page():
                         st.markdown(tom_output)
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output,golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
+                        save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
