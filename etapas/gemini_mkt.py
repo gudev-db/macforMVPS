@@ -229,7 +229,7 @@ def planej_mkt_page():
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        prompt_SWOT = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        prompt_SWOT = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
                                     {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
@@ -240,12 +240,13 @@ def planej_mkt_page():
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         em português brasileiro, -
                         
                                     -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
-                                    tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}).
+                                    tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
 
                                     -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil})
                                     
