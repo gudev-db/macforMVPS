@@ -33,6 +33,7 @@ def save_to_mongo_midias(kv_output,redes_output,criativos_output,palavras_chave_
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de Mídias',
         "KV": kv_output,
+        "Plano_redes_macro":redesplanej_output,
         "Plano_Redes": redes_output,
         "Plano_Criativos": criativos_output,
         "Plano_Palavras_Chave": palavras_chave_output,
@@ -83,6 +84,8 @@ def planej_midias_page():
 
     objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes, key="objetivos_marca")
     referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", height=200)
+    
+    budget = st.text_input('Orçamento de Anúncios:', key="budget", placeholder="Valor em reais")
 
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
@@ -120,6 +123,7 @@ def planej_midias_page():
                         A definição do Key Visual deve ser detalhada da seguinte forma:
                         
                         1. **Imagem Conceito:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
+                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita.
                         
                         2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem conceito. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
                         
@@ -130,7 +134,23 @@ def planej_midias_page():
                         """
                         kv_output = modelo_linguagem.generate_content(prompt_kv).text
 
-                        prompt_redes = f"""
+                        prompt_redesplanej = f"""
+                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+                        Divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget},
+                        tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque.
+                        
+
+
+                        """
+                        redesplanej_output = modelo_linguagem.generate_content(prompt_redes).text
+
+prompt_redes = f"""
                         Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
 
                         - O ramo de atuação: {ramo_atuacao}.
@@ -263,7 +283,8 @@ def planej_midias_page():
                         st.subheader('1. Plano de Key Visual')
                         st.markdown(kv_output)
                         st.subheader('2. Plano para Redes')
-                        st.markdown(redes_output)
+                        st.markdown(redesplanej_output)
+                        st.markdown(redes_output)                   
                         st.subheader('3. Plano para Criativos')
                         st.markdown(criativos_output)
                         st.subheader('4. SEO')
@@ -272,4 +293,4 @@ def planej_midias_page():
                         st.markdown(estrategia_conteudo_output)
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_midias(kv_output,redes_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
+                        save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
