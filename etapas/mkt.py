@@ -499,7 +499,7 @@ def planej_mkt_page():
                                     expected_output=f'''Em português brasileiro,. 
                             
                                     
-                                    5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essa inspiração:
+                                    5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao}. Com um slogan inspirado nesses:
                                     
                                     "Pense diferente."
                                     "Abra a felicidade."
