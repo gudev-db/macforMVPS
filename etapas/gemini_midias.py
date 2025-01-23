@@ -23,7 +23,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_midias(kv_output,redes_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente):
+def save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
