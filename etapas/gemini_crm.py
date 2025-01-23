@@ -41,7 +41,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_CRM(fluxo_output,indicadores_output, nome_cliente):
+def save_to_mongo_CRM(fluxo_output, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -51,7 +51,7 @@ def save_to_mongo_CRM(fluxo_output,indicadores_output, nome_cliente):
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de CRM',
         "Fluxo": fluxo_output,
-        "Indicadores": indicadores_output,
+
     }
 
     # Insere o documento no MongoDB
@@ -261,16 +261,7 @@ def planej_crm_page():
                         fluxo_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
 
-                        prompt_indicadores = f'''
-                
-                         f"Considerando as Ações Principais: {fluxo_output}, " \
-                          f"redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo explicitado em Ações Principais. Nessa etapa, quero as ações a nível micro." 
 
-                        
-
-                        
-                        '''
-                        indicadores_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
                       
 
@@ -278,9 +269,8 @@ def planej_crm_page():
                         st.header('Plano de Fluxo de CRM')
                         st.subheader('Fluxo')
                         st.markdown(fluxo_output)
-                        st.subheader('Detalhamento')
-                        st.markdown(indicadores_output)
+
                         
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_CRM(fluxo_output,indicadores_output, nome_cliente)
+                        save_to_mongo_CRM(fluxo_output, nome_cliente)
