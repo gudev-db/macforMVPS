@@ -261,7 +261,19 @@ def planej_crm_page():
 
                         prompt_indicadores = f''' Em português brasileiro,
                 
-                        Observe cada etapa do fluxo em: ({fluxo_output}). Agora detalhe devidamente o que deve ser feito em cada etapa em um nível bem mais detalhado e aprodundado.
+                        Observe cada etapa do fluxo detalhado em macro em: ({fluxo_output}). 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        Agora, a um nível Micro. Detalhe exatamente o que deve ser feito em cada fase. Quais emails devem ser enviados? Como serão os formulários? Quais métodos
+                        utilizar? Explicite tudo e com justificativa. A expectativa é que esse seja um output gigante.
                         
                         '''
                         indicadores_output = modelo_linguagem.generate_content(prompt_fluxo).text
