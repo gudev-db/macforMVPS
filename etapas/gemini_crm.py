@@ -261,7 +261,7 @@ def planej_crm_page():
 
                         prompt_indicadores = f''' Em português brasileiro,
                 
-                        Indicadores chave para o monitoramento do fluxo de CRM proposto em: ({fluxo_output}).
+                        Observe cada etapa do fluxo em: ({fluxo_output}). Agora detalhe devidamente o que deve ser feito em cada etapa em um nível bem mais detalhado e aprodundado.
                         
                         '''
                         indicadores_output = modelo_linguagem.generate_content(prompt_fluxo).text
@@ -272,7 +272,7 @@ def planej_crm_page():
                         st.header('Plano de Fluxo de CRM')
                         st.subheader('Fluxo')
                         st.markdown(fluxo_output)
-                        st.subheader('Indicadores Chave')
+                        st.subheader('Detalhamento')
                         st.markdown(indicadores_output)
                         
 
