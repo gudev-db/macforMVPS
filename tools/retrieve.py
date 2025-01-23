@@ -93,7 +93,7 @@ def visualizar_planejamentos():
         # Etapa de CRM
         if 'Plano_Estrategia_CRM' in selected_planejamento:
             st.subheader('3.4 Plano de CRM')
-            st.markdown(f"**Estratégia Geral de CRM:** {selected_planejamento.get('Plano_Estrategia_CRM', 'N/A')}")
+            st.markdown(f"**Estratégia Geral de CRM:** {selected_planejamento.get('Plano de CRM', 'N/A')}")
             
             if 'Fluxo' in selected_planejamento:
                 st.markdown(f"**Fluxo Geral de CRM:** {selected_planejamento.get('Fluxo', 'N/A')}")
