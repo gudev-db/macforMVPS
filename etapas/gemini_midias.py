@@ -123,7 +123,8 @@ def planej_midias_page():
                         A definição do Key Visual deve ser detalhada da seguinte forma:
                         
                         1. **Imagem Conceito:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
-                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita.
+                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
+                        delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito.
                         
                         2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem conceito. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
                         
@@ -142,7 +143,9 @@ def planej_midias_page():
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
                         
-                        Divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget} reais,
+                        - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas:
+                        
+                        - divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget} reais,
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque.
                         
 
