@@ -87,6 +87,9 @@ def planej_midias_page():
     
     budget = st.text_input('Orçamento de Anúncios:', key="budget", placeholder="Valor em reais")
 
+    start_date = st.date_input("Data de Início:", key="start_date")
+    end_date = st.date_input("Data de Fim:", key="end_date")
+
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
@@ -142,12 +145,15 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - data de inicio {start_date}
+                        - data fim {end_date}
+                        - orçamento: {budget}
                         
                         - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas:
                         
                         - divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget} reais (alocação
                         devida e detalhadamente justificada),
-                        tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque.
+                        tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque. Em formato de cronograma.
                         
 
 
