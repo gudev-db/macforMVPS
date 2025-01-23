@@ -150,7 +150,7 @@ def planej_midias_page():
                         """
                         redesplanej_output = modelo_linguagem.generate_content(prompt_redes).text
 
-prompt_redes = f"""
+                        prompt_redes = f"""
                         Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
 
                         - O ramo de atuação: {ramo_atuacao}.
@@ -186,6 +186,7 @@ prompt_redes = f"""
                         Além disso, inclua sugestões sobre o que evitar em cada plataforma, para não prejudicar a imagem da marca.
 
                         """
+                        
                         redes_output = modelo_linguagem.generate_content(prompt_redes).text
 
                         prompt_criativos = f"""
