@@ -1,4 +1,4 @@
-__import__('pysqlite3')
+T__import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
@@ -469,9 +469,9 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise PEST.",
-                                    expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
-                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic}, contexto social: ({social})
-                                    e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}).
+                                    expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa PEST em português brasileiro 
+                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}), ({tend_tec_duck}),    contexto político: {politic}, contexto econômico: {economic}, contexto social: ({social})
+                                    e ({tend_social_duck}), contexto tecnológico: ({tec}).
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.''',
                                     agent=agentes[1],
                                     output_file = 'pest.md'
