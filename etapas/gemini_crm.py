@@ -263,21 +263,11 @@ def planej_crm_page():
 
                         prompt_indicadores = f''' Em português brasileiro,
                 
-                        Detalhe exatamente as ações principais na tabela em: ({fluxo_output}). 
+                        Considerando o contexto: {({fluxo_output}). },
 
                         redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo. Nessa etapa, quero as ações a nível micro.
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        Agora, a um nível Micro. Detalhe exatamente o que deve ser feito em cada fase. Quais emails devem ser enviados? Como serão os formulários? Quais métodos
-                        utilizar? Explicite tudo e com justificativa. A expectativa é que esse seja um output gigante.
+
                         
                         '''
                         indicadores_output = modelo_linguagem.generate_content(prompt_fluxo).text
