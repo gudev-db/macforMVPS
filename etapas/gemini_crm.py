@@ -261,11 +261,11 @@ def planej_crm_page():
                         fluxo_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
 
-                        prompt_indicadores = f''' Em português brasileiro,
+                        prompt_indicadores = f'''
                 
-                        Considerando o contexto: [({fluxo_output}).],
+                         f"Considerando os indicadores: {indicadores_output}, " \
+                          f"redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo explicitado em Ações Principais. Nessa etapa, quero as ações a nível micro." 
 
-                        redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo. Nessa etapa, quero as ações a nível micro.
                         
 
                         
