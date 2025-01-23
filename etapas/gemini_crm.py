@@ -263,7 +263,7 @@ def planej_crm_page():
 
                         prompt_indicadores = f''' Em português brasileiro,
                 
-                        Considerando o contexto: {({fluxo_output}). },
+                        Considerando o contexto: [({fluxo_output}).],
 
                         redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo. Nessa etapa, quero as ações a nível micro.
                         
