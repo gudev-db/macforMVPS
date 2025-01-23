@@ -142,7 +142,7 @@ def planej_midias_page():
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
                         
-                        Divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget},
+                        Divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget} reais,
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque.
                         
 
