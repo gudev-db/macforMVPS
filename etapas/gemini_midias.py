@@ -145,7 +145,8 @@ def planej_midias_page():
                         
                         - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas:
                         
-                        - divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget} reais,
+                        - divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento: {budget} reais (alocação
+                        devida e detalhadamente justificada),
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque.
                         
 
