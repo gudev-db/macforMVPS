@@ -255,13 +255,17 @@ def planej_crm_page():
                         canal de contato, tempo de duração de cada etapa, tom a ser utilizado, ação personalizada para o case específico do cliente {nome_cliente} para cada segmento de seu setor de atuação:
                         {ramo_atuacao}. Leve em consideração como isso seria aplicado levando em conta as ferramentas de CRM mais atuais explicitadas em: ({crm_tools}), assim como
                         a pesquisa de tendências de CRM explicitada em: ({tend_crm}).
+
+                        defina uma tabela com as colunas: Etapa	Duração	Ações Principais
                         '''
                         fluxo_output = modelo_linguagem.generate_content(prompt_fluxo).text
 
 
                         prompt_indicadores = f''' Em português brasileiro,
                 
-                        Observe cada etapa do fluxo detalhado em macro em: ({fluxo_output}). 
+                        Detalhe exatamente as ações principais na tabela em: ({fluxo_output}). 
+
+                        redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo. Nessa etapa, quero as ações a nível micro.
                         
                         
                         
