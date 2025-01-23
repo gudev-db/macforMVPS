@@ -263,7 +263,7 @@ def planej_crm_page():
 
                         prompt_indicadores = f'''
                 
-                         f"Considerando os indicadores: {fluxo_output}, " \
+                         f"Considerando as Ações Principais: {fluxo_output}, " \
                           f"redija os emails, formulários, mensagens, acompanhamento, fluxo de nutrição, emails de contato. Tudo explicitado em Ações Principais. Nessa etapa, quero as ações a nível micro." 
 
                         
