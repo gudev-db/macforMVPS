@@ -1,17 +1,13 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import os
 import streamlit as st
-from crewai import Agent, Task, Process, Crew
-from langchain_openai import ChatOpenAI
+import google.generativeai as genai
+import uuid
+import os
+from pymongo import MongoClient
 from datetime import datetime
-from crewai_tools import tool
 import os
 from tavily import TavilyClient
 from pymongo import MongoClient
-
-
+import requests
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
@@ -20,159 +16,101 @@ rapid_key = os.getenv("RAPID_API")
 
 
 
-client = TavilyClient(api_key=t_api_key1)
+# Configuração do Gemini API
+gemini_api_key = os.getenv("GEM_API_KEY")
+genai.configure(api_key=gemini_api_key)
 
-
-
-# Inicializa o modelo LLM com OpenAI
-modelo_linguagem = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0.5,
-    frequency_penalty=0.5
-)
-
+# Inicializa o modelo Gemini
+modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
 client1 = TavilyClient(api_key='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')
 
-# Connect to MongoDB
+
+# Conexão com MongoDB
 client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
-db = client['arquivos_planejamento']  # Replace with your database name
-collection = db['auto_doc'] #docs gerados
-
+db = client['arquivos_planejamento']
+collection = db['auto_doc']
 banco = client["arquivos_planejamento"]
-db_clientes = banco["clientes"]  #info clientes
-
-import uuid
+db_clientes = banco["clientes"]  # info clientes
 
 # Função para gerar um ID único para o planejamento
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-def save_to_mongo(tarefas_pesquisa,tarefas_estrategica, nome_cliente):
-    # Gerar o ID único para o planejamento
+# Função para salvar no MongoDB
+def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente):    # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
-    # Prepare the document to be inserted into MongoDB
+    # Prepara o documento a ser inserido no MongoDB
     task_outputs = {
-        "id_planejamento":'Plano Estratégico e de Planejamento' +'_'+ nome_cliente + '_' + id_planejamento,  # Use o ID gerado como chave
-        "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
-        "tipo_plano": 'Plano Estratégico e de Planejamento',
-        "SWOT": tarefas_pesquisa[0].output.raw,
-        "P": tarefas_pesquisa[2].output.raw,
-        "E": tarefas_pesquisa[3].output.raw,
-        "S": tarefas_pesquisa[4].output.raw,
-        "T": tarefas_pesquisa[5].output.raw,
-        "Tendencias": tarefas_pesquisa[1].output.raw,
-
-        
-        "GC": tarefas_estrategica[0].output.raw,
-        "Posicionamento_Marca": tarefas_estrategica[1].output.raw,
-        "Brand_Persona": tarefas_estrategica[2].output.raw,
-        "Buyer_Persona": tarefas_estrategica[3].output.raw,
-        "Tom_Voz": tarefas_estrategica[4].output.raw,
-     
+        "id_planejamento": 'Plano Estratégico' + '_' + nome_cliente + '_' + id_planejamento,
+        "nome_cliente": nome_cliente,
+        "tipo_plano": 'Plano Estratégico',
+        "Etapa_1_Pesquisa_Mercado": {
+            "Análise_SWOT": SWOT_output,
+            "Análise_PEST": PEST_output,
+            "Análise_Tendências": tendencias_output,
+            "Análise_Concorrência": concorrencias_output,
+        },
+        "Etapa_2_Estrategica": {
+            "Golden_Circle": golden_output,
+            "Posicionamento_Marca": posicionamento_output,
+            "Brand_Persona": brand_persona_output,
+            "Buyer_Persona": buyer_persona_output,
+            "Tom_de_Voz": tom_output,
+        }
     }
 
-    # Insert the document into MongoDB
+
+    # Insere o documento no MongoDB
     collection.insert_one(task_outputs)
     st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
 
-
-
-
-
-
+# Função para limpar o estado do Streamlit
 def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
-from crewai_tools import BaseTool, tool
-# Definindo a lista de opções para o selectbox
-objetivos_opcoes = [
-    'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
-    'Entregar potenciais consumidores para a área comercial',
-    'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
-    'Fidelizar e reter um público fiel já convertido',
-    'Garantir que o público esteja engajado com os canais ou ações da marca'
-]
-
-
-
+# Função principal da página de planejamento de mídias
 def planej_mkt_page():
-    # Buscar todos os clientes do banco de dados
-    clientes = list(db_clientes.find({}, {
-        "_id": 0, 
-        "nome": 1, 
-        "site": 1, 
-        "ramo": 1, 
-        "concorrentes": 1, 
-        "intuito": 1, 
-        "publicoAlvo": 1, 
-        "referenciaMarca": 1, 
-        "siteConcorrentes": 1
-    }))
+    st.subheader('Planejamento de Mídias e Redes')
+    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
 
-    # Criar uma lista para o selectbox
+    # Buscar todos os clientes do banco de dados
+    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
     opcoes_clientes = [cliente["nome"] for cliente in clientes]
 
     # Selectbox para escolher o cliente
-    nome_cliente = st.text_input('Nome do cliente')
+    nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
 
     # Obter as informações do cliente selecionado
     cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
-
-    # Preencher os campos automaticamente com as informações do cliente
-    if cliente_info:
-        site_cliente = cliente_info.get("site", "")
-        ramo_atuacao = cliente_info.get("ramo", "")
-        concorrentes = cliente_info.get("concorrentes", "")
-        site_concorrentes = cliente_info.get("siteConcorrentes", "")
-        intuito_plano = cliente_info.get("intuito", "")
-        publico_alvo = cliente_info.get("publicoAlvo", "")
-        referencia_da_marca = cliente_info.get("referenciaMarca", "")
-    else:
-        site_cliente = ""
-        ramo_atuacao = ""
-        concorrentes = ""
-        site_concorrentes = ""
-        intuito_plano = ""
-        publico_alvo = ""
-        referencia_da_marca = ""
+    site_cliente = cliente_info["site"] if cliente_info else ""
+    ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
 
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
     st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
-    st.text_input('Concorrentes:', value=concorrentes, key="concorrentes")
-    st.text_input('Site dos Concorrentes:', value=site_concorrentes, key="site_concorrentes")
-    st.text_input('Intuito do Plano Estratégico:', value=intuito_plano, key="intuito_plano")
-    st.text_input('Público-Alvo:', value=publico_alvo, key="publico_alvo")
-    st.text_area(
-        'Referência da Marca:', 
-        value=referencia_da_marca, 
-        key="referencia_da_marca", 
-        height=200  
-    )
+    intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
+    publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
+    concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
+    site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
+    tendaux = st.text_input('Tendências de interesse:', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc")
 
+    objetivos_opcoes = [
+        'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
+        'Entregar potenciais consumidores para a área comercial',
+        'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
+        'Fidelizar e reter um público fiel já convertido',
+        'Garantir que o público esteja engajado com os canais ou ações da marca'
+    ]
 
-    # Criando o selectbox com as opções definidas
-    objetivos_de_marca = st.selectbox(
-        'Selecione os objetivos de marca',
-        objetivos_opcoes,
-        key="objetivos_marca"
-    )
-   
+    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes, key="objetivos_marca")
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", height=200)
 
-    # Tendências
-    tendencias = st.text_input('Quais tendências gostaria que o agente pesquisasse?',placeholder="Ex: IA, otimização de CRM, ...")
-
-
-  
-    
-
-
-    st.subheader("(Opcional) Suba os Arquivos Estratégicos (PDF) (Único ou múltiplos)")
+    # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
-    # Set parameters for the search
+        # Set parameters for the search
     days = 90
     max_results = 15
 
@@ -182,7 +120,7 @@ def planej_mkt_page():
 
     url = "https://duckduckgo8.p.rapidapi.com/"
     
-    querystring = {"q":f"{tendencias}"}
+    querystring = {"q":f"tendencias em {tendaux}"}
     
     headers = {
     	"x-rapidapi-key": rapid_key,
@@ -192,6 +130,54 @@ def planej_mkt_page():
     response = requests.get(url, headers=headers, params=querystring)
     
     tend_novids2 = response.text
+
+
+  #DUCK DUCK GO SEARCH de tendências
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring2 = {"q":f"dados econômicos relevantes no brasil"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring2)
+    
+    dados_econ_brasil = response.text
+
+
+ #DUCK DUCK GO SEARCH de ferramentas
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring2)
+    
+    ferramentas_rel = response.text
+
+
+ #DUCK DUCK GO SEARCH de concorrência
+
+    url = "https://duckduckgo8.p.rapidapi.com/"
+    
+    querystring5 = {"q":f"novidades sobre {concorrentes}"}
+    
+    headers = {
+    	"x-rapidapi-key": rapid_key,
+    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+    }
+    
+    response = requests.get(url, headers=headers, params=querystring5)
+    
+    novids_conc = response.text
 
     #DUCK DUCK GO SEARCH PEST
 
@@ -243,7 +229,7 @@ def planej_mkt_page():
     )
     
     tend_novids1 = client1.search(
-        f'''Quais as recentes tendências de mercado para {tendencias}?''',
+        f'''Quais as recentes tendências de mercado para {ramo_atuacao}?''',
         days=days, 
         max_results=max_results
     )
@@ -255,11 +241,8 @@ def planej_mkt_page():
     )
 
 
-
   
-
     if pest_files is not None:
-        # Se o relatório já foi gerado, exiba os resultados
         if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
             st.subheader("Relatório Gerado")
             for tarefa in st.session_state.resultados_tarefas:
@@ -271,272 +254,82 @@ def planej_mkt_page():
                 limpar_estado()
                 st.experimental_rerun()
         else:
-            # Validação de entrada e geração de relatório
             if st.button('Iniciar Planejamento'):
+                if not nome_cliente:
+                    st.write("Por favor, preencha todas as informações do cliente.")
                 else:
-                    with st.spinner('Gerando o planejamento...'):
+                    with st.spinner('Gerando o planejamento de mídias...'):
 
+                        # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        agentes = [
-                            Agent(
-                                role="Líder e revisor geral de estratégia",
-                                goal=f'''Aprenda sobre revisão geral de estratégia em {pest_files}. Revisar toda a estratégia de {nome_cliente} e garantir 
-                                alinhamento com os {objetivos_de_marca}, o público-alvo {publico_alvo} e as {referencia_da_marca}.''',
-                                backstory=f'''Você é Philip Kotler, renomado estrategista de marketing, usando todo o seu conhecimento 
-                                avançado em administração de marketing como nos documentos de {pest_files}, liderando o planejamento de {nome_cliente} no 
-                                ramo de {ramo_atuacao} em português brasileiro.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista PEST",
-                                goal=f'''Aprenda sobre análise PEST em {pest_files}. Realizar a análise PEST para o cliente {nome_cliente} em português brasileiro.''',
-                                backstory=f'''Você é Philip Kotler, liderando a análise PEST para o planejamento estratégico de {nome_cliente} em português brasileiro. 
-                                Levando em conta as informações coletadas em {politic}, {economic}, {social} e {tec} realize a análise PEST, essas informações são o que a sua 
-                                análise PEST deve se basear em. Você está realizando essa análise PEST para o cliente {nome_cliente} que é do setor de atuação {ramo_atuacao}.
-                                O intuito do planejamento estratégico está explicitado em {intuito_plano}. Você possui uma vasta experiência em desenvolver análises PEST relevantes,
-                                perspicazes e detalhadas. Você sabe exatamente como extrair informações relevantes para o crescimento de seus clientes.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista SWOT",
-                                goal=f'''Aprenda sobre análise SWOT e crie a análise para {nome_cliente}, com base nos dados de mercado disponíveis.''',
-                                backstory='''Você é um analista de marketing focado em realizar uma análise SWOT completa com dados extraídos de fontes diversas, como documentos PDF e CSV.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Matriz BCG",
-                                goal=f"Desenvolver a Matriz BCG para o {nome_cliente}, com base nas informações do mercado e concorrência disponíveis.",
-                                backstory="Você é um especialista em estratégia de negócios e está ajudando a construir a Matriz BCG com base nos dados de mercado disponíveis, incluindo concorrentes.",
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Consultor de Pricing",
-                                goal=f'''Analisar a estratégia de preços para {nome_cliente}, utilizando dados de mercado e concorrência.''',
-                                backstory=f'''Você é um consultor de pricing experiente e ajudará {nome_cliente} a entender as melhores práticas
-                                de precificação com base na análise de mercado e concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista de Segmentação de Mercado",
-                                goal=f'''Segmentar o mercado para {nome_cliente} com base nos dados de concorrentes e no perfil do público-alvo.''',
-                                backstory=f'''Você é um analista de mercado com a missão de segmentar o público de {nome_cliente} e gerar insights acionáveis
-                                para o planejamento de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Criador de Persona",
-                                goal=f'''Desenvolver personas para o {nome_cliente} com base nos dados de público-alvo e concorrência.''',
-                                backstory=f'''Você é um especialista em marketing digital, com o objetivo de criar personas detalhadas para 
-                                {nome_cliente}, que ajudem a direcionar a comunicação de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Estratégia de Mídia Social",
-                                goal=f'''Desenvolver uma estratégia de mídia social para {nome_cliente} com base nas análises de mercado e público-alvo.''',
-                                backstory=f'''Você é um especialista em mídia social, com foco em ajudar marcas a maximizar sua presença nas
-                                plataformas de mídia social com base em dados do mercado.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Inbound Marketing",
-                                goal=f'''Desenvolver uma estratégia de inbound marketing para {nome_cliente}, com foco em atrair e converter leads.''',
-                                backstory=f'''Você é um especialista em inbound marketing, utilizando as melhores práticas 
-                                para atrair e engajar clientes em potencial para {nome_cliente}.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}''',
-                                backstory=f'''Você é um especialista em SEO, com o objetivo de melhorar a visibilidade do site de {nome_cliente} 
-                                nos motores de busca, com base na análise do conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Criativos",
-                                goal=f'''Desenvolver criativos da campanha de {nome_cliente}, com base no {ramo_atuacao}, {intuito_plano} e {publico_alvo}.''',
-                                backstory=f'''Você é um especialista em Criativos de marketing digital, você é original, detalhista, 
-                                minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu 
-                                extenso repertório profissional, com o objetivo de trazer o máximo de atenção às campanhas do cliente. 
-                                Tornando-as relevantes e fazendo com que o cliente atinja seus objetivos.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            
-                            Agent(
-                                role="Especialista em CRM",
-                                goal=f'''Desenvolver estratégias de CRM para o cliente: {nome_cliente}.''',
-                                backstory=f'''Você é um especialista em CRM. você é original, detalhista, minucioso, 
-                                criativo, com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso 
-                                repertório profissional, Você sabe estabelecer relações durarouras com clientes e sabe tudo que há de se
-                                saber para detalhar planos de como firmar e continuar relacionamentos estratégicos com clientes.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            
-                            Agent(
-                                role="Especialista em Marca/Design",
-                                goal=f'''Desenvolver ideias de Marca/Design do cliente: {nome_cliente}.''',
-                                backstory=f'''Você é um especialista em Marca/Design, você é original, detalhista, minucioso, criativo, 
-                                com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório profissional, 
-                                com o objetivo de melhorar a visibilidade de {nome_cliente} trazendo a sua marca
-                                de uma forma coerente e chamativa.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-
-                            Agent(
-                                role="Especialista em SEO",
-                                goal=f'''Melhorar o SEO de {nome_cliente}, com base na análise do site e na concorrência.''',
-                                backstory=f'''Você é um especialista em SEO, você é analítico, detalhista, minucioso, criativo, 
-                                com uma vasta experiência de mercado lidando com uma gama de empresas que atingiram sucesso por conta do seu extenso repertório 
-                                profissional, com o objetivo de melhorar a visibilidade do site de {nome_cliente} nos motores de busca, com base na análise do
-                                conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Especialista em Redes Sociais",
-                                goal=f'''Estabelecer o plano de atuação em redes sociais de {nome_cliente} no planejamento estratégico, com base na análise do site e na concorrência.''',
-                                backstory=f'''Você é um especialista em marketing em redes sociais, 
-                                você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de 
-                                empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de melhorar a visibilidade nas campanhas 
-                                {nome_cliente}, com base na análise do conteúdo existente e da concorrência.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                            Agent(
-                                role="Analista de Tendências",
-                                goal=f'''Analista de tendências de mercado em prol do cliente: {nome_cliente} para o  planejamento estratégico.''',
-                                backstory=f'''Você é um especialista em marketing e análise de tendências no ramo de atuação {ramo_atuacao}, 
-                                você é original, detalhista, minucioso, criativo, com uma vasta experiência de mercado lidando com uma gama de 
-                                empresas que atingiram sucesso por conta do seu extenso repertório profissional, com o objetivo de encontrar aspectos chaves no mercado
-                                para o melhor aproveitamento de marketing.''',
-                                allow_delegation=False,
-                                llm=modelo_linguagem,
-                                tools=[]
-                            ),
-                        ]
-
-                    
-
-                        # Criando tarefas correspondentes aos agentes
-                        tarefas_pesquisa = [
-                                
-                                Task(
-                                    description="Criar a Matriz SWOT.",
-                                    expected_output=f'''Considerando o seguinte contexto a referência da marca:
-                                    {referencia_da_marca},
-                                    realize a Análise SWOT completa em formato de tabela em português brasileiro. 
+                        prompt_SWOT = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        
+                        Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
+                                    {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
+                                    realize a Análise SWOT completa em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
                                     Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
-                                    Você estáa aqui para trazer conhecimento estratégico. organize os pontos em bullets
-                                    pra ficarem organizados dentro de cada segmento da tabela.''',
-                                    agent=agentes[6],
-                                    output_file = 'SWOT.md'
-                                ),
-                                Task(
-                                    description="Pesquisa de tendências.",
-                                    expected_output=f'''em português brasileiro, Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
-                                    tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}).
-                                    
-                                    Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.''',
-                                    agent=agentes[15],
-                                    output_file = 'tendencia.md'
-                                ),
-                                 Task(
-                                    description="Análise Política (PEST).",
-                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
-                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
-                                    
-                                    Análise do contexto político com pelo menos 10 pontos relevantes em português brasileiro, considerando:
-                                    - O retorno da pesquisa de tendências: ({tend_novids2}),
-                                    - O contexto político fornecido: {politic}.
-                                    Inclua insights que podem alavancar o planejamento de marketing e considere aspectos como regulamentações, políticas governamentais, estabilidade política, impostos, comércio internacional, entre outros.''',
-                                    agent=agentes[1],
-                                    output_file='political_analysis.md'
-                                ),
-                                Task(
-                                    description="Análise Econômica (PEST).",
-                                    expected_output=f'''
-                                    
-                                    Análise do contexto econômico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
-                                    - O retorno da pesquisa de tendências: ({tend_novids2}),
-                                    - O contexto econômico fornecido: {economic}.
-                                    Foco em insights relacionados a taxas de juros, inflação, PIB, taxas de câmbio, desemprego, renda disponível, entre outros fatores que influenciam o planejamento de marketing.''',
-                                    agent=agentes[1],
-                                    output_file='economic_analysis.md'
-                                ),
-                                Task(
-                                    description="Análise Social (PEST).",
-                                    expected_output=f'''
-                                    
-                                    Análise do contexto social com pelo menos 10 pontos relevantes em português brasileiro, considerando:
-                                    - O retorno da pesquisa de tendências: ({tend_social_duck}), ({social}),
-                                    - O contexto social fornecido.
-                                    Explore fatores como mudanças demográficas, comportamento do consumidor, tendências culturais, valores sociais, educação e estilo de vida. Forneça insights acionáveis para o planejamento de marketing.''',
-                                    agent=agentes[1],
-                                    output_file='social_analysis.md'
-                                ),
-                                Task(
-                                    description="Análise Tecnológica (PEST).",
-                                    expected_output=f'''
-                                    
-                                    Análise do contexto tecnológico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
-                                    - O retorno da pesquisa de tendências: ({tend_novids2}), ({tend_tec_duck}),
-                                    - O contexto tecnológico fornecido: ({tec}).
-                                    Inclua aspectos como inovação tecnológica, tendências emergentes, automação, digitalização, inteligência artificial e qualquer outro fator tecnológico relevante ao planejamento de marketing.''',
-                                    agent=agentes[1],
-                                    output_file='technological_analysis.md'
-                                ),
-                            
-                            
-                        ]
+                                    Você está aqui para trazer conhecimento estratégico. organize os pontos em bullets
+                                    pra ficarem organizados dentro de cada segmento da tabela.'''
+                        SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-
+                        prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
-                        tarefas_estrategica = [
-                                
-                                
-                                Task(
-                                    description="Desenvolver o Golden Circle.",
-                                    expected_output=f'''Golden Circle completo com 'how', 'why' e 'what' resumidos 
+                        em português brasileiro, -
+                        
+                                    -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
+                                    tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Em bullet points pra cada tendencia e 2-3 paragrafos pra cada bullet point
+
+                                    -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+
+                                    -Comente sobre as ferramentas relevantes no setor de atuação do cliente explicitadas em ({ferramentas_rel}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+
+                                    
+                                    -Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.
+
+'''
+                        tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
+
+
+                        prompt_concorrencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        
+                        em português brasileiro, -
+                        
+                                    
+
+                                    -Considerando {concorrentes} como a concorrência direta de {nome_cliente}, redija sobre as notícias sobre o concorrente explicitadas em {novids_conc} e como o
+                                    cliente {nome_cliente} pode superar isso. Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
+                                    
+
+'''
+                        concorrencias_output = modelo_linguagem.generate_content(prompt_concorrencias).text
+
+                        prompt_PEST = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        
+                        Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
+                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic} e dados econômicos
+                                    relevantes: ({dados_econ_brasil}), contexto social: ({social})
+                                    e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). Leve em conta as tendencias em ({tendencias_output}).
+                                    Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
+                        
+                        PEST_output = modelo_linguagem.generate_content(prompt_PEST).text
+
+                        prompt_golden = f'''Golden Circle completo com 'how', 'why' e 'what' resumidos 
                                     em uma frase cada em português brasileiro. Considerando o seguinte contexto 
                                      e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
-                                    {referencia_da_marca},''',
-                                    agent=agentes[3],
-                                    output_file = 'GC.md'
-                                ),
-                                Task(
-                                    description="Criar o posicionamento de marca.",
-                                    expected_output=f'''Em português brasileiro,. 
+                                    {referencia_da_marca}, a análise SWOT ({SWOT_output}).'''
+                      
+                        golden_output = modelo_linguagem.generate_content(prompt_golden).text
+
+                        prompt_posicionamento = f'''Em português brasileiro,. 
                             
+                                    levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}).
                                     
-                                    5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao}. Com um slogan inspirado nesses:
+                                    Gerar 5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essa inspiração:
                                     
                                     "Pense diferente."
                                     "Abra a felicidade."
@@ -563,13 +356,12 @@ def planej_mkt_page():
 
                                     
                                     
-                                    ''',
-                                    agent=agentes[2],
-                                    output_file = 'posMar.md'
-                                ),
-                                Task(
-                                    description="Criar a Brand Persona.",
-                                    expected_output=f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
+                                    '''
+                  
+                        posicionamento_output = modelo_linguagem.generate_content(prompt_posicionamento).text
+
+
+                        prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
                                     seguinte contexto 
                                     
                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
@@ -578,95 +370,53 @@ def planej_mkt_page():
                                     - Defina seu nome (deve ser o nome de uma pessoa normal como fernando pessoa, maria crivellari, etc)
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
-                                    -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?''',
-                                    agent=agentes[4],
-                                    output_file = 'BP.md'
-                                ),
-                                Task(
-                                    description="Definir a Buyer Persona e o Público-Alvo.",
-                                    expected_output=f'''Descrição detalhada da buyer persona considerando o público-alvo: {publico_alvo} e o 
+                                    -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?'''
+                  
+                        brand_persona_output = modelo_linguagem.generate_content(prompt_brand_persona).text
+
+                        prompt_buyer_persona = f'''Descrição detalhada da buyer persona considerando o público-alvo: {publico_alvo} e o 
                                     objetivo do plano estratégico como descrito em {intuito_plano} com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
                                     suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
-                                    Crie oito buyer personas.''', 
-                                    agent=agentes[5],
-                                    output_file = 'BuyerP.md'
-                                ),
-                                Task(
-                                    description="Definir o Tom de Voz.",
-                                    expected_output=f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. 
+                                    Crie oito buyer personas.'''
+                  
+                        buyer_persona_output = modelo_linguagem.generate_content(prompt_buyer_persona).text
+
+
+                        prompt_tom = f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. Levando em conta o ramo de atuação: ({ramo_atuacao}), o brand persona: ({brand_persona_output})
+                        e o buyer persona: ({buyer_persona_output}).
                                     Retorne 10 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
-                                    relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.''',
-                                    agent=agentes[7],
-                                    output_file = 'TV.md'
-                                )
-                            ]
+                                    relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.'''
+                  
+                        tom_output = modelo_linguagem.generate_content(prompt_tom).text
 
-
-                     
-
-                        # Processo do Crew
-                        equipe_pesquisa = Crew(
-                            agents=agentes,
-                            tasks=tarefas_pesquisa,
-                            process=Process.hierarchical,
-                            manager_llm=modelo_linguagem,
-                            language='português brasileiro'
-                        )
-
-                        equipe_estrategica = Crew(
-                            agents=agentes,
-                            tasks=tarefas_estrategica,
-                            process=Process.hierarchical,
-                            manager_llm=modelo_linguagem,
-                            language='português brasileiro'
-                        )
-
-
-                        # Executa as tarefas do processo
-                        resultado_pesquisa = equipe_pesquisa.kickoff()
-
-                        # Executa as tarefas do processo
-                        resultado_estrategica = equipe_estrategica.kickoff()
-
-                       
                         #Printando Tarefas
 
                         st.header('1. Etapa de Pesquisa de Mercado')
                         st.subheader('1.1 Análise SWOT')
-                        st.markdown(tarefas_pesquisa[0].output.raw)
+                        st.markdown(SWOT_output)
                         st.subheader('1.2 Análise PEST')
-                        st.subheader('Política')
-                        st.markdown(tarefas_pesquisa[2].output.raw)
-                        st.subheader('Econômica')
-                        st.markdown(tarefas_pesquisa[3].output.raw)
-                        st.subheader('Social')
-                        st.markdown(tarefas_pesquisa[4].output.raw)
-                        st.subheader('Tecnológica')
-                        st.markdown(tarefas_pesquisa[5].output.raw)
+                        st.markdown(PEST_output)
                         st.subheader('1.3 Análise de tendências')
-                        st.markdown(tarefas_pesquisa[1].output.raw)
+                        st.markdown(tendencias_output)
+                        st.subheader('1.4 Análise de concorrências')
+                        st.markdown(concorrencias_output)
+
+                        
                 
 
                         st.header('2. Etapa de Estratégica')
                         st.subheader('2.1 Golden Circle')
-                        st.markdown(tarefas_estrategica[0].output.raw)
+                        st.markdown(golden_output)
                         st.subheader('2.2 Posicionamento de Marca')
-                        st.markdown(tarefas_estrategica[1].output.raw)
+                        st.markdown(posicionamento_output)
                         st.subheader('2.3 Brand Persona')
-                        st.markdown(tarefas_estrategica[2].output.raw)
+                        st.markdown(brand_persona_output)
                         st.subheader('2.4 Buyer Persona')
-                        st.markdown(tarefas_estrategica[3].output.raw)
+                        st.markdown(buyer_persona_output)
                         st.subheader('2.5 Tom de Voz')
-                        st.markdown(tarefas_estrategica[4].output.raw)
-                        
-                
-                    
-                        save_to_mongo(tarefas_pesquisa,tarefas_estrategica , nome_cliente)
+                        st.markdown(tom_output)
 
-
-
-
-
-
+                        # Salva o planejamento no MongoDB
+                        save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
