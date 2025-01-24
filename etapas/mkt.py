@@ -133,127 +133,131 @@ def planej_mkt_page():
                 else:
                     with st.spinner('Gerando o planejamento estratégico...'):
 
-                            import requests
+                        import requests
+
+                            # Inicializa o modelo Gemini
+                        modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
+                        client1 = TavilyClient(api_key='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')
 
                             #DUCK DUCK GO SEARCH de tendências
                         
-                            url = "https://duckduckgo8.p.rapidapi.com/"
+                        url = "https://duckduckgo8.p.rapidapi.com/"
                             
-                            querystring = {"q":f"tendencias em {tendaux}"}
+                        querystring = {"q":f"tendencias em {tendaux}"}
                             
-                            headers = {
+                        headers = {
                             	"x-rapidapi-key": rapid_key,
                             	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
-                            response = requests.get(url, headers=headers, params=querystring)
+                        response = requests.get(url, headers=headers, params=querystring)
                             
-                            tend_novids2 = response.text
+                        tend_novids2 = response.text
                         
                         
                           #DUCK DUCK GO SEARCH de tendências
                         
-                            url = "https://duckduckgo8.p.rapidapi.com/"
+                        url = "https://duckduckgo8.p.rapidapi.com/"
                             
-                            querystring2 = {"q":f"dados econômicos relevantes no brasil"}
+                        querystring2 = {"q":f"dados econômicos relevantes no brasil"}
                             
-                            headers = {
+                        headers = {
                             	"x-rapidapi-key": rapid_key,
                             	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
-                            response = requests.get(url, headers=headers, params=querystring2)
+                        response = requests.get(url, headers=headers, params=querystring2)
                             
-                            dados_econ_brasil = response.text
+                        dados_econ_brasil = response.text
                         
                         
                          #DUCK DUCK GO SEARCH de ferramentas
                         
-                            url = "https://duckduckgo8.p.rapidapi.com/"
+                        url = "https://duckduckgo8.p.rapidapi.com/"
                             
-                            querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
+                        querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
                             
-                            headers = {
+                        headers = {
                             	"x-rapidapi-key": rapid_key,
                             	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
-                            response = requests.get(url, headers=headers, params=querystring2)
+                        response = requests.get(url, headers=headers, params=querystring2)
                             
-                            ferramentas_rel = response.text
+                        ferramentas_rel = response.text
                         
                         
                          #DUCK DUCK GO SEARCH de concorrência
                         
-                            url = "https://duckduckgo8.p.rapidapi.com/"
+                        url = "https://duckduckgo8.p.rapidapi.com/"
                             
-                            querystring5 = {"q":f"novidades sobre {concorrentes}"}
+                        querystring5 = {"q":f"novidades sobre {concorrentes}"}
                             
-                            headers = {
+                        headers = {
                             	"x-rapidapi-key": rapid_key,
                             	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
-                            response = requests.get(url, headers=headers, params=querystring5)
+                        response = requests.get(url, headers=headers, params=querystring5)
                             
-                            novids_conc = response.text
+                        novids_conc = response.text
                         
                             #DUCK DUCK GO SEARCH PEST
                         
                             #SOCIAL
-                            querystring_social = {"q":f"Novidades no âmbito social no brasil"}
+                        querystring_social = {"q":f"Novidades no âmbito social no brasil"}
                             
-                            response_social = requests.get(url, headers=headers, params=querystring_social)
+                        response_social = requests.get(url, headers=headers, params=querystring_social)
                             
-                            tend_social_duck = response_social.text
+                        tend_social_duck = response_social.text
                         
                             #Tecnológico
-                            querystring_tec = {"q":f"Novidades no âmbito tecnológico no brasil"}
+                        querystring_tec = {"q":f"Novidades no âmbito tecnológico no brasil"}
                             
-                            response_tec = requests.get(url, headers=headers, params=querystring_tec)
+                        response_tec = requests.get(url, headers=headers, params=querystring_tec)
                             
-                            tend_tec_duck = response_tec.text
+                        tend_tec_duck = response_tec.text
                         
                             
                         
                         
                             #TAVILY PEST
                             
-                            politic = client1.search(
+                        politic = client1.search(
                                 f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
                                 estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
                                 days=days, 
                                 max_results=max_results
                             )
                             
-                            economic = client1.search(
+                        economic = client1.search(
                                 f'''Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para 
                                 planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
                                 days=days, 
                                 max_results=max_results
                             )
                             
-                            social = client1.search(
+                        social = client1.search(
                                 f'''Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento
                                 estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
                                 days=days, 
                                 max_results=max_results
                             )
                             
-                            tec = client1.search(
+                        tec = client1.search(
                                 f'''Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
                                 planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
                                 days=days, 
                                 max_results=max_results
                             )
                             
-                            tend_novids1 = client1.search(
+                        tend_novids1 = client1.search(
                                 f'''Quais as recentes tendências de mercado para {ramo_atuacao}?''',
                                 days=days, 
                                 max_results=max_results
                             )
                             
-                            tend_ramo = client1.search(
+                        tend_ramo = client1.search(
                                 f'''Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?''',
                                 days=days, 
                                 max_results=max_results
