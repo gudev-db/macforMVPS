@@ -97,7 +97,8 @@ if login():
         "Plano Estratégico de Redes e Mídias",
         "Plano de CRM",
         "Visualizar documentos gerados",
-        "Conteúdo de Nutrição de Leads"
+        "Conteúdo de Nutrição de Leads",
+        "Brainstorming de Anúncios"
     ]
 
     # Guardando a escolha do usuário na session state
