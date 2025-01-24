@@ -24,7 +24,7 @@ def gen_img():
             st.warning("Por favor, insira um prompt antes de gerar a imagem.")
             return
 
-        with st.spinner("Gerando imagem..."):
+        with st.spinner("Brainstorming..."):
             try:
                 headers = {
                     "Content-Type": "application/json",
