@@ -156,7 +156,8 @@ def planej_midias_page():
                         devida e detalhadamente justificada) definindo tambem
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque. Quebre o investimento, tipo de campanha e estratégia
                         por plataforma e periodo (dentro de {start_date} e {end_date}). Detalhe o quanto cada campanha deve gastar, por qual pedíodo, por qual plataforma, qual é o tipo de campanha,
-                        justificando sempre o porque de cada atributo.
+                        justificando sempre o porque de cada atributo. Primeiro justifique a alocação de recursos temporalmente e depois por plataforma. Quantidade a ser gasta em cada etapa temporal
+                        por que? Quantidade a ser gasta em cada plataforma porque? Quantidade a ser gasta em cada tipo de campanha porque? O planejamento deve justificar tudo isso.
                         
                         
                         
