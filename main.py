@@ -90,6 +90,8 @@ def login():
 # Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
 if login():
     # Interface do Streamlit
+    st.sidebar.image('static/macLogo.png', width=200)
+
 
     # Sidebar com selectbox para escolher o tipo de documento
     menu_options = [
