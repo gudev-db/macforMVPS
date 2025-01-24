@@ -472,7 +472,10 @@ def planej_mkt_page():
                                 ),
                                  Task(
                                     description="Análise Política (PEST).",
-                                    expected_output=f'''Análise do contexto político com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
+                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    
+                                    Análise do contexto político com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_novids2}),
                                     - O contexto político fornecido: {politic}.
                                     Inclua insights que podem alavancar o planejamento de marketing e considere aspectos como regulamentações, políticas governamentais, estabilidade política, impostos, comércio internacional, entre outros.''',
@@ -481,7 +484,10 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise Econômica (PEST).",
-                                    expected_output=f'''Análise do contexto econômico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
+                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    
+                                    Análise do contexto econômico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_novids2}),
                                     - O contexto econômico fornecido: {economic}.
                                     Foco em insights relacionados a taxas de juros, inflação, PIB, taxas de câmbio, desemprego, renda disponível, entre outros fatores que influenciam o planejamento de marketing.''',
@@ -490,7 +496,10 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise Social (PEST).",
-                                    expected_output=f'''Análise do contexto social com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
+                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    
+                                    Análise do contexto social com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_social_duck}), ({social}),
                                     - O contexto social fornecido.
                                     Explore fatores como mudanças demográficas, comportamento do consumidor, tendências culturais, valores sociais, educação e estilo de vida. Forneça insights acionáveis para o planejamento de marketing.''',
@@ -499,7 +508,10 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise Tecnológica (PEST).",
-                                    expected_output=f'''Análise do contexto tecnológico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
+                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    
+                                    Análise do contexto tecnológico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_novids2}), ({tend_tec_duck}),
                                     - O contexto tecnológico fornecido: ({tec}).
                                     Inclua aspectos como inovação tecnológica, tendências emergentes, automação, digitalização, inteligência artificial e qualquer outro fator tecnológico relevante ao planejamento de marketing.''',
