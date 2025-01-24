@@ -15,6 +15,7 @@ from etapas.gemini_crm import planej_crm_page
 from etapas.gemini_campanhas import planej_campanhas
 import google.generativeai as genai
 from contato.temaEmail import gen_temas_emails
+from etapas.image_gen import gen_img
 
 
 
@@ -98,7 +99,8 @@ if login():
         "Plano de CRM",
         "Visualizar documentos gerados",
         "Conteúdo de Nutrição de Leads",
-        "Brainstorming de Anúncios"
+        "Brainstorming de Anúncios",
+        "Gerador de Imagem"
     ]
 
     # Guardando a escolha do usuário na session state
@@ -133,6 +135,9 @@ if login():
 
         elif tipo_documento == "Brainstorming de Anúncios":
             planej_campanhas()
+
+        elif tipo_documento == "Gerador de Imagem":
+            gen_img()
 
 
 
