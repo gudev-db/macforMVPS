@@ -262,6 +262,19 @@ def planej_crm_page():
 
 
 
+                        prompt_emails = f''' 
+
+                        Considerando o plano detalhado em ({fluxo_output}).
+
+                        - Redija os emails de contato
+                        - Rejida os formulários
+                        - Redija as mensagens.
+                        
+                        '''
+                        emails_output = modelo_linguagem.generate_content(prompt_emails).text
+
+
+
 
                       
 
@@ -269,6 +282,8 @@ def planej_crm_page():
                         st.header('Plano de Fluxo de CRM')
                         st.subheader('Fluxo')
                         st.markdown(fluxo_output)
+                        st.subheader('Emails')
+                        st.markdown(emails_output)
 
                         
 
