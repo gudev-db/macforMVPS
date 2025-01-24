@@ -139,15 +139,15 @@ def planej_campanhas():
                         6. **Cronograma:** Cronograma orçamentário de anúncios.
 
                         """
-                        ads_output = modelo_linguagem.generate_content(prompt_ads).text
+                    ads_output = modelo_linguagem.generate_content(prompt_ads).text
 
                      
 
 
                         # Exibe os resultados na interface
-                        st.header('Brainstorming de Anúncios')
-                        st.markdown(ads_output)
+                    st.header('Brainstorming de Anúncios')
+                    st.markdown(ads_output)
                   
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_ads(ads_output, nome_cliente)
+                    save_to_mongo_ads(ads_output, nome_cliente)
