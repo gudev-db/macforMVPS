@@ -8,7 +8,7 @@ url = "https://api.openai.com/v1/images/generations"
 
 # Função principal do Streamlit
 def gen_img():
-    st.title("Gerador de Imagens com Link")
+    st.title("Brainstorming de Imagens")
     st.markdown("Insira um prompt para gerar uma imagem e receba o link da imagem gerada.")
 
     # Área de texto para o prompt
