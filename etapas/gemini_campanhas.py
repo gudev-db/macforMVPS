@@ -172,7 +172,8 @@ def planej_campanhas():
                         Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhado.
                     """
                     img_output = modelo_linguagem.generate_content(prompt_img).text
-                   
+
+
                     prompt_ads = f"""
                     Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
                     - O ramo de atuação da empresa: {ramo_atuacao}.
