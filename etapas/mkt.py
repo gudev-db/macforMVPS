@@ -484,8 +484,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise Econômica (PEST).",
-                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
-                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    expected_output=f'''
                                     
                                     Análise do contexto econômico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_novids2}),
@@ -496,8 +495,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise Social (PEST).",
-                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
-                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    expected_output=f'''
                                     
                                     Análise do contexto social com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_social_duck}), ({social}),
@@ -508,8 +506,7 @@ def planej_mkt_page():
                                 ),
                                 Task(
                                     description="Análise Tecnológica (PEST).",
-                                    expected_output=f'''Relatório extremamente detalhado, completo, aprofundado, de teor acadêmico, produzido
-                                    com minuciosidade de detalhista, em que cada ponto contém 2 parágrafos.
+                                    expected_output=f'''
                                     
                                     Análise do contexto tecnológico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
                                     - O retorno da pesquisa de tendências: ({tend_novids2}), ({tend_tec_duck}),
