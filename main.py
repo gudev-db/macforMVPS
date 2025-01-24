@@ -1,8 +1,5 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import os
 import streamlit as st
+import os
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
@@ -88,47 +85,57 @@ if login():
         "Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!"
     )
 
-    # Sidebar: Opções de Plano Estratégico
-    st.sidebar.subheader("Planos Estratégicos")
-    plano_estrategico = st.sidebar.selectbox(
-        "Escolha o tipo de plano:",
-        [
-            "Selecione uma opção",
-            "Plano Estratégico e de Pesquisa",
-            "Plano Estratégico de Redes e Mídias",
-            "Plano de CRM"
-        ],
-        key="plano_estrategico"
+    # Sidebar: Selecione qual seção (Plano ou Brainstorming)
+    selecao_sidebar = st.sidebar.radio(
+        "Escolha a seção:",
+        ["Plano Estratégico", "Brainstorming"],
+        key="selecao_sidebar",
+        index=0  # Predefinir como 'Plano Estratégico' ativo
     )
 
-    if plano_estrategico != "Selecione uma opção":
-        if plano_estrategico == "Plano Estratégico e de Pesquisa":
-            planej_mkt_page()
-        elif plano_estrategico == "Plano Estratégico de Redes e Mídias":
-            planej_midias_page()
-        elif plano_estrategico == "Plano de CRM":
-            planej_crm_page()
+    if selecao_sidebar == "Plano Estratégico":
+        # Sidebar: Opções de Plano Estratégico
+        st.sidebar.subheader("Planos Estratégicos")
+        plano_estrategico = st.sidebar.selectbox(
+            "Escolha o tipo de plano:",
+            [
+                "Selecione uma opção",
+                "Plano Estratégico e de Pesquisa",
+                "Plano Estratégico de Redes e Mídias",
+                "Plano de CRM"
+            ],
+            key="plano_estrategico"
+        )
 
-    # Sidebar: Opções de Brainstorming
-    st.sidebar.subheader("Brainstorming")
-    brainstorming_option = st.sidebar.selectbox(
-        "Escolha o tipo de brainstorming:",
-        [
-            "Selecione uma opção",
-            "Brainstorming Conteúdo de Nutrição de Leads",
-            "Brainstorming de Anúncios",
-            "Brainstorming de Imagem"
-        ],
-        key="brainstorming_option"
-    )
+        if plano_estrategico != "Selecione uma opção":
+            if plano_estrategico == "Plano Estratégico e de Pesquisa":
+                planej_mkt_page()
+            elif plano_estrategico == "Plano Estratégico de Redes e Mídias":
+                planej_midias_page()
+            elif plano_estrategico == "Plano de CRM":
+                planej_crm_page()
 
-    if brainstorming_option != "Selecione uma opção":
-        if brainstorming_option == "Brainstorming Conteúdo de Nutrição de Leads":
-            gen_temas_emails()
-        elif brainstorming_option == "Brainstorming de Anúncios":
-            planej_campanhas()
-        elif brainstorming_option == "Brainstorming de Imagem":
-            gen_img()
+    elif selecao_sidebar == "Brainstorming":
+        # Sidebar: Opções de Brainstorming
+        st.sidebar.subheader("Brainstorming")
+        brainstorming_option = st.sidebar.selectbox(
+            "Escolha o tipo de brainstorming:",
+            [
+                "Selecione uma opção",
+                "Brainstorming Conteúdo de Nutrição de Leads",
+                "Brainstorming de Anúncios",
+                "Brainstorming de Imagem"
+            ],
+            key="brainstorming_option"
+        )
+
+        if brainstorming_option != "Selecione uma opção":
+            if brainstorming_option == "Brainstorming Conteúdo de Nutrição de Leads":
+                gen_temas_emails()
+            elif brainstorming_option == "Brainstorming de Anúncios":
+                planej_campanhas()
+            elif brainstorming_option == "Brainstorming de Imagem":
+                gen_img()
 
     # Sidebar: Botão para visualizar documentos gerados
     st.sidebar.subheader("Documentos Gerados")
