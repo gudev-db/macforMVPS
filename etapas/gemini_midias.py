@@ -222,6 +222,9 @@ def planej_midias_page():
                         1. **Título**: Seja criativo, objetivo e alinhado com a proposta de valor da marca.
                         2. **Descrição**: Corpo de texto do anúncio.
                         3. **Tipo de Imagem ou Vídeo Sugerido**: Indique qual estilo de imagem ou elemento visual deve ser usado (foto, ilustração, gráfico, etc.) e explique por que esse tipo de imagem é o mais eficaz para o público e o ramo de atuação.
+                        Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
+                        delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
+                        detalhe e justificados.
 
                         
                         Seja original e proponha ideias que possam ser executadas com um alto impacto.
