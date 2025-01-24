@@ -26,7 +26,7 @@ def gen_temas_emails():
         if not nome_cliente or not ramo_atuacao or not destinatarios:
             st.warning("Por favor, preencha todas as informações.")
         else:
-            with st.spinner("Gerando temas e emails..."):
+            with st.spinner("Brainstorming..."):
                 # Generate email themes using the Gemini model
                 prompt = f"""
                 Crie um cronograma anual de temas de emails específicos para CADA UMA das segmentações de leads conforme {destinatarios} com fins de nutrição de leads. 
