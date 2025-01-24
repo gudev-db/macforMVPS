@@ -8,6 +8,8 @@ from pymongo import MongoClient
 gemini_api_key = os.getenv("GEM_API_KEY")
 genai.configure(api_key=gemini_api_key)
 
+api_key = os.getenv("OPENAI_API_KEY")
+
 # Inicializa o modelo Gemini
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
 
@@ -58,7 +60,7 @@ def planej_campanhas():
         url = "https://api.openai.com/v1/images/generations"
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {OPENAI_API_KEY}"
+            "Authorization": f"Bearer {api_key}"
         }
         data = {
             "model": "dall-e-3",
