@@ -8,6 +8,8 @@ from pymongo import MongoClient
 gemini_api_key = os.getenv("GEM_API_KEY")
 genai.configure(api_key=gemini_api_key)
 
+api_key = os.getenv("OPENAI_API_KEY")
+
 # Inicializa o modelo Gemini
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
 
@@ -49,6 +51,48 @@ def limpar_estado():
 def planej_campanhas():
     st.subheader('Brainstorming de Campanhas')
     st.text('Aqui geramos brainstorming para campanhas.')
+
+    import requests
+    from PIL import Image
+    from io import BytesIO
+    
+    # Função para gerar a imagem com o prompt fornecido
+    def gerar_imagem(prompt):
+        OPENAI_API_KEY = "sua-chave-api"  # Substitua pela sua chave da API OpenAI
+    
+        url = "https://api.openai.com/v1/images/generations"
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}"
+        }
+    
+        # Dados para a geração da imagem
+        data = {
+            "model": "dall-e-3",
+            "prompt": prompt,
+            "n": 1,
+            "size": "1024x1024"
+        }
+    
+        # Realiza a requisição para gerar a imagem
+        response = requests.post(url, headers=headers, json=data)
+        
+        # Verifica se a requisição foi bem-sucedida
+        if response.status_code == 200:
+            result = response.json()
+            image_url = result["data"][0]["url"]
+    
+            # Baixa a imagem da URL
+            image_response = requests.get(image_url)
+            if image_response.status_code == 200:
+                # Abre e exibe a imagem
+                image = Image.open(BytesIO(image_response.content))
+                return image
+            else:
+                st.error("Falha ao obter a imagem gerada.")
+        else:
+            st.error(f"Erro na geração da imagem: {response.status_code} - {response.text}")
+            return None
 
     # Buscar todos os clientes do banco de dados
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
@@ -152,6 +196,15 @@ def planej_campanhas():
                         # Exibe os resultados na interface
                     st.header('Brainstorming de Anúncios')
                     st.markdown(ads_output)
+                    # Campo para o prompt da imagem
+                    prompt_imagem = st.text_input('Prompt para gerar a imagem do anúncio', key="prompt_imagem")
+
+                    if prompt_imagem:
+                        st.spinner('Gerando imagem...')
+                        imagem_gerada = gerar_imagem(prompt_imagem)
+                        if imagem_gerada:
+                            st.image(imagem_gerada, caption="Imagem Gerada para o Anúncio", use_column_width=True)
+
                   
 
                         # Salva o planejamento no MongoDB
