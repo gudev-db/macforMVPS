@@ -44,11 +44,12 @@ def gen_img():
                     st.success("Imagem gerada com sucesso!")
                     st.markdown(f"[Clique aqui para ver a imagem gerada.]({image_url})")
                     st.text(f"URL da Imagem: {image_url}")
+
+                    # Exibir a imagem na interface do Streamlit
+                    st.image(image_url, caption="Imagem Gerada", use_column_width=True)
                 else:
                     st.error(f"Erro na geração da imagem: {response.status_code}")
                     st.text(response.text)
             except Exception as e:
                 st.error("Ocorreu um erro ao tentar gerar a imagem.")
                 st.text(str(e))
-
-
