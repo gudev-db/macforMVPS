@@ -45,10 +45,45 @@ def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
+
+
 # Função principal da página de planejamento de mídias
 def planej_campanhas():
     st.subheader('Brainstorming de Campanhas')
     st.text('Aqui geramos brainstorming para campanhas.')
+
+    # Define a função para gerar a imagem
+    def generate_image_from_prompt(prompt):
+        """Gera uma imagem usando a API OpenAI DALL-E 3."""
+        url = "https://api.openai.com/v1/images/generations"
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {OPENAI_API_KEY}"
+        }
+        data = {
+            "model": "dall-e-3",
+            "prompt": prompt,
+            "n": 1,
+            "size": "1024x1024"
+        }
+        
+        # Faz a requisição à API
+        response = requests.post(url, headers=headers, json=data)
+        if response.status_code == 200:
+            result = response.json()
+            image_url = result["data"][0]["url"]
+            
+            # Busca a imagem gerada
+            image_response = requests.get(image_url)
+            if image_response.status_code == 200:
+                image = Image.open(BytesIO(image_response.content))
+                return image
+            else:
+                st.error("Falha ao buscar a imagem do URL.")
+        else:
+            st.error(f"Erro na geração da imagem: {response.status_code}")
+            st.write(response.text)
+        return None
 
     # Buscar todos os clientes do banco de dados
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
@@ -109,7 +144,7 @@ def planej_campanhas():
                 st.write("Por favor, preencha todas as informações do cliente.")
             else:
                 with st.spinner('Gerando o planejamento de mídias...'):
-                    prompt_ads = f"""
+                    prompt_img = f"""
                     Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
                     - O ramo de atuação da empresa: {ramo_atuacao}.
                     - O intuito estratégico do plano de marketing: {intuito_plano}.
@@ -126,7 +161,7 @@ def planej_campanhas():
                         
                     - Para cada um dos anúncios, desenvolva:
 
-                        **Motivação**: Reduja um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
+                        **Motivação**: Redija um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
                         otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
                         você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
                         
@@ -134,7 +169,34 @@ def planej_campanhas():
                         Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
                         delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
                         detalhe e justificados.
+
+
+                        """
+                    img_output = modelo_linguagem.generate_content(prompt_img).text
+
+
+                    prompt_ads = f"""
+                    Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: {tipo}
+                    - Orçamento: {budget} reais
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Imagem conceito: {img_output}
+                  
                         
+                        
+                        
+                    - Para cada um dos anúncios, desenvolva:
+
+                        **Motivação**: Redija um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
+                        otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
+                        você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
+                      
                         2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
                         
                         3. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
@@ -146,12 +208,17 @@ def planej_campanhas():
                         """
                     ads_output = modelo_linguagem.generate_content(prompt_ads).text
 
+                    generated_image = generate_image_from_prompt(img_output)
+
                      
 
 
                         # Exibe os resultados na interface
                     st.header('Brainstorming de Anúncios')
+                    st.markdown(img_output)
+                    st.image(generated_image, caption="Imagem gerada pelo DALL-E 3", use_column_width=True)
                     st.markdown(ads_output)
+                    
                   
 
                         # Salva o planejamento no MongoDB
