@@ -33,7 +33,7 @@ def gen_img():
                 data = {
                     "model": "dall-e-3",  # Ou outro modelo se aplicável
                     "prompt": prompt,
-                    "n": 5,
+                    "n": 1,
                     "size": "1024x1024",
                 }
                 response = requests.post(url, headers=headers, json=data)
