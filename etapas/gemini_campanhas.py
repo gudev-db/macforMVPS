@@ -3,6 +3,10 @@ import google.generativeai as genai
 import uuid
 import os
 from pymongo import MongoClient
+import requests
+from PIL import Image
+from io import BytesIO
+
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
