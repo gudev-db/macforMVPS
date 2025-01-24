@@ -110,7 +110,7 @@ def planej_campanhas():
             else:
                 with st.spinner('Gerando o planejamento de mídias...'):
                     prompt_ads = f"""
-                    Desenvolva 5 ideias diferentes de anúncios para {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
                     - O ramo de atuação da empresa: {ramo_atuacao}.
                     - O intuito estratégico do plano de marketing: {intuito_plano}.
                     - O público-alvo: {publico_alvo}.
