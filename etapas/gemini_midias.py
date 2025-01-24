@@ -161,7 +161,7 @@ def planej_midias_page():
                         o porque que cada plataforma recebe mais ou menos recursos. 
                      
                         
-                        
+                        não resuma ou pule etapas. quero o cronograma completo.
                         
 
 
