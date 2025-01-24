@@ -24,7 +24,7 @@ rapid_key = os.getenv("RAPID_API")
 
 client = TavilyClient(api_key=t_api_key1)
 
-client1 = TavilyClient(api_key='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')
+client1 = TavilyClient(api_key='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')
 
 # Inicializa o modelo Gemini
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
