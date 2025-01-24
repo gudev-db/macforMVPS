@@ -128,7 +128,7 @@ def planej_campanhas():
 
                         **Motivação**: Reduja um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
                         otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
-                        você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
+                        você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, criativo, único, perspicaz. Você é original. Você é um especialista.
                         
                         1. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
                         Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
