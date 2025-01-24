@@ -68,7 +68,6 @@ def planej_campanhas():
     intuito_plano = st.text_input('Intuito da campanha:', key="intuito_plano", placeholder="Ex: Gerar mais atendimentos, captar leads, etc")
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
     
-
     tipo_anuncio = [
         'Search',
         'Display',
@@ -83,50 +82,45 @@ def planej_campanhas():
       'Linkedin Ads'
     ]
 
-    tipo = st.selectbox('Selecione o tipo de campanha', tipo_anuncio, key="tipo")
-    platform = st.selectbox('Selecione a plataforma de anúncios', plats, key="tipo")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", height=200)
+    # Use chaves únicas para os elementos
+    tipo = st.selectbox('Selecione o tipo de campanha', tipo_anuncio, key="tipo_anuncio")
+    platform = st.selectbox('Selecione a plataforma de anúncios', plats, key="plataforma_anuncios")
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', 
+                                       key="referencias_marca", 
+                                       placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", 
+                                       height=200)
     
     budget = st.text_input('Orçamento para o anúncio:', key="budget", placeholder="Valor em reais")
-
     start_date = st.date_input("Data de Início:", key="start_date")
     end_date = st.date_input("Data de Fim:", key="end_date")
 
-    # Se os arquivos PDF forem carregados
-    pest_files = 1
-
-    if pest_files is not None:
-        if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
-            st.subheader("Anúncio gerado")
-            for tarefa in st.session_state.resultados_tarefas:
-                st.markdown(f"**Arquivo**: {tarefa['output_file']}")
-                st.markdown(tarefa["output"])
-            
-            # Botão para limpar o estado
-            if st.button("Gerar Novo Anúncio"):
-                limpar_estado()
-                st.experimental_rerun()
-        else:
-            if st.button('Iniciar Planejamento'):
-                if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
-                    st.write("Por favor, preencha todas as informações do cliente.")
-                else:
-                    with st.spinner('Gerando o planejamento de mídias...'):
-
-                        # Aqui vamos gerar as respostas usando o modelo Gemini
-
-                        prompt_ads = f"""
-                        Desenvolva 10 anúncios para {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
-
-                        - O ramo de atuação da empresa: {ramo_atuacao}.
-                        - O intuito estratégico do plano de marketing: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - Tipo de anúncio: {tipo}
-                        - Orçamento: {budget} reais
-                        - Data de início: {start_date}
-                        - Data fim: {end_date}
-                        - plataforma: {platform}
+    if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
+        st.subheader("Anúncio gerado")
+        for tarefa in st.session_state.resultados_tarefas:
+            st.markdown(f"**Arquivo**: {tarefa['output_file']}")
+            st.markdown(tarefa["output"])
+        
+        if st.button("Gerar Novo Anúncio"):
+            limpar_estado()
+            st.experimental_rerun()
+    else:
+        if st.button('Iniciar Planejamento'):
+            if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
+                st.write("Por favor, preencha todas as informações do cliente.")
+            else:
+                with st.spinner('Gerando o planejamento de mídias...'):
+                    prompt_ads = f"""
+                    Desenvolva 10 anúncios para {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: {tipo}
+                    - Orçamento: {budget} reais
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                  
                         
                         
                         
