@@ -1,3 +1,4 @@
+
 import streamlit as st
 import google.generativeai as genai
 import uuid
@@ -35,7 +36,6 @@ def save_to_mongo_ads(ads_output, nome_cliente):
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de Anúncios',
         "ads": ads_output,
-       
     }
 
     # Insere o documento no MongoDB
@@ -58,7 +58,7 @@ def planej_campanhas():
     
     # Função para gerar a imagem com o prompt fornecido
     def gerar_imagem(prompt):
-        OPENAI_API_KEY = "sua-chave-api"  # Substitua pela sua chave da API OpenAI
+        OPENAI_API_KEY = f"{api_key}"  # Substitua pela sua chave da API OpenAI
     
         url = "https://api.openai.com/v1/images/generations"
         headers = {
@@ -165,37 +165,26 @@ def planej_campanhas():
                     - Data fim: {end_date}
                     - Plataforma: {platform}
                   
-                        
-                        
-                        
-                    - Para cada um dos anúncios, desenvolva:
+                    Para cada um dos anúncios, desenvolva:
 
-                        **Motivação**: Reduja um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
-                        otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
-                        você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
-                        
-                        1. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
-                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
-                        delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
-                        detalhe e justificados.
-                        
-                        2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
-                        
-                        3. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
-                        
-                        4. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
-                        5. **Descrição:** Texto associado ao anúncio.
-                        6. **Cronograma:** Cronograma orçamentário de anúncios.
+                    **Motivação**: Reduza um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
 
-                        """
+                    1. **Imagem ou vídeo**: Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais. Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhado. Serão guidelines extremamente precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Diga exatamente quais são os elementos visuais em extremo detalhe e justificados.
+
+                    2. **Tipografia**: Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
+
+                    3. **Cores**: Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
+
+                    4. **Elementos Gráficos**: Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
+                    5. **Descrição**: Texto associado ao anúncio.
+                    6. **Cronograma**: Cronograma orçamentário de anúncios.
+                    """
                     ads_output = modelo_linguagem.generate_content(prompt_ads).text
 
-                     
-
-
-                        # Exibe os resultados na interface
+                    # Exibe os resultados na interface
                     st.header('Brainstorming de Anúncios')
                     st.markdown(ads_output)
+                    
                     # Campo para o prompt da imagem
                     prompt_imagem = st.text_input('Prompt para gerar a imagem do anúncio', key="prompt_imagem")
 
@@ -208,9 +197,7 @@ def planej_campanhas():
                                 st.image(imagem_gerada, caption="Imagem Gerada para o Anúncio", use_column_width=True)
                             else:
                                 st.error("Falha na geração da imagem.")
-                        else:
-                            st.warning("Por favor, insira um prompt para gerar a imagem.")
-                  
-
-                        # Salva o planejamento no MongoDB
+                        
+                    # Salva o planejamento no MongoDB
                     save_to_mongo_ads(ads_output, nome_cliente)
+
