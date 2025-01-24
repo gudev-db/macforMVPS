@@ -269,6 +269,18 @@ def planej_crm_page():
                         - Redija os emails de contato
                         - Rejida os formulários
                         - Redija as mensagens.
+
+                        Com vários exemplos pra cada. Justificando a forma como são redijidos, levando em consideração:
+                         -{nome_cliente} possui uma ferramenta de CRM? {possui_ferramenta_crm}.
+                        -A maturidade em CRM da empresa é {maturidade_crm}.
+                        -O principal objetivo ao utilizar o CRM é {objetivo_crm}.
+                        -Os canais de comunicação disponíveis para CRM são {canais_disponiveis}.
+                        -O perfil da empresa é {perfil_empresa}.
+                        -As metas que a empresa busca alcançar com o CRM são {metas_crm}.
+                        -O tamanho da base de dados de clientes é {tamanho_base}.
+                        -O tom de voz desejado para a comunicação é {tom_voz}.
+                        -Os fluxos e e-mails que a empresa deseja trabalhar são: {fluxos_ou_emails}.
+                        -Existe algum SLA (Service Level Agreement) combinado entre marketing e vendas para geração de leads? {sla_entre_marketing_vendas}.
                         
                         '''
                         emails_output = modelo_linguagem.generate_content(prompt_emails).text
