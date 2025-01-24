@@ -47,7 +47,7 @@ def limpar_estado():
 
 # Função principal da página de planejamento de mídias
 def planej_campanhas():
-    st.subheader('Brainstorming de Campanhas')
+    st.subheader('Brainstorming de Anúncios')
     st.text('Aqui geramos brainstorming para campanhas.')
 
     # Buscar todos os clientes do banco de dados
@@ -108,7 +108,7 @@ def planej_campanhas():
             if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
                 st.write("Por favor, preencha todas as informações do cliente.")
             else:
-                with st.spinner('Gerando o planejamento de mídias...'):
+                with st.spinner('Brainstorming...'):
                     prompt_ads = f"""
                     Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
                     - O ramo de atuação da empresa: {ramo_atuacao}.
