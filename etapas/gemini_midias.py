@@ -155,7 +155,8 @@ def planej_midias_page():
                         - Em formato de tabela, cronograma e considerando datas comemorativas, divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento para os anúncios: {budget} reais (alocação
                         devida e detalhadamente justificada) definindo tambem
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque. Quebre o investimento, tipo de campanha e estratégia
-                        por plataforma e periodo (dentro de {start_date} e {end_date}).
+                        por plataforma e periodo (dentro de {start_date} e {end_date}). Detalhe o quanto cada campanha deve gastar, por qual pedíodo, por qual plataforma, qual é o tipo de campanha,
+                        justificando sempre o porque de cada atributo.
                         
                         
                         
