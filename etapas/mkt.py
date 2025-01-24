@@ -73,28 +73,17 @@ def limpar_estado():
 # Função principal da página de planejamento de mídias
 def planej_mkt_page():
     st.subheader('Planejamento de Mídias e Redes')
-    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
+    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras-chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
 
-    # Buscar todos os clientes do banco de dados
-    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
-    opcoes_clientes = [cliente["nome"] for cliente in clientes]
-
-    # Selectbox para escolher o cliente
-    nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
-
-    # Obter as informações do cliente selecionado
-    cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
-    site_cliente = cliente_info["site"] if cliente_info else ""
-    ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
-
-    # Exibir os campos preenchidos com os dados do cliente
-    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
-    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
+    # Campos para preenchimento manual pelo usuário
+    nome_cliente = st.text_input('Nome do Cliente:', key="nome_cliente", placeholder="Ex: Empresa XYZ")
+    site_cliente = st.text_input('Site do Cliente:', key="site_cliente", placeholder="Ex: www.empresaXYZ.com.br")
+    ramo_atuacao = st.text_input('Ramo de Atuação:', key="ramo_atuacao", placeholder="Ex: Moda, Tecnologia, Alimentos")
     intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
     concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
     site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
-    tendaux = st.text_input('Tendências de interesse:', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc")
+    tendaux = st.text_input('Tendências de Interesse:', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc")
 
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
@@ -104,11 +93,21 @@ def planej_mkt_page():
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
 
-    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes, key="objetivos_marca")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", height=200)
+    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, key="objetivos_marca")
+    referencia_da_marca = st.text_area(
+        'O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', 
+        key="referencias_marca", 
+        placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", 
+        height=200
+    )
 
-    # Se os arquivos PDF forem carregados
-    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+    # Upload de arquivos PDF como referência
+    pest_files = st.file_uploader(
+        "Escolha arquivos de PDF para referência de mercado", 
+        type=["pdf"], 
+        accept_multiple_files=True
+    )
+
 
         # Set parameters for the search
     days = 90
