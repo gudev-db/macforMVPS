@@ -57,7 +57,10 @@ def save_to_mongo(tarefas_pesquisa,tarefas_estrategica, nome_cliente):
         "nome_cliente": nome_cliente,  # Adiciona o nome do cliente ao payload
         "tipo_plano": 'Plano Estratégico e de Planejamento',
         "SWOT": tarefas_pesquisa[0].output.raw,
-        "PEST": tarefas_pesquisa[2].output.raw,
+        "P": tarefas_pesquisa[2].output.raw,
+        "E": tarefas_pesquisa[3].output.raw,
+        "S": tarefas_pesquisa[4].output.raw,
+        "T": tarefas_pesquisa[5].output.raw,
         "Tendencias": tarefas_pesquisa[1].output.raw,
 
         
