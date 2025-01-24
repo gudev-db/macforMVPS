@@ -199,12 +199,17 @@ def planej_campanhas():
                     # Campo para o prompt da imagem
                     prompt_imagem = st.text_input('Prompt para gerar a imagem do anúncio', key="prompt_imagem")
 
-                    if prompt_imagem:
-                        st.spinner('Gerando imagem...')
-                        imagem_gerada = gerar_imagem(prompt_imagem)
-                        if imagem_gerada:
-                            st.image(imagem_gerada, caption="Imagem Gerada para o Anúncio", use_column_width=True)
-
+                    # Botão para gerar a imagem
+                    if st.button('Gerar Imagem'):
+                        if prompt_imagem:
+                            st.spinner('Gerando imagem...')
+                            imagem_gerada = gerar_imagem(prompt_imagem)
+                            if imagem_gerada:
+                                st.image(imagem_gerada, caption="Imagem Gerada para o Anúncio", use_column_width=True)
+                            else:
+                                st.error("Falha na geração da imagem.")
+                        else:
+                            st.warning("Por favor, insira um prompt para gerar a imagem.")
                   
 
                         # Salva o planejamento no MongoDB
