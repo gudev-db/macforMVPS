@@ -124,7 +124,7 @@ def planej_campanhas():
                         
                         
                         
-                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico:
+                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico (seja preciso. Diga exatamente o que deve ser feito):
 
                         **Motivação**: Reduja um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
                         otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
