@@ -42,7 +42,10 @@ def visualizar_planejamentos():
             
             if 'Análise_PEST' in selected_planejamento['Etapa_1_Pesquisa_Mercado']:
                 st.subheader('1.2 Análise PEST')
-                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('Análise_PEST', 'N/A')}")
+                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('P', 'N/A')}")
+                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('E', 'N/A')}")
+                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('S', 'N/A')}")
+                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('T', 'N/A')}")
             
             if 'Análise_Tendências' in selected_planejamento['Etapa_1_Pesquisa_Mercado']:
                 st.subheader('1.3 Análise de Tendências')
