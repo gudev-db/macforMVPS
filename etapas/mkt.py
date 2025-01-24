@@ -467,14 +467,41 @@ def planej_mkt_page():
                                     agent=agentes[15],
                                     output_file = 'tendencia.md'
                                 ),
-                                Task(
-                                    description="Análise PEST.",
-                                    expected_output=f'''Análise PEST com pelo menos 10 pontos relevantes em cada etapa PEST em português brasileiro 
-                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}), ({tend_tec_duck}),    contexto político: {politic}, contexto econômico: {economic}, contexto social: ({social})
-                                    e ({tend_social_duck}), contexto tecnológico: ({tec}).
-                                    Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.''',
+                                 Task(
+                                    description="Análise Política (PEST).",
+                                    expected_output=f'''Análise do contexto político com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    - O retorno da pesquisa de tendências: ({tend_novids2}),
+                                    - O contexto político fornecido: {politic}.
+                                    Inclua insights que podem alavancar o planejamento de marketing e considere aspectos como regulamentações, políticas governamentais, estabilidade política, impostos, comércio internacional, entre outros.''',
                                     agent=agentes[1],
-                                    output_file = 'pest.md'
+                                    output_file='political_analysis.md'
+                                ),
+                                Task(
+                                    description="Análise Econômica (PEST).",
+                                    expected_output=f'''Análise do contexto econômico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    - O retorno da pesquisa de tendências: ({tend_novids2}),
+                                    - O contexto econômico fornecido: {economic}.
+                                    Foco em insights relacionados a taxas de juros, inflação, PIB, taxas de câmbio, desemprego, renda disponível, entre outros fatores que influenciam o planejamento de marketing.''',
+                                    agent=agentes[1],
+                                    output_file='economic_analysis.md'
+                                ),
+                                Task(
+                                    description="Análise Social (PEST).",
+                                    expected_output=f'''Análise do contexto social com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    - O retorno da pesquisa de tendências: ({tend_social_duck}), ({social}),
+                                    - O contexto social fornecido.
+                                    Explore fatores como mudanças demográficas, comportamento do consumidor, tendências culturais, valores sociais, educação e estilo de vida. Forneça insights acionáveis para o planejamento de marketing.''',
+                                    agent=agentes[1],
+                                    output_file='social_analysis.md'
+                                ),
+                                Task(
+                                    description="Análise Tecnológica (PEST).",
+                                    expected_output=f'''Análise do contexto tecnológico com pelo menos 10 pontos relevantes em português brasileiro, considerando:
+                                    - O retorno da pesquisa de tendências: ({tend_novids2}), ({tend_tec_duck}),
+                                    - O contexto tecnológico fornecido: ({tec}).
+                                    Inclua aspectos como inovação tecnológica, tendências emergentes, automação, digitalização, inteligência artificial e qualquer outro fator tecnológico relevante ao planejamento de marketing.''',
+                                    agent=agentes[1],
+                                    output_file='technological_analysis.md'
                                 ),
                             
                             
@@ -601,6 +628,9 @@ def planej_mkt_page():
                         st.markdown(tarefas_pesquisa[0].output.raw)
                         st.subheader('1.2 Análise PEST')
                         st.markdown(tarefas_pesquisa[2].output.raw)
+                        st.markdown(tarefas_pesquisa[3].output.raw)
+                        st.markdown(tarefas_pesquisa[4].output.raw)
+                        st.markdown(tarefas_pesquisa[5].output.raw)
                         st.subheader('1.3 Análise de tendências')
                         st.markdown(tarefas_pesquisa[1].output.raw)
                 
