@@ -145,7 +145,7 @@ def planej_campanhas():
             if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
                 st.write("Por favor, preencha todas as informações do cliente.")
             else:
-                with st.spinner('Gerando o planejamento de mídias...'):
+                with st.spinner('Brainstorming de anúncio em andamento...'):
                     prompt_img = f"""
                     Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
                     - O ramo de atuação da empresa: {ramo_atuacao}.
