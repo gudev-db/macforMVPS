@@ -2,11 +2,10 @@ import streamlit as st
 import google.generativeai as genai
 import uuid
 import os
-from pymongo import MongoClient
 import requests
 from PIL import Image
 from io import BytesIO
-
+from pymongo import MongoClient
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
@@ -39,7 +38,6 @@ def save_to_mongo_ads(ads_output, nome_cliente):
         "nome_cliente": nome_cliente,
         "tipo_plano": 'Plano de Anúncios',
         "ads": ads_output,
-       
     }
 
     # Insere o documento no MongoDB
@@ -51,7 +49,12 @@ def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
-
+# Função para converter a imagem para o formato adequado do Streamlit
+def convert_image_to_streamlit_format(image):
+    img_byte_arr = BytesIO()
+    image.save(img_byte_arr, format="PNG")  # Converte para PNG
+    img_byte_arr.seek(0)  # Volta o ponteiro para o início
+    return img_byte_arr
 
 # Função principal da página de planejamento de mídias
 def planej_campanhas():
@@ -104,8 +107,8 @@ def planej_campanhas():
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
 
     # Exibir os campos preenchidos com os dados do cliente
-    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
-    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
+    st.text_input('Site do Cliente:', value=site_cliente, key=f"site_{nome_cliente}")
+    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key=f"ramo_{nome_cliente}")
     intuito_plano = st.text_input('Intuito da campanha:', key="intuito_plano", placeholder="Ex: Gerar mais atendimentos, captar leads, etc")
     publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
     
@@ -161,23 +164,13 @@ def planej_campanhas():
                     - Data de início: {start_date}
                     - Data fim: {end_date}
                     - Plataforma: {platform}
-                  
-                        
-                        
-                        
                     - Para cada um dos anúncios, desenvolva:
-
                         **Motivação**: Redija um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
                         otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
                         você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
-                        
                         1. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
-                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
-                        delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
-                        detalhe e justificados.
-
-
-                        """
+                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhado.
+                    """
                     img_output = modelo_linguagem.generate_content(prompt_img).text
 
 
@@ -193,39 +186,21 @@ def planej_campanhas():
                     - Data fim: {end_date}
                     - Plataforma: {platform}
                     - Imagem conceito: {img_output}
-                  
-                        
-                        
-                        
-                    - Para cada um dos anúncios, desenvolva:
-
-                        **Motivação**: Redija um texto extenso justificando sua linha de pensamento para a concepção do anúncio, o porque ele será eficaz e como você está
-                        otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
-                        você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, formal e um excelente professor.
-                      
-                        2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
-                        
-                        3. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
-                        
-                        4. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
-                        5. **Descrição:** Texto associado ao anúncio.
-                        6. **Cronograma:** Cronograma orçamentário de anúncios.
-
-                        """
+                    """
                     ads_output = modelo_linguagem.generate_content(prompt_ads).text
 
                     generated_image = generate_image_from_prompt(img_output)
 
-                     
-
-
-                        # Exibe os resultados na interface
+                    if generated_image:
+                        img_streamlit = convert_image_to_streamlit_format(generated_image)
+                        st.image(img_streamlit, caption="Imagem gerada pelo DALL-E 3", use_column_width=True)
+                    else:
+                        st.error("Falha ao gerar a imagem.")
+                        
+                    # Exibe os resultados na interface
                     st.header('Brainstorming de Anúncios')
                     st.markdown(img_output)
-                    st.image(generated_image, caption="Imagem gerada pelo DALL-E 3", use_column_width=True)
                     st.markdown(ads_output)
-                    
-                  
 
-                        # Salva o planejamento no MongoDB
+                    # Salva o planejamento no MongoDB
                     save_to_mongo_ads(ads_output, nome_cliente)
