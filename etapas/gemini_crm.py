@@ -266,7 +266,7 @@ def planej_crm_page():
 
                         Considerando o plano detalhado em ({fluxo_output}).
 
-                        - Redija os emails de contato
+                        - Redija os emails de contato (não seja breve ou longo demais, redija os emails da melhor forma que atende as necessidades do cliente)
                         - Rejida os formulários
                         - Redija as mensagens.
 
