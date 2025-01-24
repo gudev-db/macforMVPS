@@ -273,8 +273,6 @@ def planej_mkt_page():
         else:
             # Validação de entrada e geração de relatório
             if st.button('Iniciar Planejamento'):
-                if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
-                    st.write("Por favor, preencha todas as informações do cliente.")
                 else:
                     with st.spinner('Gerando o planejamento...'):
 
