@@ -1,13 +1,10 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
 import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
 from etapas.mkt import planej_mkt_page
-from tools.retrieve import visualizar_planejamentos
+from tools.retrieve import visualizar_planejamentos  # Importando a função visualizar_planejamentos
 from tavily import TavilyClient
 from etapas.gemini_midias import planej_midias_page
 from etapas.gemini_crm import planej_crm_page
@@ -127,4 +124,5 @@ if login():
     # Visualizar Documentos Gerados
     st.sidebar.subheader("Documentos Gerados")
     if st.sidebar.button("Visualizar Documentos Gerados"):
+        # Aqui chamamos a função visualizar_planejamentos diretamente
         visualizar_planejamentos()
