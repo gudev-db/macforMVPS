@@ -44,3 +44,7 @@ def visualizar_planejamentos():
 
     # Fechar a conexão com o MongoDB
     client.close()
+
+# Chamar a função para iniciar a visualização
+if __name__ == "__main__":
+    visualizar_planejamentos()
