@@ -21,6 +21,7 @@ def visualizar_planejamentos():
     # Criar o selectbox para o usuário escolher um id_planejamento
     selected_id = st.selectbox("Selecione um planejamento:", id_planejamentos)
 
+    # Se um planejamento foi selecionado, fazer a consulta
     if selected_id:
         # Encontrar o planejamento selecionado
         selected_planejamento = collection.find_one({"id_planejamento": selected_id})
@@ -39,7 +40,7 @@ def visualizar_planejamentos():
             st.write("Planejamento não encontrado.")
     else:
         st.write("Selecione um planejamento para visualizar.")
-    
+
     # Fechar a conexão com o MongoDB
     client.close()
 
