@@ -1,8 +1,3 @@
-import os
-import streamlit as st
-from pymongo import MongoClient
-
-
 import streamlit as st
 from pymongo import MongoClient
 
