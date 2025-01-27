@@ -1,3 +1,44 @@
+import os
+import streamlit as st
+from crewai import Agent, Task, Process, Crew
+from langchain_openai import ChatOpenAI
+from datetime import datetime
+from etapas.mkt import planej_mkt_page
+from tools.retrieve import visualizar_planejamentos  # Importando a função visualizar_planejamentos
+from tavily import TavilyClient
+from etapas.gemini_midias import planej_midias_page
+from etapas.gemini_crm import planej_crm_page
+from etapas.gemini_campanhas import planej_campanhas
+import google.generativeai as genai
+from contato.temaEmail import gen_temas_emails
+from etapas.image_gen import gen_img
+
+st.set_page_config(
+    layout="wide",
+    page_title="Macfor AutoDoc",
+    page_icon="static/page-icon.png"
+)
+
+# Configuração das chaves de API
+gemini_api_key = os.getenv("GEM_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
+t_api_key1 = os.getenv("T_API_KEY")
+rapid_key = os.getenv("RAPID_API")
+
+# Inicializa o cliente Tavily
+client = TavilyClient(api_key=t_api_key1)
+
+# Inicializa o modelo LLM com OpenAI
+modelo_linguagem = ChatOpenAI(
+    model="gpt-4o-mini",
+    temperature=0.5,
+    frequency_penalty=0.5
+)
+
+# Configura o modelo de AI Gemini
+genai.configure(api_key=gemini_api_key)
+llm = genai.GenerativeModel("gemini-1.5-flash")
+
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
     st.image('static/macLogo.png', width=300)
