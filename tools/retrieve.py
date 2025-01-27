@@ -20,13 +20,20 @@ def visualizar_planejamentos():
     # Lista de 'id_planejamento' para o selectbox
     id_planejamentos = [planejamento['id_planejamento'] for planejamento in planejamentos]
 
+    # Usar session_state para manter a seleção persistente
+    if 'selected_id' not in st.session_state:
+        st.session_state.selected_id = None
+
     # Criar um selectbox para o usuário escolher um id_planejamento específico
     selected_id = st.selectbox("Selecione um planejamento:", id_planejamentos, key="id_planejamento")
 
+    # Atualizar a seleção armazenada na session_state
+    st.session_state.selected_id = selected_id
+
     # Verificar se um id_planejamento foi selecionado
-    if selected_id:
+    if st.session_state.selected_id:
         # Buscar o planejamento completo com base no id_planejamento selecionado
-        selected_planejamento = collection.find_one({"id_planejamento": selected_id})
+        selected_planejamento = collection.find_one({"id_planejamento": st.session_state.selected_id})
 
         if selected_planejamento:
             # Exibindo o nome do cliente e o tipo de plano
