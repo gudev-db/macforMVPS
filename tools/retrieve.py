@@ -21,8 +21,9 @@ def visualizar_planejamentos():
     id_planejamentos = [planejamento['id_planejamento'] for planejamento in planejamentos]
 
     # Criar um selectbox para o usuário escolher um id_planejamento específico
-    selected_id = st.selectbox("Selecione um planejamento:", id_planejamentos)
+    selected_id = st.selectbox("Selecione um planejamento:", id_planejamentos, key="id_planejamento")
 
+    # Verificar se um id_planejamento foi selecionado
     if selected_id:
         # Buscar o planejamento completo com base no id_planejamento selecionado
         selected_planejamento = collection.find_one({"id_planejamento": selected_id})
