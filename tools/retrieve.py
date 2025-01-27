@@ -1,6 +1,3 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from pymongo import MongoClient
 
@@ -11,11 +8,12 @@ def visualizar_planejamentos():
     collection = db['auto_doc']
     
     # Obter todos os documentos e verificar se há documentos
-    planejamentos = collection.find({}, {"_id": 1, "id_planejamento": 1})  # Buscar apenas _id e id_planejamento
+    planejamentos = list(collection.find({}, {"_id": 1, "id_planejamento": 1}))  # Buscar apenas _id e id_planejamento
 
     # Se não houver documentos registrados
-    if collection.count_documents({}) == 0:
+    if len(planejamentos) == 0:
         st.write("Não há planejamentos registrados.")
+        client.close()
         return
 
     # Listar 'id_planejamento' para o selectbox
@@ -46,4 +44,3 @@ def visualizar_planejamentos():
 
     # Fechar a conexão com o MongoDB
     client.close()
-
