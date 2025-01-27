@@ -39,6 +39,29 @@ modelo_linguagem = ChatOpenAI(
 genai.configure(api_key=gemini_api_key)
 llm = genai.GenerativeModel("gemini-1.5-flash")
 
+# Função de login
+def login():
+    if "logged_in" not in st.session_state:
+        st.session_state.logged_in = False
+
+    if st.session_state.logged_in:
+        return True
+
+    st.subheader("Página de Login")
+
+    nome_usuario = st.text_input("Nome de Usuário", type="default")
+    senha = st.text_input("Senha", type="password")
+
+    if st.button("Entrar"):
+        if nome_usuario == "admin" and senha == "senha123":
+            st.session_state.logged_in = True
+            st.success("Login bem-sucedido!")
+            return True
+        else:
+            st.error("Usuário ou senha incorretos.")
+            return False
+    return False
+
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
     st.image('static/macLogo.png', width=300)
