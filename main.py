@@ -141,5 +141,4 @@ if login():
             documento_selecionado = next(doc for doc in documentos_gerados if doc["id"] == doc_selecionado_id)
             st.sidebar.markdown("### Documento Selecionado")
             st.sidebar.text_area("Conteúdo do Documento", documento_selecionado["conteudo"], height=300)
-    else:
-        st.sidebar.info("Nenhum documento gerado disponível.")
+    
