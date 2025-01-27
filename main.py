@@ -1,6 +1,3 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
 import streamlit as st
 from crewai import Agent, Task, Process, Crew
@@ -126,6 +123,23 @@ if login():
 
     # Visualizar Documentos Gerados
     st.sidebar.subheader("Documentos Gerados")
-    if st.sidebar.button("Visualizar Documentos Gerados"):
-        # Aqui chamamos a função visualizar_planejamentos diretamente
-        visualizar_planejamentos()
+
+    # Obter a lista de documentos gerados
+    documentos_gerados = visualizar_planejamentos()  # Deve retornar [{"id": 1, "conteudo": "Texto 1"}, ...]
+
+    if documentos_gerados:
+        # Criar um selectbox para selecionar o documento pelo ID
+        doc_ids = [doc["id"] for doc in documentos_gerados]
+        doc_selecionado_id = st.sidebar.selectbox(
+            "Selecione o documento pelo ID:",
+            ["Selecione um ID"] + doc_ids,
+            index=0
+        )
+
+        # Exibir o conteúdo do documento selecionado
+        if doc_selecionado_id != "Selecione um ID":
+            documento_selecionado = next(doc for doc in documentos_gerados if doc["id"] == doc_selecionado_id)
+            st.sidebar.markdown("### Documento Selecionado")
+            st.sidebar.text_area("Conteúdo do Documento", documento_selecionado["conteudo"], height=300)
+    else:
+        st.sidebar.info("Nenhum documento gerado disponível.")
