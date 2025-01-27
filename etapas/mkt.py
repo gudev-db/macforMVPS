@@ -210,7 +210,7 @@ def planej_mkt_page():
                         querystring = {"q":f"{tendencias}"}
                         
                         headers = {
-                        	"x-rapidapi-key": rapid_key,
+                        	"x-rapidapi-key": "5f7adc325amsh4b7431792b62e4fp114a73jsn51ac51932dc7",
                         	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                         }
                         
