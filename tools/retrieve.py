@@ -34,9 +34,13 @@ def visualizar_planejamentos():
     # Criar o selectbox para o usuário escolher o id_planejamento
     selected_id = st.selectbox("Selecione um planejamento:", id_planejamentos)
 
+    # Mostrar o ID selecionado (apenas para depuração)
+    st.write(f"Você selecionou o id: {selected_id}")
+
     # Encontrar o planejamento selecionado
     selected_planejamento = collection.find_one({"id_planejamento": selected_id})
 
+    # Verificar se o planejamento foi encontrado
     if selected_planejamento:
         # Exibindo todos os campos do planejamento
         st.header(f"Planejamento para: {selected_planejamento.get('tipo_plano', 'N/A')}")
