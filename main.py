@@ -75,56 +75,20 @@ if login():
         "Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!"
     )
 
-    # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
-    selecao_sidebar = st.sidebar.radio(
-        "Escolha a seção:",
-        ["Plano Estratégico", "Brainstorming"],
-        index=0  # Predefinir como 'Plano Estratégico' ativo
-    )
-
-    # Opções para "Plano Estratégico"
-    if selecao_sidebar == "Plano Estratégico":
-        st.sidebar.subheader("Planos Estratégicos")
-        plano_estrategico = st.sidebar.selectbox(
-            "Escolha o tipo de plano:",
-            [
-                "Selecione uma opção",
-                "Plano Estratégico e de Pesquisa",
-                "Plano Estratégico de Redes e Mídias",
-                "Plano de CRM"
-            ]
-        )
-
-        if plano_estrategico != "Selecione uma opção":
-            if plano_estrategico == "Plano Estratégico e de Pesquisa":
-                planej_mkt_page()
-            elif plano_estrategico == "Plano Estratégico de Redes e Mídias":
-                planej_midias_page()
-            elif plano_estrategico == "Plano de CRM":
-                planej_crm_page()
-
-    # Opções para "Brainstorming"
-    elif selecao_sidebar == "Brainstorming":
-        st.sidebar.subheader("Brainstorming")
-        brainstorming_option = st.sidebar.selectbox(
-            "Escolha o tipo de brainstorming:",
-            [
-                "Selecione uma opção",
-                "Brainstorming Conteúdo de Nutrição de Leads",
-                "Brainstorming de Anúncios",
-                "Brainstorming de Imagem"
-            ]
-        )
-
-        if brainstorming_option != "Selecione uma opção":
-            if brainstorming_option == "Brainstorming Conteúdo de Nutrição de Leads":
-                gen_temas_emails()
-            elif brainstorming_option == "Brainstorming de Anúncios":
-                planej_campanhas()
-            elif brainstorming_option == "Brainstorming de Imagem":
-                gen_img()
-
-    # Visualizar Documentos Gerados
-    st.sidebar.subheader("Documentos Gerados")
-    if st.sidebar.button("Visualizar Documentos Gerados"):
+    # Botões de seleção de plano e opções de brainstorming
+    if st.button('Plano Estratégico de Pesquisa'):
+        planej_mkt_page()
+    elif st.button('Plano Estratégico de Mídias'):
+        planej_midias_page()
+    elif st.button('Plano de CRM'):
+        planej_crm_page()
+    elif st.button('Visualizar Documentos Gerados'):
         visualizar_planejamentos()
+
+    # Opções de brainstorming
+    if st.button('Brainstorming Conteúdo de Nutrição de Leads'):
+        gen_temas_emails()
+    elif st.button('Brainstorming de Anúncios'):
+        planej_campanhas()
+    elif st.button('Brainstorming de Imagem'):
+        gen_img()
