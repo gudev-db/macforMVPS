@@ -1,8 +1,5 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import streamlit as st
 import os
+import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
@@ -22,13 +19,13 @@ st.set_page_config(
     page_icon="static/page-icon.png"
 )
 
+# Configuração das chaves de API
 gemini_api_key = os.getenv("GEM_API_KEY")
-
-# Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
 t_api_key1 = os.getenv("T_API_KEY")
 rapid_key = os.getenv("RAPID_API")
 
+# Inicializa o cliente Tavily
 client = TavilyClient(api_key=t_api_key1)
 
 # Inicializa o modelo LLM com OpenAI
@@ -38,21 +35,11 @@ modelo_linguagem = ChatOpenAI(
     frequency_penalty=0.5
 )
 
+# Configura o modelo de AI Gemini
 genai.configure(api_key=gemini_api_key)
 llm = genai.GenerativeModel("gemini-1.5-flash")
 
-
-def limpar_estado():
-    for key in list(st.session_state.keys()):
-        del st.session_state[key]
-
-
-from crewai_tools import BaseTool, tool
-
-# Adiciona a logo na sidebar
-st.sidebar.image('static/macLogo.png', width=200)
-
-# Login
+# Função de login
 def login():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
@@ -62,13 +49,11 @@ def login():
 
     st.subheader("Página de Login")
 
-    # Entradas de nome de usuário e senha
     nome_usuario = st.text_input("Nome de Usuário", type="default")
     senha = st.text_input("Senha", type="password")
 
-    # Validação de login
     if st.button("Entrar"):
-        if nome_usuario == "admin" and senha == "senha123":  # Troque pelas credenciais reais
+        if nome_usuario == "admin" and senha == "senha123":
             st.session_state.logged_in = True
             st.success("Login bem-sucedido!")
             return True
@@ -77,9 +62,8 @@ def login():
             return False
     return False
 
-# Verifique se o login foi feito antes de exibir o conteúdo do aplicativo
+# Verifique se o login foi feito antes de exibir o conteúdo
 if login():
-    # Mensagem inicial
     st.image('static/macLogo.png', width=300)
     st.text(
         "Empoderada por IA, a Macfor conta com um sistema gerador de documentos "
@@ -88,16 +72,15 @@ if login():
         "Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!"
     )
 
-    # Sidebar: Selecione qual seção (Plano ou Brainstorming)
+    # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
     selecao_sidebar = st.sidebar.radio(
         "Escolha a seção:",
         ["Plano Estratégico", "Brainstorming"],
-        key="selecao_sidebar",
         index=0  # Predefinir como 'Plano Estratégico' ativo
     )
 
+    # Opções para "Plano Estratégico"
     if selecao_sidebar == "Plano Estratégico":
-        # Sidebar: Opções de Plano Estratégico
         st.sidebar.subheader("Planos Estratégicos")
         plano_estrategico = st.sidebar.selectbox(
             "Escolha o tipo de plano:",
@@ -106,8 +89,7 @@ if login():
                 "Plano Estratégico e de Pesquisa",
                 "Plano Estratégico de Redes e Mídias",
                 "Plano de CRM"
-            ],
-            key="plano_estrategico"
+            ]
         )
 
         if plano_estrategico != "Selecione uma opção":
@@ -118,8 +100,8 @@ if login():
             elif plano_estrategico == "Plano de CRM":
                 planej_crm_page()
 
+    # Opções para "Brainstorming"
     elif selecao_sidebar == "Brainstorming":
-        # Sidebar: Opções de Brainstorming
         st.sidebar.subheader("Brainstorming")
         brainstorming_option = st.sidebar.selectbox(
             "Escolha o tipo de brainstorming:",
@@ -128,8 +110,7 @@ if login():
                 "Brainstorming Conteúdo de Nutrição de Leads",
                 "Brainstorming de Anúncios",
                 "Brainstorming de Imagem"
-            ],
-            key="brainstorming_option"
+            ]
         )
 
         if brainstorming_option != "Selecione uma opção":
@@ -140,7 +121,7 @@ if login():
             elif brainstorming_option == "Brainstorming de Imagem":
                 gen_img()
 
-    # Sidebar: Botão para visualizar documentos gerados
+    # Visualizar Documentos Gerados
     st.sidebar.subheader("Documentos Gerados")
     if st.sidebar.button("Visualizar Documentos Gerados"):
         visualizar_planejamentos()
