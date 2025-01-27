@@ -21,19 +21,25 @@ def visualizar_planejamentos():
     # Criar o selectbox para o usuário escolher um id_planejamento
     selected_id = st.selectbox("Selecione um planejamento:", id_planejamentos)
 
-    # Encontrar o planejamento selecionado
-    selected_planejamento = collection.find_one({"id_planejamento": selected_id})
+    if selected_id:
+        # Encontrar o planejamento selecionado
+        selected_planejamento = collection.find_one({"id_planejamento": selected_id})
 
-    if selected_planejamento:
-        # Exibindo todos os dados do planejamento de forma dinâmica
-        st.header(f"Planejamento para: {selected_planejamento.get('tipo_plano', 'N/A')}")
-        st.subheader(f"Cliente: {selected_planejamento.get('nome_cliente', 'N/A')}")
+        if selected_planejamento:
+            # Exibindo todos os dados do planejamento de forma dinâmica
+            st.header(f"Planejamento para: {selected_planejamento.get('tipo_plano', 'N/A')}")
+            st.subheader(f"Cliente: {selected_planejamento.get('nome_cliente', 'N/A')}")
 
-        # Exibindo todos os campos do planejamento, exceto o _id
-        for key, value in selected_planejamento.items():
-            if key != "_id":  # Ignorar o campo "_id"
-                st.subheader(f"{key.replace('_', ' ').title()}:")
-                st.markdown(f"**{key.replace('_', ' ').title()}:** {value if value else 'N/A'}")
-
+            # Exibindo todos os campos do planejamento, exceto o _id
+            for key, value in selected_planejamento.items():
+                if key != "_id":  # Ignorar o campo "_id"
+                    st.subheader(f"{key.replace('_', ' ').title()}:")
+                    st.markdown(f"**{key.replace('_', ' ').title()}:** {value if value else 'N/A'}")
+        else:
+            st.write("Planejamento não encontrado.")
     else:
-        st.write("Planejamento não encontrado.")
+        st.write("Selecione um planejamento para visualizar.")
+    
+    # Fechar a conexão com o MongoDB
+    client.close()
+
