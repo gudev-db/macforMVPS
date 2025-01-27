@@ -6,7 +6,6 @@ from pymongo import MongoClient
 def visualizar_planejamentos():
     # Connect to MongoDB
     client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/")
-
     db = client['arquivos_planejamento']  # Replace with your database name
     collection = db['auto_doc']
     
@@ -33,58 +32,57 @@ def visualizar_planejamentos():
         st.subheader(f"Cliente: {selected_planejamento.get('nome_cliente', 'N/A')}")
         
         # Etapa de Pesquisa de Mercado
-        if 'Etapa_1_Pesquisa_Mercado' in selected_planejamento:
+        if 'SWOT' in selected_planejamento:
             st.header('1. Etapa de Pesquisa de Mercado')
-            
-            if 'Análise_SWOT' in selected_planejamento['Etapa_1_Pesquisa_Mercado']:
-                st.subheader('1.1 Análise SWOT')
-                st.markdown(f"**SWOT:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('Análise_SWOT', 'N/A')}")
-            
-            if 'Análise_PEST' in selected_planejamento['Etapa_1_Pesquisa_Mercado']:
-                st.subheader('1.2 Análise PEST')
-                st.subheader('Política')
-                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('P', 'N/A')}")
-                st.subheader('Econômica')
-                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('E', 'N/A')}")
-                st.subheader('Social')
-                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('S', 'N/A')}")
-                st.subheader('Tecnológica')
-                st.markdown(f"**PEST:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('T', 'N/A')}")
-            
-            if 'Análise_Tendências' in selected_planejamento['Etapa_1_Pesquisa_Mercado']:
-                st.subheader('1.3 Análise de Tendências')
-                st.markdown(f"**Tendências:** {selected_planejamento['Etapa_1_Pesquisa_Mercado'].get('Análise_Tendências', 'N/A')}")
+            st.subheader('1.1 Análise SWOT')
+            st.markdown(f"**SWOT:** {selected_planejamento.get('SWOT', 'N/A')}")
+        
+        if 'P' in selected_planejamento or 'E' in selected_planejamento or 'S' in selected_planejamento or 'T' in selected_planejamento:
+            st.subheader('1.2 Análise PEST')
+            st.subheader('Política')
+            st.markdown(f"**PEST (Política):** {selected_planejamento.get('P', 'N/A')}")
+            st.subheader('Econômica')
+            st.markdown(f"**PEST (Econômica):** {selected_planejamento.get('E', 'N/A')}")
+            st.subheader('Social')
+            st.markdown(f"**PEST (Social):** {selected_planejamento.get('S', 'N/A')}")
+            st.subheader('Tecnológica')
+            st.markdown(f"**PEST (Tecnológica):** {selected_planejamento.get('T', 'N/A')}")
+        
+        if 'Tendencias' in selected_planejamento:
+            st.subheader('1.3 Tendências de Mercado')
+            st.markdown(f"**Tendências:** {selected_planejamento.get('Tendencias', 'N/A')}")
         
         # Etapa Estratégica
-        if 'Etapa_2_Estrategica' in selected_planejamento:
+        if 'GC' in selected_planejamento or 'Posicionamento_Marca' in selected_planejamento or 'Brand_Persona' in selected_planejamento or 'Buyer_Persona' in selected_planejamento or 'Tom_Voz' in selected_planejamento:
             st.header('2. Etapa de Estratégia')
             
-            if 'Golden_Circle' in selected_planejamento['Etapa_2_Estrategica']:
+            if 'GC' in selected_planejamento:
                 st.subheader('2.1 Golden Circle')
-                st.markdown(f"**GC:** {selected_planejamento['Etapa_2_Estrategica'].get('Golden_Circle', 'N/A')}")
+                st.markdown(f"**GC:** {selected_planejamento.get('GC', 'N/A')}")
             
-            if 'Posicionamento_Marca' in selected_planejamento['Etapa_2_Estrategica']:
+            if 'Posicionamento_Marca' in selected_planejamento:
                 st.subheader('2.2 Posicionamento de Marca')
-                st.markdown(f"**Posicionamento de Marca:** {selected_planejamento['Etapa_2_Estrategica'].get('Posicionamento_Marca', 'N/A')}")
+                st.markdown(f"**Posicionamento de Marca:** {selected_planejamento.get('Posicionamento_Marca', 'N/A')}")
             
-            if 'Brand_Persona' in selected_planejamento['Etapa_2_Estrategica']:
+            if 'Brand_Persona' in selected_planejamento:
                 st.subheader('2.3 Brand Persona')
-                st.markdown(f"**Brand Persona:** {selected_planejamento['Etapa_2_Estrategica'].get('Brand_Persona', 'N/A')}")
+                st.markdown(f"**Brand Persona:** {selected_planejamento.get('Brand_Persona', 'N/A')}")
             
-            if 'Buyer_Persona' in selected_planejamento['Etapa_2_Estrategica']:
+            if 'Buyer_Persona' in selected_planejamento:
                 st.subheader('2.4 Buyer Persona')
-                st.markdown(f"**Buyer Persona:** {selected_planejamento['Etapa_2_Estrategica'].get('Buyer_Persona', 'N/A')}")
+                st.markdown(f"**Buyer Persona:** {selected_planejamento.get('Buyer_Persona', 'N/A')}")
             
-            if 'Tom_de_Voz' in selected_planejamento['Etapa_2_Estrategica']:
+            if 'Tom_Voz' in selected_planejamento:
                 st.subheader('2.5 Tom de Voz')
-                st.markdown(f"**Tom de Voz:** {selected_planejamento['Etapa_2_Estrategica'].get('Tom_de_Voz', 'N/A')}")
+                st.markdown(f"**Tom de Voz:** {selected_planejamento.get('Tom_Voz', 'N/A')}")
         
         # Etapa de Planejamento de Mídias e Redes Sociais
-        if 'KV' in selected_planejamento:
+        if 'KV' in selected_planejamento or 'Plano_Redes' in selected_planejamento or 'Plano_Criativos' in selected_planejamento or 'Plano_Palavras_Chave' in selected_planejamento:
             st.header('3. Etapa de Planejamento de Mídias e Redes Sociais')
             
-            st.subheader('3.1 Visual')
-            st.markdown(f"**Estruturação do KV:** {selected_planejamento.get('KV', 'N/A')}")
+            if 'KV' in selected_planejamento:
+                st.subheader('3.1 Visual')
+                st.markdown(f"**Estruturação do KV:** {selected_planejamento.get('KV', 'N/A')}")
             
             if 'Plano_Redes' in selected_planejamento:
                 st.markdown(f"**Redes Sociais:** {selected_planejamento.get('Plano_Redes', 'N/A')}")
@@ -100,12 +98,13 @@ def visualizar_planejamentos():
         # Etapa de CRM
         if 'Plano_Estrategia_CRM' in selected_planejamento:
             st.subheader('3.4 Plano de CRM')
-            st.markdown(f"**Estratégia Geral de CRM:** {selected_planejamento.get('Plano de CRM', 'N/A')}")
+            st.markdown(f"**Estratégia Geral de CRM:** {selected_planejamento.get('Plano_Estrategia_CRM', 'N/A')}")
             
             if 'Fluxo' in selected_planejamento:
                 st.markdown(f"**Fluxo Geral de CRM:** {selected_planejamento.get('Fluxo', 'N/A')}")
             
             if 'Indicadores' in selected_planejamento:
                 st.markdown(f"**Gestão de Contato com o Cliente - Email:** {selected_planejamento.get('Indicadores', 'N/A')}")
+        
     else:
         st.write("Planejamento não encontrado.")
