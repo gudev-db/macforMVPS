@@ -1,67 +1,3 @@
-import os
-import streamlit as st
-from crewai import Agent, Task, Process, Crew
-from langchain_openai import ChatOpenAI
-from datetime import datetime
-from etapas.mkt import planej_mkt_page
-from tools.retrieve import visualizar_planejamentos  # Importando a função visualizar_planejamentos
-from tavily import TavilyClient
-from etapas.gemini_midias import planej_midias_page
-from etapas.gemini_crm import planej_crm_page
-from etapas.gemini_campanhas import planej_campanhas
-import google.generativeai as genai
-from contato.temaEmail import gen_temas_emails
-from etapas.image_gen import gen_img
-
-st.set_page_config(
-    layout="wide",
-    page_title="Macfor AutoDoc",
-    page_icon="static/page-icon.png"
-)
-
-# Configuração das chaves de API
-gemini_api_key = os.getenv("GEM_API_KEY")
-api_key = os.getenv("OPENAI_API_KEY")
-t_api_key1 = os.getenv("T_API_KEY")
-rapid_key = os.getenv("RAPID_API")
-
-# Inicializa o cliente Tavily
-client = TavilyClient(api_key=t_api_key1)
-
-# Inicializa o modelo LLM com OpenAI
-modelo_linguagem = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0.5,
-    frequency_penalty=0.5
-)
-
-# Configura o modelo de AI Gemini
-genai.configure(api_key=gemini_api_key)
-llm = genai.GenerativeModel("gemini-1.5-flash")
-
-# Função de login
-def login():
-    if "logged_in" not in st.session_state:
-        st.session_state.logged_in = False
-
-    if st.session_state.logged_in:
-        return True
-
-    st.subheader("Página de Login")
-
-    nome_usuario = st.text_input("Nome de Usuário", type="default")
-    senha = st.text_input("Senha", type="password")
-
-    if st.button("Entrar"):
-        if nome_usuario == "admin" and senha == "senha123":
-            st.session_state.logged_in = True
-            st.success("Login bem-sucedido!")
-            return True
-        else:
-            st.error("Usuário ou senha incorretos.")
-            return False
-    return False
-
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
     st.image('static/macLogo.png', width=300)
@@ -75,7 +11,7 @@ if login():
     # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
     selecao_sidebar = st.sidebar.radio(
         "Escolha a seção:",
-        ["Plano Estratégico", "Brainstorming"],
+        ["Plano Estratégico", "Brainstorming", "Documentos Salvos"],
         index=0  # Predefinir como 'Plano Estratégico' ativo
     )
 
@@ -121,24 +57,26 @@ if login():
             elif brainstorming_option == "Brainstorming de Imagem":
                 gen_img()
 
-    # Visualizar Documentos Gerados
-    st.sidebar.subheader("Documentos Gerados")
+    # Seção para "Documentos Salvos"
+    elif selecao_sidebar == "Documentos Salvos":
+        st.sidebar.subheader("Visualizar Documentos Salvos")
 
-    # Obter a lista de documentos gerados
-    documentos_gerados = visualizar_planejamentos()  # Deve retornar [{"id": 1, "conteudo": "Texto 1"}, ...]
+        # Obter a lista de documentos salvos
+        documentos_salvos = visualizar_planejamentos()  # Deve retornar [{"id": 1, "conteudo": "Texto 1"}, ...]
 
-    if documentos_gerados:
-        # Criar um selectbox para selecionar o documento pelo ID
-        doc_ids = [doc["id"] for doc in documentos_gerados]
-        doc_selecionado_id = st.sidebar.selectbox(
-            "Selecione o documento pelo ID:",
-            ["Selecione um ID"] + doc_ids,
-            index=0
-        )
+        if documentos_salvos:
+            # Criar um selectbox para selecionar o documento pelo ID
+            doc_ids_salvos = [doc["id"] for doc in documentos_salvos]
+            doc_selecionado_id_salvo = st.sidebar.selectbox(
+                "Selecione o documento salvo pelo ID:",
+                ["Selecione um ID"] + doc_ids_salvos,
+                index=0
+            )
 
-        # Exibir o conteúdo do documento selecionado
-        if doc_selecionado_id != "Selecione um ID":
-            documento_selecionado = next(doc for doc in documentos_gerados if doc["id"] == doc_selecionado_id)
-            st.sidebar.markdown("### Documento Selecionado")
-            st.sidebar.text_area("Conteúdo do Documento", documento_selecionado["conteudo"], height=300)
-    
+            # Exibir o conteúdo do documento selecionado
+            if doc_selecionado_id_salvo != "Selecione um ID":
+                documento_selecionado_salvo = next(doc for doc in documentos_salvos if doc["id"] == doc_selecionado_id_salvo)
+                st.markdown("## Documento Salvo Selecionado")
+                st.text_area("Conteúdo do Documento", documento_selecionado_salvo["conteudo"], height=300)
+        else:
+            st.info("Nenhum documento salvo disponível no momento.")
