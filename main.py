@@ -3,7 +3,7 @@ import streamlit as st
 from crewai import Agent, Task, Process, Crew
 from langchain_openai import ChatOpenAI
 from datetime import datetime
-from etapas.mkt import planej_mkt_page
+from etapas.gemini_mkt import planej_mkt_page
 from tools.retrieve import visualizar_planejamentos  # Importando a função visualizar_planejamentos
 from tavily import TavilyClient
 from etapas.gemini_midias import planej_midias_page
