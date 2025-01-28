@@ -78,24 +78,35 @@ def planej_mkt_page():
     # Buscar todos os clientes do banco de dados
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
     opcoes_clientes = [cliente["nome"] for cliente in clientes]
-
+    
     # Selectbox para escolher o cliente
     nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
-
+    
     # Obter as informações do cliente selecionado
     cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
     site_cliente = cliente_info["site"] if cliente_info else ""
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
-
+    
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
     st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
-    intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
-    publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
-    concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
-    site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
-    tendaux = st.text_input('Tendências de interesse:', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc")
-
+    
+    # Intuito do Plano Estratégico
+    intuito_plano = st.text_input('Qual é o intuito do plano estratégico?', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre. O que você deseja alcançar com esse plano?")
+    
+    # Público-Alvo
+    publico_alvo = st.text_input('Quem é o seu público-alvo?', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda. Defina o perfil das pessoas que você quer atingir.")
+    
+    # Concorrentes
+    concorrentes = st.text_input('Quem são seus principais concorrentes?', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C. Liste os concorrentes que você considera mais relevantes no seu mercado.")
+    
+    # Sites dos Concorrentes
+    site_concorrentes = st.text_input('Quais são os sites dos seus concorrentes?', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br. Insira os sites dos seus concorrentes para compararmos.")
+    
+    # Tendências de Interesse
+    tendaux = st.text_input('Quais tendências você acredita que estão moldando seu mercado?', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc. Fale sobre as tendências que você está observando e que podem influenciar seu negócio.")
+    
+    # Objetivos de Marca
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
         'Entregar potenciais consumidores para a área comercial',
@@ -103,9 +114,11 @@ def planej_mkt_page():
         'Fidelizar e reter um público fiel já convertido',
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
-
-    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes, key="objetivos_marca")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", height=200)
+    
+    objetivos_de_marca = st.selectbox('Quais são os objetivos da sua marca?', objetivos_opcoes, key="objetivos_marca")
+    
+    # Referência da Marca
+    referencia_da_marca = st.text_area('O que a sua marca faz e quais seus diferenciais?', key="referencia_da_marca", placeholder="Conte um pouco mais sobre sua marca, o que ela representa, seus valores e diferenciais no mercado.")
 
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
