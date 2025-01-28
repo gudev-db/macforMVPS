@@ -22,7 +22,7 @@ genai.configure(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
-client1 = TavilyClient(api_key='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')
+client1 = TavilyClient(api_key='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')
 
 
 # Conexão com MongoDB
