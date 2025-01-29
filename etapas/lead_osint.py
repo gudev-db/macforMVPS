@@ -108,6 +108,30 @@ def get_linkedin_profile_data(profile_url):
         # Se houver erro, retorna o código de status de erro
         return {"error": f"Erro ao acessar a URL, Status code: {response.status_code}"}
 
+# Função para pegar os posts de uma empresa no LinkedIn
+def get_linkedin_company_posts(profile_url, start=0):
+    # URL da API do LinkedIn
+    url = "https://linkedin-api8.p.rapidapi.com/get-company-posts"
+
+    # Parâmetros da requisição, usando o nome de usuário e a página de início (start)
+    querystring = {"username": profile_url, "start": str(start)}
+
+    # Cabeçalhos com a chave de API
+    headers = {
+        "x-rapidapi-key": "0c5b50def9msh23155782b7fc458p103523jsn427488a01210",
+        "x-rapidapi-host": "linkedin-api8.p.rapidapi.com"
+    }
+
+    # Envia a requisição GET
+    response = requests.get(url, headers=headers, params=querystring)
+
+    # Verifica se a requisição foi bem-sucedida (status code 200)
+    if response.status_code == 200:
+        # Retorna a resposta JSON diretamente
+        return response.json()
+    else:
+        # Se houver erro, retorna o código de status de erro
+        return {"error": f"Erro ao acessar a URL, Status code: {response.status_code}"}
 
 # Função principal para pesquisa OSINT com múltiplos termos
 def osint_report():
@@ -146,6 +170,7 @@ def osint_report():
                 # Pega os dados do LinkedIn
                 if profile:
                     profile_data = get_linkedin_profile_data(profile)
+                    posts_data = get_linkedin_company_posts(profile)
                 else:
                     profile_data = "No LinkedIn profile provided."
 
@@ -156,6 +181,10 @@ def osint_report():
                 prompt = f"""
                 Você é um especialista em inteligência de mercado e engenharia social. Desenvolva um relatório extremamente detalhado, analítico e profundo de OSINT que chegue ao cerne da pessoa sendo analisada.
 
+                Seu trabalho é analisar e tirar insights e montar uma estratégia de aproximação para mim, uma empresa de marketing, para sermos contradados
+                pelo cliente.
+
+                
                 As seguintes são as informações coletadas de diferentes fontes sobre o alvo:
 
                 1. Nome do Alvo: {target_name if target_name else 'Não disponível'}
@@ -171,6 +200,9 @@ def osint_report():
                 - Perfil no LinkedIn:
                 {profile_data}
 
+                - Posts no perfil do LinkedIn:
+                {posts_data}
+
                 Com base nessas informações, gere um relatório detalhado, estruturado nas seguintes seções:
 
                 1. Resumo geral do alvo.
@@ -182,7 +214,10 @@ def osint_report():
 
                 Diga-me os melhores papéis para essa pessoa, a melhor forma de abordá-la. Sugestões e insights sobre sua vida, personalidade, dores. Ensine-me como me comunicar com essa pessoa de uma forma específica às suas características. Não seja razoável. Seja detalhado. Você é um especialista em engenharia social.
 
-                Escreva um texto de 5 parágrafos longos e detalhados sobre insights tirados a partir das informações da empresa.
+                Escreva um texto de 5 parágrafos longos e detalhados sobre insights tirados a partir das informações da empresa. Quais são suas dores?
+                O que a ajudaria a alcançar seus objetivos? Como uma empresa de marketing pode se destacar para ser o contratado ideal para ele?
+                Qual seus objetivos? O que quer alcançar? No que provavelmente já falhou? Tire inúmeras conclusões sobre o cliente. Quais seus interesses?
+                Como posso tirar vantagem disso se quero ser contratado como empresa de marketing digital para eles?
 
                 Também crie a Persona de Abordagem, o tipo de pessoa com a qual ela seria mais receptiva (incluindo gênero, personalidade, posição, estado civil, idade, aparência, tom, trajetória de vida).
                 """
