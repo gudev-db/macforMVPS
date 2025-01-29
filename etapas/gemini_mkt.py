@@ -130,132 +130,6 @@ def planej_mkt_page():
     days = 90
     max_results = 15
 
-    import requests
-
-    #DUCK DUCK GO SEARCH de tendências
-
-    url = "https://duckduckgo8.p.rapidapi.com/"
-    
-    querystring = {"q":f"tendencias em {tendaux}"}
-    
-    headers = {
-    	"x-rapidapi-key": rapid_key,
-    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-    }
-    
-    response = requests.get(url, headers=headers, params=querystring)
-    
-    tend_novids2 = response.text
-
-
-  #DUCK DUCK GO SEARCH de tendências
-
-    url = "https://duckduckgo8.p.rapidapi.com/"
-    
-    querystring2 = {"q":f"dados econômicos relevantes no brasil"}
-    
-    headers = {
-    	"x-rapidapi-key": rapid_key,
-    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-    }
-    
-    response = requests.get(url, headers=headers, params=querystring2)
-    
-    dados_econ_brasil = response.text
-
-
- #DUCK DUCK GO SEARCH de ferramentas
-
-    url = "https://duckduckgo8.p.rapidapi.com/"
-    
-    querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
-    
-    headers = {
-    	"x-rapidapi-key": rapid_key,
-    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-    }
-    
-    response = requests.get(url, headers=headers, params=querystring2)
-    
-    ferramentas_rel = response.text
-
-
- #DUCK DUCK GO SEARCH de concorrência
-
-    url = "https://duckduckgo8.p.rapidapi.com/"
-    
-    querystring5 = {"q":f"novidades sobre {concorrentes}"}
-    
-    headers = {
-    	"x-rapidapi-key": rapid_key,
-    	"x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-    }
-    
-    response = requests.get(url, headers=headers, params=querystring5)
-    
-    novids_conc = response.text
-
-    #DUCK DUCK GO SEARCH PEST
-
-    #SOCIAL
-    querystring_social = {"q":f"Novidades no âmbito social no brasil"}
-    
-    response_social = requests.get(url, headers=headers, params=querystring_social)
-    
-    tend_social_duck = response_social.text
-
-    #Tecnológico
-    querystring_tec = {"q":f"Novidades no âmbito tecnológico no brasil"}
-    
-    response_tec = requests.get(url, headers=headers, params=querystring_tec)
-    
-    tend_tec_duck = response_tec.text
-
-    
-
-
-    #TAVILY PEST
-    
-    politic = client1.search(
-        f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
-        estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-        days=days, 
-        max_results=max_results
-    )
-    
-    economic = client1.search(
-        f'''Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para 
-        planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-        days=days, 
-        max_results=max_results
-    )
-    
-    social = client1.search(
-        f'''Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento
-        estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-        days=days, 
-        max_results=max_results
-    )
-    
-    tec = client1.search(
-        f'''Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
-        planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-        days=days, 
-        max_results=max_results
-    )
-    
-    tend_novids1 = client1.search(
-        f'''Quais as recentes tendências de mercado para {ramo_atuacao}?''',
-        days=days, 
-        max_results=max_results
-    )
-    
-    tend_ramo = client1.search(
-        f'''Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?''',
-        days=days, 
-        max_results=max_results
-    )
-
 
   
     if pest_files is not None:
@@ -275,6 +149,131 @@ def planej_mkt_page():
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
                     with st.spinner('Gerando o planejamento de mídias...'):
+
+
+                            #DUCK DUCK GO SEARCH de tendências
+
+                        url = "https://duckduckgo8.p.rapidapi.com/"
+                            
+                        querystring = {"q":f"tendencias em {tendaux}"}
+                            
+                        headers = {
+                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+                            }
+                            
+                        response = requests.get(url, headers=headers, params=querystring)
+                            
+                        tend_novids2 = response.text
+
+
+                        #DUCK DUCK GO SEARCH de tendências
+
+                        url = "https://duckduckgo8.p.rapidapi.com/"
+                            
+                        querystring2 = {"q":f"dados econômicos relevantes no brasil"}
+                            
+                        headers = {
+                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+                            }
+                            
+                        response = requests.get(url, headers=headers, params=querystring2)
+                            
+                        dados_econ_brasil = response.text
+
+
+                        #DUCK DUCK GO SEARCH de ferramentas
+
+                        url = "https://duckduckgo8.p.rapidapi.com/"
+                            
+                        querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
+                            
+                        headers = {
+                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+                            }
+                            
+                        response = requests.get(url, headers=headers, params=querystring2)
+                            
+                        ferramentas_rel = response.text
+
+
+                        #DUCK DUCK GO SEARCH de concorrência
+
+                        url = "https://duckduckgo8.p.rapidapi.com/"
+                            
+                        querystring5 = {"q":f"novidades sobre {concorrentes}"}
+                            
+                        headers = {
+                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
+                            }
+                            
+                        response = requests.get(url, headers=headers, params=querystring5)
+                            
+                        novids_conc = response.text
+
+                            #DUCK DUCK GO SEARCH PEST
+
+                            #SOCIAL
+                        querystring_social = {"q":f"Novidades no âmbito social no brasil"}
+                            
+                        response_social = requests.get(url, headers=headers, params=querystring_social)
+                            
+                        tend_social_duck = response_social.text
+
+                            #Tecnológico
+                        querystring_tec = {"q":f"Novidades no âmbito tecnológico no brasil"}
+                            
+                        response_tec = requests.get(url, headers=headers, params=querystring_tec)
+                            
+                        tend_tec_duck = response_tec.text
+
+                            
+
+
+                            #TAVILY PEST
+                            
+                        politic = client1.search(
+                                f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
+                                estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
+                                days=days, 
+                                max_results=max_results
+                            )
+                            
+                        economic = client1.search(
+                                f'''Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para 
+                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
+                                days=days, 
+                                max_results=max_results
+                            )
+                            
+                        social = client1.search(
+                                f'''Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento
+                                estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
+                                days=days, 
+                                max_results=max_results
+                            )
+                            
+                        tec = client1.search(
+                                f'''Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
+                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
+                                days=days, 
+                                max_results=max_results
+                            )
+                            
+                        tend_novids1 = client1.search(
+                                f'''Quais as recentes tendências de mercado para {ramo_atuacao}?''',
+                                days=days, 
+                                max_results=max_results
+                            )
+                            
+                        tend_ramo = client1.search(
+                                f'''Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?''',
+                                days=days, 
+                                max_results=max_results
+                            )
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
@@ -346,7 +345,9 @@ def planej_mkt_page():
                                     levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}).
                                     
                                     Gerar 5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
-                                    devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan):
+                                    devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan) Seja original,
+                                    esperto com as palavras na construção do slogan. Correlacione-as e crie impacto com a construção do seu slogan
+                                    original. Tire ideias pulo do gato:
                                     
                                     "Pense diferente."
                                     "Abra a felicidade."
