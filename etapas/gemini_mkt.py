@@ -72,8 +72,23 @@ def limpar_estado():
 
 # Função principal da página de planejamento de mídias
 def planej_mkt_page():
-    st.subheader('Planejamento de Mídias e Redes')
-    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
+    st.subheader('Planejamento de Pesquisa e Estratégia')
+    st.text('''Aqui é gerado o planejamento de Pesquisa e Estratégia.
+        
+        Pesquisa
+        - Análise SWOT
+        - Análise PEST
+        - Análise de Tendências de Mercado
+        - Análise de Concorrências
+        
+        Estratégia
+        - Golden Circle
+        - Posicionamento de Marca
+        - Brand Persona
+        - Buyer Persona
+        - Tom de Voz''')
+    
+
 
     # Buscar todos os clientes do banco de dados
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
