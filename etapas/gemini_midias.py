@@ -3,6 +3,9 @@ import google.generativeai as genai
 import uuid
 import os
 from pymongo import MongoClient
+import asyncio
+from crawl4ai import AsyncWebCrawler
+import google.generativeai as genai
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
@@ -52,7 +55,7 @@ def limpar_estado():
 # Função principal da página de planejamento de mídias
 def planej_midias_page():
     st.subheader('Planejamento de Mídias e Redes')
-    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave, plano de CRM, plano de Design/Marca e estratégia de conteúdo.')
+    st.text('Aqui geramos plano para criativos, análise de saúde do site, sugestões de palavras chave e estratégia de conteúdo.')
 
     # Buscar todos os clientes do banco de dados
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
@@ -245,6 +248,26 @@ def planej_midias_page():
                         """
                         criativos_output = modelo_linguagem.generate_content(prompt_criativos).text
 
+
+                        #SEO e Site
+
+                        async def scrape_and_generate_report():
+                            # Criar uma instância do AsyncWebCrawler
+                            async with AsyncWebCrawler() as crawler:
+                                # Raspagem de conteúdo do site
+                                result = await crawler.arun(url=f"{site_cliente}")
+
+                            # Configurar o modelo LLM e gerar o relatório
+                            llm = genai.GenerativeModel("gemini-1.5-flash")
+                            prompt = f"Escreva um relatório (encontrando pontos de melhora, falhas, dores, traçando um perfil da empresa) extremamente detalhado sobre o site com base no conteúdo raspado: {result.markdown}"
+                            response = llm.generate_content(prompt)
+
+                            # Retornar o texto do relatório
+                            return response.text
+
+                        # Executar a função principal e exibir o relatório
+                        report_site = asyncio.run(scrape_and_generate_report())
+
                         prompt_palavras_chave = f"""
                         Desenvolva um relatório detalhado de sugestões de palavras-chave para SEO para {nome_cliente}, levando em conta:
 
@@ -322,10 +345,12 @@ def planej_midias_page():
                         st.markdown(redes_output)                   
                         st.subheader('3. Plano para Criativos')
                         st.markdown(criativos_output)
-                        st.subheader('4. SEO')
-                        st.markdown(palavras_chave_output)
-                        st.subheader('5. Estratégia de Conteúdo')
+                        st.subheader('4. Estratégia de Conteúdo')
                         st.markdown(estrategia_conteudo_output)
+                        st.subheader('5. SEO - Palavras Chave')
+                        st.markdown(palavras_chave_output)
+                        st.subheader('6. Report de Qualidade do Site')
+                        st.markedown(report_site)
 
                         # Salva o planejamento no MongoDB
                         save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
