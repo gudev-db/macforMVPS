@@ -3,10 +3,6 @@ import google.generativeai as genai
 import uuid
 import os
 from pymongo import MongoClient
-import asyncio
-import aiohttp
-from bs4 import BeautifulSoup
-import asyncio
 import google.generativeai as genai
 
 # Configuração do Gemini API
@@ -253,30 +249,6 @@ def planej_midias_page():
 
                         #SEO e Site
 
-                        # Função para raspar o conteúdo do site sem o Playwright
-                        async def scrape_and_generate_report():
-                            # Definir o URL do site a ser raspado
-                            site_cliente = "https://exemplo.com"
-
-                            # Raspagem de conteúdo do site usando aiohttp e BeautifulSoup
-                            async with aiohttp.ClientSession() as session:
-                                async with session.get(site_cliente) as response:
-                                    html = await response.text()
-                                    soup = BeautifulSoup(html, 'html.parser')
-
-                                    # Extração do conteúdo relevante do site (ajuste conforme necessário)
-                                    result = soup.get_text()  # Pode ser ajustado para pegar mais detalhes
-
-                            # Configurar o modelo LLM e gerar o relatório
-                            llm = genai.GenerativeModel("gemini-1.5-flash")
-                            prompt = f"Escreva um relatório (encontrando pontos de melhora, falhas, dores, traçando um perfil da empresa) extremamente detalhado sobre o site com base no conteúdo raspado: {result}"
-                            response = llm.generate_content(prompt)
-
-                            # Retornar o texto do relatório
-                            return response.text
-
-                        # Executar a função principal e exibir o relatório
-                        report_site = asyncio.run(scrape_and_generate_report())
 
                         prompt_palavras_chave = f"""
                         Desenvolva um relatório detalhado de sugestões de palavras-chave para SEO para {nome_cliente}, levando em conta:
@@ -359,8 +331,7 @@ def planej_midias_page():
                         st.markdown(estrategia_conteudo_output)
                         st.subheader('5. SEO - Palavras Chave')
                         st.markdown(palavras_chave_output)
-                        st.subheader('6. Report de Qualidade do Site')
-                        st.markedown(report_site)
+
 
                         # Salva o planejamento no MongoDB
                         save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
