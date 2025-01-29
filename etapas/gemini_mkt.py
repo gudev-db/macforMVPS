@@ -73,20 +73,8 @@ def limpar_estado():
 # Função principal da página de planejamento de mídias
 def planej_mkt_page():
     st.subheader('Planejamento de Pesquisa e Estratégia')
-    st.text('''Aqui é gerado o planejamento de Pesquisa e Estratégia.
-        
-        Pesquisa
-        - Análise SWOT
-        - Análise PEST
-        - Análise de Tendências de Mercado
-        - Análise de Concorrências
-        
-        Estratégia
-        - Golden Circle
-        - Posicionamento de Marca
-        - Brand Persona
-        - Buyer Persona
-        - Tom de Voz''')
+    st.text('''Aqui é gerado o planejamento de Pesquisa e Estratégia. Geramos análise SWOT, análise PEST, análise de tendências de mercado,
+            análise de concorrências, Golden Circle, Posicionamento de marca, Brand Persona, Buyer Pesona e Tom de Voz''')
     
 
 
@@ -357,7 +345,8 @@ def planej_mkt_page():
                             
                                     levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}).
                                     
-                                    Gerar 5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essa inspiração:
+                                    Gerar 5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
+                                    devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan):
                                     
                                     "Pense diferente."
                                     "Abra a felicidade."
