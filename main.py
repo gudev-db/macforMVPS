@@ -15,7 +15,7 @@ from etapas.gemini_campanhas import planej_campanhas
 import google.generativeai as genai
 from contato.temaEmail import gen_temas_emails
 from etapas.image_gen import gen_img
-from etapas.lead_osint import get_linkedin_profile_data
+from etapas.lead_osint import osint_report
 
 st.set_page_config(
     layout="wide",
@@ -105,7 +105,7 @@ if login():
             elif plano_estrategico == "Planejamento de CRM":
                 planej_crm_page()
             elif plano_estrategico == "Investigação de Leads":
-                get_linkedin_profile_data()
+                osint_report()
 
     # Opções para "Brainstorming"
     elif selecao_sidebar == "Brainstorming":
