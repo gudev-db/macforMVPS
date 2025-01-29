@@ -4,7 +4,9 @@ import uuid
 import os
 from pymongo import MongoClient
 import asyncio
-from crawl4ai import AsyncWebCrawler
+import aiohttp
+from bs4 import BeautifulSoup
+import asyncio
 import google.generativeai as genai
 
 # Configuração do Gemini API
