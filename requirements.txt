@@ -150,7 +150,7 @@ nvidia-nvjitlink-cu12==12.4.127
 nvidia-nvtx-cu12==12.4.127
 oauthlib==3.2.2
 onnxruntime==1.20.0
-openai==0.27.10
+openai==1.1.1
 opentelemetry-api==1.28.2
 opentelemetry-exporter-otlp-proto-common==1.28.2
 opentelemetry-exporter-otlp-proto-grpc==1.28.2
