@@ -78,29 +78,29 @@ if login():
     # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
     selecao_sidebar = st.sidebar.radio(
         "Escolha a seção:",
-        ["Plano Estratégico", "Brainstorming", "Documentos Salvos"],
+        ["Planejamentos Estratégicos", "Brainstorming", "Documentos Salvos"],
         index=0  # Predefinir como 'Plano Estratégico' ativo
     )
 
     # Opções para "Plano Estratégico"
-    if selecao_sidebar == "Plano Estratégico":
-        st.sidebar.subheader("Planos Estratégicos")
+    if selecao_sidebar == "Planejamentos Estratégicos":
+        st.sidebar.subheader("Planejamentos Estratégicos")
         plano_estrategico = st.sidebar.selectbox(
             "Escolha o tipo de plano:",
             [
                 "Selecione uma opção",
-                "Plano Estratégico e de Pesquisa",
-                "Plano Estratégico de Redes e Mídias",
-                "Plano de CRM"
+                "Planejamento de Pesquisa e Estratégia",
+                "Planejamento de Redes e Mídias",
+                "Planejamento de CRM"
             ]
         )
 
         if plano_estrategico != "Selecione uma opção":
-            if plano_estrategico == "Plano Estratégico e de Pesquisa":
+            if plano_estrategico == "Planejamento de Pesquisa e Estratégia":
                 planej_mkt_page()
-            elif plano_estrategico == "Plano Estratégico de Redes e Mídias":
+            elif plano_estrategico == "Planejamento de Redes e Mídias":
                 planej_midias_page()
-            elif plano_estrategico == "Plano de CRM":
+            elif plano_estrategico == "Planejamento de CRM":
                 planej_crm_page()
 
     # Opções para "Brainstorming"
