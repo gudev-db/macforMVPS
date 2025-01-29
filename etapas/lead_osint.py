@@ -85,8 +85,10 @@ import requests
 
 # Função para pegar dados do perfil do LinkedIn
 def get_linkedin_profile_data(profile_url):
-    urls = ["https://linkedin-api8.p.rapidapi.com/get-company-details", 
-            "https://linkedin-api8.p.rapidapi.com/get-company-posts"]
+    urls = [
+        "https://linkedin-api8.p.rapidapi.com/get-company-details",
+        "https://linkedin-api8.p.rapidapi.com/get-company-posts"
+    ]
 
     querystring = {"url": profile_url}
 
@@ -101,12 +103,16 @@ def get_linkedin_profile_data(profile_url):
     for url in urls:
         # Envia as requisições
         response = requests.get(url, headers=headers, params=querystring)
-        
-        # Armazena cada resposta no dicionário com a chave correspondente
-        all_responses[url] = response.json()
 
-    return all_responses  # Retorna o dicionário com todos os dados
+        # Verifique o status code da resposta
+        if response.status_code == 200:
+            # Armazena a resposta como texto
+            all_responses[url] = response.text
+        else:
+            # Caso o status code não seja 200, registre o erro
+            all_responses[url] = f"Erro ao acessar a URL: {url}, Status code: {response.status_code}"
 
+    return all_responses  # Retorna o dicionário com todas as respostas em formato de texto
 
 
 # Função principal para pesquisa OSINT com múltiplos termos
