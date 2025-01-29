@@ -251,15 +251,23 @@ def planej_midias_page():
 
                         #SEO e Site
 
+                        # Função para raspar o conteúdo do site sem o Playwright
                         async def scrape_and_generate_report():
-                            # Criar uma instância do AsyncWebCrawler
-                            async with AsyncWebCrawler() as crawler:
-                                # Raspagem de conteúdo do site
-                                result = await crawler.arun(url=f"{site_cliente}")
+                            # Definir o URL do site a ser raspado
+                            site_cliente = "https://exemplo.com"
+
+                            # Raspagem de conteúdo do site usando aiohttp e BeautifulSoup
+                            async with aiohttp.ClientSession() as session:
+                                async with session.get(site_cliente) as response:
+                                    html = await response.text()
+                                    soup = BeautifulSoup(html, 'html.parser')
+
+                                    # Extração do conteúdo relevante do site (ajuste conforme necessário)
+                                    result = soup.get_text()  # Pode ser ajustado para pegar mais detalhes
 
                             # Configurar o modelo LLM e gerar o relatório
                             llm = genai.GenerativeModel("gemini-1.5-flash")
-                            prompt = f"Escreva um relatório (encontrando pontos de melhora, falhas, dores, traçando um perfil da empresa) extremamente detalhado sobre o site com base no conteúdo raspado: {result.markdown}"
+                            prompt = f"Escreva um relatório (encontrando pontos de melhora, falhas, dores, traçando um perfil da empresa) extremamente detalhado sobre o site com base no conteúdo raspado: {result}"
                             response = llm.generate_content(prompt)
 
                             # Retornar o texto do relatório

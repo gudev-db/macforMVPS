@@ -53,6 +53,7 @@ filetype==1.2.0
 flatbuffers==24.3.25
 frozenlist==1.5.0
 fsspec==2024.10.0
+genai==2.1.0
 gitdb==4.0.11
 GitPython==3.1.43
 google-ai-generativelanguage==0.6.10
@@ -151,7 +152,7 @@ nvidia-nvjitlink-cu12==12.4.127
 nvidia-nvtx-cu12==12.4.127
 oauthlib==3.2.2
 onnxruntime==1.20.0
-openai==1.60.2
+openai==0.27.10
 opentelemetry-api==1.28.2
 opentelemetry-exporter-otlp-proto-common==1.28.2
 opentelemetry-exporter-otlp-proto-grpc==1.28.2
@@ -249,7 +250,7 @@ tavily-python==0.5.0
 tenacity==9.0.0
 tf-playwright-stealth==1.1.0
 threadpoolctl==3.5.0
-tiktoken==0.7.0
+tiktoken==0.3.3
 tokenizers==0.21.0
 toml==0.10.2
 tomli==2.1.0
