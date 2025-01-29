@@ -119,31 +119,33 @@ def osint_report():
         "Perfil Linkedin": st.text_input("Profile:", key="profile"),
         "Região": st.text_input("Region:", key="region"),
         "Área de atuação": st.text_input("Profession:", key="profession"),
-
-
     }
+
+    # Adiciona valores padrão para os campos ausentes, evitando KeyError
+    target_name = inputs.get('Nome do Lead', '')
+    profile = inputs.get('Perfil Linkedin', '')
+    region = inputs.get('Região', '')
+    profession = inputs.get('Área de atuação', '')
 
     # Botão para gerar o relatório
     if st.button("Gerar Plano de Aproximação"):
-        if any(inputs.values()):
+        if any([target_name, profile, region, profession]):
             with st.spinner("Gerando plano de aproximação..."):
                 # Coleta informações do DuckDuckGo e Tavily para cada entrada
                 duckduckgo_results = {}
                 tavily_results = {}
 
-                if inputs['Target Name']:
-                    duckduckgo_results['Target Name'], tavily_results['Target Name'] = search_target_name(inputs['Target Name'])
+                if target_name:
+                    duckduckgo_results['Target Name'], tavily_results['Target Name'] = search_target_name(target_name)
 
-            
-                if inputs['Region']:
-                    duckduckgo_results['Region'], tavily_results['Region'] = search_region(inputs['Region'])
-                if inputs['Profession']:
-                    duckduckgo_results['Profession'], tavily_results['Profession'] = search_profession(inputs['Profession'])
-              
+                if region:
+                    duckduckgo_results['Region'], tavily_results['Region'] = search_region(region)
+                if profession:
+                    duckduckgo_results['Profession'], tavily_results['Profession'] = search_profession(profession)
 
                 # Pega os dados do LinkedIn
-                if inputs['Profile']:
-                    profile_data = get_linkedin_profile_data(inputs['Profile'])
+                if profile:
+                    profile_data = get_linkedin_profile_data(profile)
                 else:
                     profile_data = "No LinkedIn profile provided."
 
@@ -156,23 +158,23 @@ def osint_report():
 
                 As seguintes são as informações coletadas de diferentes fontes sobre o alvo:
 
-                1. Nome do Alvo: {inputs['Target Name'] if inputs['Target Name'] else 'Não disponível'}
-                2. Gênero: {inputs['Gender'] if inputs['Gender'] else 'Não disponível'}
-                3. Faixa Etária: {inputs['Age Range'] if inputs['Age Range'] else 'Não disponível'}
-                4. E-mail: {inputs['Email'] if inputs['Email'] else 'Não disponível'}
-                5. Telefone: {inputs['Phone'] if inputs['Phone'] else 'Não disponível'}
-                6. Perfil: {inputs['Profile'] if inputs['Profile'] else 'Não disponível'}
-                7. Região: {inputs['Region'] if inputs['Region'] else 'Não disponível'}
-                8. Profissão: {inputs['Profession'] if inputs['Profession'] else 'Não disponível'}
-                9. Empregador: {inputs['Employer'] if inputs['Employer'] else 'Não disponível'}
+                1. Nome do Alvo: {target_name if target_name else 'Não disponível'}
+                2. Gênero: {inputs.get('Gender', 'Não disponível')}
+                3. Faixa Etária: {inputs.get('Age Range', 'Não disponível')}
+                4. E-mail: {inputs.get('Email', 'Não disponível')}
+                5. Telefone: {inputs.get('Phone', 'Não disponível')}
+                6. Perfil: {profile if profile else 'Não disponível'}
+                7. Região: {region if region else 'Não disponível'}
+                8. Profissão: {profession if profession else 'Não disponível'}
+                9. Empregador: {inputs.get('Employer', 'Não disponível')}
 
                 - Perfil no LinkedIn:
                 {profile_data}
 
-                Com base nessas informações, gere um relatório detalhado em inglês, estruturado nas seguintes seções:
+                Com base nessas informações, gere um relatório detalhado, estruturado nas seguintes seções:
 
                 1. Resumo geral do alvo.
-                2. Insights relevantes para cada aspecto (nome, gênero, idade, etc.).
+                2. Insights relevantes para cada aspecto.
                 3. Conclusões e possíveis aplicações estratégicas.
                 4. Relacione todos os pontos e traga insights sobre o alvo.
 
@@ -180,11 +182,10 @@ def osint_report():
 
                 Diga-me os melhores papéis para essa pessoa, a melhor forma de abordá-la. Sugestões e insights sobre sua vida, personalidade, dores. Ensine-me como me comunicar com essa pessoa de uma forma específica às suas características. Não seja razoável. Seja detalhado. Você é um especialista em engenharia social.
 
-                Escreva um texto de 5 parágrafos longos e detalhados sobre sua personalidade, dores, trajetória de vida, ansiedades, desejos, habilidades, gostos e crie um perfil completo que você possa inferir sobre ela.
+                Escreva um texto de 5 parágrafos longos e detalhados sobre insights tirados a partir das informações da empresa.
 
                 Também crie a Persona de Abordagem, o tipo de pessoa com a qual ela seria mais receptiva (incluindo gênero, personalidade, posição, estado civil, idade, aparência, tom, trajetória de vida).
                 """
-
 
                 # Gera o relatório com Gemini
                 osint_report_output = modelo_linguagem.generate_content(prompt).text
@@ -193,4 +194,4 @@ def osint_report():
                 st.subheader("OSINT Report Generated")
                 st.markdown(osint_report_output)
         else:
-            st.warning("Please fill in at least one field to generate the report.")
+            st.warning("Por favor, preencha pelo menos um campo para gerar o relatório.")
