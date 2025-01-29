@@ -69,11 +69,22 @@ def planej_midias_page():
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
     st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
-    intuito_plano = st.text_input('Intuito do Plano Estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre")
-    publico_alvo = st.text_input('Público-Alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda")
-    concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C")
-    site_concorrentes = st.text_input('Site dos Concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br")
-
+        # Intuito do Plano Estratégico
+    intuito_plano = st.text_input('Intuito do Planejamento estratégico: Utilize esse campo para explicitar quais são as espectativas do cliente no desenvolvimento desse planejamento. Exemplo: Gerar mais leads, aumentar vendas, aumentar reconhecimento em alguma região estratégica, etc', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre. O que você deseja alcançar com esse plano?")
+    
+    # Público-Alvo
+    publico_alvo = st.text_input('Público alvo: Utilize esse campo para definir qual é o perfil do público alvo que deve ser atingido por esse planejamento estratégico. Seja idade, região, gênero, área de atuação. Aproveite para ser o quão detalhado for necessário.', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda. Defina o perfil das pessoas que você quer atingir.")
+    
+    # Concorrentes
+    concorrentes = st.text_input('Concorrentes: Utilize esse campo para definir quais são os concorrentes do cliente.', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C. Liste os concorrentes que você considera mais relevantes no seu mercado.")
+    
+    # Sites dos Concorrentes
+    site_concorrentes = st.text_input('Site dos concorrentes: Utilize esse campo para colocar os sites dos concorrentes. A forma como decidir dividí-los não importa. Ex (, ou ; ou .)', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br. Insira os sites dos seus concorrentes para compararmos.")
+    
+    # Tendências de Interesse
+    tendaux = st.text_input('Tendências de mercado estratégicas: Utilize esse campo para definir quais tendências de mercado você gostaria que os agentes de IA pesquisassem sobre de uma forma que o retorno tenha impacto no planejamento estratégico.', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc. Fale sobre as tendências que você está observando e que podem influenciar seu negócio.")
+    
+    # Objetivos de Marca
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
         'Entregar potenciais consumidores para a área comercial',
@@ -81,14 +92,16 @@ def planej_midias_page():
         'Fidelizar e reter um público fiel já convertido',
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
-
-    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes, key="objetivos_marca")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', key="referencias_marca", placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", height=200)
     
-    budget = st.text_input('Orçamento de Anúncios:', key="budget", placeholder="Valor em reais")
+    objetivos_de_marca = st.selectbox('Quais são os objetivos da sua marca?', objetivos_opcoes, key="objetivos_marca")
+    
+    # Referência da Marca
+    referencia_da_marca = st.text_area('Referência de marca: Utilize esse campo para escrever um texto que define o cliente quanto ao seu ramo de atuação, objetivos e personalidade.', key="referencia_da_marca", placeholder="Conte um pouco mais sobre sua marca, o que ela representa, seus valores e diferenciais no mercado.")
 
-    start_date = st.date_input("Data de Início:", key="start_date")
-    end_date = st.date_input("Data de Fim:", key="end_date")
+    budget = st.text_input('Orçamento de Anúncios: Utilize esse campo para explicitar o orçamento disponível para o desenvolvimento dos anúncios a serem gerados.', key="budget", placeholder="Valor em reais")
+
+    start_date = st.date_input("Data de Início do período de contratação de serviços:", key="start_date")
+    end_date = st.date_input("Data do Fim do período de contratação de serviços::", key="end_date")
 
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
