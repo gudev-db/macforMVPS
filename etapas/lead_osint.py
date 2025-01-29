@@ -139,10 +139,10 @@ def osint_report():
 
     # Inputs no Streamlit
     inputs = {
-        "Nome do Lead": st.text_input("Target Name:", key="target"),
-        "Perfil Linkedin": st.text_input("Profile:", key="profile"),
-        "Região": st.text_input("Region:", key="region"),
-        "Área de atuação": st.text_input("Profession:", key="profession"),
+        "Nome do Lead": st.text_input("Lead:", key="target"),
+        "Perfil Linkedin": st.text_input("Nome de usuário no linkedin (encontrado no link do perfil da empresa):", key="profile"),
+        "Região": st.text_input("Região:", key="region"),
+        "Área de atuação": st.text_input("Área de Atuação:", key="profession"),
     }
 
     # Adiciona valores padrão para os campos ausentes, evitando KeyError
@@ -184,18 +184,14 @@ def osint_report():
                 Seu trabalho é analisar e tirar insights e montar uma estratégia de aproximação para mim, uma empresa de marketing, para sermos contradados
                 pelo cliente.
 
-                
+
                 As seguintes são as informações coletadas de diferentes fontes sobre o alvo:
 
                 1. Nome do Alvo: {target_name if target_name else 'Não disponível'}
-                2. Gênero: {inputs.get('Gender', 'Não disponível')}
-                3. Faixa Etária: {inputs.get('Age Range', 'Não disponível')}
-                4. E-mail: {inputs.get('Email', 'Não disponível')}
-                5. Telefone: {inputs.get('Phone', 'Não disponível')}
+  
                 6. Perfil: {profile if profile else 'Não disponível'}
                 7. Região: {region if region else 'Não disponível'}
                 8. Profissão: {profession if profession else 'Não disponível'}
-                9. Empregador: {inputs.get('Employer', 'Não disponível')}
 
                 - Perfil no LinkedIn:
                 {profile_data}
