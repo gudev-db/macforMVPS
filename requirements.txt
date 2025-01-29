@@ -26,12 +26,8 @@ click==8.1.7
 cohere==5.11.4
 colorama==0.4.6
 coloredlogs==15.0.1
-<<<<<<< HEAD
 crewai==0.80.0
 crewai-tools==0.14.0
-=======
-Crawl4AI==0.4.247
->>>>>>> f84ccea3648920884ea39e136f9208e8675f8f87
 cryptography==43.0.3
 dataclasses-json==0.6.7
 decorator==5.1.1
@@ -148,11 +144,7 @@ nvidia-nvjitlink-cu12==12.4.127
 nvidia-nvtx-cu12==12.4.127
 oauthlib==3.2.2
 onnxruntime==1.20.0
-<<<<<<< HEAD
 openai==1.54.5
-=======
-openai==1.1.1
->>>>>>> f84ccea3648920884ea39e136f9208e8675f8f87
 opentelemetry-api==1.28.2
 opentelemetry-exporter-otlp-proto-common==1.28.2
 opentelemetry-exporter-otlp-proto-grpc==1.28.2
