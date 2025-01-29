@@ -83,36 +83,30 @@ def search_associates(associates):
 
 import requests
 
-# Função para pegar dados do perfil do LinkedIn
+# Função para pegar dados do LinkedIn com base no nome de usuário
 def get_linkedin_profile_data(profile_url):
-    urls = [
-        "https://linkedin-api8.p.rapidapi.com/get-company-details",
-        "https://linkedin-api8.p.rapidapi.com/get-company-posts"
-    ]
+    # URL da API do LinkedIn
+    url = "https://linkedin-api8.p.rapidapi.com/get-company-details"
 
-    querystring = {"url": profile_url}
+    # Parâmetros da requisição, usando o nome de usuário do LinkedIn
+    querystring = {"username": profile_url}
 
+    # Cabeçalhos com a chave de API
     headers = {
         "x-rapidapi-key": "0c5b50def9msh23155782b7fc458p103523jsn427488a01210",
         "x-rapidapi-host": "linkedin-api8.p.rapidapi.com"
     }
 
-    # Criando um dicionário para armazenar todos os dados
-    all_responses = {}
+    # Envia a requisição GET
+    response = requests.get(url, headers=headers, params=querystring)
 
-    for url in urls:
-        # Envia as requisições
-        response = requests.get(url, headers=headers, params=querystring)
-
-        # Verifique o status code da resposta
-        if response.status_code == 200:
-            # Armazena a resposta como texto
-            all_responses[url] = response.text
-        else:
-            # Caso o status code não seja 200, registre o erro
-            all_responses[url] = f"Erro ao acessar a URL: {url}, Status code: {response.status_code}"
-
-    return all_responses  # Retorna o dicionário com todas as respostas em formato de texto
+    # Verifica se a requisição foi bem-sucedida (status code 200)
+    if response.status_code == 200:
+        # Retorna a resposta JSON diretamente
+        return response.json()
+    else:
+        # Se houver erro, retorna o código de status de erro
+        return {"error": f"Erro ao acessar a URL, Status code: {response.status_code}"}
 
 
 # Função principal para pesquisa OSINT com múltiplos termos
