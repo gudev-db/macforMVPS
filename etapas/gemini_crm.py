@@ -104,7 +104,7 @@ def planej_crm_page():
         "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
     ]
     for etapa in etapas:
-        detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 5)
+        detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3)
     
     if st.button('Gerar Planejamento'):
         if not nome_cliente or not ramo_atuacao or not intuito_plano:
