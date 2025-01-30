@@ -65,7 +65,8 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponive
     for _ in range(nivel_detalhamento - 1):
         prompt_aprofundamento = f'''Aprofunde mais cada detalhe descrito nessa etapa de uma forma que ela se torne mais prática. Diga exatamente
         o que deve ser feito em cada detalhe descrito. Seja menos vago, detalhe mais. Aprofunde exatamente o que deve ser feito. Você está aqui
-        para construir o plano de ação exato que minha empresa deve seguir. Você é o especialista.'''
+        para construir o plano de ação exato que minha empresa deve seguir. Você é o especialista. Seja específico ao caso de uso e detalhado em
+        suas especificações do plano de ação. Não de sugestões, dê ações.'''
         output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
     return output
 
