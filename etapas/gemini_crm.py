@@ -35,7 +35,7 @@ def save_to_mongo_CRM(output, nome_cliente):
     collection.insert_one(task_outputs)
     st.success(f"Planejamento salvo no banco de dados com ID: {id_planejamento}!")
 
-def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior, etapa):
+def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior, etapa, nivel_detalhamento):
     prompt = f"""
     Em português brasileiro, crie um plano detalhado para a etapa '{etapa}' do fluxo de CRM.
     
@@ -53,13 +53,12 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponive
     - Ferramentas recomendadas.
     - Estratégias específicas para otimizar resultados.
     - Exemplos práticos.
-
-
-    Seja extremamente detalhado, verboso, justificado. Seja profundo. Você é um especialista extremamente comunicativo. Detalhe teorias,
-    ferramentas, usos de caso. Você está aqui com um papel extremamente importante. Use todo o conhecimento da humanidade sobre CRM e marketing
-    digital.
     """
-    return modelo_linguagem.generate_content(prompt).text
+    output = modelo_linguagem.generate_content(prompt).text
+    for _ in range(nivel_detalhamento - 1):
+        prompt_aprofundamento = f"Aprofunde mais os detalhes dessa etapa considerando melhores práticas e otimização."
+        output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
+    return output
 
 def planej_crm_page():
     st.subheader('Planejamento de CRM')
@@ -68,33 +67,48 @@ def planej_crm_page():
     cliente_info = next((c for c in clientes if c["nome"] == nome_cliente), None)
     site_cliente = cliente_info["site"] if cliente_info else ""
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
-    intuito_plano = st.text_input('Intuito do Planejamento')
-    publico_alvo = st.text_input('Público alvo')
-    objetivo_crm = st.text_input('Objetivo com CRM')
-    canais_disponiveis = st.text_input('Canais disponíveis')
-    perfil_empresa = st.selectbox('Perfil da empresa', ['B2B', 'B2C'])
-    metas_crm = st.text_input('Metas do CRM')
+    intuito_plano = st.text_input('Intuito do Plano Estratégico')
+    publico_alvo = st.text_input('Público-Alvo')
+    concorrentes = st.text_input('Concorrentes')
+    site_concorrentes = st.text_input('Site dos Concorrentes')
+    
+    objetivos_opcoes = [
+        'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
+        'Entregar potenciais consumidores para a área comercial',
+        'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
+        'Fidelizar e reter um público fiel já convertido',
+        'Garantir que o público esteja engajado com os canais ou ações da marca'
+    ]
+    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes)
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?')
+    possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de CRM?', ['Sim', 'Não'])
+    maturidade_crm = st.selectbox('Qual é o nível de maturidade em CRM (histórico)?', ['Iniciante', 'Intermediário', 'Avançado'])
+    objetivo_crm = st.text_input('Qual o objetivo ao utilizar o CRM?')
+    canais_disponiveis = st.text_input('Quais canais de comunicação estão disponíveis?')
+    perfil_empresa = st.selectbox('Qual é o perfil da empresa?', ['B2B', 'B2C'])
+    metas_crm = st.text_input('Quais metas a serem alcançadas com o CRM?')
+    tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['Pequena', 'Média', 'Grande'])
+    tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?')
+    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?')
+    sla_entre_marketing_vendas = st.selectbox('Há algum SLA combinado entre marketing e vendas para geração de leads?', ['Sim', 'Não'])
+    
+    detalhamento_etapas = {}
+    etapas = [
+        "Aquisição de Leads", "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes",
+        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
+    ]
+    for etapa in etapas:
+        detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 10, 5)
     
     if st.button('Gerar Planejamento'):
         if not nome_cliente or not ramo_atuacao or not intuito_plano:
             st.warning("Preencha todas as informações do cliente.")
         else:
             with st.spinner('Gerando fluxo de CRM...'):
-                etapas = [
-                    "Aquisição de Leads",
-                    "Qualificação de Leads",
-                    "Nutrição de Leads",
-                    "Conversão e Fechamento",
-                    "Onboarding de Clientes",
-                    "Atendimento e Suporte",
-                    "Fidelização e Retenção",
-                    "Expansão e Upsell",
-                    "Reativação de Clientes Inativos"
-                ]
                 fluxo_output = ""
                 for etapa in etapas:
                     fluxo_output += f"\n### {etapa}\n"
-                    fluxo_output += gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_output, etapa)
+                    fluxo_output += gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_output, etapa, detalhamento_etapas[etapa])
                 
                 st.header('Plano de CRM')
                 st.markdown(fluxo_output)
