@@ -101,7 +101,7 @@ def planej_crm_page():
     detalhamento_etapas = {}
     etapas = [
         "Aquisição de Leads", "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes",
-        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
+        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos", "Fluxograma no Pipefy"
     ]
     for etapa in etapas:
         detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3)
