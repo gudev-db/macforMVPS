@@ -35,17 +35,27 @@ def save_to_mongo_CRM(output, nome_cliente):
     collection.insert_one(task_outputs)
     st.success(f"Planejamento salvo no banco de dados com ID: {id_planejamento}!")
 
-def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior, etapa, nivel_detalhamento):
+def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, intuito_plano, publico_alvo, concorrentes, site_concorrentes, objetivos_de_marca, referencia_da_marca, possui_ferramenta_crm, maturidade_crm, canais_disponiveis, perfil_empresa, metas_crm, tamanho_base, tom_voz, fluxos_ou_emails, sla_entre_marketing_vendas, fluxo_anterior, etapa, nivel_detalhamento):
     prompt = f"""
     Em português brasileiro, crie um plano detalhado para a etapa '{etapa}' do fluxo de CRM.
     
     - Nome do Cliente: {nome_cliente}
     - Ramo de Atuação: {ramo_atuacao}
-    - Objetivo do CRM: {objetivo_crm}
+    - Intuito do Plano: {intuito_plano}
+    - Público-Alvo: {publico_alvo}
+    - Concorrentes: {concorrentes}
+    - Sites dos Concorrentes: {site_concorrentes}
+    - Objetivo de Marca: {objetivos_de_marca}
+    - Referência da Marca: {referencia_da_marca}
+    - Possui ferramenta de CRM: {possui_ferramenta_crm}
+    - Maturidade CRM: {maturidade_crm}
     - Canais disponíveis: {canais_disponiveis}
     - Perfil da empresa: {perfil_empresa}
     - Metas do CRM: {metas_crm}
-    - Fluxo até aqui: {fluxo_anterior}
+    - Tamanho da base de clientes: {tamanho_base}
+    - Tom de voz: {tom_voz}
+    - Fluxos e e-mails desejados: {fluxos_ou_emails}
+    - SLA entre Marketing e Vendas: {sla_entre_marketing_vendas}
     
     Desenvolva ações personalizadas para essa etapa considerando as características da empresa. Inclua:
     - Objetivo específico dessa etapa.
@@ -71,45 +81,14 @@ def planej_crm_page():
     publico_alvo = st.text_input('Público-Alvo')
     concorrentes = st.text_input('Concorrentes')
     site_concorrentes = st.text_input('Site dos Concorrentes')
-    
-    objetivos_opcoes = [
-        'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
-        'Entregar potenciais consumidores para a área comercial',
-        'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
-        'Fidelizar e reter um público fiel já convertido',
-        'Garantir que o público esteja engajado com os canais ou ações da marca'
-    ]
-    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes)
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?')
+    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', ['Criar ou aumentar relevância', 'Entregar potenciais consumidores', 'Venda', 'Fidelizar', 'Engajamento'])
+    referencia_da_marca = st.text_area('O que a marca faz?')
     possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de CRM?', ['Sim', 'Não'])
-    maturidade_crm = st.selectbox('Qual é o nível de maturidade em CRM (histórico)?', ['Iniciante', 'Intermediário', 'Avançado'])
-    objetivo_crm = st.text_input('Qual o objetivo ao utilizar o CRM?')
-    canais_disponiveis = st.text_input('Quais canais de comunicação estão disponíveis?')
-    perfil_empresa = st.selectbox('Qual é o perfil da empresa?', ['B2B', 'B2C'])
-    metas_crm = st.text_input('Quais metas a serem alcançadas com o CRM?')
-    tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['Pequena', 'Média', 'Grande'])
-    tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?')
-    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?')
-    sla_entre_marketing_vendas = st.selectbox('Há algum SLA combinado entre marketing e vendas para geração de leads?', ['Sim', 'Não'])
-    
-    detalhamento_etapas = {}
-    etapas = [
-        "Aquisição de Leads", "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes",
-        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
-    ]
-    for etapa in etapas:
-        detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 10, 5)
-    
-    if st.button('Gerar Planejamento'):
-        if not nome_cliente or not ramo_atuacao or not intuito_plano:
-            st.warning("Preencha todas as informações do cliente.")
-        else:
-            with st.spinner('Gerando fluxo de CRM...'):
-                fluxo_output = ""
-                for etapa in etapas:
-                    fluxo_output += f"\n### {etapa}\n"
-                    fluxo_output += gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_output, etapa, detalhamento_etapas[etapa])
-                
-                st.header('Plano de CRM')
-                st.markdown(fluxo_output)
-                save_to_mongo_CRM(fluxo_output, nome_cliente)
+    maturidade_crm = st.selectbox('Nível de maturidade em CRM?', ['Iniciante', 'Intermediário', 'Avançado'])
+    canais_disponiveis = st.text_input('Canais de comunicação disponíveis')
+    perfil_empresa = st.selectbox('Perfil da empresa', ['B2B', 'B2C'])
+    metas_crm = st.text_input('Metas do CRM')
+    tamanho_base = st.selectbox('Tamanho da base de clientes', ['Pequena', 'Média', 'Grande'])
+    tom_voz = st.text_area('Tom de voz desejado')
+    fluxos_ou_emails = st.text_area('Fluxos e/ou e-mails desejados')
+    sla_entre_marketing_vendas = st.selectbox('SLA entre marketing e vendas?', ['Sim', 'Não'])
