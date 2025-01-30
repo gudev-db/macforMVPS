@@ -64,7 +64,8 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponive
     output = modelo_linguagem.generate_content(prompt).text
     for _ in range(nivel_detalhamento - 1):
         prompt_aprofundamento = f'''Aprofunde mais cada detalhe descrito nessa etapa de uma forma que ela se torne mais prática. Diga exatamente
-        o que deve ser feito em cada detalhe descrito. Seja menos vago, detalhe mais.'''
+        o que deve ser feito em cada detalhe descrito. Seja menos vago, detalhe mais. Aprofunde exatamente o que deve ser feito. Você está aqui
+        para construir o plano de ação exato que minha empresa deve seguir. Você é o especialista.'''
         output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
     return output
 
@@ -101,7 +102,7 @@ def planej_crm_page():
     detalhamento_etapas = {}
     etapas = [
         "Aquisição de Leads", "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes",
-        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos", "Fluxograma no Pipefy"
+        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
     ]
     for etapa in etapas:
         detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3)
