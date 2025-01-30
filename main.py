@@ -1,4 +1,4 @@
-__import__('pysqlite3')
+import __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
@@ -17,11 +17,8 @@ from contato.temaEmail import gen_temas_emails
 from etapas.image_gen import gen_img
 from etapas.lead_osint import osint_report
 
-st.set_page_config(
-    layout="wide",
-    page_title="Macfor AutoDoc",
-    page_icon="static/page-icon.png"
-)
+# Exibe a logo na sidebar antes do login
+st.sidebar.image('static/macLogo.png', width=200)
 
 # Configuração das chaves de API
 gemini_api_key = os.getenv("GEM_API_KEY")
@@ -68,6 +65,7 @@ def login():
 
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
+    # Exibe a logo novamente após o login com tamanho maior
     st.image('static/macLogo.png', width=300)
     st.text(
         "Empoderada por IA, a Macfor conta com um sistema gerador de documentos "
