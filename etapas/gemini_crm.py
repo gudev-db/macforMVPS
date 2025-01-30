@@ -85,7 +85,14 @@ def planej_crm_page():
 
     objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, help="Escolha o objetivo central que o CRM ajudará a alcançar. Por exemplo, aumentar a fidelização ou melhorar a qualificação de leads.")
     referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM.")
-
+    # Objetivos de Marca
+    objetivos_opcoes = [
+        'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
+        'Entregar potenciais consumidores para a área comercial',
+        'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
+        'Fidelizar e reter um público fiel já convertido',
+        'Garantir que o público esteja engajado com os canais ou ações da marca'
+    ]
     # Ferramentas e Processos de CRM
 
     possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de CRM?', ['Sim', 'Não'], help="Indique se a empresa já utiliza alguma ferramenta de CRM para gerenciar seus clientes.")
