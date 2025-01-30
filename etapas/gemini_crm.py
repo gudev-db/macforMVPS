@@ -13,7 +13,7 @@ import requests
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
 genai.configure(api_key=gemini_api_key)
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
+modelo_linguagem = genai.GenerativeModel("gemini-1.5-pro")
 
 # Conexão com MongoDB
 client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
