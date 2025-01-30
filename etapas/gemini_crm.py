@@ -63,7 +63,8 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponive
     """
     output = modelo_linguagem.generate_content(prompt).text
     for _ in range(nivel_detalhamento - 1):
-        prompt_aprofundamento = f"Aprofunde mais os detalhes dessa etapa considerando melhores práticas e otimização."
+        prompt_aprofundamento = f"Aprofunde mais cada detalhe descrito nessa etapa de uma forma que ela se torne mais prática. Diga exatamente
+        o que deve ser feito em cada detalhe descrito. Seja menos vago, detalhe mais."
         output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
     return output
 
