@@ -82,9 +82,6 @@ def planej_crm_page():
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
     intuito_plano = st.text_input('Intuito do Plano Estratégico:', help="Defina o que se espera alcançar com este plano de CRM. O objetivo principal pode incluir aumentar a base de clientes ou melhorar o relacionamento com clientes atuais.")
     publico_alvo = st.text_input('Público-Alvo:', help="Descreva o perfil do público que o CRM visa atingir. Seja específico quanto a segmentos e comportamentos de clientes.")
-
-    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, help="Escolha o objetivo central que o CRM ajudará a alcançar. Por exemplo, aumentar a fidelização ou melhorar a qualificação de leads.")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM.")
     # Objetivos de Marca
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
@@ -93,6 +90,9 @@ def planej_crm_page():
         'Fidelizar e reter um público fiel já convertido',
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
+    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, help="Escolha o objetivo central que o CRM ajudará a alcançar. Por exemplo, aumentar a fidelização ou melhorar a qualificação de leads.")
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM.")
+
     # Ferramentas e Processos de CRM
 
     possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de CRM?', ['Sim', 'Não'], help="Indique se a empresa já utiliza alguma ferramenta de CRM para gerenciar seus clientes.")
