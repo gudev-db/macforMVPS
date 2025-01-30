@@ -71,34 +71,33 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponive
     return output
 
 def planej_crm_page():
+# CRM
+
     st.subheader('Planejamento de CRM')
+
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
-    nome_cliente = st.text_input('Nome do cliente')
+    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Esse nome será usado para vincular todos os dados relacionados ao planejamento.")
     cliente_info = next((c for c in clientes if c["nome"] == nome_cliente), None)
 
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
-    intuito_plano = st.text_input('Intuito do Plano Estratégico')
-    publico_alvo = st.text_input('Público-Alvo')
+    intuito_plano = st.text_input('Intuito do Plano Estratégico:', help="Defina o que se espera alcançar com este plano de CRM. O objetivo principal pode incluir aumentar a base de clientes ou melhorar o relacionamento com clientes atuais.")
+    publico_alvo = st.text_input('Público-Alvo:', help="Descreva o perfil do público que o CRM visa atingir. Seja específico quanto a segmentos e comportamentos de clientes.")
 
-    
-    objetivos_opcoes = [
-        'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
-        'Entregar potenciais consumidores para a área comercial',
-        'Venda, inscrição, cadastros, contratação ou qualquer outra conversão final do público',
-        'Fidelizar e reter um público fiel já convertido',
-        'Garantir que o público esteja engajado com os canais ou ações da marca'
-    ]
-    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca', objetivos_opcoes)
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?')
-    possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de CRM?', ['Sim', 'Não'])
-    maturidade_crm = st.selectbox('Qual é o nível de maturidade em CRM (histórico)?', ['Iniciante', 'Intermediário', 'Avançado'])
-    canais_disponiveis = st.text_input('Quais canais de comunicação estão disponíveis?')
-    perfil_empresa = st.selectbox('Qual é o perfil da empresa?', ['B2B', 'B2C'])
-    metas_crm = st.text_input('Quais metas a serem alcançadas com o CRM?')
-    tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['Pequena', 'Média', 'Grande'])
-    tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?')
-    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?')
-    sla_entre_marketing_vendas = st.selectbox('Há algum SLA combinado entre marketing e vendas para geração de leads?', ['Sim', 'Não'])
+    objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, help="Escolha o objetivo central que o CRM ajudará a alcançar. Por exemplo, aumentar a fidelização ou melhorar a qualificação de leads.")
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM.")
+
+    # Ferramentas e Processos de CRM
+
+    possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de CRM?', ['Sim', 'Não'], help="Indique se a empresa já utiliza alguma ferramenta de CRM para gerenciar seus clientes.")
+    maturidade_crm = st.selectbox('Qual é o nível de maturidade em CRM (histórico)?', ['Iniciante', 'Intermediário', 'Avançado'], help="Defina o nível de maturidade da empresa em termos de uso de CRM. Isso afetará as estratégias e processos recomendados.")
+    canais_disponiveis = st.text_input('Quais canais de comunicação estão disponíveis?', help="Liste os canais de comunicação que a empresa utiliza para interagir com seus clientes, como e-mail, telefone, redes sociais, etc.")
+    perfil_empresa = st.selectbox('Qual é o perfil da empresa?', ['B2B', 'B2C'], help="Escolha o tipo de relacionamento da empresa com seus clientes: B2B (empresa para empresa) ou B2C (empresa para consumidor).")
+    metas_crm = st.text_input('Quais metas a serem alcançadas com o CRM?', help="Descreva as metas específicas que você deseja alcançar com a implementação do CRM. Ex: aumentar taxa de conversão de leads em 20%.")
+    tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['Pequena', 'Média', 'Grande'], help="Defina o tamanho da base de dados de clientes. Isso ajudará a escolher as estratégias mais adequadas.")
+    tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?', help="Defina como deve ser a comunicação da marca com seus clientes. Ex: formal, amigável, inspirador.")
+    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?', help="Descreva os fluxos de comunicação ou campanhas de e-mail que serão utilizados no CRM, como nutrição de leads ou campanhas de fidelização.")
+    sla_entre_marketing_vendas = st.selectbox('Há algum SLA combinado entre marketing e vendas para geração de leads?', ['Sim', 'Não'], help="Indique se há um acordo formal entre marketing e vendas sobre o tempo de resposta e qualificação de leads.")
+
     
     detalhamento_etapas = {}
     etapas = [
