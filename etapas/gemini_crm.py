@@ -58,6 +58,7 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
     - Cada etapa deve detalhar quantos emails/mensagens/notificações/etc devem ser enviadas, para qual base, se abrirem ou não, o que deve ser feito,
     por quanto tempo essa etapa dura, depois dela vem o que. A ideia é que venha um plano consico de automação de marketing, um fluxo estruturado,
     com o que deve ser feito, enviado, para quem, por quanto tempo, com bifurcações de ações baseado na resposta do alvo.
+    - formato de fluxograma
     """
     output = modelo_linguagem.generate_content(prompt).text
     for _ in range(nivel_detalhamento - 1):
@@ -104,8 +105,8 @@ def planej_crm_page():
     
     detalhamento_etapas = {}
     etapas = [
-        "Aquisição de Leads", "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes",
-        "Atendimento e Suporte", "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
+         "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes", 
+         "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
     ]
     for etapa in etapas:
         detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3)
