@@ -35,12 +35,13 @@ def save_to_mongo_CRM(output, nome_cliente):
     collection.insert_one(task_outputs)
     st.success(f"Planejamento salvo no banco de dados com ID: {id_planejamento}!")
 
-def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior,publico_alvo,maturidade_crm,tamanho_base,tom_voz,fluxos_ou_emails,sla_entre_marketing_vendas, etapa, nivel_detalhamento):
+def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior,publico_alvo,maturidade_crm,tamanho_base,tom_voz,fluxos_ou_emails,sla_entre_marketing_vendas, etapa, nivel_detalhamento):
     prompt = f"""
     Em português brasileiro, crie um plano detalhado para a etapa '{etapa}' do fluxo de CRM.
     
     - Nome do Cliente: {nome_cliente}
     - Ramo de Atuação: {ramo_atuacao}
+    - Referência de marca: {referencia_da_marca}
     - Objetivo do CRM: {objetivo_crm}
     - Canais disponíveis: {canais_disponiveis}
     - Perfil da empresa: {perfil_empresa}
@@ -127,6 +128,7 @@ def planej_crm_page():
                     fluxo_output += gerar_fluxo_etapa(
                         nome_cliente,
                         ramo_atuacao,
+                        referencia_da_marca,
                         objetivos_de_marca,
                         canais_disponiveis,
                         perfil_empresa,
