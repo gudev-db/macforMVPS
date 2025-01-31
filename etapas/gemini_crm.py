@@ -68,7 +68,7 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
         práticos do que devemos utilizar e como e quando devemos utilizá-los dentro do plano. Você está aqui
         para construir a estratégia que minha empresa deve seguir. Você é o especialista. AJuste a estratégia aos objetivos do cliente. 
         Veja cada um dos pontos e aprofunde mais, e mais, e mais,
-        detalhe mais, e mais, e mais. Saia do macro e vá para o micro. Detalhe cada ação. Explicite cada ação. Você está fazendo um planejamento de Inbound Marketing'''
+        detalhe mais, e mais, e mais. Saia do macro e vá para o micro. Detalhe cada ação. Faça um plano de conteúdo para essa etapa. Detalhe e explique o que deve ser feito com uma estratégia de conteúdo.'''
         output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
     return output
 
