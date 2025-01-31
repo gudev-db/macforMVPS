@@ -57,7 +57,8 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
     - Elaborar o fluxo de automação de marketing com cada passo necessário detalhado.
     - Cada etapa deve detalhar quantos emails/mensagens/notificações/etc devem ser enviadas, para qual base, se abrirem ou não, o que deve ser feito,
     por quanto tempo essa etapa dura, depois dela vem o que. A ideia é que venha um plano consico de automação de marketing, um fluxo estruturado,
-    com o que deve ser feito, enviado, para quem, por quanto tempo, com bifurcações de ações baseado na resposta do alvo.
+    com o que deve ser feito, enviado, para quem, por quanto tempo, com bifurcações de ações baseado na resposta do alvo. O fluxograma deve ser condizente
+    com as metas e perfil do cliente. O fluxograma deve ser eficaz. Ele deve usar bem as ferramentas ao seu dispor.
     - formato de fluxograma
     """
     output = modelo_linguagem.generate_content(prompt).text
