@@ -117,9 +117,8 @@ def planej_crm_page():
         detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3)
     
     if st.button('Gerar Planejamento'):
-        if not nome_cliente or not ramo_atuacao or not intuito_plano:
-            st.warning("Preencha todas as informações do cliente.")
-        else:
+        
+        
             with st.spinner('Gerando fluxo de CRM...'):
                 fluxo_output = ""
                 for etapa in etapas:
