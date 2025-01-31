@@ -62,7 +62,8 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
     """
     output = modelo_linguagem.generate_content(prompt).text
     for _ in range(nivel_detalhamento - 1):
-        prompt_aprofundamento = f'''Aprofunde mais cada detalhe descrito nessa etapa de uma forma que ela se torne mais prática. Torne esse conteúdo mais
+        prompt_aprofundamento = f'''Aprofunde mais cada detalhe descrito nesse fluxo, tone-o melhor, mais eficiente,
+          de uma forma que ele se torne mais prático. Torne esse conteúdo mais
          estratégico. Me dê estratégia de conteúdo. Me diga que tipo de conteúdo (com exemplos) cada etapa deve ter. Nos dê conteúdos
         práticos do que devemos utilizar e como e quando devemos utilizá-los dentro do plano. Você está aqui
         para construir a estratégia que minha empresa deve seguir. Você é o especialista. AJuste a estratégia aos objetivos do cliente. 
