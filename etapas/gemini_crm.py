@@ -24,31 +24,31 @@ db_clientes = client["arquivos_planejamento"]["clientes"]
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
-def save_to_mongo_InboundMarketing(output, nome_cliente):
+def save_to_mongo_CRM(output, nome_cliente):
     id_planejamento = gerar_id_planejamento()
     task_outputs = {
-        "id_planejamento": f'Plano de InboundMarketing_{nome_cliente}_{id_planejamento}',
+        "id_planejamento": f'Plano de CRM_{nome_cliente}_{id_planejamento}',
         "nome_cliente": nome_cliente,
-        "tipo_plano": 'Plano de InboundMarketing',
+        "tipo_plano": 'Plano de CRM',
         "Fluxo": output,
     }
     collection.insert_one(task_outputs)
     st.success(f"Planejamento salvo no banco de dados com ID: {id_planejamento}!")
 
-def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_InboundMarketing, canais_disponiveis, perfil_empresa, metas_InboundMarketing, fluxo_anterior,publico_alvo,maturidade_InboundMarketing,tamanho_base,tom_voz,fluxos_ou_emails,sla_entre_marketing_vendas, etapa, nivel_detalhamento):
+def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior,publico_alvo,maturidade_crm,tamanho_base,tom_voz,fluxos_ou_emails,sla_entre_marketing_vendas, etapa, nivel_detalhamento):
     prompt = f"""
-    Em português brasileiro, crie um plano detalhado para a etapa '{etapa}' do fluxo de InboundMarketing.
+    Em português brasileiro, crie um plano detalhado para a etapa '{etapa}' do fluxo de CRM.
     
     - Nome do Cliente: {nome_cliente}
     - Ramo de Atuação: {ramo_atuacao}
     - Referência de marca: {referencia_da_marca}
-    - Objetivo do InboundMarketing: {objetivo_InboundMarketing}
+    - Objetivo do CRM: {objetivo_crm}
     - Canais disponíveis: {canais_disponiveis}
     - Perfil da empresa: {perfil_empresa}
-    - Metas do InboundMarketing: {metas_InboundMarketing}
+    - Metas do CRM: {metas_crm}
     - Fluxo até aqui: {fluxo_anterior}
     - Público alvo: {publico_alvo}
-    - Maturidade do InboundMarketing existente: {maturidade_InboundMarketing}
+    - Maturidade do CRM existente: {maturidade_crm}
     - Tamanho da base de clientes existente: {tamanho_base}
     - Tom de voz desejado: {tom_voz}
     - Fluxo desejado: {fluxos_ou_emails}
@@ -68,12 +68,12 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
         práticos do que devemos utilizar e como e quando devemos utilizá-los dentro do plano. Você está aqui
         para construir a estratégia que minha empresa deve seguir. Você é o especialista. AJuste a estratégia aos objetivos do cliente. 
         Veja cada um dos pontos e aprofunde mais, e mais, e mais,
-        detalhe mais, e mais, e mais. Saia do macro e vá para o micro. Detalhe cada ação. Explicite cada ação.'''
+        detalhe mais, e mais, e mais. Saia do macro e vá para o micro. Detalhe cada ação. Explicite cada ação. Você está fazendo um planejamento de Inbound Marketing'''
         output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
     return output
 
-def planej_InboundMarketing_page():
-# InboundMarketing
+def planej_crm_page():
+# CRM
 
     st.subheader('Planejamento de Inbound Marketing')
 
@@ -93,18 +93,18 @@ def planej_InboundMarketing_page():
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
     objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, help="Escolha o objetivo central que o Inbound Marketing ajudará a alcançar. Por exemplo, aumentar a fidelização ou melhorar a qualificação de leads.")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de Inbound Marketing.")
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM.")
 
-    # Ferramentas e Processos de Inbound Marketing
+    # Ferramentas e Processos de CRM
 
-    possui_ferramenta_Inbound Marketing = st.selectbox('A empresa possui ferramenta de Inbound Marketing?', ['Sim', 'Não'], help="Indique se a empresa já utiliza alguma ferramenta de Inbound Marketing para gerenciar seus clientes.")
-    maturidade_Inbound Marketing = st.selectbox('Qual é o nível de maturidade em Inbound Marketing (histórico)?', ['Iniciante', 'Intermediário', 'Avançado'], help="Defina o nível de maturidade da empresa em termos de uso de Inbound Marketing. Isso afetará as estratégias e processos recomendados.")
+    possui_ferramenta_crm = st.selectbox('A empresa possui ferramenta de Inbound Marketing?', ['Sim', 'Não'], help="Indique se a empresa já utiliza alguma ferramenta de CRM para gerenciar seus clientes.")
+    maturidade_crm = st.selectbox('Qual é o nível de maturidade em Inbound Marketing (histórico)?', ['Iniciante', 'Intermediário', 'Avançado'], help="Defina o nível de maturidade da empresa em termos de uso de CRM. Isso afetará as estratégias e processos recomendados.")
     canais_disponiveis = st.text_input('Quais canais de comunicação estão disponíveis?', help="Liste os canais de comunicação que a empresa utiliza para interagir com seus clientes, como e-mail, telefone, redes sociais, etc.")
     perfil_empresa = st.selectbox('Qual é o perfil da empresa?', ['B2B', 'B2C'], help="Escolha o tipo de relacionamento da empresa com seus clientes: B2B (empresa para empresa) ou B2C (empresa para consumidor).")
-    metas_InboundMarketing = st.text_input('Quais metas a serem alcançadas com o InboundMarketing?', help="Descreva as metas específicas que você deseja alcançar com a implementação do InboundMarketing. Ex: aumentar taxa de conversão de leads em 20%.")
+    metas_crm = st.text_input('Quais metas a serem alcançadas com o Inbound Marketing?', help="Descreva as metas específicas que você deseja alcançar com a implementação do CRM. Ex: aumentar taxa de conversão de leads em 20%.")
     tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['Pequena', 'Média', 'Grande'], help="Defina o tamanho da base de dados de clientes. Isso ajudará a escolher as estratégias mais adequadas.")
     tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?', help="Defina como deve ser a comunicação da marca com seus clientes. Ex: formal, amigável, inspirador.")
-    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?', help="Descreva os fluxos de comunicação ou campanhas de e-mail que serão utilizados no InboundMarketing, como nutrição de leads ou campanhas de fidelização.")
+    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?', help="Descreva os fluxos de comunicação ou campanhas de e-mail que serão utilizados no CRM, como nutrição de leads ou campanhas de fidelização.")
     sla_entre_marketing_vendas = st.selectbox('Há algum SLA combinado entre marketing e vendas para geração de leads?', ['Sim', 'Não'], help="Indique se há um acordo formal entre marketing e vendas sobre o tempo de resposta e qualificação de leads.")
 
     
@@ -120,7 +120,7 @@ def planej_InboundMarketing_page():
         if not nome_cliente or not ramo_atuacao or not intuito_plano:
             st.warning("Preencha todas as informações do cliente.")
         else:
-            with st.spinner('Gerando fluxo de InboundMarketing...'):
+            with st.spinner('Gerando fluxo de CRM...'):
                 fluxo_output = ""
                 for etapa in etapas:
                     fluxo_output += f"\n### {etapa}\n"
@@ -131,10 +131,10 @@ def planej_InboundMarketing_page():
                         objetivos_de_marca,
                         canais_disponiveis,
                         perfil_empresa,
-                        metas_InboundMarketing,
+                        metas_crm,
                         fluxo_output,  # fluxo_anterior
                         publico_alvo,
-                        maturidade_InboundMarketing,
+                        maturidade_crm,
                         tamanho_base,
                         tom_voz,
                         fluxos_ou_emails,
@@ -143,6 +143,6 @@ def planej_InboundMarketing_page():
                         detalhamento_etapas[etapa]
                     )
                 
-                st.header('Plano de InboundMarketing')
+                st.header('Plano de Inbound Marketing')
                 st.markdown(fluxo_output)
-                save_to_mongo_InboundMarketing(fluxo_output, nome_cliente)
+                save_to_mongo_CRM(fluxo_output, nome_cliente)
