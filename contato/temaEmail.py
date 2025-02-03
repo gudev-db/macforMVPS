@@ -23,7 +23,6 @@ def gen_temas_emails():
     )
     tipo_empresa = st.selectbox("Escolha o tipo de empresa:", ["B2B", "B2C", "B2G"])
     servicos_empresa = st.text_input("Digite aqui os tipos de serviços que a empresa realiza:")
-    stakeholders = st.text_input("Stakeholders da comunicação:")
 
     st.subheader("Informações do(s) destinatário(s)")
     destinatarios = st.text_input("Caracterize os destinatários quanto a sua segmentação:")
@@ -52,7 +51,6 @@ def gen_temas_emails():
                 
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. Eis uma breve descrição sobre a marca: {referencia_da_marca}.
                 A empresa costuma vender serviços como {servicos_empresa}.
-                As partes interessadas da comunicação são: {stakeholders}.
                 A empresa é do tipo {tipo_empresa}.
                 Considere as novidades do setor de atuação em: {tend_novids2}.
                 
