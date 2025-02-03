@@ -45,7 +45,7 @@ def gen_temas_emails():
                 
                 # Generate email themes using the Gemini model
                 prompt = f"""
-                Crie um cronograma (em formato de tabela) de temas de emails específicos para CADA UMA das segmentações de leads conforme os segmentos ditos em: {destinatarios} com fins de nutrição de leads, dentro do período de {data_inicio} a {data_fim}.
+                Crie um cronograma (em formato de tabela) de temas de emails específicos para CADA UMA das segmentações de leads conforme os segmentos ditos em: {destinatarios}, dentro do período de {data_inicio} a {data_fim}.
                 
                 O remetente dos emails é {nome_cliente}. Eis uma breve descrição sobre a marca: {referencia_da_marca}.
                 A empresa costuma vender serviços como {servicos_empresa}.
