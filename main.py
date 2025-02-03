@@ -23,6 +23,14 @@ st.set_page_config(
     page_icon="static/page-icon.png"
 )
 
+st.image('static/macLogo.png', width=300)
+    st.text(
+        "Empoderada por IA, a Macfor conta com um sistema gerador de documentos "
+        "automatizado movido por agentes de inteligência artificial. Preencha os campos abaixo "
+        "e gere documentos automáticos para otimizar o tempo de sua equipe. "
+        "Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!"
+    )
+
 # Configuração das chaves de API
 gemini_api_key = os.getenv("GEM_API_KEY")
 api_key = os.getenv("OPENAI_API_KEY")
@@ -68,13 +76,7 @@ def login():
 
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
-    st.image('static/macLogo.png', width=300)
-    st.text(
-        "Empoderada por IA, a Macfor conta com um sistema gerador de documentos "
-        "automatizado movido por agentes de inteligência artificial. Preencha os campos abaixo "
-        "e gere documentos automáticos para otimizar o tempo de sua equipe. "
-        "Foque o seu trabalho em seu diferencial humano e automatize tarefas repetitivas!"
-    )
+    
 
     # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
     selecao_sidebar = st.sidebar.radio(
