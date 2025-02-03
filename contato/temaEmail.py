@@ -15,6 +15,7 @@ def gen_temas_emails():
     
     # Input fields for sender's details
     nome_cliente = st.text_input("Digite o nome do remetente dos emails:")
+    ramo_atuacao = st.text_input("Ramo de Atuação:")
     referencia_da_marca = st.text_area(
         "Referência da Marca:",
         height=200  
@@ -57,7 +58,7 @@ def gen_temas_emails():
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE.
                 Organize a saída em formato de tabela, se atentando às especificidades de cada segmentação.
-                Crie os temas diretamente para produção.
+                crie os temas diretamente para produção.
                 """
                 try:
                     response = llm.generate_content(prompt)
