@@ -12,11 +12,12 @@ rapid_key = os.getenv("RAPID_API")
 # Function to generate email themes and display results
 def gen_emails():
     llm = genai.GenerativeModel("gemini-1.5-flash")
-    st.subheader("Informações do remetente")
+    
     
     # Input fields for sender's details
     nome_cliente = st.text_input("Digite o nome do remetente dos emails:")
-    dest_email = st.text_input("Digite o nome do destinatário dos emails:")
+    dest_email = st.text_input("Digite o nome/segmento do destinatário dos emails:")
+    interesse = st.text_input("Digite o interesse do destinatário dos emails em receber contato da Citrosuco:")
     tema = st.text_input("Digite o tema do email")
     tom = st.text_input("Digite o tom do email")
 
