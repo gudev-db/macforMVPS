@@ -52,7 +52,7 @@ def gen_temas_emails():
                 A empresa é do tipo {tipo_empresa}.
                 Considere as novidades do setor de atuação em: {tend_novids2}.
                 
-                
+                As colunas devem ser: segmento, tema de email, data
                 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas para cada segmento.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE.
