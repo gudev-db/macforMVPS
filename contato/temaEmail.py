@@ -78,7 +78,7 @@ def gen_temas_emails():
                     st.subheader("Temas")
                     st.markdown(response.text)
                     
-                    emails = llm.generate_content(f'''Dados os temas em {response.text}, redija um email para cada um deles (ESCREVA PARA TODOS SEM FALTA). Lembre que você é a empresa {nome_cliente} e está
+                    emails = llm.generate_content(f'''Dados os temas em {response.text}, redija um email para cada um deles (Sem resumir ou cortar, faça tudo). Lembre que você é a empresa {nome_cliente} e está
                     nutrindo seus leads. Faça um output organizado em tabela. Redija cada email para cada segmento em cada mês sem falta e sem resumir e sem cortes. Faça para TODOS.''')
                     st.subheader("Emails")
                     st.markdown(emails.text)
