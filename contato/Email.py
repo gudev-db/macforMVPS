@@ -36,6 +36,7 @@ def gen_emails():
                 # Generate email themes using the Gemini model
                 prompt = f"""
                 Redija 5 emails partindo do destinatário {nome_cliente}, para o destinatário {dest_email} com o tema {tema} assumindo o tom {tom}.
+                Instigue interação. Faça uma síntese das informaçoes dadas e redija o melhor email possível de uma forma que garanta a retenção do lead.
 
 
                 """
