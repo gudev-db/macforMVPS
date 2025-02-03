@@ -30,7 +30,7 @@ def gen_temas_emails():
     # Criar um seletor de intervalo de datas
     data_inicio, data_fim = st.date_input(
         "Selecione o período:",
-        value=(default_inicio, default_fim),
+        
         min_value=date(2000, 1, 1),
         max_value=date(2030, 12, 31)
 )
