@@ -105,9 +105,7 @@ def planej_campanhas():
             st.experimental_rerun()
     else:
         if st.button('Iniciar Planejamento'):
-            if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
-                st.write("Por favor, preencha todas as informações do cliente.")
-            else:
+            if 1 ==1:
                 with st.spinner('Brainstorming...'):
                     prompt_ads = f"""
                     Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
