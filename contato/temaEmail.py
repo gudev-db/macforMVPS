@@ -57,7 +57,7 @@ def gen_temas_emails():
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas para cada segmento.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE.
                 Organize a saída em formato de tabela, se atentando às especificidades de cada segmentação.
-                crie os temas diretamente para produção.
+                crie os temas diretamente para produção. Me de o cronograma completo sem resumir. Crie cada um dos temas.
                 """
                 try:
                     response = llm.generate_content(prompt)
