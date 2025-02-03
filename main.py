@@ -24,7 +24,7 @@ st.set_page_config(
 )
 
 st.image('static/macLogo.png', width=300)
-    st.text(
+st.text(
         "Empoderada por IA, a Macfor conta com um sistema gerador de documentos "
         "automatizado movido por agentes de inteligência artificial. Preencha os campos abaixo "
         "e gere documentos automáticos para otimizar o tempo de sua equipe. "
