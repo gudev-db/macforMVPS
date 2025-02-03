@@ -52,8 +52,7 @@ def gen_temas_emails():
                 A empresa é do tipo {tipo_empresa}.
                 Considere as novidades do setor de atuação em: {tend_novids2}.
                 
-                Extraia de todo o seu conhecimento as especificidades de cada segmento dos destinatários e entenda o que de fato, em cada período, iria pegar as suas atenções no que se diz respeito a datas comemorativas e características locais.
-                Engaje, nutra e conquiste os leads.
+                
                 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE.
