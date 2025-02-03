@@ -27,14 +27,7 @@ def gen_temas_emails():
 
     stakeholders = st.text_input("Stakeholders da comunicação:")
 
-    # Criar um seletor de intervalo de datas
-    data_inicio, data_fim = st.date_input(
-        "Selecione o período:",
-        
-        min_value=date(2000, 1, 1),
-        max_value=date(2030, 12, 31)
-)
-    
+
     st.subheader("Informações do(s) destinatário(s)")
     destinatarios = st.text_input("Caracterize os destinatários quanto a sua segmentação:")
     
@@ -71,8 +64,7 @@ def gen_temas_emails():
 
                 Considere as novidades do setor de atuação em: {tend_novids2};
 
-                Data inicio: {data_inicio}
-                Data fim: {data_fim}
+    
                 
                 Extraia de todo o seu conhecimento as especificidades de cada segmento dos destinatários e entenda o que de fato, em cada mês, iria pegar as suas atenções
                 no que se diz respeito a datas comemorativas e características locais. Engaja, nutra, conquiste os leads.;
