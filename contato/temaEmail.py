@@ -15,7 +15,6 @@ def gen_temas_emails():
     
     # Input fields for sender's details
     nome_cliente = st.text_input("Digite o nome do remetente dos emails:")
-    ramo_atuacao = st.text_input("Ramo de Atuação:")
     referencia_da_marca = st.text_area(
         "Referência da Marca:",
         height=200  
@@ -47,7 +46,7 @@ def gen_temas_emails():
                 prompt = f"""
                 Crie um cronograma (em formato de tabela) de temas de emails específicos para CADA UMA das segmentações de leads conforme {destinatarios} com fins de nutrição de leads, dentro do período de {data_inicio} a {data_fim}.
                 
-                O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. Eis uma breve descrição sobre a marca: {referencia_da_marca}.
+                O remetente dos emails é {nome_cliente}. Eis uma breve descrição sobre a marca: {referencia_da_marca}.
                 A empresa costuma vender serviços como {servicos_empresa}.
                 A empresa é do tipo {tipo_empresa}.
                 Considere as novidades do setor de atuação em: {tend_novids2}.
@@ -58,8 +57,7 @@ def gen_temas_emails():
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE.
                 Organize a saída em formato de tabela, se atentando às especificidades de cada segmentação.
-                Seja claro, preciso e prático. Não me dê diretrizes, crie os temas diretamente para produção.
-                Seja inovador, perspicaz e faça uma síntese de todas as informações dadas sobre o cliente e o segmento para a criação dos temas de email.
+                Crie os temas diretamente para produção.
                 """
                 try:
                     response = llm.generate_content(prompt)
