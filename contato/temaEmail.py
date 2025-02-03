@@ -68,7 +68,9 @@ def gen_temas_emails():
                 
                 Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.;
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
-                Seja claro, preciso e prático. Não me dê diretrizes, crie os temas que eu preciso para eu colocar diretamente em produção.;
+                Seja claro, preciso e prático. Não me dê diretrizes, crie os temas que eu preciso para eu colocar diretamente em produção. Seja inovativo,
+                perspicaz e faça uma síntese de todas as informações dadas sobre o cliente e o segmento para a criação dos temas de email. Você é criativo
+                e excelente com palavras;
                 """
                 try:
                     response = llm.generate_content(prompt)
