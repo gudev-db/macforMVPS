@@ -16,6 +16,7 @@ import google.generativeai as genai
 from contato.temaEmail import gen_temas_emails
 from etapas.image_gen import gen_img
 from etapas.lead_osint import osint_report
+from contato.Email import gen_emails
 
 st.set_page_config(
     layout="wide",
@@ -118,13 +119,16 @@ if login():
                 "Selecione uma opção",
                 "Brainstorming Conteúdo de Nutrição de Leads",
                 "Brainstorming de Anúncios",
-                "Brainstorming de Imagem"
+                "Brainstorming de Imagem",
+                "Brainstorming de Emails"
             ]
         )
 
         if brainstorming_option != "Selecione uma opção":
             if brainstorming_option == "Brainstorming Conteúdo de Nutrição de Leads":
                 gen_temas_emails()
+            elif brainstorming_option == "Brainstorming de Emails":
+                gen_emails()
             elif brainstorming_option == "Brainstorming de Anúncios":
                 planej_campanhas()
             elif brainstorming_option == "Brainstorming de Imagem":
