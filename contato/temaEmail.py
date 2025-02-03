@@ -52,7 +52,7 @@ def gen_temas_emails():
                 
                 O remetente dos emails é {nome_cliente}, que atua no ramo de {ramo_atuacao}. Eis uma breve descrição sobre a marca: {referencia_da_marca}.
                 A empresa costuma vender serviços como {servicos_empresa}.
-                Os stakeholders da comunicação são: {stakeholders}.
+                As partes interessadas da comunicação são: {stakeholders}.
                 A empresa é do tipo {tipo_empresa}.
                 Considere as novidades do setor de atuação em: {tend_novids2}.
                 
