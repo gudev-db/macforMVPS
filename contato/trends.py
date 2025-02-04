@@ -71,7 +71,7 @@ def gtrends():
                     with st.spinner('Pesquisando tendências...'):
 
 
-                        pytrend.build_payload(kw_list=['Taylor Swift'])
+                        pytrend.build_payload(kw_list=[f'{assunto_interesse}'])
                         # Interest by Region
                         df = pytrend.interest_by_region()
                             
