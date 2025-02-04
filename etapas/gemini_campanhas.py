@@ -161,7 +161,7 @@ def planej_campanhas():
                         
                         5. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
                         6. **Descrição:** Texto associado ao anúncio.
-                        7. **Cronograma:** Cronograma orçamentário de anúncios.
+                        7. **Cronograma:** Cronograma de anúncios em formato de fluxograma.
 
                         """
                     ads_output = modelo_linguagem.generate_content(prompt_ads).text
