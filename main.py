@@ -117,7 +117,7 @@ if login():
             "Escolha o tipo de brainstorming:",
             [
                 "Selecione uma opção",
-                "Brainstorming Conteúdo de Nutrição de Leads",
+                "Temas de Emails",
                 "Brainstorming de Anúncios",
                 "Brainstorming de Imagem",
                 "Brainstorming de Emails"
@@ -125,7 +125,7 @@ if login():
         )
 
         if brainstorming_option != "Selecione uma opção":
-            if brainstorming_option == "Brainstorming Conteúdo de Nutrição de Leads":
+            if brainstorming_option == "Temas de Emails":
                 gen_temas_emails()
             elif brainstorming_option == "Brainstorming de Emails":
                 gen_emails()
