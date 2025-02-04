@@ -57,15 +57,11 @@ def planej_midias_page():
             brainstorming de criativos a serem utilizados, estratégia de conteúdo e sugestões de palavras chave.''')
 
     # Buscar todos os clientes do banco de dados
-    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
 
-    # Selectbox para escolher o cliente
-    nome_cliente = st.text_input('Nome do cliente', help="Digite o nome do cliente para o qual você está planejando a estratégia. Ex: 'Empresa XYZ'")
+    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Ex: 'Empresa XYZ'")
+    site_cliente = st.text_input('Site do Cliente:', help="Digite o site do cliente.")
 
-    # Obter as informações do cliente selecionado
-    cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
-    site_cliente = cliente_info["site"] if cliente_info else ""
-    ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
+    ramo_atuacao = st.text_input('Ramo de atuação do cliente:', help="Digite o site do cliente.")
 
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente", help="O site do cliente será preenchido automaticamente se o nome do cliente for encontrado no banco de dados.")

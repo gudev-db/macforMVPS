@@ -56,7 +56,7 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
     
     Em formato de fluxograma
     
-    Desenvolva ações personalizadas específicas para essa etapa {etapa} considerando as características da empresa. 
+    Desenvolva ações personalizadas específicas para essa etapa {etapa} considerando as características da empresa. Seja eficaz, perspicaz, inteligente.
     - Elaborar o fluxo de automação de marketing com cada passo necessário detalhado.
     - Cada etapa deve detalhar quantos emails/mensagens/notificações/etc devem ser enviadas, para qual base, se abrirem ou não, o que deve ser feito,
     por quanto tempo essa etapa dura, depois dela vem o que. A ideia é que venha um plano consico de automação de marketing, um fluxo estruturado,
@@ -80,10 +80,10 @@ def planej_crm_page():
 
     st.subheader('Planejamento de Automação de Marketing')
 
-    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
-    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Esse nome será usado para vincular todos os dados relacionados ao planejamento. Ex: 'Empresa XYZ'") 
-    cliente_info = next((c for c in clientes if c["nome"] == nome_cliente), None)
-    ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
+    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Ex: 'Empresa XYZ'")
+    site_cliente = st.text_input('Site do Cliente:', help="Digite o site do cliente.")
+
+    ramo_atuacao = st.text_input('Ramo de atuação do cliente:', help="Digite o site do cliente.")
 
     publico_alvo = st.text_input('Público-Alvo:', help="Descreva o perfil do público que o Inbound Marketing visa atingir. Seja específico quanto a segmentos e comportamentos de clientes. Ex: 'Empreendedores do setor de tecnologia, com idade entre 25 e 40 anos, que buscam soluções inovadoras para aumentar a produtividade.'")
 

@@ -78,17 +78,10 @@ def planej_mkt_page():
     
 
 
-    # Buscar todos os clientes do banco de dados
-    clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
-    opcoes_clientes = [cliente["nome"] for cliente in clientes]
-    
-    # Selectbox para escolher o cliente
-    nome_cliente = st.selectbox('Selecione o Cliente:', opcoes_clientes, key="nome_cliente")
-    
-    # Obter as informações do cliente selecionado
-    cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
-    site_cliente = cliente_info["site"] if cliente_info else ""
-    ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
+    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Ex: 'Empresa XYZ'")
+    site_cliente = st.text_input('Site do Cliente:', help="Digite o site do cliente.")
+
+    ramo_atuacao = st.text_input('Ramo de atuação do cliente:', help="Digite o site do cliente.")
     
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
