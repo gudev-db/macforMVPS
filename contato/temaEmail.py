@@ -52,7 +52,7 @@ def gen_temas_emails():
                 Extraia de todo o seu conhecimento as especificidades de cada segmento dos destinatários e entenda o que de fato, em cada mês, iria pegar as suas atenções
                 no que se diz respeito a datas comemorativas e características locais. Engaja, nutra, conquiste os leads.
                 
-                Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo.
+                Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo. A ideia é fazer cada segmento se sentir visto pelo {nome_cliente}.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
                 Seja claro, preciso e prático. Não me dê diretrizes, crie os temas que eu preciso para eu colocar diretamente em produção.
                 """
