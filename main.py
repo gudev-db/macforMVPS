@@ -77,7 +77,7 @@ def login():
 # Função para exibir subseções com explicações
 def exibir_subsecoes(selecao_sidebar):
     if selecao_sidebar == "Macro - Planejamentos Estratégicos":
-        st.header("## Planejamentos Estratégicos")
+        st.header("Planejamentos Estratégicos")
         st.text("Aqui você pode escolher o tipo de plano estratégico que deseja trabalhar.")
         st.subheader("1. Planejamento de Pesquisa e Estratégia")
         st.text("Gere aqui o planejamento tático e de pesquisa para a sua gestão de marketing.")
@@ -88,7 +88,7 @@ def exibir_subsecoes(selecao_sidebar):
         st.subheader("4. Investigação de Leads")
         st.text("Inserindo o perfil do linkedin e informações estratégicas, gere um documento investigativo sobre o seu lead e a persona de aproximação.")
     elif selecao_sidebar == "Micro - Conteúdo Específico":
-        st.header("## Micro - Conteúdo Específico")
+        st.header("Micro - Conteúdo Específico")
         st.text("A um nível micro, gere brainstorming de conteúdos a serem utulizados no seu dia a dia.")
         st.subheader("1. Cronograma de temas de emails")
         st.text("Gere aqui um cronograma estratégico de temas de emails segmentando os seus leads de forma estratégica.")
@@ -101,7 +101,7 @@ def exibir_subsecoes(selecao_sidebar):
         st.subheader("5. Pesquisa de Tendências")
         st.text("Insira aqui um tema estratégico e analise as mais recentes tendências sobre ele.")
     elif selecao_sidebar == "Documentos Salvos":
-        st.header("## Documentos Salvos")
+        st.header("Documentos Salvos")
         st.text("Visualize e edite documentos previamente salvos.")
 
 # Verifique se o login foi feito antes de exibir o conteúdo
