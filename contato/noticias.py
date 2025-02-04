@@ -25,16 +25,8 @@ modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
 client1 = TavilyClient(api_key='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')
 
 
-# Conexão com MongoDB
-client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
-db = client['arquivos_planejamento']
-collection = db['auto_doc']
-banco = client["arquivos_planejamento"]
-db_clientes = banco["clientes"]  # info clientes
 
-# Função para gerar um ID único para o planejamento
-def gerar_id_planejamento():
-    return str(uuid.uuid4())
+
 
 
 # Função para limpar o estado do Streamlit
@@ -52,7 +44,7 @@ def pesquisa():
  
     
     # Intuito do Plano Estratégico
-    assunto_interesse = st.text_input('Digite aqui o seu assunto de i")
+    assunto_interesse = st.text_input('Intuito do Planejamento estratégico: Utilize esse campo para explicitar quais são as espectativas do cliente no desenvolvimento desse planejamento. Exemplo: Gerar mais leads, aumentar vendas, aumentar reconhecimento em alguma região estratégica, etc', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre. O que você deseja alcançar com esse plano?")
     
     
    
