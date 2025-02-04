@@ -24,13 +24,10 @@ def gen_temas_emails():
     servicos_empresa = st.text_input("Digite aqui os tipos de serviços que a empresa realiza:")
 
     destinatarios = st.text_input("Caracterize os destinatários quanto a sua segmentação:")
-    
-    # Input fields for start and end dates
-    data_inicio = st.date_input("Data de Início do Cronograma", date.today())
-    data_fim = st.date_input("Data de Fim do Cronograma")
+
     
     if st.button("Gerar Temas de Emails"):
-        if not nome_cliente or not ramo_atuacao or not destinatarios or not data_fim:
+        if not nome_cliente or not ramo_atuacao or not destinatarios:
             st.warning("Por favor, preencha todas as informações.")
         else:
             with st.spinner("Brainstorming..."):
@@ -52,7 +49,8 @@ def gen_temas_emails():
                 Extraia de todo o seu conhecimento as especificidades de cada segmento dos destinatários e entenda o que de fato, em cada mês, iria pegar as suas atenções
                 no que se diz respeito a datas comemorativas e características locais. Engaja, nutra, conquiste os leads.
                 
-                Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo. A ideia é fazer cada segmento se sentir visto pelo {nome_cliente}.
+                Considere incluir datas comemorativas relevantes e temáticas gerais apropriadas ao público-alvo. A ideia é fazer cada segmento se sentir visto pelo {nome_cliente}. Os temas dos emails devem levar
+                em conta as especificidades dos segmentos e ser, de forma geral, sobre novidades e inovações encontradas em {tend_novids2}.
                 Você segue o princípio de atuação GLOCAL. Pensar GLOBALMENTE e agir LOCALMENTE. Organize a saída em formato de tabela. Se atente às especificidades de cada segmentação.
                 Seja claro, preciso e prático. Não me dê diretrizes, crie os temas que eu preciso para eu colocar diretamente em produção.
                 """
