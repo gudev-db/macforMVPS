@@ -153,7 +153,7 @@ if login():
             "Escolha o tipo de conteúdo Cliente:",
             [
                 "Selecione uma opção",
-                "CRM",
+                "Automação de Marketing",
                 "Cronograma de Temas de Emails",
                 "Redação de Emails",
                 "Investigação de Leads"
@@ -161,7 +161,7 @@ if login():
         )
 
         if cliente_option != "Selecione uma opção":
-            if cliente_option == "CRM":
+            if cliente_option == "Automação de Marketing":
                 planej_crm_page()
             elif cliente_option == "Cronograma de Temas de Emails":
                 gen_temas_emails()

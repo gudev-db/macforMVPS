@@ -75,7 +75,7 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
 def planej_crm_page():
 # CRM
 
-    st.subheader('Planejamento de Inbound Marketing')
+    st.subheader('Planejamento de Automação de Marketing')
 
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
     nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Esse nome será usado para vincular todos os dados relacionados ao planejamento. Ex: 'Empresa XYZ'") 
@@ -120,7 +120,7 @@ def planej_crm_page():
     if st.button('Gerar Planejamento'):
         
         
-            with st.spinner('Gerando fluxo de CRM...'):
+            with st.spinner('Gerando fluxo de automação de marketing...'):
                 fluxo_output = ""
                 for etapa in etapas:
                     fluxo_output += f"\n### {etapa}\n"
