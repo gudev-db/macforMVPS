@@ -268,3 +268,4 @@ wrapt==1.16.0
 wsproto==1.2.0
 yarl==1.17.2
 zipp==3.21.0
+pytrends==4.9.2
