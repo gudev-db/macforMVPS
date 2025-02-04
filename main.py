@@ -77,31 +77,31 @@ def login():
 # Função para exibir subseções com explicações
 def exibir_subsecoes(selecao_sidebar):
     if selecao_sidebar == "Macro - Planejamentos Estratégicos":
-        st.markdown("## Planejamentos Estratégicos")
+        st.header("## Planejamentos Estratégicos")
         st.text("Aqui você pode escolher o tipo de plano estratégico que deseja trabalhar.")
-        st.subheader("Planejamento de Pesquisa e Estratégia")
+        st.subheader("1. Planejamento de Pesquisa e Estratégia")
         st.text("Gere aqui o planejamento tático e de pesquisa para a sua gestão de marketing.")
-        st.subheader("Planejamento de Redes e Mídias")
+        st.subheader("2. Planejamento de Redes e Mídias")
         st.text("Gere aqui estratégias criativas para a sua gestão de mídias e redes sociais.")
-        st.subheader("Planejamento de CRM")
+        st.subheader("3. Planejamento de CRM")
         st.text("Gere aqui o fluxograma de gestão de leads.")
-        st.subheader("Investigação de Leads")
+        st.subheader("4. Investigação de Leads")
         st.text("Inserindo o perfil do linkedin e informações estratégicas, gere um documento investigativo sobre o seu lead e a persona de aproximação.")
     elif selecao_sidebar == "Micro - Conteúdo Específico":
-        st.markdown("## Micro - Conteúdo Específico")
+        st.header("## Micro - Conteúdo Específico")
         st.text("A um nível micro, gere brainstorming de conteúdos a serem utulizados no seu dia a dia.")
-        st.subheader("Cronograma de temas de emails")
+        st.subheader("1. Cronograma de temas de emails")
         st.text("Gere aqui um cronograma estratégico de temas de emails segmentando os seus leads de forma estratégica.")
-        st.subheader("Redação de Emails")
+        st.subheader("2. Redação de Emails")
         st.text("Não parta do zero, gere aqui exemplos de emails para você se comunicar com os seus leads de forma eficiente.")
-        st.subheader("Brainstorming de anúncios")
+        st.subheader("3. Brainstorming de anúncios")
         st.text("Insira informações estratégicas e gere aqui um brainstorming para orientar a sua criação de anúncios de campanhas.")
-        st.subheader("Geração de Imagens")
+        st.subheader("4. Geração de Imagens")
         st.text("Insira aqui uma descrição e gere um brainstorming de imagem para o seu case específico.")
-        st.subheader("Pesquisa de Tendências")
+        st.subheader("5. Pesquisa de Tendências")
         st.text("Insira aqui um tema estratégico e analise as mais recentes tendências sobre ele.")
     elif selecao_sidebar == "Documentos Salvos":
-        st.markdown("## Documentos Salvos")
+        st.header("## Documentos Salvos")
         st.text("Visualize e edite documentos previamente salvos.")
 
 # Verifique se o login foi feito antes de exibir o conteúdo
