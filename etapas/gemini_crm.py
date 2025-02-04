@@ -51,9 +51,12 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
     - Tamanho da base de clientes existente: {tamanho_base}
     - Tom de voz desejado: {tom_voz}
     - Fluxo desejado: {fluxos_ou_emails}
+    - Formato do output: Fluxograma
 
     
-    Desenvolva ações personalizadas específicas para essa etapa {etapa} considerando as características da empresa. EM FORMATO DE FLUXOGRAMA tipo: começa com graph e depois faz o passo a passo de cada nodo e onde se conecta. FORMATO FLUXOGRAMA
+    Em formato de fluxograma
+    
+    Desenvolva ações personalizadas específicas para essa etapa {etapa} considerando as características da empresa. 
     - Elaborar o fluxo de automação de marketing com cada passo necessário detalhado.
     - Cada etapa deve detalhar quantos emails/mensagens/notificações/etc devem ser enviadas, para qual base, se abrirem ou não, o que deve ser feito,
     por quanto tempo essa etapa dura, depois dela vem o que. A ideia é que venha um plano consico de automação de marketing, um fluxo estruturado,
