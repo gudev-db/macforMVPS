@@ -17,6 +17,7 @@ from contato.temaEmail import gen_temas_emails
 from etapas.image_gen import gen_img
 from etapas.lead_osint import osint_report
 from contato.Email import gen_emails
+from contato.noticias import pesquisa
 
 st.set_page_config(
     layout="wide",
@@ -117,10 +118,11 @@ if login():
             "Escolha o tipo de brainstorming:",
             [
                 "Selecione uma opção",
-                "Temas de Emails",
+                "Brainstorming de Temas de Emails",
                 "Brainstorming de Anúncios",
                 "Brainstorming de Imagem",
-                "Brainstorming de Emails"
+                "Brainstorming de Emails",
+                "Pesquisa de Tendências"
             ]
         )
 
@@ -133,6 +135,8 @@ if login():
                 planej_campanhas()
             elif brainstorming_option == "Brainstorming de Imagem":
                 gen_img()
+            elif brainstorming_option == "Pesquisa de Tendências":
+                pesquisa()
 
     # Seção para "Documentos Salvos"
     elif selecao_sidebar == "Documentos Salvos":
