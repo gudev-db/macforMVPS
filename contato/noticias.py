@@ -98,10 +98,12 @@ def pesquisa():
                       
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        prompt_SWOT = f'''Dado os retornos da pesquisa de tendências em {tend_novids2}, faça um relatório completo do que foi recebido listando os links de referência.'''
+                        prompt_SWOT = f'''Dado os retornos da pesquisa de tendências em {tend_novids2}, faça um relatório completo do que foi recebido listando os links de referência. Tire conclusões sobre os retornos, tire insights, veja oportunidades
+                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_SWOT2 = f'''Dado os retornos da pesquisa de tendências em {politic}, faça um relatório completo do que foi recebido listando os links de referência.'''
+                        prompt_SWOT2 = f'''Dado os retornos da pesquisa de tendências em {politic}, faça um relatório completo do que foi recebido listando os links de referência. Tire conclusões sobre os retornos, tire insights, veja oportunidades
+                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações.'''
                         SWOT_output2 = modelo_linguagem.generate_content(prompt_SWOT2).text
 
                         
