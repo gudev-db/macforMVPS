@@ -78,31 +78,46 @@ def login():
 def exibir_subsecoes(selecao_sidebar):
     if selecao_sidebar == "Macro - Planejamentos Estratégicos":
         st.header("Planejamentos Estratégicos")
-        st.text("Aqui você pode escolher o tipo de plano estratégico que deseja trabalhar.")
+        st.text("No nível macro, você pode definir e estruturar os pilares estratégicos fundamentais para o crescimento da sua organização. "
+                "Aqui, você terá a oportunidade de criar planos detalhados para as várias áreas-chave de marketing, comunicação e crescimento.")
         st.subheader("1. Planejamento de Pesquisa e Estratégia")
-        st.text("Gere aqui o planejamento tático e de pesquisa para a sua gestão de marketing.")
+        st.text("Desenvolva um planejamento tático e de pesquisa robusto que guiará todas as ações estratégicas de marketing da sua empresa. "
+                "Essa seção permite estruturar análises aprofundadas sobre o mercado, concorrência e comportamento do público-alvo.")
         st.subheader("2. Planejamento de Redes e Mídias")
-        st.text("Gere aqui estratégias criativas para a sua gestão de mídias e redes sociais.")
+        st.text("Elabore um planejamento detalhado para sua gestão de mídias e redes sociais. Com esse plano, você poderá traçar estratégias criativas "
+                "para atrair, engajar e fidelizar seu público, otimizando os resultados em cada plataforma social.")
         st.subheader("3. Planejamento de CRM")
-        st.text("Gere aqui o fluxograma de gestão de leads.")
+        st.text("Construa um fluxo de comunicação eficaz com seus leads e clientes. Essa área oferece ferramentas para estruturar estratégias de relacionamento, "
+                "automação de processos e gestão de dados, garantindo um acompanhamento eficaz e personalizado do seu público.")
         st.subheader("4. Investigação de Leads")
-        st.text("Inserindo o perfil do linkedin e informações estratégicas, gere um documento investigativo sobre o seu lead e a persona de aproximação.")
+        st.text("Aprofunde-se no perfil do seu lead inserindo dados relevantes como informações de LinkedIn e dados de comportamento. "
+                "Aqui, você gera relatórios detalhados que ajudam a entender a persona, suas necessidades e como realizar uma aproximação estratégica para uma conversão mais eficaz.")
+
     elif selecao_sidebar == "Micro - Conteúdo Específico":
         st.header("Micro - Conteúdo Específico")
-        st.text("A um nível micro, gere brainstorming de conteúdos a serem utulizados no seu dia a dia.")
-        st.subheader("1. Cronograma de temas de emails")
-        st.text("Gere aqui um cronograma estratégico de temas de emails segmentando os seus leads de forma estratégica.")
+        st.text("No nível micro, você tem a chance de criar e otimizar conteúdos prontos para o dia a dia da sua operação de marketing. "
+                "Esse espaço permite um desenvolvimento detalhado e altamente estratégico de conteúdo que pode ser usado em tempo real.")
+        st.subheader("1. Cronograma de Temas de Emails")
+        st.text("Construa um cronograma estratégico de temas de emails que irão captar a atenção dos seus leads de forma segmentada e personalizada. "
+                "Utilize esse espaço para planejar campanhas de email marketing, criando uma jornada de comunicação eficiente e impactante.")
         st.subheader("2. Redação de Emails")
-        st.text("Não parta do zero, gere aqui exemplos de emails para você se comunicar com os seus leads de forma eficiente.")
-        st.subheader("3. Brainstorming de anúncios")
-        st.text("Insira informações estratégicas e gere aqui um brainstorming para orientar a sua criação de anúncios de campanhas.")
+        st.text("Não comece do zero! Aqui, você pode gerar exemplos de emails com base nas melhores práticas e estratégias de comunicação. "
+                "Crie mensagens persuasivas e adequadas para cada estágio do funil de vendas, garantindo uma comunicação eficaz com seus leads e clientes.")
+        st.subheader("3. Brainstorming de Anúncios")
+        st.text("Alavanque suas campanhas publicitárias com um brainstorming detalhado para anúncios. Ao inserir informações chave, você irá gerar várias sugestões "
+                "de anúncios criativos e de alto impacto, otimizando suas campanhas para engajar e converter seu público alvo com maior eficiência.")
         st.subheader("4. Geração de Imagens")
-        st.text("Insira aqui uma descrição e gere um brainstorming de imagem para o seu case específico.")
+        st.text("Dê vida ao seu conteúdo visual! Aqui, você pode gerar ideias de imagens baseadas em uma descrição detalhada do que deseja comunicar. "
+                "Com esse brainstorming visual, você vai poder criar imagens de impacto que complementam suas campanhas e atraem a atenção do público.")
         st.subheader("5. Pesquisa de Tendências")
-        st.text("Insira aqui um tema estratégico e analise as mais recentes tendências sobre ele.")
+        st.text("Este espaço oferece a possibilidade de acompanhar as últimas tendências do mercado. Ao inserir um tema estratégico, você terá acesso a "
+                "análises e insights atualizados sobre as tendências mais recentes, ajudando a guiar suas decisões de marketing e garantindo que você sempre esteja à frente.")
+
     elif selecao_sidebar == "Documentos Salvos":
         st.header("Documentos Salvos")
-        st.text("Visualize e edite documentos previamente salvos.")
+        st.text("Aqui você pode visualizar, editar e organizar todos os documentos gerados ao longo do processo. "
+                "Essa área é essencial para manter o controle de todas as estratégias e materiais criados, facilitando o acesso e a edição desses conteúdos quando necessário.")
+
 
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
