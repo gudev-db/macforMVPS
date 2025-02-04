@@ -22,6 +22,25 @@ db_clientes = banco["clientes"]  # info clientes
 def gerar_id_planejamento():
     return str(uuid.uuid4())
 
+
+guias_mote = '''
+Guia completo para criar um mote de campanha eficaz
+Guia completo para criar um mote de campanha eficaz
+
+Você já se perguntou como algumas campanhas publicitárias conseguem capturar a atenção do público e se tornar um sucesso instantâneo? A resposta está, muitas vezes, no poder de um mote de campanha eficaz.
+Um mote de campanha é uma frase ou slogan curto e memorável que representa a essência da mensagem que uma empresa ou organização deseja transmitir ao público. É a oportunidade de criar uma conexão emocional com os consumidores e despertar interesse em relação ao produto ou serviço oferecido.
+Para criar um mote de campanha eficaz, é importante levar em consideração alguns elementos-chave:
+Clareza: O mote deve transmitir a mensagem de forma direta e compreensível. Evite termos complexos ou ambíguos que possam confundir o público-alvo.
+Emoção: Um bom mote deve despertar emoções no público, seja alegria, curiosidade, surpresa ou qualquer outro sentimento que crie uma conexão emocional com a marca.
+Originalidade: É importante criar um mote que seja único e diferenciado dos concorrentes. Isso ajudará a marca a se destacar e a ser lembrada pelos consumidores.
+Relevância: O mote deve estar alinhado com os valores e propósitos da marca, além de ser relevante para o público-alvo. Conhecer bem o mercado e o perfil dos consumidores é essencial para criar um mote que ressoe com eles.
+Memorabilidade: Um bom mote deve ser fácil de lembrar. Pense em frases curtas, simples e impactantes que fiquem na mente das pessoas por um longo tempo.
+É importante ressaltar que a criação de um mote de campanha eficaz requer habilidades de marketing e comunicação. Embora este guia forneça dicas valiosas, ele não substitui a assessoria jurídica especializada. É recomendável que as empresas consultem profissionais qualificados para garantir que o mote esteja em conformidade com as leis e regulamentações vigentes.
+Ao criar um mote de campanha, é fundamental realizar pesquisas de mercado, analisar a concorrência e testar diferentes opções com o público-alvo. Aperfeiçoar o mote com base no feedback recebido é uma prática recomendada para garantir sua eficácia.
+Em resumo, um mote de campanha eficaz é uma poderosa ferramenta de comunicação que pode impulsionar o sucesso de uma campanha publicitária. Seguir os princípios de clareza, emoção, originalidade, relevância e memorabilidade ajudará a criar um mote que se destaque e conecte com o público-alvo. Lembre-se sempre de buscar a orientação adequada para garantir conformidade legal.
+
+'''
+
 # Função para salvar no MongoDB
 def save_to_mongo_ads(ads_output, nome_cliente):
     # Gerar o ID único para o planejamento
@@ -128,18 +147,21 @@ def planej_campanhas():
                         otimizando as suas escolhas para o caso específico do cliente. Use esse espaço como uma oportunidade de ensinar conceitos de marketing digital, dado que
                         você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, criativo, único, perspicaz. Você é original. Você é um especialista.
                         
-                        1. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
+
+                        1. **Mote de Campanha:** dado o guia para se criar um bom mote de campanha: {guias_mote}. Crie o mote de campanha
+
+                        2. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
                         Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
                         delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
                         detalhe e justificados.
                         
-                        2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
+                        3. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
                         
-                        3. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
+                        4. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
                         
-                        4. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
-                        5. **Descrição:** Texto associado ao anúncio.
-                        6. **Cronograma:** Cronograma orçamentário de anúncios.
+                        5. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
+                        6. **Descrição:** Texto associado ao anúncio.
+                        7. **Cronograma:** Cronograma orçamentário de anúncios.
 
                         """
                     ads_output = modelo_linguagem.generate_content(prompt_ads).text
