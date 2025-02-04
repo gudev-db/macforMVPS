@@ -16,6 +16,7 @@ from etapas.image_gen import gen_img
 from etapas.lead_osint import osint_report
 from contato.Email import gen_emails
 from contato.noticias import pesquisa
+from contato.trends import gtrends
 
 st.set_page_config(
     layout="wide",
@@ -120,7 +121,8 @@ if login():
                 "Brainstorming de Anúncios",
                 "Brainstorming de Imagem",
                 "Brainstorming de Emails",
-                "Pesquisa de Tendências"
+                "Pesquisa de Tendências",
+                "Google Trends"
             ]
         )
 
@@ -135,6 +137,8 @@ if login():
                 gen_img()
             elif brainstorming_option == "Pesquisa de Tendências":
                 pesquisa()
+            elif brainstorming_option == "Google Trends":
+                gtrends()
 
     # Seção para "Documentos Salvos"
     elif selecao_sidebar == "Documentos Salvos":
