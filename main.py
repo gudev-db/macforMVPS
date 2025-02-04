@@ -87,7 +87,7 @@ def exibir_subsecoes(selecao_sidebar):
     elif selecao_sidebar == "Cliente":
         st.header("Cliente")
         st.text("Desenvolva estratégias focadas no relacionamento com seus clientes e na comunicação personalizada.")
-        st.subheader("1. CRM")
+        st.subheader("1. Automação de Marketing")
         st.text("Construa um fluxo de comunicação eficaz com seus leads e clientes. Estruture estratégias de relacionamento, automação de processos e gestão de dados.")
         st.subheader("2. Cronograma de Temas de Emails")
         st.text("Planeje campanhas de email marketing com um cronograma estratégico, criando uma jornada de comunicação eficiente com seus leads.")
