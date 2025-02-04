@@ -56,15 +56,11 @@ def planej_midias_page():
     st.text('''Aqui geramos plano para criativos, plano de Key Visual, Plano de atuação segmentado por canal (ex: Linkedin, Facebook, Instagram...),
             brainstorming de criativos a serem utilizados, estratégia de conteúdo e sugestões de palavras chave.''')
 
-
-
-
     # Buscar todos os clientes do banco de dados
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
-    opcoes_clientes = [cliente["nome"] for cliente in clientes]
 
     # Selectbox para escolher o cliente
-    nome_cliente = st.text_input('Nome do cliente')
+    nome_cliente = st.text_input('Nome do cliente', help="Digite o nome do cliente para o qual você está planejando a estratégia. Ex: 'Empresa XYZ'")
 
     # Obter as informações do cliente selecionado
     cliente_info = next((cliente for cliente in clientes if cliente["nome"] == nome_cliente), None)
@@ -72,23 +68,56 @@ def planej_midias_page():
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
 
     # Exibir os campos preenchidos com os dados do cliente
-    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
-    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
-        # Intuito do Plano Estratégico
-    intuito_plano = st.text_input('Intuito do Planejamento estratégico: Utilize esse campo para explicitar quais são as espectativas do cliente no desenvolvimento desse planejamento. Exemplo: Gerar mais leads, aumentar vendas, aumentar reconhecimento em alguma região estratégica, etc', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre.")
+    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente", help="O site do cliente será preenchido automaticamente se o nome do cliente for encontrado no banco de dados.")
+    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao", help="O ramo de atuação do cliente será preenchido automaticamente se o nome do cliente for encontrado no banco de dados.")
+
+    # Intuito do Plano Estratégico
+    intuito_plano = st.text_input('Intuito do Planejamento estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre.", help="""
+    **Qual o objetivo principal deste planejamento?**
     
+    Seja específico sobre as expectativas do cliente. 
+    
+    Exemplos:
+        * Gerar mais leads qualificados.
+        * Aumentar as vendas online.
+        * Fortalecer o reconhecimento da marca em uma região específica.
+    """)
+
     # Público-Alvo
-    publico_alvo = st.text_input('Público alvo: Utilize esse campo para definir qual é o perfil do público alvo que deve ser atingido por esse planejamento estratégico. Seja idade, região, gênero, área de atuação. Aproveite para ser o quão detalhado for necessário.', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda.")
+    publico_alvo = st.text_input('Público alvo:', key="publico_alvo", placeholder="Ex: Jovens de 18 a 25 anos, interessados em moda.", help="""
+    **Quem você quer atingir com essa estratégia?**
     
+    Descreva detalhadamente o perfil do seu público-alvo:
+    
+    * Idade
+    * Gênero
+    * Localização
+    * Interesses
+    * Comportamentos
+    * etc.
+    """)
+
     # Concorrentes
-    concorrentes = st.text_input('Concorrentes: Utilize esse campo para definir quais são os concorrentes do cliente.', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C. Liste os concorrentes que você considera mais relevantes no seu mercado.")
+    concorrentes = st.text_input('Concorrentes:', key="concorrentes", placeholder="Ex: Loja A, Loja B, Loja C. Liste os concorrentes que você considera mais relevantes no seu mercado.", help="""
+    **Quem são seus principais concorrentes?**
     
+    Liste as empresas que competem diretamente com o seu cliente.
+    """)
+
     # Sites dos Concorrentes
-    site_concorrentes = st.text_input('Site dos concorrentes: Utilize esse campo para colocar os sites dos concorrentes. A forma como decidir dividí-los não importa. Ex (, ou ; ou .)', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br.")
+    site_concorrentes = st.text_input('Site dos concorrentes:', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br.", help="""
+    **Quais são os sites dos seus concorrentes?**
     
+    Insira os links para os sites dos concorrentes, separados por vírgula, ponto e vírgula ou ponto.
+    """)
+
     # Tendências de Interesse
-    tendaux = st.text_input('Tendências de mercado estratégicas: Utilize esse campo para definir quais tendências de mercado você gostaria que os agentes de IA pesquisassem sobre de uma forma que o retorno tenha impacto no planejamento estratégico.', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc.")
+    tendaux = st.text_input('Tendências de mercado estratégicas:', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc.", help="""
+    **Quais tendências de mercado são relevantes para o seu cliente?**
     
+    Liste as tendências que podem influenciar a estratégia, como novas tecnologias, mudanças no comportamento do consumidor, etc.
+    """)
+
     # Objetivos de Marca
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
@@ -97,19 +126,39 @@ def planej_midias_page():
         'Fidelizar e reter um público fiel já convertido',
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
+
+    objetivos_de_marca = st.selectbox('Quais são os objetivos da sua marca?', objetivos_opcoes, key="objetivos_marca", help="""
+    **O que a marca busca alcançar?**
     
-    objetivos_de_marca = st.selectbox('Quais são os objetivos da sua marca?', objetivos_opcoes, key="objetivos_marca")
-    
+    Selecione os objetivos que melhor se encaixam com a estratégia do cliente.
+    """)
+
     # Referência da Marca
-    referencia_da_marca = st.text_area('Referência de marca: Utilize esse campo para escrever um texto que define o cliente quanto ao seu ramo de atuação, objetivos e personalidade.', key="referencia_da_marca", placeholder="Conte um pouco mais sobre sua marca, o que ela representa, seus valores e diferenciais no mercado.", height = 200)
+    referencia_da_marca = st.text_area('Referência de marca:', key="referencia_da_marca", placeholder="Conte um pouco mais sobre sua marca, o que ela representa, seus valores e diferenciais no mercado.", height=200, help="""
+    **Como você descreveria a marca do cliente?**
+    
+    Forneça informações sobre a identidade da marca, seus valores, sua proposta única de valor e como ela se diferencia no mercado.
+    """)
 
-    budget = st.text_input('Orçamento de Anúncios: Utilize esse campo para explicitar o orçamento disponível para o desenvolvimento dos anúncios a serem gerados.', key="budget", placeholder="Valor em reais")
+    budget = st.text_input('Orçamento de Anúncios:', key="budget", placeholder="Valor em reais", help="""
+    **Quanto o cliente está disposto a investir em anúncios?**
+    
+    Informe o orçamento disponível para as campanhas de mídia.
+    """)
 
-    start_date = st.date_input("Data de Início do período de contratação de serviços:", key="start_date")
-    end_date = st.date_input("Data do Fim do período de contratação de serviços::", key="end_date")
+    start_date = st.date_input("Data de Início do período de contratação de serviços:", key="start_date", help="""
+    **Quando a estratégia deve começar a ser implementada?**
+    """)
+    end_date = st.date_input("Data do Fim do período de contratação de serviços::", key="end_date", help="""
+    **Quando a estratégia deve ser finalizada?**
+    """)
 
     # Se os arquivos PDF forem carregados
-    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
+    pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True, help="""
+    **Você possui algum material de referência sobre o mercado do cliente?**
+    
+    Envie arquivos PDF que possam auxiliar na análise do mercado e na criação da estratégia.
+    """)
 
     if pest_files is not None:
         if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
