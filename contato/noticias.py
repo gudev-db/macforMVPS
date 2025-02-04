@@ -75,7 +75,7 @@ def pesquisa():
                         querystring = {"q":f"tendencias em {assunto_interesse}"}
                             
                         headers = {
-                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-key": "d4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff",
                                 "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
@@ -108,10 +108,10 @@ def pesquisa():
 
                         
 
-                        st.header('1. Pesquisa de tendências')
-                        st.subheader('1.1 Análise de tendências')
+                        st.header('Pesquisa de tendências')
+                        st.subheader('1 Análise de tendências - DuckDuckGo')
                         st.markdown(SWOT_output)
-                        st.subheader('1.2 Análise de tendências 2')
+                        st.subheader('2 Análise de tendências - Tavily')
                         st.markdown(SWOT_output2)
                        
 
