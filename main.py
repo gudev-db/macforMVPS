@@ -74,59 +74,19 @@ def login():
             return False
     return False
 
-# Função para exibir as subseções com explicação
+# Função para exibir subseções com explicações
 def exibir_subsecoes(selecao_sidebar):
     if selecao_sidebar == "Macro - Planejamentos Estratégicos":
-        st.header("Planejamentos Estratégicos")
-        st.subheader("Escolha uma subseção para iniciar:")
-        
-        subsecoes = {
-            "Planejamento de Pesquisa e Estratégia": "Esta seção ajuda a criar e organizar estratégias de pesquisa para entender o mercado e os concorrentes.",
-            "Planejamento de Redes e Mídias": "Aqui você pode planejar ações e campanhas nas redes sociais, escolhendo as melhores mídias para o seu negócio.",
-            "Planejamento de CRM": "Esta seção é voltada para o planejamento de ações de CRM (Gestão de Relacionamento com Clientes), visando melhorar o relacionamento com os clientes.",
-            "Investigação de Leads": "Use essa opção para investigar possíveis leads e gerar informações detalhadas sobre eles."
-        }
-
-        for subsecao, descricao in subsecoes.items():
-            if st.button(subsecao):
-                st.markdown(f"### {subsecao}")
-                st.write(descricao)
-                if subsecao == "Planejamento de Pesquisa e Estratégia":
-                    planej_mkt_page()
-                elif subsecao == "Planejamento de Redes e Mídias":
-                    planej_midias_page()
-                elif subsecao == "Planejamento de CRM":
-                    planej_crm_page()
-                elif subsecao == "Investigação de Leads":
-                    osint_report()
-
+        st.markdown("## Planejamentos Estratégicos")
+        st.text("Aqui você pode escolher o tipo de plano estratégico que deseja trabalhar.")
     elif selecao_sidebar == "Micro - Conteúdo Específico":
-        st.header("Conteúdo Específico")
-        st.subheader("Escolha uma subseção para iniciar:")
-        
-        subsecoes = {
-            "Brainstorming de Temas de Emails": "Aqui você pode gerar ideias criativas para temas de emails, otimizando sua campanha de email marketing.",
-            "Brainstorming de Anúncios": "Use essa opção para gerar ideias de anúncios para suas campanhas de marketing.",
-            "Brainstorming de Imagem": "Esta opção permite que você crie ideias para imagens que podem ser usadas em anúncios ou publicações.",
-            "Brainstorming de Emails": "Aqui você pode gerar ideias completas de emails, incluindo conteúdo e estrutura para campanhas.",
-            "Pesquisa de Tendências": "Pesquise as tendências mais atuais para sua área, ajudando a manter suas campanhas de marketing atualizadas."
-        }
+        st.markdown("## Micro - Conteúdo Específico")
+        st.text("Escolha o tipo de conteúdo que deseja criar ou explorar.")
+    elif selecao_sidebar == "Documentos Salvos":
+        st.markdown("## Documentos Salvos")
+        st.text("Visualize e edite documentos previamente salvos.")
 
-        for subsecao, descricao in subsecoes.items():
-            if st.button(subsecao):
-                st.markdown(f"### {subsecao}")
-                st.write(descricao)
-                if subsecao == "Brainstorming de Temas de Emails":
-                    gen_temas_emails()
-                elif subsecao == "Brainstorming de Emails":
-                    gen_emails()
-                elif subsecao == "Brainstorming de Anúncios":
-                    planej_campanhas()
-                elif subsecao == "Brainstorming de Imagem":
-                    gen_img()
-                elif subsecao == "Pesquisa de Tendências":
-                    pesquisa()
-
+# Verifique se o login foi feito antes de exibir o conteúdo
 if login():
     # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
     selecao_sidebar = st.sidebar.radio(
@@ -137,6 +97,57 @@ if login():
 
     # Exibir as subseções com explicações dependendo da seleção no sidebar
     exibir_subsecoes(selecao_sidebar)
+
+    # Seção para "Plano Estratégico"
+    if selecao_sidebar == "Macro - Planejamentos Estratégicos":
+        st.sidebar.subheader("Planejamentos Completos")
+        plano_estrategico = st.sidebar.selectbox(
+            "Escolha o tipo de plano:",
+            [
+                "Selecione uma opção",
+                "Planejamento de Pesquisa e Estratégia",
+                "Planejamento de Redes e Mídias",
+                "Planejamento de CRM",
+                "Investigação de Leads"
+            ]
+        )
+
+        if plano_estrategico != "Selecione uma opção":
+            if plano_estrategico == "Planejamento de Pesquisa e Estratégia":
+                planej_mkt_page()
+            elif plano_estrategico == "Planejamento de Redes e Mídias":
+                planej_midias_page()
+            elif plano_estrategico == "Planejamento de CRM":
+                planej_crm_page()
+            elif plano_estrategico == "Investigação de Leads":
+                osint_report()
+
+    # Seção para "Brainstorming"
+    elif selecao_sidebar == "Micro - Conteúdo Específico":
+        st.sidebar.subheader("Micro")
+        brainstorming_option = st.sidebar.selectbox(
+            "Escolha o tipo de conteúdo Micro:",
+            [
+                "Selecione uma opção",
+                "Brainstorming de Temas de Emails",
+                "Brainstorming de Anúncios",
+                "Brainstorming de Imagem",
+                "Brainstorming de Emails",
+                "Pesquisa de Tendências",
+            ]
+        )
+
+        if brainstorming_option != "Selecione uma opção":
+            if brainstorming_option == "Temas de Emails":
+                gen_temas_emails()
+            elif brainstorming_option == "Brainstorming de Emails":
+                gen_emails()
+            elif brainstorming_option == "Brainstorming de Anúncios":
+                planej_campanhas()
+            elif brainstorming_option == "Brainstorming de Imagem":
+                gen_img()
+            elif brainstorming_option == "Pesquisa de Tendências":
+                pesquisa()
 
     # Seção para "Documentos Salvos"
     elif selecao_sidebar == "Documentos Salvos":
