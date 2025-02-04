@@ -76,16 +76,16 @@ def login():
 
 # Função para exibir subseções com explicações
 def exibir_subsecoes(selecao_sidebar):
-    if selecao_sidebar == "Pesquisa e Estratégia":
-        st.header("Pesquisa e Estratégia")
+    if selecao_sidebar == "Planejamento":
+        st.header("Planejamento")
         st.text("Desenvolva estratégias sólidas com base em pesquisa detalhada e em tendências do mercado.")
         st.subheader("1. Planejamento de Pesquisa e Estratégia")
         st.text("Desenvolva um planejamento tático e de pesquisa robusto que guiará todas as ações estratégicas de marketing da sua empresa.")
         st.subheader("2. Pesquisa de Tendências")
         st.text("Acompanhe as últimas tendências do mercado, ajudando a guiar suas decisões de marketing e garantindo que sua empresa esteja à frente.")
 
-    elif selecao_sidebar == "Cliente":
-        st.header("Cliente")
+    elif selecao_sidebar == "CRM":
+        st.header("CRM")
         st.text("Desenvolva estratégias focadas no relacionamento com seus clientes e na comunicação personalizada.")
         st.subheader("1. Automação de Marketing")
         st.text("Construa um fluxo de comunicação eficaz com seus leads e clientes. Estruture estratégias de relacionamento, automação de processos e gestão de dados.")
@@ -96,8 +96,8 @@ def exibir_subsecoes(selecao_sidebar):
         st.subheader("4. Investigação de Leads")
         st.text("Aprofunde-se no perfil do seu lead e obtenha informações detalhadas sobre suas necessidades e comportamentos.")
 
-    elif selecao_sidebar == "Midias/Redes":
-        st.header("Mídias/Redes")
+    elif selecao_sidebar == "Mídias":
+        st.header("Mídias")
         st.text("Elabore e otimize estratégias para a gestão de mídias sociais e criação de conteúdo visual impactante.")
         st.subheader("1. Planejamento de Mídias e Redes")
         st.text("Crie um planejamento detalhado para sua gestão de mídias e redes sociais. Com esse plano, você poderá traçar estratégias criativas para atrair, engajar e fidelizar seu público.")
@@ -117,9 +117,9 @@ if login():
     selecao_sidebar = st.sidebar.radio(
         "Escolha a seção:",
         [
-            "Pesquisa e Estratégia",
-            "Cliente",
-            "Midias/Redes",
+            "Planejamento",
+            "CRM",
+            "Mídias",
             "Documentos Salvos"
         ],
         index=0  # Predefinir como 'Pesquisa e Estratégia' ativo
@@ -129,7 +129,7 @@ if login():
     exibir_subsecoes(selecao_sidebar)
 
     # Seção para "Pesquisa e Estratégia"
-    if selecao_sidebar == "Pesquisa e Estratégia":
+    if selecao_sidebar == "Planejamento":
         st.sidebar.subheader("Pesquisa e Estratégia")
         pesquisa_estrategia = st.sidebar.selectbox(
             "Escolha o tipo de plano:",
@@ -147,8 +147,8 @@ if login():
                 pesquisa()
 
     # Seção para "Cliente"
-    elif selecao_sidebar == "Cliente":
-        st.sidebar.subheader("Cliente")
+    elif selecao_sidebar == "CRM":
+        st.sidebar.subheader("CRM")
         cliente_option = st.sidebar.selectbox(
             "Escolha o tipo de conteúdo Cliente:",
             [
@@ -171,10 +171,10 @@ if login():
                 osint_report()
 
     # Seção para "Midias/Redes"
-    elif selecao_sidebar == "Midias/Redes":
-        st.sidebar.subheader("Midias/Redes")
+    elif selecao_sidebar == "Mídias":
+        st.sidebar.subheader("Mídias")
         midias_option = st.sidebar.selectbox(
-            "Escolha o tipo de conteúdo Midias/Redes:",
+            "Escolha o tipo de conteúdo Mídias:",
             [
                 "Selecione uma opção",
                 "Planejamento de Mídias e Redes",
