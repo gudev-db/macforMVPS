@@ -78,11 +78,12 @@ def planej_crm_page():
     st.subheader('Planejamento de Inbound Marketing')
 
     clientes = list(db_clientes.find({}, {"_id": 0, "nome": 1, "site": 1, "ramo": 1}))
-    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Esse nome será usado para vincular todos os dados relacionados ao planejamento.")
+    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Esse nome será usado para vincular todos os dados relacionados ao planejamento. Ex: 'Empresa XYZ'") 
     cliente_info = next((c for c in clientes if c["nome"] == nome_cliente), None)
-
     ramo_atuacao = cliente_info["ramo"] if cliente_info else ""
-    publico_alvo = st.text_input('Público-Alvo:', help="Descreva o perfil do público que o Inbound Marketing visa atingir. Seja específico quanto a segmentos e comportamentos de clientes.")
+
+    publico_alvo = st.text_input('Público-Alvo:', help="Descreva o perfil do público que o Inbound Marketing visa atingir. Seja específico quanto a segmentos e comportamentos de clientes. Ex: 'Empreendedores do setor de tecnologia, com idade entre 25 e 40 anos, que buscam soluções inovadoras para aumentar a produtividade.'")
+
     # Objetivos de Marca
     objetivos_opcoes = [
         'Criar ou aumentar relevância, reconhecimento e autoridade para a marca',
@@ -92,25 +93,29 @@ def planej_crm_page():
         'Garantir que o público esteja engajado com os canais ou ações da marca'
     ]
     objetivos_de_marca = st.selectbox('Selecione os objetivos de marca:', objetivos_opcoes, help="Escolha o objetivo central que o Inbound Marketing ajudará a alcançar. Por exemplo, aumentar a fidelização ou melhorar a qualificação de leads.")
-    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM.")
+
+    referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', help="Escreva sobre a essência da marca, seus valores e o que a distingue da concorrência. Isso ajudará a personalizar a estratégia de CRM. Ex: 'A marca XYZ é uma empresa de software que oferece soluções de gestão para pequenas e médias empresas. Seus diferenciais são a facilidade de uso e o suporte personalizado. O objetivo da marca é ser líder no mercado de softwares de gestão.'")
 
     # Ferramentas e Processos de CRM
+    canais_disponiveis = st.text_input('Quais ferramentas de comunicação estão disponíveis?', help="Liste as ferramentas de comunicação que a empresa utiliza para interagir com seus clientes, como e-mail, telefone, redes sociais, etc. Ex: 'E-mail marketing (Mailchimp), Redes Sociais (Instagram, Facebook, LinkedIn), Blog, Chat online no site.'")
 
-    canais_disponiveis = st.text_input('Quais ferramentas de comunicação estão disponíveis?', help="Liste as ferramentas de comunicação que a empresa utiliza para interagir com seus clientes, como e-mail, telefone, redes sociais, etc.")
     perfil_empresa = st.selectbox('Qual é o perfil da empresa?', ['B2B', 'B2C'], help="Escolha o tipo de relacionamento da empresa com seus clientes: B2B (empresa para empresa) ou B2C (empresa para consumidor).")
-    metas_crm = st.text_input('Quais metas a serem alcançadas com o Inbound Marketing?', help="Descreva as metas específicas que você deseja alcançar com a implementação do CRM. Ex: aumentar taxa de conversão de leads em 20%.")
-    tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['1-100', '100-1000', '1000-'], help="Defina o tamanho da base de dados de clientes. Isso ajudará a escolher as estratégias mais adequadas.")
-    tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?', help="Defina como deve ser a comunicação da marca com seus clientes. Ex: formal, amigável, inspirador.")
-    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?', help="Descreva os fluxos de comunicação ou campanhas de e-mail que serão utilizados no CRM, como nutrição de leads ou campanhas de fidelização.")
 
-    
+    metas_crm = st.text_input('Quais metas a serem alcançadas com o Inbound Marketing?', help="Descreva as metas específicas que você deseja alcançar com a implementação do CRM. Ex: 'Aumentar a taxa de conversão de leads em 20%, gerar 1000 novos leads qualificados por mês.'")
+
+    tamanho_base = st.selectbox('Qual o tamanho da base de dados de clientes?', ['1-100', '100-1000', '1000-'], help="Defina o tamanho da base de dados de clientes. Isso ajudará a escolher as estratégias mais adequadas.")
+
+    tom_voz = st.text_area('Qual o tom de voz desejado para a comunicação?', help="Defina como deve ser a comunicação da marca com seus clientes. Ex: 'Formal, profissional, informativo' ou 'Amigável, casual, próximo'.")
+
+    fluxos_ou_emails = st.text_area('Quais fluxos e/ou e-mails deseja trabalhar?', help="Descreva os fluxos de comunicação ou campanhas de e-mail que serão utilizados no CRM, como nutrição de leads ou campanhas de fidelização. Ex: 'Fluxo de boas-vindas para novos leads, fluxo de nutrição com conteúdo educativo, e-mail marketing com promoções exclusivas para clientes.'")
+
     detalhamento_etapas = {}
     etapas = [
-         "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes", 
-         "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
+        "Qualificação de Leads", "Nutrição de Leads", "Conversão e Fechamento", "Onboarding de Clientes",
+        "Fidelização e Retenção", "Expansão e Upsell", "Reativação de Clientes Inativos"
     ]
     for etapa in etapas:
-        detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3)
+        detalhamento_etapas[etapa] = st.slider(f'Nível de detalhamento para {etapa}', 1, 3, 3, help="Defina o nível de detalhamento desejado para esta etapa do Inbound Marketing (1 = básico, 3 = detalhado).") 
     
     if st.button('Gerar Planejamento'):
         
