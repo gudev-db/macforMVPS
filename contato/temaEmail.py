@@ -4,6 +4,8 @@ import google.generativeai as genai
 import requests
 from datetime import date
 
+
+
 # Configure the Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
 genai.configure(api_key=gemini_api_key)
