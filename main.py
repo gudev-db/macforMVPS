@@ -81,13 +81,13 @@ if login():
     # Sidebar para escolher entre "Plano Estratégico" ou "Brainstorming"
     selecao_sidebar = st.sidebar.radio(
         "Escolha a seção:",
-        ["Planejamentos Estratégicos", "Brainstorming", "Documentos Salvos"],
+        ["Macro", "Micro", "Documentos Salvos"],
         index=0  # Predefinir como 'Plano Estratégico' ativo
     )
 
     # Opções para "Plano Estratégico"
-    if selecao_sidebar == "Planejamentos Estratégicos":
-        st.sidebar.subheader("Planejamentos Estratégicos")
+    if selecao_sidebar == "Macro":
+        st.sidebar.subheader("Planejamentos Completos")
         plano_estrategico = st.sidebar.selectbox(
             "Escolha o tipo de plano:",
             [
@@ -110,10 +110,10 @@ if login():
                 osint_report()
 
     # Opções para "Brainstorming"
-    elif selecao_sidebar == "Brainstorming":
-        st.sidebar.subheader("Brainstorming")
+    elif selecao_sidebar == "Micro":
+        st.sidebar.subheader("Micro")
         brainstorming_option = st.sidebar.selectbox(
-            "Escolha o tipo de brainstorming:",
+            "Escolha o tipo de conteúdo Micro:",
             [
                 "Selecione uma opção",
                 "Brainstorming de Temas de Emails",
