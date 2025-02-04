@@ -131,7 +131,7 @@ def gen_emails():
                 Instigue interação. Faça uma síntese das informaçoes dadas e redija o melhor email possível de uma forma que garanta a retenção ou aquisição do lead.
                 Separe e organize os emails com linhas entre eles. Crie uma conexão forte e profissional entre o destinatário e remetente.
 
-                Exemplos de emails usados hoje que você deve usar como referência para estrutura e tom:{ex_email}
+                Exemplos de emails usados hoje que você deve usar como referência para a escrita do seu:{ex_email}
 
                 """
                 try:
