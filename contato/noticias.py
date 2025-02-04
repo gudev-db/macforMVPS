@@ -44,7 +44,7 @@ def pesquisa():
  
     
     # Intuito do Plano Estratégico
-    assunto_interesse = st.text_input('Intuito do Planejamento estratégico: Utilize esse campo para explicitar quais são as espectativas do cliente no desenvolvimento desse planejamento. Exemplo: Gerar mais leads, aumentar vendas, aumentar reconhecimento em alguma região estratégica, etc', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre. O que você deseja alcançar com esse plano?")
+    assunto_interesse = st.text_input('Assunto de interesse para pesquisar e analisar tendências.', key="intuito_plano", placeholder="Ex: IA no agronegócio.")
     
     
    
@@ -65,7 +65,7 @@ def pesquisa():
         else:
             if st.button('Iniciar Planejamento'):
                 if 1==1:
-                    with st.spinner('Gerando o planejamento de mídias...'):
+                    with st.spinner('Pesquisando tendências...'):
 
 
                             #DUCK DUCK GO SEARCH de tendências
@@ -99,11 +99,11 @@ def pesquisa():
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
                         prompt_SWOT = f'''Dado os retornos da pesquisa de tendências em {tend_novids2}, faça um relatório completo do que foi recebido listando os links de referência. Tire conclusões sobre os retornos, tire insights, veja oportunidades
-                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações.'''
+                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações. Redija um extenso relatório com seus achados com um nível analítico extremamente detalhado.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
                         prompt_SWOT2 = f'''Dado os retornos da pesquisa de tendências em {politic}, faça um relatório completo do que foi recebido listando os links de referência. Tire conclusões sobre os retornos, tire insights, veja oportunidades
-                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações.'''
+                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações. Redija um extenso relatório com seus achados com um nível analítico extremamente detalhado.'''
                         SWOT_output2 = modelo_linguagem.generate_content(prompt_SWOT2).text
 
                         
