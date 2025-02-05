@@ -140,7 +140,7 @@ def planej_mkt_page():
                 if not nome_cliente or not ramo_atuacao or not intuito_plano or not publico_alvo:
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
-                    with st.spinner('Gerando o planejamento de mídias...'):
+                    with st.spinner('Gerando o planejamento...'):
 
 
                             #DUCK DUCK GO SEARCH de tendências
