@@ -375,7 +375,7 @@ def planej_mkt_page():
                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
 
-                                    Essa persona deve representar a MARCA do cliente {nome_cliente}. É uma persona que incorpora seus valores, forma de ser, ramo de atuação. Como a empresa se apresenta para o cliente.
+                                    Essa persona deve representar a MARCA do cliente {nome_cliente}. É uma persona que incorpora a empresa em si. seus valores, forma de ser, ramo de atuação. Como a empresa se apresenta para o cliente.
                                     
                                     - Defina seu nome (deve ser o nome de uma pessoa normal como fernando pessoa, maria crivellari, etc)
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
