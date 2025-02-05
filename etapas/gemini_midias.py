@@ -63,9 +63,6 @@ def planej_midias_page():
 
     ramo_atuacao = st.text_input('Ramo de atuação do cliente:', help="Digite o site do cliente.")
 
-    # Exibir os campos preenchidos com os dados do cliente
-    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente", help="O site do cliente será preenchido automaticamente se o nome do cliente for encontrado no banco de dados.")
-    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao", help="O ramo de atuação do cliente será preenchido automaticamente se o nome do cliente for encontrado no banco de dados.")
 
     # Intuito do Plano Estratégico
     intuito_plano = st.text_input('Intuito do Planejamento estratégico:', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre.", help="""
