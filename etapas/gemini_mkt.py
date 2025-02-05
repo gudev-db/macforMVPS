@@ -81,8 +81,8 @@ def planej_mkt_page():
     nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Ex: 'Empresa XYZ'")
    
     # Exibir os campos preenchidos com os dados do cliente
-    st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
-    st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
+    st.text_input('Site do Cliente:', key="site_cliente")
+    st.text_input('Ramo de Atuação:', key="ramo_atuacao")
     
     # Intuito do Plano Estratégico
     intuito_plano = st.text_input('Intuito do Planejamento estratégico: Utilize esse campo para explicitar quais são as espectativas do cliente no desenvolvimento desse planejamento. Exemplo: Gerar mais leads, aumentar vendas, aumentar reconhecimento em alguma região estratégica, etc', key="intuito_plano", placeholder="Ex: Aumentar as vendas em 30% no próximo trimestre. O que você deseja alcançar com esse plano?")
