@@ -79,10 +79,7 @@ def planej_mkt_page():
 
 
     nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Ex: 'Empresa XYZ'")
-    site_cliente = st.text_input('Site do Cliente:', help="Digite o site do cliente.")
-
-    ramo_atuacao = st.text_input('Ramo de atuação do cliente:', help="Digite o site do cliente.")
-    
+   
     # Exibir os campos preenchidos com os dados do cliente
     st.text_input('Site do Cliente:', value=site_cliente, key="site_cliente")
     st.text_input('Ramo de Atuação:', value=ramo_atuacao, key="ramo_atuacao")
