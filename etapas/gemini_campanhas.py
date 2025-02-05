@@ -24,7 +24,7 @@ def gerar_id_planejamento():
 
 
 guias_mote = '''
-Guia completo para criar um mote de campanha eficaz
+
 Guia completo para criar um mote de campanha eficaz
 
 Você já se perguntou como algumas campanhas publicitárias conseguem capturar a atenção do público e se tornar um sucesso instantâneo? A resposta está, muitas vezes, no poder de um mote de campanha eficaz.
@@ -94,7 +94,6 @@ def planej_campanhas():
     ]
 
     # Use chaves únicas para os elementos
-    tipo = st.selectbox('Selecione o tipo de campanha', tipo_anuncio, key="tipo_anuncio")
     platform = st.selectbox('Selecione a plataforma de anúncios', plats, key="plataforma_anuncios")
     referencia_da_marca = st.text_area('O que a marca faz, quais seus diferenciais, seus objetivos, quem é a marca?', 
                                        key="referencias_marca", 
@@ -124,7 +123,7 @@ def planej_campanhas():
                     - O intuito estratégico do plano de marketing: {intuito_plano}.
                     - O público-alvo: {publico_alvo}.
                     - A referência da marca: {referencia_da_marca}.
-                    - Tipo de anúncio: {tipo}
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
                     - Orçamento: {budget} reais
                     - Data de início: {start_date}
                     - Data fim: {end_date}
@@ -140,7 +139,7 @@ def planej_campanhas():
                         você é um especialista com conhecimento extremamente aprofundado. Você é comunicativo, criativo, único, perspicaz. Você é original. Você é um especialista.
                         
 
-                        1. **Mote de Campanha:** dado o guia para se criar um bom mote de campanha: {guias_mote}. Crie o mote de campanha
+                        1. **Mote de Campanha:** dado o guia para se criar um bom mote de campanha: {guias_mote}. Crie 5 motes de campanha
 
                         2. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
                         Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
