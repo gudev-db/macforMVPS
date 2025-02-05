@@ -269,7 +269,7 @@ def planej_mkt_page():
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        prompt_SWOT = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        prompt_SWOT = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
                                     {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
@@ -280,7 +280,7 @@ def planej_mkt_page():
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        prompt_tendencias = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         , -
                         
@@ -301,7 +301,7 @@ def planej_mkt_page():
                         tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
 
 
-                        prompt_concorrencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
+                        prompt_concorrencias = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
                         
                                     
 
@@ -313,7 +313,7 @@ def planej_mkt_page():
 '''
                         concorrencias_output = modelo_linguagem.generate_content(prompt_concorrencias).text
 
-                        prompt_PEST = f'''Você é Philip Kotler, especialista em administração de marketing.
+                        prompt_PEST = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing.
                         
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
                                     considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic} e dados econômicos
@@ -374,6 +374,8 @@ def planej_mkt_page():
                                     
                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
+
+                                    Essa persona deve representar a MARCA do cliente {nome_cliente}. É uma persona que incorpora seus valores, forma de ser, ramo de atuação. Como a empresa se apresenta para o cliente.
                                     
                                     - Defina seu nome (deve ser o nome de uma pessoa normal como fernando pessoa, maria crivellari, etc)
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
