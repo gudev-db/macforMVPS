@@ -113,6 +113,8 @@ def planej_mkt_page():
     # Referência da Marca
     referencia_da_marca = st.text_area('Referência de marca: Utilize esse campo para escrever um texto que define o cliente quanto ao seu ramo de atuação, objetivos e personalidade.', key="referencia_da_marca", placeholder="Conte um pouco mais sobre sua marca, o que ela representa, seus valores e diferenciais no mercado.")
 
+    sucesso = st.text_input('O que é sucesso para a marca?:', key="sucesso", help='Redija aqui um texto que define o que a marca considera como sucesso. O que ela precisa alcançar para considerar que atingiu os seus objetivos?')
+
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
@@ -148,7 +150,7 @@ def planej_mkt_page():
                         querystring = {"q":f"tendencias em {tendaux}"}
                             
                         headers = {
-                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
                                 "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
@@ -164,7 +166,7 @@ def planej_mkt_page():
                         querystring2 = {"q":f"dados econômicos relevantes no brasil"}
                             
                         headers = {
-                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
                                 "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
@@ -180,7 +182,7 @@ def planej_mkt_page():
                         querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
                             
                         headers = {
-                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
                                 "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
@@ -196,7 +198,7 @@ def planej_mkt_page():
                         querystring5 = {"q":f"novidades sobre {concorrentes}"}
                             
                         headers = {
-                                "x-rapidapi-key": rapid_key,
+                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
                                 "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
@@ -280,7 +282,7 @@ def planej_mkt_page():
 
                         prompt_tendencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
-                        em português brasileiro, -
+                        , -
                         
                                     -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
                                     tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
@@ -299,9 +301,7 @@ def planej_mkt_page():
                         tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
 
 
-                        prompt_concorrencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
-                        
-                        em português brasileiro, -
+                        prompt_concorrencias = f'''Você é Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
                         
                                     
 
@@ -323,16 +323,16 @@ def planej_mkt_page():
                         
                         PEST_output = modelo_linguagem.generate_content(prompt_PEST).text
 
-                        prompt_golden = f'''Golden Circle completo com 'how', 'why' e 'what' resumidos 
-                                    em uma frase cada em português brasileiro. Considerando o seguinte contexto 
+                        prompt_golden = f'''Como um especialista em administração de marketing, gere 5 Golden Circles completos com 'how', 'why' e 'what' resumidos 
+                                    em uma frase cada. Considerando e sintetizando de forma perspicaz o seguinte contexto 
                                      e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
-                                    {referencia_da_marca}, a análise SWOT ({SWOT_output}).'''
+                                    {referencia_da_marca}, a análise SWOT ({SWOT_output}) e considerando que a marca considera como sucesso: {sucesso}.'''
                       
                         golden_output = modelo_linguagem.generate_content(prompt_golden).text
 
                         prompt_posicionamento = f'''Em português brasileiro,. 
                             
-                                    levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}).
+                                    levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}) e considerando que a marca considera como sucesso: {sucesso}.
                                     
                                     Gerar 5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
                                     devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan) Seja original,
@@ -370,7 +370,7 @@ def planej_mkt_page():
 
 
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
-                                    seguinte contexto 
+                                    seguinte contexto. Lembre que a brand persona é uma persona representativa da marca e da forma como ela se apresenta para o cliente.
                                     
                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
@@ -382,7 +382,7 @@ def planej_mkt_page():
                   
                         brand_persona_output = modelo_linguagem.generate_content(prompt_brand_persona).text
 
-                        prompt_buyer_persona = f'''Descrição detalhada da buyer persona considerando o público-alvo: {publico_alvo} e o 
+                        prompt_buyer_persona = f'''Descrição detalhada de 3 buyer personas considerando o público-alvo: {publico_alvo} e o 
                                     objetivo do plano estratégico como descrito em {intuito_plano} com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
