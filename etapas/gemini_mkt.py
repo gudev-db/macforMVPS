@@ -71,7 +71,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente):    # Gerar o ID único para o planejamento
+def save_to_mongo_MKT(SWOT_output,PEST_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente):    # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
     # Prepara o documento a ser inserido no MongoDB
@@ -82,7 +82,6 @@ def save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_o
         "Etapa_1_Pesquisa_Mercado": {
             "Análise_SWOT": SWOT_output,
             "Análise_PEST": PEST_output,
-            "Análise_Tendências": tendencias_output,
             "Análise_Concorrência": concorrencias_output,
         },
         "Etapa_2_Estrategica": {
@@ -194,20 +193,7 @@ def planej_mkt_page():
                         dados_econ_brasil = response.text
 
 
-                        #DUCK DUCK GO SEARCH de ferramentas
 
-                        url = "https://duckduckgo8.p.rapidapi.com/"
-                            
-                        querystring3 = {"q":f"ferramentas relevantes para o(s) setor(es) de {ramo_atuacao}"}
-                            
-                        headers = {
-                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
-                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-                            }
-                            
-                        response = requests.get(url, headers=headers, params=querystring3)
-                            
-                        ferramentas_rel = response.text
 
 
                         #DUCK DUCK GO SEARCH de concorrência
@@ -274,17 +260,7 @@ def planej_mkt_page():
                                 max_results=max_results
                             )
                             
-                        tend_novids1 = client1.search(
-                                f'''Quais as recentes tendências de mercado para {ramo_atuacao}?''',
-                                days=days, 
-                                max_results=max_results
-                            )
-                            
-                        tend_ramo = client1.search(
-                                f'''Quais as recentes tendências de mercado para o ramo de atuação do cliente explicitado em: {ramo_atuacao}?''',
-                                days=days, 
-                                max_results=max_results
-                            )
+
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
@@ -299,25 +275,7 @@ def planej_mkt_page():
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_tendencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
-                        
-                        , - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
-                        
-                                    -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
-                                    tendências de ramo de atuação do cliente: ({tend_ramo}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
-                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Em bullet points pra cada tendencia e 2-3 paragrafos pra cada bullet point
 
-                                    -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
-                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
-
-                                    -Comente sobre as ferramentas relevantes no setor de atuação do cliente explicitadas em ({ferramentas_rel}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
-                                    explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
-
-                                    
-                                    -Realize um relatório detalhado e formal de todas as tendências e como isso pode ser usado no planejamento estratégico.
-
-'''
-                        tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
 
 
                         prompt_concorrencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
@@ -461,9 +419,7 @@ def planej_mkt_page():
                         st.markdown(SWOT_output)
                         st.subheader('1.2 Análise PEST')
                         st.markdown(PEST_output)
-                        st.subheader('1.3 Análise de tendências')
-                        st.markdown(tendencias_output)
-                        st.subheader('1.4 Análise de concorrências')
+                        st.subheader('1.3 Análise de concorrências')
                         st.markdown(concorrencias_output)
 
                         
@@ -482,4 +438,4 @@ def planej_mkt_page():
                         st.markdown(tom_output)
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_MKT(SWOT_output,PEST_output,tendencias_output, concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
+                        save_to_mongo_MKT(SWOT_output,PEST_output,concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
