@@ -297,7 +297,7 @@ def planej_mkt_page():
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
                                     considerando:   contexto político: {politic}, contexto econômico: {economic} e dados econômicos
                                     relevantes: ({dados_econ_brasil}), contexto social: ({social})
-                                    e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). Leve em conta as tendencias em ({tendencias_output}).
+                                    e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). 
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
                         
                         PEST_output = modelo_linguagem.generate_content(prompt_PEST).text
