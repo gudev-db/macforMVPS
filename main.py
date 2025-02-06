@@ -65,7 +65,7 @@ def login():
     senha = st.text_input("Senha", type="password")
 
     if st.button("Entrar"):
-        if nome_usuario == "admin" and senha == "senha123":
+        if nome_usuario == "admin" and senha == "senha1234":
             st.session_state.logged_in = True
             st.success("Login bem-sucedido!")
             return True
