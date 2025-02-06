@@ -348,6 +348,7 @@ def planej_mkt_page():
                             
                                     - levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}) e considerando que a marca considera como sucesso: {sucesso}.
                                     - considerando os objetivos de marca ({objetivos_de_marca})
+                                    - traga impacto, originalidade, sagacidade com seu retorno
 
                                     Gerar 1 Posicionamento de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
                                     devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan) Seja original,
