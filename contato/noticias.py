@@ -22,7 +22,7 @@ genai.configure(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
-client1 = TavilyClient(api_key='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')
+
 
 
 
@@ -88,31 +88,24 @@ def pesquisa():
 
                             #TAVILY PEST
                             
-                        politic = client1.search(
-                                f'''Como está a situação política mundial atualmente em um contexto geral e de forma detalhada para planejamento 
-                                estratégico de marketing digital no contexto do ramo de atuação: {assunto_interesse}?''',
-                                days=90, 
-                                max_results=20
-                            )
+                       
                             
                       
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
                         prompt_SWOT = f'''Dado os retornos da pesquisa de tendências em {tend_novids2}, faça um relatório completo do que foi recebido listando os links de referência. Tire conclusões sobre os retornos, tire insights, veja oportunidades
-                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações. Redija um extenso relatório com seus achados com um nível analítico extremamente detalhado.'''
+                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações. Redija um extenso relatório com seus achados com um nível analítico extremamente detalhado.
+                        Print os links resultantes da pesquisa.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_SWOT2 = f'''Dado os retornos da pesquisa de tendências em {politic}, faça um relatório completo do que foi recebido listando os links de referência. Tire conclusões sobre os retornos, tire insights, veja oportunidades
-                        de negócios para isso. Analise o que há de interessante. Analise uma tendência conjunta sobre esses retornos. Analise, extraia informações. Redija um extenso relatório com seus achados com um nível analítico extremamente detalhado.'''
-                        SWOT_output2 = modelo_linguagem.generate_content(prompt_SWOT2).text
+                        
 
                         
 
                         st.header('Pesquisa de tendências')
-                        st.subheader('1 Análise de tendências - DuckDuckGo')
+                        st.subheader('Análise de tendências - DuckDuckGo')
                         st.markdown(SWOT_output)
-                        st.subheader('2 Análise de tendências - Tavily')
-                        st.markdown(SWOT_output2)
+
                        
 
                         
