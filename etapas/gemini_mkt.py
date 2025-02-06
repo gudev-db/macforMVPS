@@ -96,8 +96,6 @@ def planej_mkt_page():
     # Sites dos Concorrentes
     site_concorrentes = st.text_input('Site dos concorrentes: Utilize esse campo para colocar os sites dos concorrentes. A forma como decidir dividí-los não importa. Ex (, ou ; ou .)', key="site_concorrentes", placeholder="Ex: www.loja-a.com.br, www.loja-b.com.br, www.loja-c.com.br. Insira os sites dos seus concorrentes para compararmos.")
     
-    # Tendências de Interesse
-    tendaux = st.text_input('Tendências de mercado estratégicas: Utilize esse campo para definir quais tendências de mercado você gostaria que os agentes de IA pesquisassem sobre de uma forma que o retorno tenha impacto no planejamento estratégico.', key="tendaux", placeholder="Ex: IA, novos fluxos de marketing, etc. Fale sobre as tendências que você está observando e que podem influenciar seu negócio.")
     
     # Objetivos de Marca
     objetivos_opcoes = [
@@ -259,7 +257,7 @@ def planej_mkt_page():
                         prompt_SWOT = f'''Assumindo um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
-                                    {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
+                                    {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}. E considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca}):
                                     realize a Análise SWOT completa em português brasileiro. 
                                     Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
                                     Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
@@ -269,7 +267,7 @@ def planej_mkt_page():
 
                         prompt_tendencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
-                        , -
+                        , - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
                         
                                     -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
                                     tendências de ramo de atuação do cliente: ({tend_ramo}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
@@ -291,7 +289,7 @@ def planej_mkt_page():
                         prompt_concorrencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
                         
                                     
-
+                                    - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
                                     -Considerando {concorrentes} como a concorrência direta de {nome_cliente}, redija sobre as notícias sobre o concorrente explicitadas em {novids_conc} e como o
                                     cliente {nome_cliente} pode superar isso. Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista.
@@ -301,7 +299,8 @@ def planej_mkt_page():
                         concorrencias_output = modelo_linguagem.generate_content(prompt_concorrencias).text
 
                         prompt_PEST = f'''Assumindo um especialista em administração de marketing.
-                        
+                                    - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
+
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
                                     considerando:   contexto político: {politic}, contexto econômico: {economic} e dados econômicos
                                     relevantes: ({dados_econ_brasil}), contexto social: ({social})
@@ -317,18 +316,20 @@ def planej_mkt_page():
                         - traga um tcham
                         - você é um especialista em administração de marketing; Você tem todo o conhecimento possível comparavel à Simon Sinek
                         - Você está aqui para fazer a diferença
+                        - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
 
                         Como um especialista em administração de marketing, gere um Golden Circle completo com 'how', 'why' e 'what' resumidos 
                                     em uma frase cada. Considerando e sintetizando de forma perspicaz o seguinte contexto 
                                      e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
-                                    {referencia_da_marca}, a análise SWOT ({SWOT_output}) e considerando que a marca considera como sucesso: {sucesso}.'''
+                                    {referencia_da_marca}, a análise SWOT ({SWOT_output}).'''
                       
                         golden_output = modelo_linguagem.generate_content(prompt_golden).text
 
                         prompt_posicionamento = f'''
                             
                                     - levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}) e considerando que a marca considera como sucesso: {sucesso}.
-                                    
+                                    - considerando os objetivos de marca ({objetivos_de_marca})
+
                                     Gerar 1 Posicionamento de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
                                     devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan) Seja original,
                                     esperto com as palavras na construção do slogan. Correlacione-as e crie impacto com a construção do seu slogan
@@ -384,7 +385,10 @@ def planej_mkt_page():
                   
                         brand_persona_output = modelo_linguagem.generate_content(prompt_brand_persona).text
 
-                        prompt_buyer_persona = f'''Descrição detalhada de 3 buyer personas considerando o público-alvo: {publico_alvo} e o 
+                        prompt_buyer_persona = f'''
+                                    - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
+                        
+                        Descrição detalhada de 3 buyer personas considerando o público-alvo: {publico_alvo} e o 
                                     objetivo do plano estratégico como descrito em {intuito_plano} com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
