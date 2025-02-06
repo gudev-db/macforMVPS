@@ -143,20 +143,7 @@ def planej_mkt_page():
                     with st.spinner('Gerando o planejamento...'):
 
 
-                            #DUCK DUCK GO SEARCH de tendências
 
-                        url = "https://duckduckgo8.p.rapidapi.com/"
-                            
-                        querystring = {"q":f"tendencias em {tendaux}"}
-                            
-                        headers = {
-                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
-                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-                            }
-                            
-                        response = requests.get(url, headers=headers, params=querystring)
-                            
-                        tend_novids2 = response.text
 
 
                         #DUCK DUCK GO SEARCH de tendências
@@ -186,7 +173,7 @@ def planej_mkt_page():
                                 "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
                             }
                             
-                        response = requests.get(url, headers=headers, params=querystring2)
+                        response = requests.get(url, headers=headers, params=querystring3)
                             
                         ferramentas_rel = response.text
 
@@ -285,7 +272,7 @@ def planej_mkt_page():
                         , -
                         
                                     -Relatório extremamente detalhado de Análise de tendências consideranto as respostas da pesquisa obtidas em tendências de novidades: ({tend_novids1}) e 
-                                    tendências de ramo de atuação do cliente: ({tend_ramo}) e ({tend_novids2}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
+                                    tendências de ramo de atuação do cliente: ({tend_ramo}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Em bullet points pra cada tendencia e 2-3 paragrafos pra cada bullet point
 
                                     -Comente sobre os dados econômicos relevantes do brasil observados em: ({dados_econ_brasil}). Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
@@ -316,7 +303,7 @@ def planej_mkt_page():
                         prompt_PEST = f'''Assumindo um especialista em administração de marketing.
                         
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
-                                    considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic} e dados econômicos
+                                    considerando:   contexto político: {politic}, contexto econômico: {economic} e dados econômicos
                                     relevantes: ({dados_econ_brasil}), contexto social: ({social})
                                     e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). Leve em conta as tendencias em ({tendencias_output}).
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
