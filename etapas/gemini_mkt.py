@@ -355,6 +355,7 @@ def planej_mkt_page():
                         - você é um especialista em administração de marketing; Você tem todo o conhecimento possível comparavel à Simon Sinek
                         - Você está aqui para fazer a diferença
                         - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
+                        - seja único. una o que torna o cliente {nome_cliente} de diferente em relação ao resto.
 
                         Como um especialista em administração de marketing, gere um Golden Circle completo com 'how', 'why' e 'what' resumidos 
                                     em uma frase cada. Considerando e sintetizando de forma perspicaz o seguinte contexto 
@@ -420,7 +421,7 @@ def planej_mkt_page():
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
                                     -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?
                                     
-                                    Crie exemplos práticos de aplicação das personas também.'''
+                                    Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?'''
                   
                         brand_persona_output = modelo_linguagem.generate_content(prompt_brand_persona).text
 
@@ -433,7 +434,7 @@ def planej_mkt_page():
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
                                     suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
 
-                                    Crie exemplos práticos de aplicação das personas também.
+                                    Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?
                                     '''
                   
                         buyer_persona_output = modelo_linguagem.generate_content(prompt_buyer_persona).text

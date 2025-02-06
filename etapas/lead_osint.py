@@ -215,7 +215,7 @@ def osint_report():
                 Qual seus objetivos? O que quer alcançar? No que provavelmente já falhou? Tire inúmeras conclusões sobre o cliente. Quais seus interesses?
                 Como posso tirar vantagem disso se quero ser contratado como empresa de marketing digital para eles?
 
-                Também crie a Persona de Abordagem, o tipo de pessoa com a qual ela seria mais receptiva (incluindo gênero, personalidade, posição, estado civil, idade, aparência, tom, trajetória de vida).
+                Também crie a Persona de Abordagem, o tipo de pessoa com a qual ela seria mais receptiva (incluindo gênero, personalidade, posição, estado civil, idade, aparência, tom, trajetória de vida). Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?
                 """
 
                 # Gera o relatório com Gemini
