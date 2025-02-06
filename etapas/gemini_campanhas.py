@@ -97,7 +97,6 @@ def planej_campanhas():
                                        placeholder="Ex: A marca X oferece roupas sustentáveis com foco em conforto e estilo.", 
                                        height=200)
     
-    budget = st.text_input('Orçamento para o anúncio:', key="budget", placeholder="Valor em reais")
     start_date = st.date_input("Data de Início:", key="start_date")
     end_date = st.date_input("Data de Fim:", key="end_date")
 
@@ -121,7 +120,6 @@ def planej_campanhas():
                     - O público-alvo: {publico_alvo}.
                     - A referência da marca: {referencia_da_marca}.
                     - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
-                    - Orçamento: {budget} reais
                     - Data de início: {start_date}
                     - Data fim: {end_date}
                     - Plataforma: {platform}
@@ -149,7 +147,7 @@ def planej_campanhas():
                         
                         5. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
                         6. **Descrição:** Texto associado ao anúncio.
-                        7. **Cronograma:** Cronograma de anúncios em formato de fluxograma. Seja estratégico com o orçamento e fluxo de uma forma que otimize os resultados. Você é um especialista bem analítico em marketing digital.
+                        7. **Cronograma:** Cronograma de anúncios em formato de fluxograma. Seja estratégico com o fluxo de uma forma que otimize os resultados. Você é um especialista bem analítico em marketing digital.
 
                         """
                     ads_output = modelo_linguagem.generate_content(prompt_ads).text

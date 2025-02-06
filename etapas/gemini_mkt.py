@@ -269,7 +269,7 @@ def planej_mkt_page():
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
-                        prompt_SWOT = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        prompt_SWOT = f'''Assumindo um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
                                     {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}.
@@ -280,7 +280,7 @@ def planej_mkt_page():
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
                         SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
 
-                        prompt_tendencias = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
+                        prompt_tendencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         , -
                         
@@ -301,7 +301,7 @@ def planej_mkt_page():
                         tendencias_output = modelo_linguagem.generate_content(prompt_tendencias).text
 
 
-                        prompt_concorrencias = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
+                        prompt_concorrencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
                         
                                     
 
@@ -313,7 +313,7 @@ def planej_mkt_page():
 '''
                         concorrencias_output = modelo_linguagem.generate_content(prompt_concorrencias).text
 
-                        prompt_PEST = f'''Assumindo o papel de Philip Kotler, especialista em administração de marketing.
+                        prompt_PEST = f'''Assumindo um especialista em administração de marketing.
                         
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
                                     considerando o retorno da pesquisa de tendências em: ({tend_novids2}),    contexto político: {politic}, contexto econômico: {economic} e dados econômicos
@@ -323,18 +323,26 @@ def planej_mkt_page():
                         
                         PEST_output = modelo_linguagem.generate_content(prompt_PEST).text
 
-                        prompt_golden = f'''Como um especialista em administração de marketing, gere 5 Golden Circles completos com 'how', 'why' e 'what' resumidos 
+                        prompt_golden = f'''
+                        
+                        - não seja genérico
+                        - traga impacto com seu output
+                        - traga um tcham
+                        - você é um especialista em administração de marketing; Você tem todo o conhecimento possível comparavel à Simon Sinek
+                        - Você está aqui para fazer a diferença
+
+                        Como um especialista em administração de marketing, gere um Golden Circle completo com 'how', 'why' e 'what' resumidos 
                                     em uma frase cada. Considerando e sintetizando de forma perspicaz o seguinte contexto 
                                      e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca}, a análise SWOT ({SWOT_output}) e considerando que a marca considera como sucesso: {sucesso}.'''
                       
                         golden_output = modelo_linguagem.generate_content(prompt_golden).text
 
-                        prompt_posicionamento = f'''Em português brasileiro,. 
+                        prompt_posicionamento = f'''
                             
-                                    levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}) e considerando que a marca considera como sucesso: {sucesso}.
+                                    - levando em conta a análise SWOT: ({SWOT_output}) e o golden circle: ({golden_output}) e considerando que a marca considera como sucesso: {sucesso}.
                                     
-                                    Gerar 5 Posicionamentos de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
+                                    Gerar 1 Posicionamento de marca para o cliente {nome_cliente} do ramo de atuação {ramo_atuacao} Com um slogan com essas inspirações (que não
                                     devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan) Seja original,
                                     esperto com as palavras na construção do slogan. Correlacione-as e crie impacto com a construção do seu slogan
                                     original. Tire ideias pulo do gato:
@@ -363,6 +371,9 @@ def planej_mkt_page():
                                     e Uma frase detalhada.
 
                                     
+                                    - O posicionamento de marca deve ter impacto, um tcham. Não seja genérico.
+                                    - Me traga a lógica de como o posicionamento foi pensado. Me explique porque ele é como é. Justifique. Use base
+                                    de conhecimento de marketing digital para justificá-lo.
                                     
                                     '''
                   
@@ -380,7 +391,9 @@ def planej_mkt_page():
                                     - Defina seu nome (deve ser o nome de uma pessoa normal como fernando pessoa, maria crivellari, etc)
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
-                                    -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?'''
+                                    -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?
+                                    
+                                    Crie exemplos práticos de aplicação das personas também.'''
                   
                         brand_persona_output = modelo_linguagem.generate_content(prompt_brand_persona).text
 
@@ -389,15 +402,24 @@ def planej_mkt_page():
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
                                     suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
-                                    Crie oito buyer personas.'''
+
+                                    Crie exemplos práticos de aplicação das personas também.
+                                    '''
                   
                         buyer_persona_output = modelo_linguagem.generate_content(prompt_buyer_persona).text
 
 
                         prompt_tom = f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. Levando em conta o ramo de atuação: ({ramo_atuacao}), o brand persona: ({brand_persona_output})
                         e o buyer persona: ({buyer_persona_output}).
-                                    Retorne 10 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
-                                    relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.'''
+                                    Retorne 5 adjetivos que definem o tom com suas respectivas explicações. ex: tom é amigavel, para transparecer uma 
+                                    relação de confiança com frases de exemplo de aplicação do tom em português brasileiro.
+                                    
+                                    
+                                    Crie exemplos práticos do tom de voz proposto. Você está aqui para substituir o trabalho dos redatores.
+                                    
+                                    Me diga também contra exemplos do tom de voz; Me mostre como ele não deve se comunicar.
+                                    
+                                    - Não seja genérico. Traga impacto no seu retorno. Você está aqui para direcionar o trabalho da equipe.'''
                   
                         tom_output = modelo_linguagem.generate_content(prompt_tom).text
 
