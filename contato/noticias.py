@@ -89,7 +89,7 @@ def pesquisa():
                             #TAVILY PEST
                             
                         politic = client1.search(
-                                f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
+                                f'''Como está a situação política mundial atualmente em um contexto geral e de forma detalhada para planejamento 
                                 estratégico de marketing digital no contexto do ramo de atuação: {assunto_interesse}?''',
                                 days=90, 
                                 max_results=20
