@@ -27,6 +27,8 @@ def gen_temas_emails():
 
     destinatarios = st.text_input("Caracterize os destinatários quanto a sua segmentação:")
 
+    obs_ajustes = st.text_input("Escreva aqui algumas observações para ajustar a saída:")
+
     
     if st.button("Gerar Temas de Emails"):
         if not nome_cliente or not ramo_atuacao or not destinatarios:
@@ -44,6 +46,10 @@ def gen_temas_emails():
                 
                 # Generate email themes using the Gemini model
                 prompt = f"""
+
+                -Levando em conta as seguintes observações: {obs_ajustes};
+
+
                  Crie um cronograma anual de temas de emails específicos para CADA UMA das segmentações de leads conforme {destinatarios} com fins de nutrição de leads. 
                 O remetente dos emails é {nome_cliente}, que é um tipo de empresa {tipo_empresa}, que atua no ramo de {ramo_atuacao}. Considerando novidades no ramo de atuação {tend_novids2}.
                 A empresa fornece serviços {servicos_empresa}. Eis um texto que caracteriza a empresa: {referencia_da_marca}.
