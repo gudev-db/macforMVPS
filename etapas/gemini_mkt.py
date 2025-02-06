@@ -328,7 +328,6 @@ def planej_mkt_page():
 
                         prompt_golden = f'''
 
-                        eis uma explicação detalhada do que é um golden circle de acordo com Simon Sinek: {golden_exp};
                         
                         - não seja genérico
                         - traga impacto com seu output
