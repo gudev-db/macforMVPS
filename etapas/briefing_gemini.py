@@ -9,6 +9,214 @@ from tavily import TavilyClient
 from pymongo import MongoClient
 import requests
 
+oq_brief = '''É O DOCUMENTO QUE
+CONSOLIDA TODA INFORMAÇÃO
+RELEVANTE E NECESSÁRIA
+PARA A EXECUÇÃO DO
+TRABALHO.
+
+serve como guia, inspiração e também como destrave para
+o processo estratégico e criativo.
+
+
+ANTES DE INICIAR QUALQUER TRABALHO DE
+COMUNICAÇÃO/ESTRATÉGIA É IMPORTANTE
+QUE O PLANEJADOR TENHA O BRIEFING
+CORRETO PARA CONSEGUIR CONSTRUIR A
+MELHOR SOLUÇÃO PARA O OBJETIVO.
+
+
+UM BOM BRIEFING DEVE SER
+
+CLARO
+CONCISO
+LINEAR
+INSPIRADOR
+
+As informações precisam estar detalhadas
+de forma precisa, com uma narrativa que
+seja de fácil entendimento e que fique
+evidente qual é o problema a ser
+resolvido.
+
+DESAFIOS PARA A
+CONSTRUÇÃO DE UM BRIEFING
+POTENTE:
+
+INFORMAÇÕES QUE SÃO REALMENTE RELEVANTES.
+
+NÃO ABORDAR OBJETIVOS E
+INFORMAÇÕES SECUNDÁRIAS QUE NÃO
+SEJAM RELEVANTE
+
+PARA O TRABALHO. MUITAS VEZES MENOS É MAIS.
+
+# ORGANIZAÇÃO DA INFORMAÇÃO
+# ASSERTIVIDADE
+
+# DIRECIONAMENTO CLARO
+
+INFORMAÇÕES QUE
+SÃO
+FUNDAMENTAIS:
+
+Contexto
+
+Objetivo do projeto
+Target (Público-alvo)
+Mercado / Concorrência
+Budget (orçamento)
+Prazo
+
+Pontos de atenção
+
+2023
+
+MIAMI AD SCHOOL
+
+BRIEFING & INSIGHT
+
+BRIEFING & INSIGHT
+
+MIAMI AD SCHOOL
+
+2023
+
+INFORMAÇÕES QUE
+SÃO
+FUNDAMENTAIS:
+
+_CONTEXTO
+
+Por que esse trabalho vai ser desenvolvido?
+
+Um panorama geral sobre o que está acontecendo
+e uma breve introdução do que vai ser explorado.
+
+ex: “nos últimos anos a categoria se tornou extremamente
+competitiva e com isso a imagem da marca vem perdendo
+força como referência em inovação"
+
+2023
+
+MIAMI AD SCHOOL
+
+BRIEFING & INSIGHT
+
+BRIEFING & INSIGHT
+
+MIAMI AD SCHOOL
+
+2023
+
+INFORMAÇÕES QUE
+SÃO
+FUNDAMENTAIS:
+
+_OBJETIVO DO PROJETO
+
+Qual é o principal desafio a ser resolvido?
+
+Lançamento de produto
+Fortalecimento de imagem
+Posicionamento de marca
+Reposicionamento de marca
+Campanha institucional
+Campanha de aquisição
+Rejuvenescimento de marca
+Jornada do consumidor
+
+2023
+
+MIAMI AD SCHOOL
+
+BRIEFING & INSIGHT
+
+BRIEFING & INSIGHT
+
+MIAMI AD SCHOOL
+
+2023
+
+INFORMAÇÕES QUE
+SÃO
+FUNDAMENTAIS:
+
+_TARGET (PÚBLICO-ALVO)
+
+Com quem iremos nos conectar?
+
+_Faixa etária
+
+_Classe social
+
+_Localização
+
+_Hábitos de consumo
+
+_Descrição atitudinal - muito importante
+
+2023
+
+MIAMI AD SCHOOL
+
+BRIEFING & INSIGHT
+
+BRIEFING & INSIGHT
+
+MIAMI AD SCHOOL
+
+2023
+
+INFORMAÇÕES QUE
+SÃO
+FUNDAMENTAIS:
+
+2023
+
+MIAMI AD SCHOOL
+
+BRIEFING & INSIGHT
+
+_MERCADO / CONCORRÊNCIA
+
+Em que mar navegamos? Existe algum ponto de atenção?
+
+últimos movimentos de comunicação, posicionamento, iniciativas de marca e comunicação
+
+_Cenário atual
+
+_Fortalezas
+
+_Fraquezas
+
+_Principais movimentos
+
+_Concorrentes diretos
+
+BRIEFING & INSIGHT
+
+MIAMI AD SCHOOL
+
+2023
+
+INFORMAÇÕES QUE
+SÃO
+FUNDAMENTAIS:
+
+_BUDGET (ORÇAMENTO) E PRAZO
+
+Qual é o nosso universo de execução?
+
+_PONTOS DE ATENÇÃO
+
+Existe alguma dica que vale ser ressaltada que
+ajudará no projeto?
+
+'''
+
+
+
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
@@ -91,7 +299,12 @@ def briefing():
 
 
 
-                        prompt_context = f'''Você é um gerente de projetos altamente qualificado com escrita impecável.
+                        prompt_context = f'''
+                        Considerando as diretrizes para o desenvolvimento de um bom documetno de Briefing: ({oq_brief})
+                        
+                        Você é um gerente de projetos altamente qualificado com escrita impecável.
+
+                        
                         
                         A empresa de Marketing Digital Macfor foi contratada pelo cliente {nome_cliente}.
                         
@@ -118,7 +331,10 @@ Com isso, queremos oferecer um Webinar para estaremos com os produtores, mostran
                         context_output = modelo_linguagem.generate_content(prompt_context).text
 
 
-                        prompt_criacao = f'''Você é um gerente de projetos altamente qualificado com escrita impecável.
+                        prompt_criacao = f'''
+                        Considerando as diretrizes para o desenvolvimento de um bom documetno de Briefing: ({oq_brief})
+                        
+                        Você é um gerente de projetos altamente qualificado com escrita impecável.
 
                         Aqui criamos o documento que guia o processo criativo da Macfor.
                         
