@@ -77,11 +77,11 @@ def briefing():
                 limpar_estado()
                 st.experimental_rerun()
         else:
-            if st.button('Iniciar Planejamento'):
+            if st.button('Gerar Briefing'):
                 if not nome_cliente:
                     st.write("Por favor, preencha todas as informações do cliente.")
                 else:
-                    with st.spinner('Gerando o planejamento...'):
+                    with st.spinner('Gerando o documento de briefing...'):
 
 
 
@@ -95,11 +95,14 @@ def briefing():
                         
                         A empresa de Marketing Digital Macfor foi contratada pelo cliente {nome_cliente}.
                         
-                        1. Qual é o projeto ou peça?: {projeto_peca}.
+                        1. Qual é o projeto ou peça? (EX: Projeto Webinar Soja. Desenvolvimento de campanhas para promover o Webinar, atrair audiência e coletar leads qualificados.): {projeto_peca}.
 
-                        2. Qual o cenário em que o cliente se encontra nesse momento?: {cenario}
+                        2. Qual o cenário em que o cliente se encontra nesse momento? (Ex. O plantio da safra de soja terá início na segunda quinzena de Setembro, momento em que os produtores colocam todas suas energias sobre a lavoura para garantir o timing correto da cultura, uma vez que a janela de plantio é extremamente importante para o sucesso da cultura e também da safrinha.
 
-                        3. Quais são os objetivos do cliente ao contratar a Macfor?: {objetivos}
+Com isso, queremos oferecer um Webinar para estaremos com os produtores, mostrando que a Syngenta é a empresa da soja. Momentos antes da safra se iniciar, queremos oferecer um bate-papo informal de produtor para produtor onde nos colocamos do lado dele, discutindo assuntos propostos por eles, para a melhora do manejo e atingimento do potencial máximo da lavoura.
+): {cenario}
+
+                        3. Quais são os objetivos do cliente ao contratar a Macfor? (Queremos estreitar e fortalecer nossa relação com pequenos produtores de soja, abrindo canais de comunicação onde o próprio produtor exerce a fala, divide experiências, promove nossa marca.): {objetivos}
 
                         4. Público alvo: {publico}
 
@@ -125,9 +128,9 @@ def briefing():
 
                         2. Seguir orientação de KV? Qual deverá ser usado?: {KV}
 
-                        3. O que vamos dizer na comunicação?: {mensagem}
+                        3. O que vamos dizer na comunicação? (Ex. Dar início a Jornada da Soja. Em nossos Webinars, disponibilizaremos conteúdos ricos para todas as etapas da cultura. Conteúdos nos quais serão oferecidos principalmente pelos próprios produtores, em parceria com a Syngenta. Será uma troca de experiências de produtor para produtor, onde os principais temas foram escolhidos por eles mesmos.): {mensagem}
 
-                        4. Existe alguma referência, restrição, obrigatoriedade sobre uso de imagens, palavras e termos?: {restricoes}
+                        4. Existe alguma referência, restrição, obrigatoriedade sobre uso de imagens, palavras e termos? (Ex. Precisamos aplicar o logo da CESB em todas as nossas peças de comunicação. Incluir link no Drive para as referências.): {restricoes}
 
                         5. Quais redes sociais deverão ser usadas?: {redes}
 
