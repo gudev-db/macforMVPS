@@ -10,6 +10,7 @@ from tavily import TavilyClient
 from etapas.gemini_midias import planej_midias_page
 from etapas.gemini_crm import planej_crm_page
 from etapas.gemini_campanhas import planej_campanhas
+from etapas.briefing_gemini import briefing
 import google.generativeai as genai
 from contato.temaEmail import gen_temas_emails
 from etapas.image_gen import gen_img
@@ -120,6 +121,7 @@ if login():
             "Planejamento",
             "CRM",
             "Mídias",
+            "Briefing",
             "Documentos Salvos"
         ],
         index=0  # Predefinir como 'Pesquisa e Estratégia' ativo
@@ -190,6 +192,11 @@ if login():
                 planej_campanhas()
             elif midias_option == "Geração de Imagens":
                 gen_img()
+
+
+    elif selecao_sidebar == "Briefing":
+        st.sidebar.subheader("Desenvolver documento de Briefing")
+        briefing()
 
     # Seção para "Documentos Salvos"
     elif selecao_sidebar == "Documentos Salvos":
