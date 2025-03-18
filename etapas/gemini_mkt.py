@@ -204,7 +204,7 @@ def planej_mkt_page():
 
                         novids_conc = client.models.generate_content(
                             model=model_id,
-                            contents=f"novidades sobre {concorrentes}",
+                            contents=f"Faça uma análise completa sobre as notícias mais recentes do(s) concorrente(s): {concorrentes}",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
@@ -265,7 +265,7 @@ def planej_mkt_page():
 
 
                         prompt_concorrencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
-                        
+                                    
                                     
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
                                     -Considerando {concorrentes} como a concorrência direta de {nome_cliente}, redija sobre as notícias sobre o concorrente explicitadas em {novids_conc} e como o
