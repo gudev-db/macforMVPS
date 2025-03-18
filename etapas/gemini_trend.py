@@ -48,6 +48,7 @@ def gerar_trend():
     referencia_marca = st.text_area('Referência de Marca:',  help="Quais são as referências de marca do cliente?",height=200)
     publico = st.text_input('Público-Alvo:', help="Qual é o público-alvo do cliente?")
     objetivos = st.text_input('Objetivos do Cliente:', help="Quais são os objetivos do cliente com essa campanha?")
+    obs = st.text_input('Observações:', help="Utilize esse campo para melhorar a saída.")
 
     if st.button("Gerar Trend"):
         if not nome_cliente or not site_cliente or not ramo_atuacao or not referencia_marca or not publico or not objetivos:
@@ -79,6 +80,8 @@ def gerar_trend():
                 Com base nesse contexto, crie uma versão criativa de {tipo_trend}.
 
                 Seja único, original, perspicaz, não use termos que estão no tipo de trend. Não seja óbvio no que está fazendo.
+
+                Observações: {obs}
                 '''
                 
                 # Gerar o conteúdo com o modelo
