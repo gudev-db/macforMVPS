@@ -1,12 +1,8 @@
 import streamlit as st
 import google import genai
-import uuid
 import os
-from pymongo import MongoClient
 from datetime import datetime
 import os
-from tavily import TavilyClient
-from pymongo import MongoClient
 import requests
 
 
