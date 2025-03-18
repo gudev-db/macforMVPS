@@ -15,8 +15,8 @@ api_key = os.getenv("OPENAI_API_KEY")
 t_api_key1 = os.getenv("T_API_KEY")
 rapid_key = os.getenv("RAPID_API")
 
-google_search_tool = types.Tool(
-    google_search = types.GoogleSearch()
+google_search_tool = Tool(
+    google_search = GoogleSearch()
 )
 
 exp_golden = '''
