@@ -13,7 +13,7 @@ client = genai.Client(api_key=gemini_api_key)
 
 # Conexão com MongoDB
 client1 = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
-db = client['arquivos_planejamento']
+db = client1['arquivos_planejamento']
 collection = db['auto_doc']
 banco = client1["arquivos_planejamento"]
 db_clientes = banco["clientes"]  # info clientes
