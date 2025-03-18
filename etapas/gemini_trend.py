@@ -23,7 +23,7 @@ def gerar_trend():
     st.write("Tendências, ou 'trends', são comportamentos, estilos ou interesses que capturam a atenção do público em um determinado momento. Engajar-se com essas tendências é crucial para marcas que desejam aumentar sua visibilidade e conexão com a audiência de forma relevante. Participar ativamente das tendências não apenas demonstra que a marca está atualizada, mas também potencializa o alcance e engajamento em redes sociais.")
 
     st.subheader("Tipos de Trends:")
-    st.write("""
+    st.write('''
     1. **Música que toca na minha cabeça**: Uma trend com uma afirmação de alguma situação do dia a dia que possa acontecer. Afirmações de rotina são a maioria, e o áudio mais usado é o da música *Thunderstruck* do AC/DC.
     
     2. **Quem é você?**: Trend usada para falar sobre características pessoais num tom de apresentação. Uma ótima oportunidade de humanizar a marca e se aproximar do público.
@@ -33,7 +33,7 @@ def gerar_trend():
     4. **Quer se juntar à minha religião?**: Essa trend faz alusão a um produto/serviço que, de tão bom, passou a ser considerado um estilo de vida. 
     
     Escolha o tipo de trend que deseja gerar.
-    """)
+    ''')
 
     tipo_trend = st.selectbox("Escolha o tipo de Trend:", 
                               ["Música que toca na minha cabeça", 
@@ -56,7 +56,7 @@ def gerar_trend():
             with st.spinner('Gerando conteúdo de Trend...'):
                 
                 # Criar o prompt com base na escolha da trend
-                prompt = f"""
+                prompt = f'''
                 Considerando as diretrizes de tendências de redes sociais e comportamentos que estão capturando a atenção do público, crie um conteúdo para o cliente {nome_cliente}, que atua no ramo de {ramo_atuacao} com um público-alvo de {publico}. O site do cliente é {site_cliente} e as referências de marca incluem {referencia_marca}. Os objetivos principais são {objetivos}. 
                 
                 Aqui estão os tipos de tendências que podem ser aplicadas:
@@ -70,7 +70,7 @@ def gerar_trend():
                 4. **Quer se juntar à minha religião?**: Trend que faz alusão a um produto/serviço incrível, como se fosse um estilo de vida. Exemplo: "Quer se juntar à minha religião? Somos todos fãs de {produto/serviço}".
                 
                 Com base nesse contexto, crie uma versão criativa de {tipo_trend}.
-                """
+                '''
                 
                 # Gerar o conteúdo com o modelo
                 resultado_trend = modelo_linguagem.generate_content(prompt).text
