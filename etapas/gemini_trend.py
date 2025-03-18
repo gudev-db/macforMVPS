@@ -1,6 +1,8 @@
 import streamlit as st
 from google import genai
 import os
+from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
+
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
@@ -54,6 +56,15 @@ def gerar_trend():
             st.write("Por favor, preencha todas as informações do cliente.")
         else:
             with st.spinner('Gerando conteúdo de Trend...'):
+
+                novids = client.models.generate_content(
+                            model=model_id,
+                            contents=f'''Novidades e inovações e tendências no ramo de atuação: {ramo_atuacao}?''',
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
                 
                 # Criar o prompt com base na escolha da trend
                 prompt = f'''
@@ -77,6 +88,8 @@ def gerar_trend():
                 4. **Quer se juntar à minha religião?**: Trend que faz alusão a um produto/serviço incrível, como se fosse um estilo de vida.".
                 
                 Com base nesse contexto, crie uma versão criativa de {tipo_trend}.
+
+                Considere novidades de mercado explicitadas em: {novids};
 
                 Seja único, original, perspicaz, não use termos que estão no tipo de trend. Não seja óbvio no que está fazendo.
 
