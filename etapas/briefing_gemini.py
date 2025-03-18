@@ -1,5 +1,5 @@
 import streamlit as st
-import google import genai
+from google import genai
 import os
 from datetime import datetime
 import os
