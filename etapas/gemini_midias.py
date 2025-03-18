@@ -7,7 +7,7 @@ import google.generativeai as genai
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
-genai.Client(api_key=gemini_api_key)
+client = genai.Client(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
@@ -197,7 +197,11 @@ def planej_midias_page():
                         4. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
 
                         """
-                        kv_output = modelo_linguagem.generate_content(prompt_kv).text
+
+
+                        kv_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_kv]).text
 
                         prompt_redesplanej = f"""
                         Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
@@ -226,7 +230,10 @@ def planej_midias_page():
 
 
                         """
-                        redesplanej_output = modelo_linguagem.generate_content(prompt_redesplanej).text
+
+                        redesplanej_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_redesplanej]).text
 
                         prompt_redes = f"""
                         Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
@@ -265,7 +272,10 @@ def planej_midias_page():
 
                         """
                         
-                        redes_output = modelo_linguagem.generate_content(prompt_redes).text
+
+                        redes_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_redes]).text
 
                         prompt_criativos = f"""
                         Crie 10 criativos para as campanhas de marketing digital em um nível bem detalhado, aprodundado,
@@ -290,7 +300,10 @@ def planej_midias_page():
                         Seja original e proponha ideias que possam ser executadas com um alto impacto.
 
                         """
-                        criativos_output = modelo_linguagem.generate_content(prompt_criativos).text
+
+                        criativos_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_criativos]).text
 
 
                         #SEO e Site
@@ -314,7 +327,10 @@ def planej_midias_page():
                         Seja claro e detalhado, com uma explicação de como cada palavra-chave pode gerar resultados tangíveis para a marca.
 
                         """
-                        palavras_chave_output = modelo_linguagem.generate_content(prompt_palavras_chave).text
+
+                        palavras_chave_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_palavras_chave]).text
 
                         prompt_estrategia_conteudo = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
@@ -354,7 +370,10 @@ def planej_midias_page():
                         Inclua também sugestões de formatos, como blogs, vídeos, webinars, posts interativos, etc.
 
                         """
-                        estrategia_conteudo_output = modelo_linguagem.generate_content(prompt_estrategia_conteudo).text
+
+                        estrategia_conteudo_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo]).text
 
                         tarefas_midia = [
                             {"output": kv_output},
