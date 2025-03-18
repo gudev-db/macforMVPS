@@ -39,10 +39,10 @@ O que
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
-genai.Client(api_key=gemini_api_key)
+client = genai.Client(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
+modelo_linguagem = "gemini-1.5-flash"  # Usando Gemini
 client1 = TavilyClient(api_key='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')
 
 
@@ -280,7 +280,13 @@ def planej_mkt_page():
                                     Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
                                     Você está aqui para trazer conhecimento estratégico. organize os pontos em bullets
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
-                        SWOT_output = modelo_linguagem.generate_content(prompt_SWOT).text
+
+                        
+                        SWOT_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_SWOT]).text
+                        
+                        
 
 
 
@@ -296,7 +302,10 @@ def planej_mkt_page():
                                     
 
 '''
-                        concorrencias_output = modelo_linguagem.generate_content(prompt_concorrencias).text
+
+                        concorrencias_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_concorrencias]).text
 
                         prompt_PEST = f'''Assumindo um especialista em administração de marketing.
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -307,7 +316,11 @@ def planej_mkt_page():
                                     e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). 
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
                         
-                        PEST_output = modelo_linguagem.generate_content(prompt_PEST).text
+
+                        PEST_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_PEST]).text
+
 
                         prompt_golden = f'''
 
@@ -327,7 +340,10 @@ def planej_mkt_page():
                                      e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca}, a análise SWOT ({SWOT_output}).'''
                       
-                        golden_output = modelo_linguagem.generate_content(prompt_golden).text
+
+                        golden_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_golden]).text
 
                         prompt_posicionamento = f'''
                             
@@ -372,7 +388,10 @@ def planej_mkt_page():
                                     
                                     '''
                   
-                        posicionamento_output = modelo_linguagem.generate_content(prompt_posicionamento).text
+
+                        posicionamento_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_posicionamento]).text
 
 
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
@@ -390,7 +409,10 @@ def planej_mkt_page():
                                     
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?'''
                   
-                        brand_persona_output = modelo_linguagem.generate_content(prompt_brand_persona).text
+
+                        brand_persona_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_brand_persona]).text
 
                         prompt_buyer_persona = f'''
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -404,7 +426,10 @@ def planej_mkt_page():
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?
                                     '''
                   
-                        buyer_persona_output = modelo_linguagem.generate_content(prompt_buyer_persona).text
+
+                        buyer_persona_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_buyer_persona]).text
 
 
                         prompt_tom = f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. Levando em conta o ramo de atuação: ({ramo_atuacao}), o brand persona: ({brand_persona_output})
@@ -419,7 +444,10 @@ def planej_mkt_page():
                                     
                                     - Não seja genérico. Traga impacto no seu retorno. Você está aqui para direcionar o trabalho da equipe.'''
                   
-                        tom_output = modelo_linguagem.generate_content(prompt_tom).text
+
+                        tom_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_tom]).text
 
                         #Printando Tarefas
 
