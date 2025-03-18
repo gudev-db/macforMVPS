@@ -6,21 +6,11 @@ from pymongo import MongoClient
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
-genai.Client(api_key=gemini_api_key)
+client = genai.Client(api_key=gemini_api_key)
 
-# Inicializa o modelo Gemini
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
 
-# Conexão com MongoDB
-client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
-db = client['arquivos_planejamento']
-collection = db['auto_doc']
-banco = client["arquivos_planejamento"]
-db_clientes = banco["clientes"]  # info clientes
 
-# Função para gerar um ID único para o planejamento
-def gerar_id_planejamento():
-    return str(uuid.uuid4())
+
 
 
 guias_mote = '''
@@ -41,23 +31,7 @@ Em resumo, um mote de campanha eficaz é uma poderosa ferramenta de comunicaçã
 
 '''
 
-# Função para salvar no MongoDB
-def save_to_mongo_ads(ads_output, nome_cliente):
-    # Gerar o ID único para o planejamento
-    id_planejamento = gerar_id_planejamento()
-    
-    # Prepara o documento a ser inserido no MongoDB
-    task_outputs = {
-        "id_planejamento": 'Plano de Mídias' + '_' + nome_cliente + '_' + id_planejamento,
-        "nome_cliente": nome_cliente,
-        "tipo_plano": 'Plano de Anúncios',
-        "ads": ads_output,
-       
-    }
 
-    # Insere o documento no MongoDB
-    collection.insert_one(task_outputs)
-    st.success(f"Planejamento gerado com sucesso e salvo no banco de dados com ID: {id_planejamento}!")
 
 # Função para limpar o estado do Streamlit
 def limpar_estado():
@@ -150,7 +124,10 @@ def planej_campanhas():
                         7. **Cronograma:** Cronograma de anúncios em formato de fluxograma. Seja estratégico com o fluxo de uma forma que otimize os resultados. Você é um especialista bem analítico em marketing digital.
 
                         """
-                    ads_output = modelo_linguagem.generate_content(prompt_ads).text
+                    ads_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_ads]).text
+
 
                      
 
