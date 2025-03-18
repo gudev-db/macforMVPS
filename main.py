@@ -3,7 +3,6 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
 import streamlit as st
-from langchain_openai import ChatOpenAI
 from etapas.gemini_mkt import planej_mkt_page
 from tools.retrieve import visualizar_planejamentos  # Importando a função visualizar_planejamentos
 from tavily import TavilyClient
