@@ -4,10 +4,9 @@ import os
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
-genai.Client(api_key=gemini_api_key)
+client = genai.Client(api_key=gemini_api_key)
 
-# Inicializa o modelo Gemini
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
+
 
 # Função para limpar o estado do Streamlit
 def limpar_estado():
@@ -85,7 +84,10 @@ def gerar_trend():
                 '''
                 
                 # Gerar o conteúdo com o modelo
-                resultado_trend = modelo_linguagem.generate_content(prompt).text
+                resultado_trend  = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt]).text
+
 
                 # Exibir o conteúdo gerado
                 st.subheader(f"Trend gerada para '{tipo_trend}':")
