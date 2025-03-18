@@ -293,6 +293,8 @@ def briefing():
                 Consideranto as diretrizes de um bom briefing para a Macfor Marketing Digital: {oq_brief};
 
                 Não acrescente informações, apenas sintetize os inputs do usuário em um formato de documento de briefing;
+
+                Crie uma subseção para cada entrada do usuário
     
                 Considerando as informações do cliente:
                 
@@ -303,6 +305,8 @@ def briefing():
                 Público-alvo: {publico}
                 Período: {periodo}
                 Verba: {verba}
+
+                
                 """
                 
                 if setor_selecionado == "Social Media":
