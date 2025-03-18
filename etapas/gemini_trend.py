@@ -58,6 +58,8 @@ def gerar_trend():
                 # Criar o prompt com base na escolha da trend
                 prompt = f'''
 
+            
+
                 Tendências, ou 'trends', são comportamentos, estilos ou interesses que capturam a atenção do público em um determinado momento. Engajar-se com essas tendências é crucial para marcas que desejam aumentar sua visibilidade e conexão com a audiência de forma relevante. Participar ativamente das tendências não apenas demonstra que a marca está atualizada, mas também potencializa o alcance e engajamento em redes sociais.
 
                 
@@ -74,6 +76,8 @@ def gerar_trend():
                 4. **Quer se juntar à minha religião?**: Trend que faz alusão a um produto/serviço incrível, como se fosse um estilo de vida.".
                 
                 Com base nesse contexto, crie uma versão criativa de {tipo_trend}.
+
+                Seja único, original, perspicaz, não use termos que estão no tipo de trend. Não seja óbvio no que está fazendo.
                 '''
                 
                 # Gerar o conteúdo com o modelo
