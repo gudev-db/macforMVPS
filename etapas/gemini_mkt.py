@@ -12,9 +12,7 @@ import requests
 from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 
 
-# Configuração do ambiente da API
-api_key = os.getenv("OPENAI_API_KEY")
-t_api_key1 = os.getenv("T_API_KEY")
+
 rapid_key = os.getenv("RAPID_API")
 
 
@@ -45,7 +43,7 @@ client = genai.Client(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
 modelo_linguagem = "gemini-1.5-flash"  # Usando Gemini
-client1 = TavilyClient(api_key='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')
+
 
 
 
@@ -197,94 +195,54 @@ def planej_mkt_page():
                             )
                         )
 
-
-
-
-
-                        #DUCK DUCK GO SEARCH de tendências
-
-                        url = "https://duckduckgo8.p.rapidapi.com/"
-                            
-                        querystring2 = {"q":f"dados econômicos relevantes no brasil"}
-                            
-                        headers = {
-                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
-                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-                            }
-                            
-                        response = requests.get(url, headers=headers, params=querystring2)
-                            
-                        dados_econ_brasil = response.text
-
-
-
-
-
-                        #DUCK DUCK GO SEARCH de concorrência
-
-                        url = "https://duckduckgo8.p.rapidapi.com/"
-                            
-                        querystring5 = {"q":f"novidades sobre {concorrentes}"}
-                            
-                        headers = {
-                                "x-rapidapi-key": 'd4e84fb2d1mshe922af8058b222dp159570jsnb5169c1225ff',
-                                "x-rapidapi-host": "duckduckgo8.p.rapidapi.com"
-                            }
-                            
-                        response = requests.get(url, headers=headers, params=querystring5)
-                            
-                        novids_conc = response.text
-
-                            #DUCK DUCK GO SEARCH PEST
-
-                            #SOCIAL
-                        querystring_social = {"q":f"Novidades no âmbito social no brasil"}
-                            
-                        response_social = requests.get(url, headers=headers, params=querystring_social)
-                            
-                        tend_social_duck = response_social.text
-
-                            #Tecnológico
-                        querystring_tec = {"q":f"Novidades no âmbito tecnológico no brasil"}
-                            
-                        response_tec = requests.get(url, headers=headers, params=querystring_tec)
-                            
-                        tend_tec_duck = response_tec.text
-
-                            
-
-
-                            #TAVILY PEST
-                            
-                        politic = client1.search(
-                                f'''Como está a situação política no brasil atualmente em um contexto geral e de forma detalhada para planejamento 
-                                estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-                                days=days, 
-                                max_results=max_results
+                        dados_econ_brasil = client.models.generate_content(
+                            model=model_id,
+                            contents="Quais as mais atuais notícias sobre a economia do brasil??",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
                             )
-                            
-                        economic = client1.search(
-                                f'''Como está a situação econômica no brasil atualmente em um contexto geral e de forma detalhada para 
-                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-                                days=days, 
-                                max_results=max_results
-                            )
-                            
-                        social = client1.search(
-                                f'''Como está a situação social no brasil atualmente em um contexto geral e de forma detalhada para planejamento
-                                estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-                                days=days, 
-                                max_results=max_results
-                            )
-                            
-                        tec = client1.search(
-                                f'''Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
-                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
-                                days=days, 
-                                max_results=max_results
-                            )
-                            
+                        )
 
+                        novids_conc = client.models.generate_content(
+                            model=model_id,
+                            contents=f"novidades sobre {concorrentes}",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
+
+                        tend_social_duck = client.models.generate_content(
+                            model=model_id,
+                            contents="Novidades no âmbito social no brasil?",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
+
+                        tec = client.models.generate_content(
+                            model=model_id,
+                            contents=f"Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
+                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
+
+
+
+
+
+                       
+
+
+
+
+
+                      
 
                         # Aqui vamos gerar as respostas usando o modelo Gemini
 
@@ -328,9 +286,9 @@ def planej_mkt_page():
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
 
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
-                                    considerando:   contexto político: {pls}, contexto econômico: {economic} e dados econômicos
-                                    relevantes: ({dados_econ_brasil}), contexto social: ({social})
-                                    e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). 
+                                    considerando:   contexto político: {pls}, dados econômicos
+                                    relevantes: ({dados_econ_brasil}), contexto social:
+                                    ({tend_social_duck}), contexto tecnológico: ({tec}).
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
                         
 
