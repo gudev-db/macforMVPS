@@ -10,8 +10,7 @@ t_api_key1 = os.getenv("T_API_KEY")
 rapid_key = os.getenv("RAPID_API")
 
 # Configura o cliente Gemini
-genai.Client(api_key=gemini_api_key)
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.Client(api_key=gemini_api_key)
 
 # Configura o cliente Tavily
 client1 = TavilyClient(api_key='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')
@@ -219,7 +218,9 @@ def osint_report():
                 """
 
                 # Gera o relatório com Gemini
-                osint_report_output = modelo_linguagem.generate_content(prompt).text
+                osint_report_output =  client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt]).text
 
                 # Exibe o relatório no Streamlit
                 st.subheader("OSINT Report Generated")
