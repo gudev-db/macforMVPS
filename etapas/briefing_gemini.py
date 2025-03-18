@@ -223,156 +223,103 @@ gemini_api_key = os.getenv("GEM_API_KEY")
 genai.configure(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
-
+modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
 
 # Função para limpar o estado do Streamlit
 def limpar_estado():
     for key in list(st.session_state.keys()):
         del st.session_state[key]
 
-# Função principal da página de planejamento de mídias
-def briefing():
-    st.subheader('Contexto')
-    st.text('''Aqui contextualizamos o momento do cliente e o escopo de atuação da Macfor.''')
-    
+# Setores disponíveis
+setores = ["Social Media", "CRM", "Mídia", "Tech", "Analytics", "Design", "Redação", "SEO", "Planejamento"]
 
-    #Contexto
-    nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente que será planejado. Ex: 'Empresa XYZ'")
+# Interface do Streamlit
+st.title("Gerador de Briefing por Setor")
+st.sidebar.header("Configurações")
+setor_selecionado = st.sidebar.selectbox("Escolha o setor:", setores)
 
-    projeto_peca = st.text_input('Qual é o projeto ou peça?:', help="Apresente aqui, resumidamente, o serviço pelo qual o cliente contratou a Macfor para realizar.")
+st.subheader(f"Briefing para {setor_selecionado}")
 
-    cenario = st.text_input('Qual o cenário em que o cliente se encontra nesse momento?', help = "Apresentar todo o contexto da solicitação, seu histórico, o cenário a que se encontra que justifique e defenda o projeto.")
+# Campos gerais do briefing
+nome_cliente = st.text_input("Nome do Cliente:")
+projeto_peca = st.text_input("Qual é o projeto ou peça?:")
+cenario = st.text_area("Qual o cenário atual do cliente?:")
+objetivos = st.text_area("Quais são os objetivos do cliente ao contratar a agência?:")
+publico = st.text_area("Qual é o público-alvo?:")
+periodo = st.text_input("Qual será o período de atuação?:")
+verba = st.text_input("Qual a verba disponível?:")
 
-    objetivos = st.text_input('Quais são os objetivos do cliente ao contratar a Macfor?', help = "O que queremos alcançar, direta e indiretamente, tangível e intangível. Seja o projeto na totalidade, seja somente sob responsabilidades Macfor.")
+# Campos específicos por setor
+if setor_selecionado == "Social Media":
+    redes = st.text_area("Quais redes sociais serão usadas?:")
+    estrategia = st.text_area("Qual a estratégia de conteúdo para esse projeto?:")
+elif setor_selecionado == "CRM":
+    ferramentas = st.text_area("Quais ferramentas de CRM serão utilizadas?:")
+    fluxo_comunicacao = st.text_area("Como será o fluxo de comunicação com os clientes?:")
+elif setor_selecionado == "Mídia":
+    canais = st.text_area("Quais canais de mídia serão utilizados?:")
+    formatos = st.text_area("Quais formatos de anúncio serão usados?:")
+elif setor_selecionado == "Tech":
+    tecnologia = st.text_area("Quais tecnologias serão usadas no projeto?:")
+    integracoes = st.text_area("Há necessidade de integração com outras plataformas?:")
+elif setor_selecionado == "Analytics":
+    kpis = st.text_area("Quais KPIs serão monitorados?:")
+    ferramentas_analytics = st.text_area("Quais ferramentas de análise serão usadas?:")
+elif setor_selecionado == "Design":
+    referencias = st.text_area("Quais referências visuais devem ser consideradas?:")
+    restricoes = st.text_area("Há alguma restrição no design ou branding a seguir?:")
+elif setor_selecionado == "Redação":
+    tom_voz = st.text_area("Qual o tom de voz a ser usado?:")
+    palavras_chave = st.text_area("Quais palavras-chave são essenciais no texto?:")
+elif setor_selecionado == "SEO":
+    estrategia_seo = st.text_area("Qual a estratégia de SEO para esse projeto?:")
+    palavras_chave = st.text_area("Quais palavras-chave devem ser priorizadas?:")
+elif setor_selecionado == "Planejamento":
+    cronograma = st.text_area("Qual o cronograma previsto para o projeto?:")
+    desafios = st.text_area("Quais desafios podem impactar o planejamento?:")
 
-    publico = st.text_input('Qual é o nosso público-alvo?', help = "Com quem devemos falar? Qual será nossa segmentação? Temos mailing?")
+# Geração do briefing
+if st.button("Gerar Briefing"):
+    if not nome_cliente or not projeto_peca or not cenario or not objetivos:
+        st.warning("Por favor, preencha os campos obrigatórios.")
+    else:
+        with st.spinner("Gerando o documento de briefing..."):
+            prompt = f"""
+            Você é um especialista em {setor_selecionado} que trabalha para a Macfor Marketing Digital. Com base nas informações fornecidas, gere um briefing estruturado e formal.
 
-    periodo = st.text_input('Qual será o nosso período de atuação?', help = "Quando o projeto acontece? Qual período? Quando devemos começar a trabalhar? Quando será a entrega ou publicação do material?")
+            Consideranto as diretrizes de um bom briefing para a Macfor Marketing Digital: {oq_brief};
 
-    verba = st.text_input('Qual será a verba disponível para a Macfor utilizar em sua atuação?', help = "Considerar valor total, que consiste em custos de produção, mídia e ergometria.")
-
-    st.subheader('Criação')
-    st.text('''Aqui criamos o documento que guia o processo criativo da Macfor.''')
-
-    oque = st.text_input('O que vamos fazer?', help = "Detalhar quais peças vamos criar, tudo que deve contemplar em nosso plano, segundo expectativas da cliente + sugestão Macfor.")
-
-    KV = st.text_input('Seguir orientação de KV? Qual deverá ser usado?', help = "Validar com o cliente o KV que devemos trabalhar a partir dos materiais da MAKE ou se vamos seguir com alguma referência fora do KV. Caso não tenha um KV, devemos seguir com fotografias, ilustrações? Qual a expectativa visual para essa peça?")
-
-    mensagem = st.text_input('O que vamos dizer na comunicação?', help = "Alinhar as principais mensagens que devemos passar em nossas peças para o público em questão.")
-
-    restricoes = st.text_input('Existe alguma referência, restrição, obrigatoriedade sobre uso de imagens, palavras e termos?', help = "Apresentar qualquer orientação que deve ser seguida.")
-
-    redes = st.text_input('Quais redes sociais deverão ser usadas?', help = "Neste a definição virá em nosso Plano, mas o cliente pode ter algum desejo, recomendação, sugestão. Incluir peças e formatos após aprovação de volumetria. Incluir link da volumetria no Drive.")
-
-    obs = st.text_input('Observações e comentários', help = "Use esse espaço para detalhar ou complementar alguma informação que você considere importante para o desenvolvimento do projeto.")
-  
-
-    pest_files = 1
-
-
-
-  
-    if pest_files is not None:
-        if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
-            st.subheader("Briefing")
-            for tarefa in st.session_state.resultados_tarefas:
-                st.markdown(f"**Arquivo**: {tarefa['output_file']}")
-                st.markdown(tarefa["output"])
+            Considerando as informações do cliente:
             
-            # Botão para limpar o estado
-            if st.button("Gerar Briefing"):
-                limpar_estado()
-                st.experimental_rerun()
-        else:
-            if st.button('Gerar Briefing'):
-                if not nome_cliente:
-                    st.write("Por favor, preencha todas as informações do cliente.")
-                else:
-                    with st.spinner('Gerando o documento de briefing...'):
-
-
-
-
-
-                            
-
-
-
-                        prompt_context = f'''
-                        Considerando as diretrizes para o desenvolvimento de um bom documetno de Briefing: ({oq_brief})
-                        
-                        Você é um gerente de projetos altamente qualificado com escrita concisa e impecável.
-
-                        
-                        
-                        A empresa de Marketing Digital Macfor foi contratada pelo cliente {nome_cliente}.
-                        
-                        1. Qual é o projeto ou peça? (EX: Projeto Webinar Soja. Desenvolvimento de campanhas para promover o Webinar, atrair audiência e coletar leads qualificados.): {projeto_peca}.
-
-                        2. Qual o cenário em que o cliente se encontra nesse momento? (Ex. O plantio da safra de soja terá início na segunda quinzena de Setembro, momento em que os produtores colocam todas suas energias sobre a lavoura para garantir o timing correto da cultura, uma vez que a janela de plantio é extremamente importante para o sucesso da cultura e também da safrinha.
-
-Com isso, queremos oferecer um Webinar para estaremos com os produtores, mostrando que a Syngenta é a empresa da soja. Momentos antes da safra se iniciar, queremos oferecer um bate-papo informal de produtor para produtor onde nos colocamos do lado dele, discutindo assuntos propostos por eles, para a melhora do manejo e atingimento do potencial máximo da lavoura.
-): {cenario}
-
-                        3. Quais são os objetivos do cliente ao contratar a Macfor? (Queremos estreitar e fortalecer nossa relação com pequenos produtores de soja, abrindo canais de comunicação onde o próprio produtor exerce a fala, divide experiências, promove nossa marca.): {objetivos}
-
-                        4. Público alvo: {publico}
-
-                        5. Período: {periodo} (nessa etapa, escreva apenas o período.)
-
-                        6. Verba: {verba} (nessa etapa, escreva apenas a verba. ex: R$ 50.000,00)
-
-                        Redija um documento de Briefing onde cada etapa possui 2 parágrafos formalmente redigidos de uma forma que o documento possa ser usado como referência para
-                        guiar as ações da Macfor ao longo do projeto. Gere cada etapa dentro de uma caixa.
-                        
-                        
-                        '''
-                        context_output = modelo_linguagem.generate_content(prompt_context).text
-
-
-                        prompt_criacao = f'''
-                        Considerando as diretrizes para o desenvolvimento de um bom documetno de Briefing: ({oq_brief})
-                        
-                        Você é um gerente de projetos altamente qualificado com escrita impecável.
-
-                        Aqui criamos o documento que guia o processo criativo da Macfor.
-                        
-                        A empresa de Marketing Digital Macfor foi contratada pelo cliente {nome_cliente}.
-                        
-                        1. O que vamos fazer?: {oque}.
-
-                        2. Seguir orientação de KV? Qual deverá ser usado?: {KV}
-
-                        3. O que vamos dizer na comunicação? (Ex. Dar início a Jornada da Soja. Em nossos Webinars, disponibilizaremos conteúdos ricos para todas as etapas da cultura. Conteúdos nos quais serão oferecidos principalmente pelos próprios produtores, em parceria com a Syngenta. Será uma troca de experiências de produtor para produtor, onde os principais temas foram escolhidos por eles mesmos.): {mensagem}
-
-                        4. Existe alguma referência, restrição, obrigatoriedade sobre uso de imagens, palavras e termos? (Ex. Precisamos aplicar o logo da CESB em todas as nossas peças de comunicação. Incluir link no Drive para as referências.): {restricoes}
-
-                        5. Quais redes sociais deverão ser usadas?: {redes}
-
-                        6. Observações e comentários: {obs}
-
-
-                        Redija um documento de Briefing criativo onde cada etapa possui 2 parágrafos formalmente redigidos de uma forma que o documento possa ser usado como referência para
-                        guiar as ações da Macfor ao longo do projeto. Gere cada etapa dentro de uma caixa.
-                        
-                        
-                        '''
-                        criacaot_output = modelo_linguagem.generate_content(prompt_criacao).text
-
-
-
-
-
-                        #Printando Tarefas
-
-                        st.header('1. Etapa Contextual')
-                        st.markdown(context_output)
-
-                        
-                
-
-                        st.header('2. Etapa Criativa')
-                        st.markdown(criacaot_output)
-
-                       
+            Cliente: {nome_cliente}
+            Projeto: {projeto_peca}
+            Cenário: {cenario}
+            Objetivos: {objetivos}
+            Público-alvo: {publico}
+            Período: {periodo}
+            Verba: {verba}
+            """
+            
+            if setor_selecionado == "Social Media":
+                prompt += f"\nRedes Sociais: {redes}\nEstratégia: {estrategia}"
+            elif setor_selecionado == "CRM":
+                prompt += f"\nFerramentas: {ferramentas}\nFluxo de Comunicação: {fluxo_comunicacao}"
+            elif setor_selecionado == "Mídia":
+                prompt += f"\nCanais: {canais}\nFormatos: {formatos}"
+            elif setor_selecionado == "Tech":
+                prompt += f"\nTecnologias: {tecnologia}\nIntegrações: {integracoes}"
+            elif setor_selecionado == "Analytics":
+                prompt += f"\nKPIs: {kpis}\nFerramentas de Analytics: {ferramentas_analytics}"
+            elif setor_selecionado == "Design":
+                prompt += f"\nReferências Visuais: {referencias}\nRestrições: {restricoes}"
+            elif setor_selecionado == "Redação":
+                prompt += f"\nTom de Voz: {tom_voz}\nPalavras-chave: {palavras_chave}"
+            elif setor_selecionado == "SEO":
+                prompt += f"\nEstratégia de SEO: {estrategia_seo}\nPalavras-chave: {palavras_chave}"
+            elif setor_selecionado == "Planejamento":
+                prompt += f"\nCronograma: {cronograma}\nDesafios: {desafios}"
+            
+            briefing_gerado = modelo_linguagem.generate_content(prompt).text
+            
+            st.subheader("Briefing Gerado")
+            st.markdown(briefing_gerado)
