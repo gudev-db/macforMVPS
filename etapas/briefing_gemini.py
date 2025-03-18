@@ -324,7 +324,7 @@ Com isso, queremos oferecer um Webinar para estaremos com os produtores, mostran
                         6. Verba: {verba}
 
                         Redija um documento de Briefing onde cada etapa possui 2 parágrafos formalmente redigidos de uma forma que o documento possa ser usado como referência para
-                        guiar as ações da Macfor ao longo do projeto.
+                        guiar as ações da Macfor ao longo do projeto. Gere cada etapa dentro de uma caixa.
                         
                         
                         '''
@@ -354,7 +354,7 @@ Com isso, queremos oferecer um Webinar para estaremos com os produtores, mostran
 
 
                         Redija um documento de Briefing criativo onde cada etapa possui 2 parágrafos formalmente redigidos de uma forma que o documento possa ser usado como referência para
-                        guiar as ações da Macfor ao longo do projeto.
+                        guiar as ações da Macfor ao longo do projeto. Gere cada etapa dentro de uma caixa.
                         
                         
                         '''
