@@ -12,8 +12,7 @@ import requests
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
-genai.Client(api_key=gemini_api_key)
-modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.Client(api_key=gemini_api_key)
 
 # Conexão com MongoDB
 client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
@@ -63,7 +62,14 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
     com o que deve ser feito, enviado, para quem, por quanto tempo, com bifurcações de ações baseado na resposta do alvo.
     - formato de fluxograma
     """
-    output = modelo_linguagem.generate_content(prompt).text
+
+
+
+    
+    output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt]).text
+
     for _ in range(nivel_detalhamento - 1):
         prompt_aprofundamento = f'''Aprofunde mais cada detalhe descrito nesse fluxo, tone-o melhor, mais eficiente,
           de uma forma que ele se torne mais prático. Torne esse conteúdo mais
@@ -72,7 +78,9 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
         para construir a estratégia que minha empresa deve seguir. Você é o especialista. AJuste a estratégia aos objetivos do cliente. 
         Veja cada um dos pontos e aprofunde mais, e mais, e mais,
         detalhe mais, e mais, e mais. Saia do macro e vá para o micro. Detalhe cada ação. Faça um plano de conteúdo para essa etapa. Detalhe e explique o que deve ser feito com uma estratégia de conteúdo a nível de cronograma.'''
-        output += "\n" + modelo_linguagem.generate_content(prompt_aprofundamento).text
+        output += "\n" + client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_aprofundamento]).text
     return output
 
 def planej_crm_page():
