@@ -1,8 +1,6 @@
 import streamlit as st
 from google import genai
-import uuid
 import os
-from pymongo import MongoClient
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
