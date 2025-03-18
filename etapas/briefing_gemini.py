@@ -302,7 +302,7 @@ def briefing():
                         prompt_context = f'''
                         Considerando as diretrizes para o desenvolvimento de um bom documetno de Briefing: ({oq_brief})
                         
-                        Você é um gerente de projetos altamente qualificado com escrita impecável.
+                        Você é um gerente de projetos altamente qualificado com escrita concisa e impecável.
 
                         
                         
@@ -319,9 +319,9 @@ Com isso, queremos oferecer um Webinar para estaremos com os produtores, mostran
 
                         4. Público alvo: {publico}
 
-                        5. Período: {periodo}
+                        5. Período: {periodo} (nessa etapa, escreva apenas o período.)
 
-                        6. Verba: {verba}
+                        6. Verba: {verba} (nessa etapa, escreva apenas a verba. ex: R$ 50.000,00)
 
                         Redija um documento de Briefing onde cada etapa possui 2 parágrafos formalmente redigidos de uma forma que o documento possa ser usado como referência para
                         guiar as ações da Macfor ao longo do projeto. Gere cada etapa dentro de uma caixa.
