@@ -46,8 +46,7 @@ modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")  # Usando Gemini
 client1 = TavilyClient(api_key='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')
 
 
-# Criação do cliente do Google Gen AI
-client = genai.Client()
+
 
 # ID do modelo
 model_id = "gemini-2.0-flash"
