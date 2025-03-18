@@ -17,6 +17,7 @@ from etapas.image_gen import gen_img
 from etapas.lead_osint import osint_report
 from contato.Email import gen_emails
 from contato.noticias import pesquisa
+from etapas.gemini_trend import gerar_trend
 
 st.set_page_config(
     layout="wide",
@@ -181,7 +182,8 @@ if login():
                 "Selecione uma opção",
                 "Planejamento de Mídias e Redes",
                 "Brainstorming de Anúncios",
-                "Geração de Imagens"
+                "Geração de Imagens",
+                "Geração de Trends"
             ]
         )
 
@@ -192,6 +194,8 @@ if login():
                 planej_campanhas()
             elif midias_option == "Geração de Imagens":
                 gen_img()
+            elif midias_option == "Geração de Trends":
+                gerar_trend()
 
 
     elif selecao_sidebar == "Briefing":
