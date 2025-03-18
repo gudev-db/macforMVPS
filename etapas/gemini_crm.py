@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
 import uuid
 from pymongo import MongoClient
 __import__('pysqlite3')
