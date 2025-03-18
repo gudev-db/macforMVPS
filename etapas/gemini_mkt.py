@@ -6,10 +6,8 @@ import os
 from pymongo import MongoClient
 from datetime import datetime
 import os
-from tavily import TavilyClient
 from pymongo import MongoClient
 import requests
-from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 
 
 
