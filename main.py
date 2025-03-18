@@ -44,7 +44,7 @@ client1 = TavilyClient(api_key=t_api_key1)
 
 
 # Configura o modelo de AI Gemini
-client = genai.configure(api_key=gemini_api_key)
+client = genai.Client(api_key=gemini_api_key)
 
 # Função de login
 def login():
