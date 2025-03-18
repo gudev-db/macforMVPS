@@ -335,6 +335,8 @@ def planej_mkt_page():
                                     devem ser copiadas, mas sim, usadas como referência na construção de um novo e original slogan) Seja original,
                                     esperto com as palavras na construção do slogan. Correlacione-as e crie impacto com a construção do seu slogan
                                     original. Tire ideias pulo do gato:
+
+                                    Exemplos de bons slogans (não copie-os, apenas aprenda com eles o que é um bom slogan):
                                     
                                     "Pense diferente."
                                     "Abra a felicidade."
