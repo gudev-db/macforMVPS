@@ -222,8 +222,8 @@ def planej_mkt_page():
 
                         tec = client.models.generate_content(
                             model=model_id,
-                            contents=f"Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
-                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?",
+                            contents=f'''Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
+                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
