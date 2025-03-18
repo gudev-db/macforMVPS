@@ -1,6 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
-from google.generativeai import types, Tool, GenerateContentConfig, GoogleSearch
+from google.generativeai import types
 import uuid
 import os
 from pymongo import MongoClient
