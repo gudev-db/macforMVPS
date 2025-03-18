@@ -1,38 +1,18 @@
 import streamlit as st
 from google import genai
 import uuid
-from pymongo import MongoClient
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 from datetime import datetime
 import os
-from tavily import TavilyClient
 import requests
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
 
-# Conexão com MongoDB
-client = MongoClient("mongodb+srv://gustavoromao3345:RqWFPNOJQfInAW1N@cluster0.5iilj.mongodb.net/auto_doc?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE&tlsAllowInvalidCertificates=true")
-db = client['arquivos_planejamento']
-collection = db['auto_doc']
-db_clientes = client["arquivos_planejamento"]["clientes"]
 
-def gerar_id_planejamento():
-    return str(uuid.uuid4())
-
-def save_to_mongo_CRM(output, nome_cliente):
-    id_planejamento = gerar_id_planejamento()
-    task_outputs = {
-        "id_planejamento": f'Plano de CRM_{nome_cliente}_{id_planejamento}',
-        "nome_cliente": nome_cliente,
-        "tipo_plano": 'Plano de CRM',
-        "Fluxo": output,
-    }
-    collection.insert_one(task_outputs)
-    st.success(f"Planejamento salvo no banco de dados com ID: {id_planejamento}!")
 
 def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_crm, canais_disponiveis, perfil_empresa, metas_crm, fluxo_anterior,publico_alvo,tamanho_base,tom_voz,fluxos_ou_emails, etapa, nivel_detalhamento):
     prompt = f"""
@@ -154,4 +134,3 @@ def planej_crm_page():
                 
                 st.header('Plano de Inbound Marketing')
                 st.markdown(fluxo_output)
-                save_to_mongo_CRM(fluxo_output, nome_cliente)
