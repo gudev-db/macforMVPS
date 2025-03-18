@@ -40,7 +40,7 @@ t_api_key1 = os.getenv("T_API_KEY")
 rapid_key = os.getenv("RAPID_API")
 
 # Inicializa o cliente Tavily
-client = TavilyClient(api_key=t_api_key1)
+client1 = TavilyClient(api_key=t_api_key1)
 
 # Inicializa o modelo LLM com OpenAI
 modelo_linguagem = ChatOpenAI(
@@ -50,8 +50,7 @@ modelo_linguagem = ChatOpenAI(
 )
 
 # Configura o modelo de AI Gemini
-genai.configure(api_key=gemini_api_key)
-llm = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.configure(api_key=gemini_api_key)
 
 # Função de login
 def login():
