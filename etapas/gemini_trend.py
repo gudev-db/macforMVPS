@@ -45,7 +45,7 @@ def gerar_trend():
     nome_cliente = st.text_input('Nome do Cliente:', help="Digite o nome do cliente")
     site_cliente = st.text_input('Site do Cliente:', help="Digite o site do cliente")
     ramo_atuacao = st.text_input('Ramo de Atuação do Cliente:', help="Qual é o ramo de atuação do cliente?")
-    referencia_marca = st.text_input('Referência de Marca:', help="Quais são as referências de marca do cliente?")
+    referencia_marca = st.text_input('Referência de Marca:', help="Quais são as referências de marca do cliente?", height = 200)
     publico = st.text_input('Público-Alvo:', help="Qual é o público-alvo do cliente?")
     objetivos = st.text_input('Objetivos do Cliente:', help="Quais são os objetivos do cliente com essa campanha?")
 
