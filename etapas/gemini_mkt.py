@@ -48,30 +48,6 @@ client1 = TavilyClient(api_key='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')
 
 
 
-# ID do modelo
-model_id = "gemini-2.0-flash"
-
-# Definindo a ferramenta de pesquisa do Google
-google_search_tool = types.Tool(
-    google_search=types.GoogleSearch()
-)
-
-# Geração de conteúdo
-response = client.models.generate_content(
-    model=model_id,
-    contents="When is the next total solar eclipse in the United States?",
-    config=types.GenerateContentConfig(
-        tools=[google_search_tool],
-        response_modalities=["TEXT"],
-    )
-)
-
-# Exibindo as partes do conteúdo gerado
-for each in response.candidates[0].content.parts:
-    st.write(each.text)
-
-# Exibindo os dados de metadata de busca como conteúdo web
-st.write(response.candidates[0].grounding_metadata.search_entry_point.rendered_content)
 
 golden_exp = '''
 Comunique seu 'porquê' aos seus clientes
