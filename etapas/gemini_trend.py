@@ -62,6 +62,7 @@ def gerar_trend():
 
                 Tendências, ou 'trends', são comportamentos, estilos ou interesses que capturam a atenção do público em um determinado momento. Engajar-se com essas tendências é crucial para marcas que desejam aumentar sua visibilidade e conexão com a audiência de forma relevante. Participar ativamente das tendências não apenas demonstra que a marca está atualizada, mas também potencializa o alcance e engajamento em redes sociais.
 
+                Considere que trends são postadas no instagram e tiktok. Se atente a formatos que atendam a essas plataformas. Você trabalha para uma empresa de marketing digital.
                 
                 Considerando as diretrizes de tendências de redes sociais e comportamentos que estão capturando a atenção do público, crie um conteúdo para o cliente {nome_cliente}, que atua no ramo de {ramo_atuacao} com um público-alvo de {publico}. O site do cliente é {site_cliente} e as referências de marca incluem {referencia_marca}. Os objetivos principais são {objetivos}. 
                 
