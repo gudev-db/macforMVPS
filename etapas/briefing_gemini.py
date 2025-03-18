@@ -223,10 +223,9 @@ def briefing():
     
     # Configuração do Gemini API
     gemini_api_key = os.getenv("GEM_API_KEY")
-    genai.Client(api_key=gemini_api_key)
+    client = genai.Client(api_key=gemini_api_key)
     
-    # Inicializa o modelo Gemini
-    modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
+
     
     # Função para limpar o estado do Streamlit
     def limpar_estado():
@@ -328,7 +327,10 @@ def briefing():
                 elif setor_selecionado == "Planejamento":
                     prompt += f"\nCronograma: {cronograma}\nDesafios: {desafios}"
                 
-                briefing_gerado = modelo_linguagem.generate_content(prompt).text
+                briefing_gerado = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt]).text
+
                 
                 st.subheader("Briefing Gerado")
                 st.markdown(briefing_gerado)
