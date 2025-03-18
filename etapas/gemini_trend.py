@@ -61,13 +61,13 @@ def gerar_trend():
                 
                 Aqui estão os tipos de tendências que podem ser aplicadas:
 
-                1. **Música que toca na minha cabeça**: Uma trend que explora situações do dia a dia de forma engraçada ou relatável. Exemplo: "Acordei com a música Thunderstruck na cabeça porque...".
+                1. **Música que toca na minha cabeça**: Uma trend que explora situações do dia a dia de forma engraçada ou relatável.".
                 
-                2. **Quem é você?**: Uma trend que foca na identidade da marca ou do público. Exemplo: "Quem sou eu? Sou {informação da marca ou cliente}. Fico {atributo do cliente}".
+                2. **Quem é você?**: Uma trend que foca na identidade da marca ou do público.".
                 
-                3. **Primeira semana do mês em 4 fotos**: Trend baseada em imagens da primeira semana do mês. Exemplo: "Esses são meus 4 melhores momentos dessa semana: foto 1, foto 2, foto 3, foto 4".
+                3. **Primeira semana do mês em 4 fotos**: Trend baseada em imagens da primeira semana do mês. ".
                 
-                4. **Quer se juntar à minha religião?**: Trend que faz alusão a um produto/serviço incrível, como se fosse um estilo de vida. Exemplo: "Quer se juntar à minha religião? Somos todos fãs de {produto/serviço}".
+                4. **Quer se juntar à minha religião?**: Trend que faz alusão a um produto/serviço incrível, como se fosse um estilo de vida.".
                 
                 Com base nesse contexto, crie uma versão criativa de {tipo_trend}.
                 '''
