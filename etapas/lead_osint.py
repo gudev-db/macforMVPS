@@ -10,7 +10,7 @@ t_api_key1 = os.getenv("T_API_KEY")
 rapid_key = os.getenv("RAPID_API")
 
 # Configura o cliente Gemini
-genai.configure(api_key=gemini_api_key)
+genai.Client(api_key=gemini_api_key)
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
 
 # Configura o cliente Tavily
