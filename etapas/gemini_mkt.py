@@ -9,6 +9,8 @@ import os
 from tavily import TavilyClient
 from pymongo import MongoClient
 import requests
+from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
+
 
 # Configuração do ambiente da API
 api_key = os.getenv("OPENAI_API_KEY")
@@ -180,6 +182,21 @@ def planej_mkt_page():
                 else:
                     with st.spinner('Gerando o planejamento...'):
 
+                        model_id = "gemini-2.0-flash"
+
+                        google_search_tool = Tool(
+                            google_search = GoogleSearch()
+                        )
+                        
+                        pls = client.models.generate_content(
+                            model=model_id,
+                            contents="Quais as mais atuais notícias políticas do brasil??",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
+
 
 
 
@@ -311,7 +328,7 @@ def planej_mkt_page():
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
 
                         Análise PEST com pelo menos 10 pontos relevantes em cada etapa em português brasileiro 
-                                    considerando:   contexto político: {politic}, contexto econômico: {economic} e dados econômicos
+                                    considerando:   contexto político: {pls}, contexto econômico: {economic} e dados econômicos
                                     relevantes: ({dados_econ_brasil}), contexto social: ({social})
                                     e ({tend_social_duck}), contexto tecnológico: ({tec}) e ({tend_tec_duck}). 
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
