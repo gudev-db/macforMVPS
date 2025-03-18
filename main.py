@@ -11,7 +11,7 @@ from etapas.gemini_midias import planej_midias_page
 from etapas.gemini_crm import planej_crm_page
 from etapas.gemini_campanhas import planej_campanhas
 from etapas.briefing_gemini import briefing
-import google.generativeai as genai
+from google import genai
 from contato.temaEmail import gen_temas_emails
 from etapas.image_gen import gen_img
 from etapas.lead_osint import osint_report
