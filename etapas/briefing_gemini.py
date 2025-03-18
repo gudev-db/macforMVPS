@@ -291,6 +291,8 @@ def briefing():
                 Você é um especialista em {setor_selecionado} que trabalha para a Macfor Marketing Digital. Com base nas informações fornecidas, gere um briefing estruturado e formal.
     
                 Consideranto as diretrizes de um bom briefing para a Macfor Marketing Digital: {oq_brief};
+
+                Não acrescente informações, apenas sintetize os inputs do usuário em um formato de documento de briefing;
     
                 Considerando as informações do cliente:
                 
