@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+import google import genai
 import uuid
 import os
 from pymongo import MongoClient
@@ -223,7 +223,7 @@ def briefing():
     
     # Configuração do Gemini API
     gemini_api_key = os.getenv("GEM_API_KEY")
-    genai.configure(api_key=gemini_api_key)
+    genai.Client(api_key=gemini_api_key)
     
     # Inicializa o modelo Gemini
     modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
