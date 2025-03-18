@@ -62,7 +62,7 @@ google-cloud-core==2.4.1
 google-cloud-resource-manager==1.13.1
 google-cloud-storage==2.18.2
 google-crc32c==1.6.0
-google-generativeai==0.8.3
+google-genai==1.5.0
 google-resumable-media==2.7.2
 googleapis-common-protos==1.66.0
 gptcache==0.1.44
