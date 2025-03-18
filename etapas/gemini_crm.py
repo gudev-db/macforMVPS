@@ -12,7 +12,7 @@ import requests
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
-genai.configure(api_key=gemini_api_key)
+genai.Client(api_key=gemini_api_key)
 modelo_linguagem = genai.GenerativeModel("gemini-1.5-flash")
 
 # Conexão com MongoDB
