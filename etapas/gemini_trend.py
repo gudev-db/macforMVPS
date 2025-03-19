@@ -9,7 +9,7 @@ gemini_api_key = os.getenv("GEM_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
 
 
-
+model_id = "gemini-1.5-flash"
 # Função para limpar o estado do Streamlit
 def limpar_estado():
     for key in list(st.session_state.keys()):
