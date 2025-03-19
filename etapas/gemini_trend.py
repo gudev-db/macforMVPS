@@ -9,7 +9,6 @@ gemini_api_key = os.getenv("GEM_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
 
 
-model_id = "gemini-1.5-flash"
 # Função para limpar o estado do Streamlit
 def limpar_estado():
     for key in list(st.session_state.keys()):
@@ -56,6 +55,12 @@ def gerar_trend():
             st.write("Por favor, preencha todas as informações do cliente.")
         else:
             with st.spinner('Gerando conteúdo de Trend...'):
+
+                model_id = "gemini-2.0-flash"
+
+                        google_search_tool = Tool(
+                            google_search = GoogleSearch()
+                        )
 
                 novids = client.models.generate_content(
                             model=model_id,
