@@ -229,7 +229,7 @@ def briefing():
             del st.session_state[key]
     
     # Setores disponíveis
-       setores = ["Social Media", "CRM", "Mídia", "Tech", "Analytics", "Design", "Redação", "SEO", "Planejamento"]
+    setores = ["Social Media", "CRM", "Mídia", "Tech", "Analytics", "Design", "Redação", "SEO", "Planejamento"]
     
     # Interface do Streamlit
     st.title("Gerador de Briefing por Setor")
@@ -251,57 +251,30 @@ def briefing():
     if setor_selecionado == "Social Media":
         redes = st.text_area("Quais redes sociais serão usadas?:")
         estrategia = st.text_area("Qual a estratégia de conteúdo para esse projeto?:")
-        tom_voz = st.text_input("Qual o tom de voz da marca?:")
-        metricas = st.text_input("Quais métricas serão acompanhadas?:")
-        frequencia = st.text_input("Qual a frequência de postagem?:")
     elif setor_selecionado == "CRM":
         ferramentas = st.text_area("Quais ferramentas de CRM serão utilizadas?:")
         fluxo_comunicacao = st.text_area("Como será o fluxo de comunicação com os clientes?:")
-        tamanho_base = st.text_input("Qual o tamanho da base de contatos?:")
-        segmentacao = st.text_input("Como a base está segmentada?:")
-        gatilhos = st.text_area("Quais são os gatilhos de automação?:")
     elif setor_selecionado == "Mídia":
         canais = st.text_area("Quais canais de mídia serão utilizados?:")
         formatos = st.text_area("Quais formatos de anúncio serão usados?:")
-        investimento = st.text_input("Como o investimento será distribuído?:")
-        publico_alvo = st.text_area("Descrição detalhada do público-alvo para mídia:")
-        kpis = st.text_input("Quais KPIs serão monitorados?:")
     elif setor_selecionado == "Tech":
         tecnologia = st.text_area("Quais tecnologias serão usadas no projeto?:")
         integracoes = st.text_area("Há necessidade de integração com outras plataformas?:")
-        requisitos = st.text_area("Quais são os requisitos técnicos?:")
-        hospedagem = st.text_input("Onde será hospedado?:")
-        prazos_tecnicos = st.text_input("Quais são os prazos para desenvolvimento?:")
     elif setor_selecionado == "Analytics":
         kpis = st.text_area("Quais KPIs serão monitorados?:")
         ferramentas_analytics = st.text_area("Quais ferramentas de análise serão usadas?:")
-        dashboards = st.text_area("Quais dashboards serão criados?:")
-        frequencia_analise = st.text_input("Com que frequência serão gerados relatórios?:")
-        alertas = st.text_area("Quais alertas devem ser configurados?:")
     elif setor_selecionado == "Design":
         referencias = st.text_area("Quais referências visuais devem ser consideradas?:")
         restricoes = st.text_area("Há alguma restrição no design ou branding a seguir?:")
-        elementos_obrigatorios = st.text_area("Quais elementos devem aparecer obrigatoriamente?:")
-        cores = st.text_input("Quais cores devem ser utilizadas?:")
-        tipografia = st.text_input("Qual tipografia deve ser usada?:")
     elif setor_selecionado == "Redação":
         tom_voz = st.text_area("Qual o tom de voz a ser usado?:")
         palavras_chave = st.text_area("Quais palavras-chave são essenciais no texto?:")
-        ctas = st.text_area("Quais chamadas para ação devem ser incluídas?:")
-        formatos_conteudo = st.text_input("Quais formatos de conteúdo serão produzidos?:")
-        adaptacoes = st.text_area("Precisa de adaptações para diferentes canais?:")
     elif setor_selecionado == "SEO":
         estrategia_seo = st.text_area("Qual a estratégia de SEO para esse projeto?:")
         palavras_chave = st.text_area("Quais palavras-chave devem ser priorizadas?:")
-        concorrentes = st.text_area("Quem são os principais concorrentes no SEO?:")
-        metricas = st.text_input("Quais métricas de performance serão acompanhadas?:")
-        tecnicas = st.text_area("Quais técnicas de SEO serão aplicadas?:")
     elif setor_selecionado == "Planejamento":
         cronograma = st.text_area("Qual o cronograma previsto para o projeto?:")
         desafios = st.text_area("Quais desafios podem impactar o planejamento?:")
-        stakeholders = st.text_input("Quem são os principais stakeholders?:")
-        riscos = st.text_area("Quais são os principais riscos identificados?:")
-        comunicacao = st.text_area("Como será o fluxo de comunicação da equipe?:")
     
     # Geração do briefing
     if st.button("Gerar Briefing"):
@@ -311,13 +284,13 @@ def briefing():
             with st.spinner("Gerando o documento de briefing..."):
                 prompt = f"""
                 Você é um especialista em {setor_selecionado} que trabalha para a Macfor Marketing Digital. Com base nas informações fornecidas, gere um briefing estruturado e formal.
-
-                Considerando as diretrizes de um bom briefing para a Macfor Marketing Digital: {oq_brief};
+    
+                Consideranto as diretrizes de um bom briefing para a Macfor Marketing Digital: {oq_brief};
 
                 Não acrescente informações, apenas sintetize os inputs do usuário em um formato de documento de briefing;
 
                 Crie uma subseção para cada entrada do usuário
-
+    
                 Considerando as informações do cliente:
                 
                 Cliente: {nome_cliente}
@@ -327,75 +300,33 @@ def briefing():
                 Público-alvo: {publico}
                 Período: {periodo}
                 Verba: {verba}
+
+                
                 """
                 
                 if setor_selecionado == "Social Media":
-                    prompt += f"""
-                \nRedes Sociais: {redes}
-                Estratégia de Conteúdo: {estrategia}
-                Tom de Voz: {tom_voz}
-                Métricas: {metricas}
-                Frequência: {frequencia}"""
+                    prompt += f"\nRedes Sociais: {redes}\nEstratégia: {estrategia}"
                 elif setor_selecionado == "CRM":
-                    prompt += f"""
-                \nFerramentas CRM: {ferramentas}
-                Fluxo de Comunicação: {fluxo_comunicacao}
-                Tamanho da Base: {tamanho_base}
-                Segmentação: {segmentacao}
-                Gatilhos: {gatilhos}"""
+                    prompt += f"\nFerramentas: {ferramentas}\nFluxo de Comunicação: {fluxo_comunicacao}"
                 elif setor_selecionado == "Mídia":
-                    prompt += f"""
-                \nCanais de Mídia: {canais}
-                Formatos de Anúncio: {formatos}
-                Distribuição de Investimento: {investimento}
-                Público-Alvo: {publico_alvo}
-                KPIs: {kpis}"""
+                    prompt += f"\nCanais: {canais}\nFormatos: {formatos}"
                 elif setor_selecionado == "Tech":
-                    prompt += f"""
-                \nTecnologias: {tecnologia}
-                Integrações: {integracoes}
-                Requisitos Técnicos: {requisitos}
-                Hospedagem: {hospedagem}
-                Prazos Técnicos: {prazos_tecnicos}"""
+                    prompt += f"\nTecnologias: {tecnologia}\nIntegrações: {integracoes}"
                 elif setor_selecionado == "Analytics":
-                    prompt += f"""
-                \nKPIs: {kpis}
-                Ferramentas de Análise: {ferramentas_analytics}
-                Dashboards: {dashboards}
-                Frequência de Análise: {frequencia_analise}
-                Alertas: {alertas}"""
+                    prompt += f"\nKPIs: {kpis}\nFerramentas de Analytics: {ferramentas_analytics}"
                 elif setor_selecionado == "Design":
-                    prompt += f"""
-                \nReferências Visuais: {referencias}
-                Restrições: {restricoes}
-                Elementos Obrigatórios: {elementos_obrigatorios}
-                Cores: {cores}
-                Tipografia: {tipografia}"""
+                    prompt += f"\nReferências Visuais: {referencias}\nRestrições: {restricoes}"
                 elif setor_selecionado == "Redação":
-                    prompt += f"""
-                \nTom de Voz: {tom_voz}
-                Palavras-chave: {palavras_chave}
-                CTAs: {ctas}
-                Formatos de Conteúdo: {formatos_conteudo}
-                Adaptações: {adaptacoes}"""
+                    prompt += f"\nTom de Voz: {tom_voz}\nPalavras-chave: {palavras_chave}"
                 elif setor_selecionado == "SEO":
-                    prompt += f"""
-                \nEstratégia SEO: {estrategia_seo}
-                Palavras-chave: {palavras_chave}
-                Concorrentes: {concorrentes}
-                Métricas: {metricas}
-                Técnicas: {tecnicas}"""
+                    prompt += f"\nEstratégia de SEO: {estrategia_seo}\nPalavras-chave: {palavras_chave}"
                 elif setor_selecionado == "Planejamento":
-                    prompt += f"""
-                \nCronograma: {cronograma}
-                Desafios: {desafios}
-                Stakeholders: {stakeholders}
-                Riscos: {riscos}
-                Comunicação: {comunicacao}"""
+                    prompt += f"\nCronograma: {cronograma}\nDesafios: {desafios}"
                 
                 briefing_gerado = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt]).text
+
                 
                 st.subheader("Briefing Gerado")
                 st.markdown(briefing_gerado)
