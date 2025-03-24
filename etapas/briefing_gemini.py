@@ -349,7 +349,8 @@ def briefing():
 
                 - O documento deve ser 'rico'. Não o deixe 'pobrinho'
 
-                - Com base nas entradas do cliente, entenda o que esse cliente é, seu perfil, seus desejos, suas dores. Crie um documento de briefing que demonstre todas as informações sobre ele submetidas de uma forma
+                - Com base nas entradas do cliente, entenda o que esse cliente é, seu perfil, seus desejos, suas dores, sintetize todas as informações sobre ele e monte em sua mente um perfil
+                que melhor descreve esse cliente no momento em que está. Crie um documento de briefing que demonstre todas as informações sobre ele submetidas de uma forma
                 que agregue para a equipe que fará uso dele.
     
                 Considerando as informações do cliente:
