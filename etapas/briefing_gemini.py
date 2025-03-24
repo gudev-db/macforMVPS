@@ -352,6 +352,9 @@ def briefing():
                 - Com base nas entradas do cliente, entenda o que esse cliente é, seu perfil, seus desejos, suas dores, sintetize todas as informações sobre ele e monte em sua mente um perfil
                 que melhor descreve esse cliente no momento em que está. Crie um documento de briefing que demonstre todas as informações sobre ele submetidas de uma forma
                 que agregue para a equipe que fará uso dele.
+
+                - Adicione uma seção ao final em que você sintetiza todas as informações fornecidas sobre o cliente e redija sobre ele de uma forma verbosa, detalhada, de uma forma que quem ler essa
+                redação de pelo menos 5 parágrafos, irá entender tudo sobre o cliente e o momento que se encontra.
     
                 Considerando as informações do cliente:
                 
