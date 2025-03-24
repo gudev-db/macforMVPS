@@ -353,8 +353,7 @@ def briefing():
                 que melhor descreve esse cliente no momento em que está. Crie um documento de briefing que demonstre todas as informações sobre ele submetidas de uma forma
                 que agregue para a equipe que fará uso dele.
 
-                - Adicione uma seção ao final em que você sintetiza todas as informações fornecidas sobre o cliente e redija sobre ele de uma forma verbosa, detalhada, de uma forma que quem ler essa
-                redação de pelo menos 5 parágrafos, irá entender tudo sobre o cliente e o momento que se encontra.
+                
     
                 Considerando as informações do cliente:
                 
@@ -413,9 +412,23 @@ def briefing():
                     prompt += f"\nCronograma: {cronograma}\nDesafios: {desafios}"
                 
                 briefing_gerado = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt]).text
+
+                talk = f''' dado o documento de briefing gerado: {briefing_gerado}:
+
+                - Crie uma redação em que você sintetiza todas as informações fornecidas sobre o cliente e redija sobre ele de uma forma verbosa, detalhada, de uma forma que quem ler essa
+                redação de pelo menos 5 parágrafos, irá entender tudo sobre o cliente e o momento que se encontra.'''
+
+                
+
+                briefing_talk = client.models.generate_content(
+                        model="gemini-1.5-flash",
+                        contents=[talk]).text
 
                 
                 st.subheader("Briefing Gerado")
                 st.markdown(briefing_gerado)
+
+                st.subheader("Síntese")
+                st.markdown(briefing_talk)
