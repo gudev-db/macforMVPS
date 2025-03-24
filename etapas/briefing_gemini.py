@@ -346,6 +346,8 @@ def briefing():
                 - sintetize os inputs do usuário em um formato de documento de briefing;
 
                 - Entregue o documento em subseções
+
+                - O documento deve ser 'rico'. Não o deixe 'pobrinho'
     
                 Considerando as informações do cliente:
                 
