@@ -229,7 +229,7 @@ def briefing():
             del st.session_state[key]
     
     # Setores disponíveis
-    setores = ["Social Media", "CRM", "Mídia", "Tech", "Analytics", "Design", "Redação", "SEO", "Planejamento"]
+    setores = ["Social Media", "CRM", "Mídia", "Tech", "Analytics", "Design", "Redação", "SEO", "Planejamento", "Campanha Facebook/Instagram"]
     
     # Interface do Streamlit
     st.title("Gerador de Briefing por Setor")
@@ -251,6 +251,58 @@ def briefing():
     if setor_selecionado == "Social Media":
         redes = st.text_area("Quais redes sociais serão usadas?:")
         estrategia = st.text_area("Qual a estratégia de conteúdo para esse projeto?:")
+    elif setor_selecionado == "Campanha Facebook/Instagram":
+        st.markdown("### Informações da Campanha")
+        email_contato = st.text_input("E-mail de contato:")
+        
+        objetivos_campanha = st.multiselect(
+            "Objetivos da Campanha:",
+            ["Vendas", "Cadastros", "Visualização de página", "Pedido (adicionar ao carrinho)", 
+             "Instalação de app", "Receber Ligação", "Pedido de orçamento", "Receber visita física", "Outro"]
+        )
+
+        publico_alvo = st.text_area(
+            "Público-alvo detalhado:",
+            "Ex: Público feminino de 18 a 54 anos que sofrem com quedas em geral, que gostam de consumir produtos online..."
+        )
+        
+        st.markdown("### Configurações de Mídia")
+        regiao_ativacao = st.text_input("Região de ativação dos anúncios:", "Nível Nacional")
+        
+        verba_min = st.number_input("Verba mínima (R$):", min_value=0, value=10000)
+        verba_max = st.number_input("Verba máxima (R$):", min_value=0, value=20000)
+        
+        tem_analytics = st.radio(
+            "Tem Analytics e Pixel instalados?",
+            ["Sim", "Não", "Não sei"]
+        )
+        
+        midias_selecionadas = st.multiselect(
+            "Mídias a serem utilizadas:",
+            ["Facebook Feed", "Facebook Stories", "Instagram Feed", "Instagram Stories", "Messenger", "Instagram Shopping"]
+        )
+        
+        data_inicio = st.date_input("Data de início da campanha:")
+        data_fim = st.date_input("Data de término da campanha:")
+        
+        st.markdown("### Configurações de Produtos")
+        links_produtos = st.text_area(
+            "Produtos e links para divulgação:",
+            "Coloque cada produto e link em uma linha separada"
+        )
+        
+        produto_destaque = st.text_input("Produto para destaque (se houver):")
+        produtos_online = st.radio("Produtos já estão online?", ["Sim", "Não"])
+        produtos_xml = st.radio("Produtos já estão no XML?", ["Sim", "Não"])
+        
+        st.markdown("### Configurações Técnicas")
+        st.write("Formatos para Feed: 1200x1200, 1200x627 (Pode ser imagem ou texto)")
+        st.write("Formatos para Stories: 1920x1080 (Pode ser imagem ou texto)")
+        
+        limite_texto = st.checkbox(
+            "Estou ciente que os anúncios não podem conter mais de 25% de texto",
+            value=True
+        )
     elif setor_selecionado == "CRM":
         ferramentas = st.text_area("Quais ferramentas de CRM serão utilizadas?:")
         fluxo_comunicacao = st.text_area("Como será o fluxo de comunicação com os clientes?:")
@@ -306,6 +358,30 @@ def briefing():
                 
                 if setor_selecionado == "Social Media":
                     prompt += f"\nRedes Sociais: {redes}\nEstratégia: {estrategia}"
+                elif setor_selecionado == "Campanha Facebook/Instagram":
+                    prompt += f"""
+                \n### DETALHES DA CAMPANHA
+                E-mail de contato: {email_contato}
+                
+                Objetivos da Campanha: {', '.join(objetivos_campanha)}
+                
+                Público-alvo detalhado: {publico_alvo}
+                
+                ### CONFIGURAÇÕES DE MÍDIA
+                Região de ativação: {regiao_ativacao}
+                Verba: R${verba_min} a R${verba_max}
+                Analytics/Pixel instalado: {tem_analytics}
+                Mídias selecionadas: {', '.join(midias_selecionadas)}
+                Período da campanha: {data_inicio} a {data_fim}
+                
+                ### CONFIGURAÇÕES DE PRODUTOS
+                Produtos para divulgação: {links_produtos}
+                Produto de destaque: {produto_destaque}
+                Produtos online: {produtos_online}
+                Produtos no XML: {produtos_xml}
+                
+                ### OBSERVAÇÕES
+                Limite de texto em anúncios: {'Sim' if limite_texto else 'Não'}"""
                 elif setor_selecionado == "CRM":
                     prompt += f"\nFerramentas: {ferramentas}\nFluxo de Comunicação: {fluxo_comunicacao}"
                 elif setor_selecionado == "Mídia":
