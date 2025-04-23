@@ -227,7 +227,7 @@ def planej_mkt_page():
                         # Agente de pesquisa tecnológica
                         tec = client.models.generate_content(
                             model=model_id,
-                            contents=f'''Pesquise novidades tecnológicas no ramo de atuação: {ramo_atuacao}?''',
+                            contents=f'''Pesquise novidades tecnológicas no ramo de atuação: {ramo_atuacao}''',
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
