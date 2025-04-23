@@ -276,12 +276,30 @@ def planej_mkt_page():
 
                             Reescreva a seguinte análise SWOT menos genérica e mais relevante:{pre_SWOT_output}''']).text
                         
-                        synth_SWOT = client.models.generate_content(
+                        # Avaliador SWOT
+                        SWOT_guides = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[f'''
-                                  
+                                  ###SISTEMA###
+                                  Você é um expert em analisar análises SWOT. Você sabe aproximar outputs de LLM's e aproximá-las
+                                  ao máximo à de humanos reais.
+                                  ###FIM DAS DIRETRIZES DE SISTEMA###
 
-                            Com base na seguinte análise SWOT, redija um texto de pelo menos 5 parágrafos sobre a marca. identifique pontos chave sobre ela inicialmente não óbvios. Tire insights estratégicos:{SWOT_output}''']).text
+                            Considerando o output de análise SWOT, proponha melhoras para que ele fique menos genérico
+                                  e melhor reidijido de uma forma que insights estratégicos melhores possam ser tirados dele :{SWOT_output}''']).text
+                        
+                        SWOT_final = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+                                   ###SISTEMA###
+                                  Você é um redator humano especialista em redijir planejamentos estratégicos, você
+                                  irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
+                                  essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
+                                  melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
+                                  reescreva o que você recebu de entrada e a torne melhor. Não seja genérico. Não seja vago. Seja prático.
+                                  ###FIM DAS DIRETRIZES DE SISTEMA###
+
+                            Considerando os guias de melhorias: {SWOT_guides} e o output prévio da análise SWOT :{SWOT_output}, reescreva a análise SWOT melhorada.''']).text
                         
                         
 
