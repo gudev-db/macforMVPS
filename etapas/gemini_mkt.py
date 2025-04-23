@@ -285,7 +285,8 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de análise SWOT, proponha melhoras para que ele fique menos genérico
-                                  e melhor reidijido:{SWOT_output}''']).text
+                                  e melhor reidijido  Você deve encontrar falhas na redação e ver como ela pode
+                                  se tornar menos amadora:{SWOT_output}''']).text
                         
                         SWOT_final = client.models.generate_content(
                         model="gemini-2.0-flash",
@@ -371,7 +372,8 @@ def planej_mkt_page():
                         model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
-                                  Você é um expert em analisar análises PEST e apontar como elas podem melhorar.  Você não inventa informações e se trouxer números, traz o link da fonte.
+                                  Você é um expert em analisar análises PEST e apontar como elas podem melhorar. Você deve encontrar falhas na redação e ver como ela pode
+                                  se tornar menos amadora. Você não inventa informações e se trouxer números, traz o link da fonte.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de análise PEST, proponha melhoras para que ele fique menos genérico
