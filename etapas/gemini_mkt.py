@@ -281,8 +281,7 @@ def planej_mkt_page():
                         model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
-                                  Você é um expert em analisar análises SWOT. Você sabe aproximar outputs de LLM's e aproximá-las
-                                  ao máximo à de humanos reais.
+                                  Você é um expert em analisar análises SWOT e apontar como elas podem melhorar
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de análise SWOT, proponha melhoras para que ele fique menos genérico
@@ -372,8 +371,7 @@ def planej_mkt_page():
                         model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
-                                  Você é um expert em analisar análises PEST. Você sabe aproximar outputs de LLM's e aproximá-las
-                                  ao máximo à de humanos reais.
+                                  Você é um expert em analisar análises PEST e apontar como elas podem melhorar.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de análise PEST, proponha melhoras para que ele fique menos genérico
