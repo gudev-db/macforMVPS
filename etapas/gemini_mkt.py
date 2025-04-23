@@ -541,7 +541,9 @@ def planej_mkt_page():
                         model="gemini-2.0-flash",
                         contents=[f'''Considere a seguinte Brand Persona, faça com que ela realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}''']).text
 
-
+                        brand_persona_talk = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f''' Com base no brand pesona: {brand_persona_output}, redija exemplos de fala para ela''']).text
 
                         prompt_buyer_persona = f'''
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -559,6 +561,10 @@ def planej_mkt_page():
                         buyer_persona_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_buyer_persona]).text
+
+                        buyer_persona_talk = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f''' Com base no buyer pesona: {buyer_persona_output}, redija exemplos de fala para ela''']).text
 
 
                         prompt_tom = f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. Levando em conta o ramo de atuação: ({ramo_atuacao}), o brand persona: ({brand_persona_output})
@@ -598,8 +604,10 @@ def planej_mkt_page():
                         st.markdown(posicionamento_final)
                         st.subheader('2.3 Brand Persona')
                         st.markdown(brand_persona_output)
+                        st.markdown(brand_persona_talk)
                         st.subheader('2.4 Buyer Persona')
                         st.markdown(buyer_persona_output)
+                        st.markdown(buyer_persona_talk)
                         st.subheader('2.5 Tom de Voz')
                         st.markdown(tom_output)
               
