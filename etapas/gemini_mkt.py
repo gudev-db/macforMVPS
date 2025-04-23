@@ -184,46 +184,50 @@ def planej_mkt_page():
                             google_search = GoogleSearch()
                         )
                         
+                        # Agente de pesquisa política
                         pls = client.models.generate_content(
                             model=model_id,
-                            contents="Quais as mais atuais notícias políticas do brasil??",
+                            contents="Faça uma pesquisa sobre notícias políticas recentes sobre o Brasil",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
                             )
                         )
-
+                        
+                        # Agente de pesquisa econômica do Brasil
                         dados_econ_brasil = client.models.generate_content(
                             model=model_id,
-                            contents="Quais as mais atuais notícias sobre a economia do brasil??",
+                            contents="Faça uma pesquisa sobre dados econômicos recentes sobre o Brasil",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
                             )
                         )
-
+                        
+                        # Agente de notícias sobre concorrentes
                         novids_conc = client.models.generate_content(
                             model=model_id,
-                            contents=f"Faça uma análise completa sobre as notícias mais recentes do(s) concorrente(s): {concorrentes}",
+                            contents=f"Faça uma pesquisa sobre as notícias mais recentes sobre os concorrentes: {concorrentes}",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
                             )
                         )
 
+                        # Agente de pesquisa Social
                         tend_social_duck = client.models.generate_content(
                             model=model_id,
-                            contents="Novidades no âmbito social no brasil?",
+                            contents="Pesquise sobre novidades no âmbito social brasileiro",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
                             )
                         )
-
+                        
+                        # Agente de pesquisa tecnológica
                         tec = client.models.generate_content(
                             model=model_id,
-                            contents=f'''Quais as novidades tecnológicas no context brasileiro atualmente em um contexto geral e de forma detalhada para
-                                planejamento estratégico de marketing digital no contexto do ramo de atuação: {ramo_atuacao}?''',
+                            contents=f'''Pesquise novidades tecnológicas no ramo de atuação: {ramo_atuacao}?''',
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
@@ -242,22 +246,28 @@ def planej_mkt_page():
 
                       
 
-                        # Aqui vamos gerar as respostas usando o modelo Gemini
+                        # Agente desenvolvedor de análise SWOT
 
                         prompt_SWOT = f'''Assumindo um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado.
                         
                         Para o cliente {nome_cliente}, Considerando o seguinte contexto a referência da marca:
                                     {referencia_da_marca}, para o cliente no ramo de atuação {ramo_atuacao}. E considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca}):
                                     realize a Análise SWOT completa em português brasileiro. 
-                                    Quero pelo menos 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
+                                    Elabore 10 pontos em cada segmento da análise SWOT. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing. 
                                     Cada ponto deve ser pelo menos 3 frases detalhadas, profundas e não genéricas. 
                                     Você está aqui para trazer conhecimento estratégico. organize os pontos em bullets
                                     pra ficarem organizados dentro de cada segmento da tabela.'''
 
                         
-                        SWOT_output = client.models.generate_content(
+                        pre_SWOT_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_SWOT]).text
+
+                        SWOT_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+
+                            Avalie a seguinte saída de uma análise SWOT e torne-a menos genérica e mais relevante:{pre_SWOT_output}''']).text
                         
                         
 
@@ -276,9 +286,15 @@ def planej_mkt_page():
 
 '''
 
-                        concorrencias_output = client.models.generate_content(
+                        pre_concorrencias_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_concorrencias]).text
+
+                        concorrencias_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Avalie a seguinte análise de concorrência e torne-a menos genérica, melhor redijida e mais relevante: {pre_concorrencias_output}''']).text
+
+
 
                         prompt_PEST = f'''Assumindo um especialista em administração de marketing.
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -290,9 +306,13 @@ def planej_mkt_page():
                                     Quero pelo menos 10 pontos em cada segmento da análise PEST. Pontos relevantes que irão alavancar insights poderosos no planejamento de marketing.'''
                         
 
-                        PEST_output = client.models.generate_content(
+                        pre_PEST_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_PEST]).text
+
+                        PEST_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Avalie a seguinte análise PEST e torne-a menos genérica, melhor redijida e mais relevante: {pre_PEST_output}''']).text
 
 
                         prompt_golden = f'''
@@ -302,7 +322,6 @@ def planej_mkt_page():
                         
                         - não seja genérico
                         - traga impacto com seu output
-                        - traga um tcham
                         - você é um especialista em administração de marketing; Você tem todo o conhecimento possível comparavel à Simon Sinek
                         - Você está aqui para fazer a diferença
                         - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -314,9 +333,13 @@ def planej_mkt_page():
                                     {referencia_da_marca}, a análise SWOT ({SWOT_output}).'''
                       
 
-                        golden_output = client.models.generate_content(
+                        pre_golden_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_golden]).text
+
+                        golden_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Avalie o seguinte golden circle, reflita sobre a qualidade dele, torne-o menos genérico, melhor redijido, com mais impacto: {pre_golden_output}''']).text
 
                         prompt_posicionamento = f'''
                             
@@ -362,9 +385,13 @@ def planej_mkt_page():
                                     '''
                   
 
-                        posicionamento_output = client.models.generate_content(
+                        pre_posicionamento_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_posicionamento]).text
+
+                        posicionamento_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Avalie o seguinte posicionamento de marca e torne-o menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}''']).text
 
 
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
@@ -383,14 +410,20 @@ def planej_mkt_page():
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?'''
                   
 
-                        brand_persona_output = client.models.generate_content(
+                        pre_brand_persona_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_brand_persona]).text
+
+                        brand_persona_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Considere a seguinte Brand Persona, avalie se ela realmente representa a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}''']).text
+
+
 
                         prompt_buyer_persona = f'''
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
                         
-                        Descrição detalhada de 3 buyer personas considerando o público-alvo: {publico_alvo} e o 
+                        Descrição detalhada de 2 buyer personas considerando o público-alvo: {publico_alvo} e o 
                                     objetivo do plano estratégico como descrito em {intuito_plano} com os seguintes atributos enunciados: 
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
