@@ -274,7 +274,7 @@ def planej_mkt_page():
                                   reescreva o que você recebu de entrada e a torne melhor. Não seja genérico. Não seja vago. Seja prático.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
-                            Reescreva a seguinte análise SWOT menos genérica e mais relevante:{pre_SWOT_output}''']).textnome_cliente
+                            Reescreva a seguinte análise SWOT menos genérica e mais relevante:{pre_SWOT_output}''']).text
                         
                         synth_SWOT = client.models.generate_content(
                         model="gemini-2.0-flash",
