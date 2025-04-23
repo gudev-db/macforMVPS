@@ -527,7 +527,7 @@ def planej_mkt_page():
 
                         st.header('1. Etapa de Pesquisa de Mercado')
                         st.subheader('1.1 Análise SWOT')
-                        st.markdown(SWOT_output)
+                        st.markdown(SWOT_final)
                         st.subheader('1.2 Análise PEST')
                         st.markdown(PEST_output)
                         st.subheader('1.3 Análise de concorrências')
