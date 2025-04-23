@@ -267,7 +267,7 @@ def planej_mkt_page():
                         model="gemini-2.0-flash",
                         contents=[f'''
 
-                            Avalie a seguinte saída de uma análise SWOT e torne-a menos genérica e mais relevante:{pre_SWOT_output}''']).text
+                            Torne a seguinte análise SWOT menos genérica e mais relevante:{pre_SWOT_output}''']).text
                         
                         
 
@@ -292,7 +292,7 @@ def planej_mkt_page():
 
                         concorrencias_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Avalie a seguinte análise de concorrência e torne-a menos genérica, melhor redijida e mais relevante: {pre_concorrencias_output}''']).text
+                        contents=[f'''Torne a seguinte análise de concorrência menos genérica, melhor redijida e mais relevante: {pre_concorrencias_output}''']).text
 
 
 
@@ -312,7 +312,7 @@ def planej_mkt_page():
 
                         PEST_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Avalie a seguinte análise PEST e torne-a menos genérica, melhor redijida e mais relevante: {pre_PEST_output}''']).text
+                        contents=[f'''Torne a seguinte análise PEST menos genérica, melhor redijida e mais relevante: {pre_PEST_output}''']).text
 
 
                         prompt_golden = f'''
@@ -339,7 +339,7 @@ def planej_mkt_page():
 
                         golden_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Avalie o seguinte golden circle, reflita sobre a qualidade dele, torne-o menos genérico, melhor redijido, com mais impacto: {pre_golden_output}''']).text
+                        contents=[f'''Torne o seguinte Golden Circle menos genérico, melhor redijido, com mais impacto: {pre_golden_output}''']).text
 
                         prompt_posicionamento = f'''
                             
@@ -391,7 +391,7 @@ def planej_mkt_page():
 
                         posicionamento_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Avalie o seguinte posicionamento de marca e torne-o menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}''']).text
+                        contents=[f'''Torne o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}''']).text
 
 
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
@@ -416,7 +416,7 @@ def planej_mkt_page():
 
                         brand_persona_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Considere a seguinte Brand Persona, avalie se ela realmente representa a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}''']).text
+                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}''']).text
 
 
 
