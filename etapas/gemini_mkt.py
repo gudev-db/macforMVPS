@@ -490,6 +490,33 @@ def planej_mkt_page():
                                   Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}''']).text
 
 
+                         # Avaliador de Posicionamento
+                        posicionamento_guides = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+                                  ###SISTEMA###
+                                  Você é um expert em analisar posicionamento de marca e apontar como elas podem melhorar.
+                                  ###FIM DAS DIRETRIZES DE SISTEMA###
+
+                            Considerando o output de posicionamento de marca, proponha melhoras para que ele fique menos genérico
+                                  e melhor reidijido de uma forma que insights estratégicos melhores possam ser tirados dele :{posicionamento_output}''']).text
+                        
+                        posicionamento_final = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+                                   ###SISTEMA###
+                                  Você é um redator humano especialista em redijir planejamentos estratégicos, você
+                                  irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
+                                  essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
+                                  melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
+                                  reescreva o que você recebu de entrada e a torne melhor. Mantenha o formato de um posicionamento de marca.
+                                  Essas são as melhorias propostas: {posicionamento_guides}
+                                  
+                                  ###FIM DAS DIRETRIZES DE SISTEMA###
+
+                            Considerando os guias de melhorias e o output prévio da análise PEST :{posicionamento_output}, reescreva a análise PEST melhorada.''']).text
+                        
+
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
                                     seguinte contexto. Lembre que a brand persona é uma persona representativa da marca e da forma como ela se apresenta para o cliente.
                                     
@@ -568,7 +595,7 @@ def planej_mkt_page():
                         st.subheader('2.1 Golden Circle')
                         st.markdown(golden_output)
                         st.subheader('2.2 Posicionamento de Marca')
-                        st.markdown(posicionamento_output)
+                        st.markdown(posicionamento_final)
                         st.subheader('2.3 Brand Persona')
                         st.markdown(brand_persona_output)
                         st.subheader('2.4 Buyer Persona')
