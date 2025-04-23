@@ -529,8 +529,6 @@ def planej_mkt_page():
                         st.markdown(buyer_persona_output)
                         st.subheader('2.5 Tom de Voz')
                         st.markdown(tom_output)
-                        st.subheader('3. Insights')
-                        st.markdown(synth_SWOT)
-
+              
                         # Salva o planejamento no MongoDB
                         save_to_mongo_MKT(SWOT_output,PEST_output,concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
