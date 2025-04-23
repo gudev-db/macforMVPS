@@ -296,7 +296,7 @@ def planej_mkt_page():
                                   irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
                                   essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
                                   melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
-                                  reescreva o que você recebu de entrada e a torne melhor. Não seja genérico. Não seja vago. Seja prático.
+                                  reescreva o que você recebu de entrada e a torne melhor. Mantenha o formato de uma análise SWOT, porém, com as melhoras.
                                   Essas são as melhorias propostas: {SWOT_guides}
                                   
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
