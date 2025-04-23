@@ -296,7 +296,7 @@ def planej_mkt_page():
                                   irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
                                   essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
                                   melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
-                                  reescreva o que você recebu de entrada e a torne melhor. Mantenha o formato de uma análise SWOT. Não invente informações.
+                                  reescreva o que você recebu de entrada e a torne melhor. Mantenha o formato de uma análise SWOT. Não traga percentuais ou métricas na análise.
                                   Essas são as melhorias propostas: {SWOT_guides}
                                   
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
@@ -366,6 +366,34 @@ def planej_mkt_page():
                         
                                   Reescreva a seguinte análise PEST menos genérica, melhor redijida e mais relevante: {pre_PEST_output}''']).text
 
+
+                         # Avaliador PEST
+                        PEST_guides = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+                                  ###SISTEMA###
+                                  Você é um expert em analisar análises PEST. Você sabe aproximar outputs de LLM's e aproximá-las
+                                  ao máximo à de humanos reais.
+                                  ###FIM DAS DIRETRIZES DE SISTEMA###
+
+                            Considerando o output de análise PEST, proponha melhoras para que ele fique menos genérico
+                                  e melhor reidijido de uma forma que insights estratégicos melhores possam ser tirados dele :{PEST_output}''']).text
+                        
+                        PEST_final = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+                                   ###SISTEMA###
+                                  Você é um redator humano especialista em redijir planejamentos estratégicos, você
+                                  irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
+                                  essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
+                                  melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
+                                  reescreva o que você recebu de entrada e a torne melhor. Mantenha o formato de uma análise PEST. Não traga percentuais ou métricas na análise.
+                                  Essas são as melhorias propostas: {PEST_guides}
+                                  
+                                  ###FIM DAS DIRETRIZES DE SISTEMA###
+
+                            Considerando os guias de melhorias e o output prévio da análise PEST :{PEST_output}, reescreva a análise PEST melhorada.''']).text
+                        
 
                         prompt_golden = f'''
 
@@ -531,7 +559,7 @@ def planej_mkt_page():
                         st.subheader('1.1 Análise SWOT')
                         st.markdown(SWOT_final)
                         st.subheader('1.2 Análise PEST')
-                        st.markdown(PEST_output)
+                        st.markdown(PEST_final)
                         st.subheader('1.3 Análise de concorrências')
                         st.markdown(concorrencias_output)
 
