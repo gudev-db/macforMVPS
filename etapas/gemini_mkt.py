@@ -271,10 +271,17 @@ def planej_mkt_page():
                                   irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
                                   essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
                                   melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
-                                  reescreva o que você recebu de entrada e a torne melhor.
+                                  reescreva o que você recebu de entrada e a torne melhor. Não seja genérico. Não seja vago. Seja prático.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
-                            Reescreva a seguinte análise SWOT menos genérica e mais relevante:{pre_SWOT_output}''']).text
+                            Reescreva a seguinte análise SWOT menos genérica e mais relevante:{pre_SWOT_output}''']).textnome_cliente
+                        
+                        synth_SWOT = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''
+                                  
+
+                            Com base na seguinte análise SWOT, redija um texto de pelo menos 5 parágrafos sobre a marca. identifique pontos chave sobre ela inicialmente não óbvios. Tire insights estratégicos:{SWOT_output}''']).text
                         
                         
 
@@ -305,7 +312,7 @@ def planej_mkt_page():
                                   irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
                                   essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
                                   melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
-                                  reescreva o que você recebu de entrada e a torne melhor.
+                                  reescreva o que você recebu de entrada e a torne melhor. Seja prático, não seja vago. Aprimore a saída.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                                   Reescreva a seguinte análise de concorrência menos genérica, melhor redijida e mais relevante: {pre_concorrencias_output}''']).text
 
@@ -373,7 +380,7 @@ def planej_mkt_page():
                                   reescreva o que você recebu de entrada e a torne melhor.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                         
-                                  Reescreva o seguinte Golden Circle menos genérico, melhor redijido, com mais impacto: {pre_golden_output}''']).text
+                                  Reescreva o seguinte Golden Circle menos genérico, melhor redijido, com mais impacto (MANTENHA UMA ÚNICA FRASE PARA O HOW, WHAT e WHY): {pre_golden_output}''']).text
 
                         prompt_posicionamento = f'''
                             
@@ -522,6 +529,8 @@ def planej_mkt_page():
                         st.markdown(buyer_persona_output)
                         st.subheader('2.5 Tom de Voz')
                         st.markdown(tom_output)
+                        st.subheader('3. Insights')
+                        st.markdown(synth_SWOT)
 
                         # Salva o planejamento no MongoDB
                         save_to_mongo_MKT(SWOT_output,PEST_output,concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
