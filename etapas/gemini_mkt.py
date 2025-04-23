@@ -285,7 +285,7 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de análise SWOT, proponha melhoras para que ele fique menos genérico
-                                  e melhor reidijido de uma forma que insights estratégicos melhores possam ser tirados dele :{SWOT_output}''']).text
+                                  e melhor reidijido:{SWOT_output}''']).text
                         
                         SWOT_final = client.models.generate_content(
                         model="gemini-2.0-flash",
@@ -333,7 +333,7 @@ def planej_mkt_page():
                                   melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
                                   reescreva o que você recebu de entrada e a torne melhor. Seja prático, não seja vago. Aprimore a saída.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
-                                  Reescreva a seguinte análise de concorrência menos genérica, melhor redijida e mais relevante: {pre_concorrencias_output}''']).text
+                                  Reescreva a seguinte análise de concorrência menos genérica, melhor redijida: {pre_concorrencias_output}''']).text
 
 
 
@@ -363,7 +363,7 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                         
                         
-                                  Reescreva a seguinte análise PEST menos genérica, melhor redijida e mais relevante: {pre_PEST_output}''']).text
+                                  Reescreva a seguinte análise PEST menos genérica, melhor redijida: {pre_PEST_output}''']).text
 
 
                          # Avaliador PEST
@@ -375,7 +375,7 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de análise PEST, proponha melhoras para que ele fique menos genérico
-                                  e melhor reidijido de uma forma que insights estratégicos melhores possam ser tirados dele :{PEST_output}''']).text
+                                  e melhor reidijido :{PEST_output}''']).text
                         
                         PEST_final = client.models.generate_content(
                         model="gemini-2.0-flash",
@@ -499,7 +499,7 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
 
                             Considerando o output de posicionamento de marca, proponha melhoras para que ele fique menos genérico
-                                  e melhor reidijido de uma forma que insights estratégicos melhores possam ser tirados dele :{posicionamento_output}''']).text
+                                  e melhor reidijido:{posicionamento_output}''']).text
                         
                         posicionamento_final = client.models.generate_content(
                         model="gemini-2.0-flash",
