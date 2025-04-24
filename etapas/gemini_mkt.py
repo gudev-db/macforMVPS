@@ -616,4 +616,4 @@ def planej_mkt_page():
                         st.markdown(tom_output)
               
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_MKT(SWOT_output,PEST_output,concorrencias_output, golden_output,posicionamento_output,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
+                        save_to_mongo_MKT(SWOT_final,PEST_final,concorrencias_output, golden_output,posicionamento_final,brand_persona_output,buyer_persona_output,tom_output, nome_cliente)
