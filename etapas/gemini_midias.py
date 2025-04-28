@@ -238,7 +238,7 @@ def planej_midias_page():
                                   {prompt_kv_aval}
                                   ###Fim da avaliação do Key visual###
 
-                                  Adapte o Key Visual Abaixo para que ele atenda a avaliação. Reescreva o Key visual inteiro levando em conta a avaliação. Não aponte o que você mudou, apenas traga o novo Key Visual.
+                                  Com base na avaliação, reescreva o Key Visual Seguinte de uma forma que atenda a avaliação. Não me diga o que você mudou, apenas escreva o novo Key Visual.
 
                                   ##Key Visual a ser avaliado##
                                   {kv_output}
