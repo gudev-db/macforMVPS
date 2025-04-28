@@ -437,7 +437,7 @@ def planej_midias_page():
 
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
-                       ## {estrategia_conteudo_output_inst} ##
+                       ## {estrategia_conteudo_output_inst1} ##
 
                        Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
 
@@ -686,8 +686,6 @@ def planej_midias_page():
                         st.markdown(redes_output_wpp)   
                         st.subheader('2.5 Youtube')
                         st.markdown(redes_output_yt)                   
-                        st.subheader('3. Plano para Criativos')
-                        st.markdown(criativos_output)
                         st.subheader('4. Estratégia de Conteúdo')
                         st.subheader('4.1 Estratégia de Conteúdo - Institucional')
                         st.markdown(estrategia_conteudo_output_inst)
@@ -699,8 +697,8 @@ def planej_midias_page():
                         st.markdown(estrategia_conteudo_output_prod)
                         st.subheader('4.5 Estratégia de Conteúdo - Relação com o cliente')
                         st.markdown(estrategia_conteudo_output_rel)
-                        st.subheader('5. SEO - Palavras Chave')
-                        st.markdown(palavras_chave_output)
+                        
+                        
 
 
 
