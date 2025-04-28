@@ -22,7 +22,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente):
+def save_to_mongo_midias(kv_output,redesplanej_output,redesplanej_output_meta,redesplanej_output_link,redesplanej_output_wpp,redesplanej_output_yt,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente):
     # Gerar o ID único para o planejamento
     id_planejamento = gerar_id_planejamento()
     
@@ -33,7 +33,10 @@ def save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_out
         "tipo_plano": 'Plano de Mídias',
         "KV": kv_output,
         "Plano_redes_macro":redesplanej_output,
-        "Plano_Redes": redes_output,
+        "Plano_Redes_Meta": redesplanej_output_meta,
+        "Plano_Redes_Link": redesplanej_output_link,
+        "Plano_Redes_Wpp": redesplanej_output_wpp,
+        "Plano_Redes_Yt": redesplanej_output_yt,
         "Plano_Criativos": criativos_output,
         "Plano_Palavras_Chave": palavras_chave_output,
         "Estrategia_Conteudo": estrategia_conteudo_output,
@@ -283,7 +286,9 @@ def planej_midias_page():
                         model="gemini-2.0-flash",
                         contents=[prompt_redesplanej]).text
 
-                        prompt_redes = f"""
+                        
+
+                        prompt_redes_meta = f"""
                         Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
 
                         - O ramo de atuação: {ramo_atuacao}.
@@ -291,26 +296,64 @@ def planej_midias_page():
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
                         
-                        Divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube), oferecendo ideias criativas e diferenciadas para cada plataforma. Para cada uma delas, defina o tom de voz e estratégias específicas de conteúdo.
-                        
-                        1. **Instagram & Facebook:**
+                        Otimize sua estratégia para Instagram e Facebook. Considerando suas forças e limitações como rede                        
+                        **Instagram & Facebook:**
                            - 5 ideias de Reels e Stories: Explique como essas ideias capturam a atenção e engajam o público.
                            - 5 ideias de posts estáticos e carrosséis: Descreva como esses formatos ajudam a aumentar a conscientização da marca.
                            - 5 ideias de conteúdo localizado: Aproxime a marca do público local, considerando preferências culturais e comportamentais.
                         
-                        2. **LinkedIn:**
+                        
+                        """
+
+                        prompt_redes_link = f"""
+                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+                        Otimize a estratégia para Linkedin. Considerando suas forças e limitações como rede                        
+                        
+                         **LinkedIn:**
                            - 5 ideias de conteúdos educativos e informativos: Envolva o público com informações valiosas e especializadas.
                            - 5 ideias de depoimentos de sucesso: Utilize histórias reais para gerar confiança e credibilidade.
                            - 5 ideias de eventos e comemorações: Relacione a marca com momentos importantes para o público.
                            - Defina o tom de voz para LinkedIn.
                            - 5 sugestões de CTAs: Proponha ações com objetivos claros e atraentes.
                         
-                        3. **WhatsApp:**
+                        
+                        """
+
+                        prompt_redes_wpp = f"""
+                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+                        Otimize a estratégia para whatsapp. Considerando suas forças e limitações
+                        
+                         **WhatsApp:**
                            - 5 ideias de canais: Estratégias de comunicação direta e personalizada.
                            - 5 ideias de listas de transmissão: Engajamento com grupos segmentados.
                            - 5 ideias de análises regulares: Como medir o impacto da comunicação e melhorar o engajamento.
                         
-                        4. **YouTube:**
+                        
+                        """
+
+                        prompt_redes_yt = f"""
+                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+                        otimize a estratégia para o Youtube. Considerando suas forças e limitações como rede social
+
+                         **YouTube:**
                            - 5 ideias de Shorts: Estratégias curtas e impactantes.
                            - 5 ideias de conteúdos com especialistas: Produza conteúdos com autoridade no tema.
                            - 5 ideias de vídeos: Defina o tipo de vídeos que atraem e educam o público.
@@ -321,9 +364,21 @@ def planej_midias_page():
                         """
                         
 
-                        redes_output = client.models.generate_content(
+                        redes_output_meta = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[prompt_redes]).text
+                        contents=[prompt_redes_meta]).text
+
+                        redes_output_link = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_redes_link]).text
+
+                        redes_output_wpp = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_redes_wpp]).text
+
+                        redes_output_yt = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_redes_yt]).text
 
                         prompt_criativos = f"""
                         Crie 10 criativos para as campanhas de marketing digital em um nível bem detalhado, aprodundado,
@@ -423,13 +478,7 @@ def planej_midias_page():
                         model="gemini-2.0-flash",
                         contents=[prompt_estrategia_conteudo]).text
 
-                        tarefas_midia = [
-                            {"output": kv_output},
-                            {"output": redes_output},
-                            {"output": criativos_output},
-                            {"output": palavras_chave_output},
-                            {"output": estrategia_conteudo_output},
-                        ]
+                        
 
                         # Exibe os resultados na interface
                         st.header('Plano de Redes Sociais e Mídias')
@@ -437,7 +486,10 @@ def planej_midias_page():
                         st.markdown(kv_output_final)
                         st.subheader('2. Plano para Redes')
                         st.markdown(redesplanej_output)
-                        st.markdown(redes_output)                   
+                        st.markdown(redes_output_meta)   
+                        st.markdown(redes_output_link)   
+                        st.markdown(redes_output_wpp)   
+                        st.markdown(redes_output_yt)                   
                         st.subheader('3. Plano para Criativos')
                         st.markdown(criativos_output)
                         st.subheader('4. Estratégia de Conteúdo')
@@ -446,5 +498,6 @@ def planej_midias_page():
                         st.markdown(palavras_chave_output)
 
 
+
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_midias(kv_output,redes_output,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
+                        save_to_mongo_midias(kv_output,redes_output_meta,redes_output_link,redes_output_wpp,redes_output_yt,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
