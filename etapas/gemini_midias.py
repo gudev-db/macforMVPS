@@ -221,7 +221,7 @@ def planej_midias_page():
                         
                         ##Fim de definição de key visual##
 
-                        Aponte todas as formas que o key visual seguinte pode melhorar
+                        Aponte todas as formas que o key visual seguinte pode melhorar. Assim como ele pode ser mais original e ser algo que um especialista em mídias iria gerar.
 
                         ##Key visual a ser melhorado##
                         ({kv_output})
