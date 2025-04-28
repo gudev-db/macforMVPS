@@ -267,6 +267,21 @@ def planej_midias_page():
                         
                         - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas:
                         
+                        
+                        """
+
+                        redesplanej_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_redesplanej]).text
+
+                        prompt_redesplanej_crono = f"""
+                        Com base na estratégia de redes definida abaixo
+                        ##START ESTRATEGIA DE REDES##
+                        {redesplanej_output}
+                        ##END ESTRATEGIA DE REDES##
+
+                        
+                        
                         - Em formato de tabela, cronograma e considerando datas comemorativas, divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento para os anúncios: {budget} reais (alocação
                         devida e detalhadamente justificada) definindo tambem
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque. Quebre o investimento, tipo de campanha e estratégia
@@ -282,9 +297,12 @@ def planej_midias_page():
 
                         """
 
-                        redesplanej_output = client.models.generate_content(
+                        
+
+
+                        redesplanej_output_crono = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[prompt_redesplanej]).text
+                        contents=[prompt_redesplanej_crono]).text
 
                         
 
@@ -484,11 +502,17 @@ def planej_midias_page():
                         st.header('Plano de Redes Sociais e Mídias')
                         st.subheader('1. Plano de Key Visual')
                         st.markdown(kv_output_final)
-                        st.subheader('2. Plano para Redes')
+                        st.subheader('2. Plano Geral de Redes')
                         st.markdown(redesplanej_output)
-                        st.markdown(redes_output_meta)   
+                        st.subheader('2.1 Cronograma de Redes')
+                        st.markdown(redesplanej_output_crono)
+                        st.subheader('2.2 Meta (Instagram e Facebook)')
+                        st.markdown(redes_output_meta) 
+                        st.subheader('2.3 Linkedin')  
                         st.markdown(redes_output_link)   
+                        st.subheader('2.4 Whatsapp')
                         st.markdown(redes_output_wpp)   
+                        st.subheader('2.5 Youtube')
                         st.markdown(redes_output_yt)                   
                         st.subheader('3. Plano para Criativos')
                         st.markdown(criativos_output)
