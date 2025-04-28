@@ -453,7 +453,7 @@ def planej_midias_page():
                         model="gemini-2.0-flash",
                         contents=[prompt_palavras_chave]).text
 
-                        prompt_estrategia_conteudo = f"""
+                        prompt_estrategia_conteudo_inst = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
                         - O ramo de atuação: {ramo_atuacao}.
@@ -461,29 +461,103 @@ def planej_midias_page():
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
                         
-                        A estratégia deve ser dividida em 5 pilares de conteúdo, com explicações detalhadas sobre como cada um contribuirá para os objetivos da marca:
-                        
-                        1. **Institucional**:
+                        Crie o pilar institucional do conteúdo
+
+                         **Institucional**:
                            - Objetivo: Posicionar a marca e gerar credibilidade.
                            - Conteúdo: Defina o tipo de conteúdo (ex: história da empresa, missão, visão).
                            - Canal: Sugira as plataformas onde esse conteúdo deve ser veiculado.
                         
-                        2. **Inspiração**:
+
+
+                        """
+
+                        estrategia_conteudo_output_inst = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_inst]).text
+
+                        prompt_estrategia_conteudo_insp = f"""
+                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+                        Crie o pilar Inspiração da estratégia de conteúdo                        
+
+                        
+                        **Inspiração**:
                            - Objetivo: Criar uma conexão emocional com o público.
                            - Conteúdo: Defina histórias e temas inspiradores.
                            - Canal: Sugira plataformas adequadas para esse tipo de conteúdo.
+
+                        """
+
+                        estrategia_conteudo_output_insp = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_insp]).text
+
+
+                        prompt_estrategia_conteudo_edu = f"""
+                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
                         
-                        3. **Educação**:
+                        Crie o pilar Educação do conteúdo                        
+
+                        
+                        **Educação**:
                            - Objetivo: Educar o público sobre produtos, serviços ou tendências do mercado.
                            - Conteúdo: Ofereça temas educativos relevantes para o público-alvo.
                            - Canal: Defina as plataformas mais eficazes para esse tipo de conteúdo.
                         
-                        4. **Produtos/Serviços**:
+
+
+                        """
+
+                        estrategia_conteudo_output_edu = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_edu]).text
+
+
+                        prompt_estrategia_conteudo_prod = f"""
+                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+
+                        Crie o pilar produtos/serviços da estratégia de conteúdo
+                        **Produtos/Serviços**:
                            - Objetivo: Gerar leads e promover vendas.
                            - Conteúdo: Detalhe como destacar os produtos ou serviços de maneira atrativa.
                            - Canal: Quais canais serão mais eficazes para conversões?
                         
-                        5. **Relacionamento**:
+
+                        """
+
+                        estrategia_conteudo_output_prod = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_prod]).text
+
+
+                        prompt_estrategia_conteudo_rel = f"""
+                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
+
+                        - O ramo de atuação: {ramo_atuacao}.
+                        - O intuito estratégico do plano: {intuito_plano}.
+                        - O público-alvo: {publico_alvo}.
+                        - A referência da marca: {referencia_da_marca}.
+                        
+
+                        Crie o pilar de relacionamento da estratégia de conteúdo
+                         **Relacionamento**:
                            - Objetivo: Criar e manter um relacionamento de longo prazo com o público.
                            - Conteúdo: Defina conteúdo interativo ou de engajamento.
                            - Canal: Sugira canais onde o engajamento direto com o público seja mais efetivo.
@@ -492,9 +566,9 @@ def planej_midias_page():
 
                         """
 
-                        estrategia_conteudo_output = client.models.generate_content(
+                        estrategia_conteudo_output_rel = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[prompt_estrategia_conteudo]).text
+                        contents=[prompt_estrategia_conteudo_rel]).text
 
                         
 
@@ -517,10 +591,22 @@ def planej_midias_page():
                         st.subheader('3. Plano para Criativos')
                         st.markdown(criativos_output)
                         st.subheader('4. Estratégia de Conteúdo')
-                        st.markdown(estrategia_conteudo_output)
+                        st.subheader('4.1 Estratégia de Conteúdo - Institucional')
+                        st.markdown(estrategia_conteudo_output_inst)
+                        st.subheader('4.2 Estratégia de Conteúdo - Inspiração')
+                        st.markdown(estrategia_conteudo_output_insp)
+                        st.subheader('4.3 Estratégia de Conteúdo - Educação')
+                        st.markdown(estrategia_conteudo_output_edu)
+                        st.subheader('4.4 Estratégia de Conteúdo - Produtos/Serviços')
+                        st.markdown(estrategia_conteudo_output_prod)
+                        st.subheader('4.5 Estratégia de Conteúdo - Relação com o cliente')
+                        st.markdown(estrategia_conteudo_output_rel)
                         st.subheader('5. SEO - Palavras Chave')
                         st.markdown(palavras_chave_output)
 
+
+
+                       
 
 
                         # Salva o planejamento no MongoDB
