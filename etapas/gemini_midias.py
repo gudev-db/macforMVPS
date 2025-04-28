@@ -200,7 +200,7 @@ def planej_midias_page():
                         """
 
                         kv_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_kv]).text
 
                         prompt_kv_aval = f"""
@@ -235,7 +235,7 @@ def planej_midias_page():
 
 
                         kv_output_final = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[f'''Considerando a avaliação do Key Visual
                                   
                                   
@@ -271,7 +271,7 @@ def planej_midias_page():
                         """
 
                         redesplanej_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_redesplanej]).text
 
                         prompt_redesplanej_crono = f"""
@@ -301,7 +301,7 @@ def planej_midias_page():
 
 
                         redesplanej_output_crono = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_redesplanej_crono]).text
 
                         
@@ -383,19 +383,19 @@ def planej_midias_page():
                         
 
                         redes_output_meta = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_redes_meta]).text
 
                         redes_output_link = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_redes_link]).text
 
                         redes_output_wpp = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_redes_wpp]).text
 
                         redes_output_yt = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_redes_yt]).text
 
                         prompt_criativos = f"""
@@ -423,7 +423,7 @@ def planej_midias_page():
                         """
 
                         criativos_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_criativos]).text
 
 
@@ -450,7 +450,7 @@ def planej_midias_page():
                         """
 
                         palavras_chave_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_palavras_chave]).text
 
                         #Etapa estratégia de conteúdo - Pilar institucional
@@ -475,7 +475,7 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_inst1 = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_inst]).text
 
                         #Refinação da etapa institucional
@@ -491,11 +491,11 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_inst_guias = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_inst_guias]).text
 
                         estrategia_conteudo_output_inst = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[f'''Dado os guias de melhorias
                                   ##{estrategia_conteudo_output_inst_guias}##
                                   Reescreva o pilar institucional de estratégia de conteúdo a seguir.
@@ -527,7 +527,7 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_insp1 = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_insp]).text
 
                         #Refinação da etapa de inspiração
@@ -543,11 +543,11 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_insp_guias = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_insp_guias]).text
 
                         estrategia_conteudo_output_insp = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[f'''Dado os guias de melhorias
                                   ##{estrategia_conteudo_output_insp_guias}##
                                   Reescreva o pilar de inspiração de estratégia de conteúdo a seguir.
@@ -579,7 +579,7 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_edu1 = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_edu]).text
 
 
@@ -597,11 +597,11 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_edu_guias = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_edu_guias]).text
 
                         estrategia_conteudo_output_edu = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[f'''Dado os guias de melhorias
                                   ##{estrategia_conteudo_output_edu_guias}##
                                   Reescreva o pilar de educação do pilar de estratégia de conteúdo a seguir.
@@ -633,7 +633,7 @@ def planej_midias_page():
                         
 
                         estrategia_conteudo_output_prod1 = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_prod1]).text
 
                         # Refinamento de Estratégia de Produtos e Serviços
@@ -649,11 +649,11 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_prod_guias = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_prod_guias]).text
 
                         estrategia_conteudo_output_prod = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[f'''Dado os guias de melhorias
                                   ##{estrategia_conteudo_output_prod_guias}##
                                   Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
@@ -685,7 +685,7 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_rel1 = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_rel1]).text
 
                         # Refinamento de Estratégia de Relacionamento
@@ -701,11 +701,11 @@ def planej_midias_page():
                         """
 
                         estrategia_conteudo_output_rel_guias = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[prompt_estrategia_conteudo_rel_guias]).text
 
                         estrategia_conteudo_output_rel = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-1.5-flash",
                         contents=[f'''Dado os guias de melhorias
                                   ##{estrategia_conteudo_output_rel_guias}##
                                   Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
