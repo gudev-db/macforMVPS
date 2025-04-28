@@ -453,6 +453,8 @@ def planej_midias_page():
                         model="gemini-2.0-flash",
                         contents=[prompt_palavras_chave]).text
 
+                        #Etapa estratégia de conteúdo - Pilar institucional
+
                         prompt_estrategia_conteudo_inst = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
@@ -472,10 +474,40 @@ def planej_midias_page():
 
                         """
 
-                        estrategia_conteudo_output_inst = client.models.generate_content(
+                        estrategia_conteudo_output_inst1 = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_estrategia_conteudo_inst]).text
 
+                        #Refinação da etapa institucional
+                        prompt_estrategia_conteudo_inst_guias = f"""
+                        Você é um especialista no pilar de institucional em estratégia de conteúdo
+
+
+                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
+                       ## {estrategia_conteudo_output_inst} ##
+
+                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
+
+                        """
+
+                        estrategia_conteudo_output_inst_guias = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_inst_guias]).text
+
+                        estrategia_conteudo_output_inst = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Dado os guias de melhorias
+                                  ##{estrategia_conteudo_output_inst_guias}##
+                                  Reescreva o pilar institucional de estratégia de conteúdo a seguir.
+
+                                  ##{estrategia_conteudo_output_inst1}##
+
+                                  Apenas escreva uma nova estratégia de conteudo - pilar institucional. Não aponte o que você mudou
+                                   ''']).text
+
+
+
+                        #Etapa pilar inspiração
                         prompt_estrategia_conteudo_insp = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
@@ -494,11 +526,38 @@ def planej_midias_page():
 
                         """
 
-                        estrategia_conteudo_output_insp = client.models.generate_content(
+                        estrategia_conteudo_output_insp1 = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_estrategia_conteudo_insp]).text
 
+                        #Refinação da etapa de inspiração
+                        prompt_estrategia_conteudo_insp_guias = f"""
+                        Você é um especialista no pilar de educação em estratégia de conteúdo
 
+
+                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
+                       ## {estrategia_conteudo_output_insp} ##
+
+                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
+
+                        """
+
+                        estrategia_conteudo_output_insp_guias = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_insp_guias]).text
+
+                        estrategia_conteudo_output_insp = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Dado os guias de melhorias
+                                  ##{estrategia_conteudo_output_insp_guias}##
+                                  Reescreva o pilar de inspiração de estratégia de conteúdo a seguir.
+
+                                  ##{estrategia_conteudo_output_insp1}##
+
+                                  Apenas escreva uma nova estratégia de conteudo - pilar inspiração. Não aponte o que você mudou
+                                   ''']).text
+
+                        #Etapa de estratégia de geração de conteúdo - pilar educação
                         prompt_estrategia_conteudo_edu = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
@@ -519,12 +578,41 @@ def planej_midias_page():
 
                         """
 
-                        estrategia_conteudo_output_edu = client.models.generate_content(
+                        estrategia_conteudo_output_edu1 = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_estrategia_conteudo_edu]).text
 
 
-                        prompt_estrategia_conteudo_prod = f"""
+                        #Refinamento de estratégia de educação
+
+                        prompt_estrategia_conteudo_edu_guias = f"""
+                        Você é um especialista no pilar de educação em estratégia de conteúdo
+
+
+                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
+                       ## {estrategia_conteudo_output_edu1} ##
+
+                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
+
+                        """
+
+                        estrategia_conteudo_output_edu_guias = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_edu_guias]).text
+
+                        estrategia_conteudo_output_edu = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Dado os guias de melhorias
+                                  ##{estrategia_conteudo_output_edu_guias}##
+                                  Reescreva o pilar de educação do pilar de estratégia de conteúdo a seguir.
+
+                                  ##{estrategia_conteudo_output_edu1}##
+
+                                  Apenas escreva uma nova estratégia de conteudo - pilar educação. Não aponte o que você mudou
+                                   ''']).text
+
+                        #Etapa de estratégia de produtos e serviços
+                        prompt_estrategia_conteudo_prod1 = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
                         - O ramo de atuação: {ramo_atuacao}.
@@ -542,12 +630,42 @@ def planej_midias_page():
 
                         """
 
+                        
+
+                        estrategia_conteudo_output_prod1 = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_prod1]).text
+
+                        # Refinamento de Estratégia de Produtos e Serviços
+                        prompt_estrategia_conteudo_prod_guias = f"""
+                        Você é um especialista no pilar de produtos e serviços em estratégia de conteúdo
+
+
+                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
+                       ## {estrategia_conteudo_output_prod1} ##
+
+                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
+
+                        """
+
+                        estrategia_conteudo_output_prod_guias = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_prod_guias]).text
+
                         estrategia_conteudo_output_prod = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[prompt_estrategia_conteudo_prod]).text
+                        contents=[f'''Dado os guias de melhorias
+                                  ##{estrategia_conteudo_output_prod_guias}##
+                                  Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
+
+                                  ##{estrategia_conteudo_output_prod1}##
+
+                                  Apenas escreva uma nova estratégia de conteudo - pilar relacionamento. Não aponte o que você mudou
+                                   ''']).text
 
 
-                        prompt_estrategia_conteudo_rel = f"""
+                        # Estratégia de Relacionamento
+                        prompt_estrategia_conteudo_rel1 = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
                         - O ramo de atuação: {ramo_atuacao}.
@@ -566,9 +684,36 @@ def planej_midias_page():
 
                         """
 
+                        estrategia_conteudo_output_rel1 = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_rel1]).text
+
+                        # Refinamento de Estratégia de Relacionamento
+                        prompt_estrategia_conteudo_rel_guias = f"""
+                        Você é um especialista no pilar de relacionamento em estratégia de conteúdo
+
+
+                       Dada a seguinte estratégia de conteúdo de Relacionamento
+                       ## {estrategia_conteudo_output_rel1} ##
+
+                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
+
+                        """
+
+                        estrategia_conteudo_output_rel_guias = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_estrategia_conteudo_rel_guias]).text
+
                         estrategia_conteudo_output_rel = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[prompt_estrategia_conteudo_rel]).text
+                        contents=[f'''Dado os guias de melhorias
+                                  ##{estrategia_conteudo_output_rel_guias}##
+                                  Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
+
+                                  ##{estrategia_conteudo_output_rel1}##
+
+                                  Apenas escreva uma nova estratégia de conteudo - pilar relacionamento. Não aponte o que você mudou
+                                   ''']).text
 
                         
 
@@ -610,4 +755,4 @@ def planej_midias_page():
 
 
                         # Salva o planejamento no MongoDB
-                        save_to_mongo_midias(kv_output,redes_output_meta,redes_output_link,redes_output_wpp,redes_output_yt,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
+                        save_to_mongo_midias(kv_output,redes_output_meta,redes_o#utput_link,redes_output_wpp,redes_output_yt,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
