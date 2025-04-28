@@ -196,10 +196,57 @@ def planej_midias_page():
 
                         """
 
-
                         kv_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_kv]).text
+
+                        prompt_kv_aval = f"""
+                        Você é um especialista em garantir a qualidade de Key Visual. Considerando os guias de se fazer um bom key visual.
+                        
+                        ##Definição de Key Visual##
+                        O Key Visual deve ser a representação visual central para campanhas de marketing, refletindo a identidade da marca e ressoando com o público-alvo. Ele deve ser aplicável em diferentes materiais de comunicação, como anúncios, redes sociais, e embalagens.
+                        
+                        A definição do Key Visual deve ser detalhada da seguinte forma:
+                        
+                        1. **Imagem Conceito:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
+                        Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
+                        delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
+                        detalhe e justificados.
+                        
+                        2. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem conceito. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
+                        
+                        3. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
+                        
+                        4. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
+                        
+                        ##Fim de definição de key visual##
+
+                        Aponte todas as formas que o key visual seguinte pode melhorar
+
+                        ##Key visual a ser melhorado##
+                        ({kv_output})
+                        ## Fim do key visual##
+                        """
+
+                        
+
+
+                        kv_output_final = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[f'''Considerando a avaliação do Key Visual
+                                  ###Avaliação Key Visual###
+                                  {prompt_kv_aval}
+                                  ###Fim da avaliação do Key visual###
+
+                                  Adapte o Key Visual Abaixo para que ele atenda a avaliação
+
+                                  ##Key Visual a ser avaliado##
+                                  {kv_output}
+                                  ##Fim do Key Visual a ser avaliado###
+                                  
+                                  ''']).text
+
+                        
 
                         prompt_redesplanej = f"""
                         Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
@@ -384,7 +431,7 @@ def planej_midias_page():
                         # Exibe os resultados na interface
                         st.header('Plano de Redes Sociais e Mídias')
                         st.subheader('1. Plano de Key Visual')
-                        st.markdown(kv_output)
+                        st.markdown(kv_output_final)
                         st.subheader('2. Plano para Redes')
                         st.markdown(redesplanej_output)
                         st.markdown(redes_output)                   
