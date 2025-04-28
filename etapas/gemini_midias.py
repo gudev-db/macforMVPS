@@ -489,7 +489,7 @@ def planej_midias_page():
 
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
-                       ## {estrategia_conteudo_output_insp} ##
+                       ## {estrategia_conteudo_output_insp1} ##
 
                        Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
 
