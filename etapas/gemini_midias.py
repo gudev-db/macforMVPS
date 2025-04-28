@@ -754,5 +754,4 @@ def planej_midias_page():
                        
 
 
-                        # Salva o planejamento no MongoDB
-                        save_to_mongo_midias(kv_output,redes_output_meta,redes_output_link,redes_output_wpp,redes_output_yt,redesplanej_output,criativos_output,palavras_chave_output,estrategia_conteudo_output, nome_cliente)
+                       
