@@ -398,60 +398,13 @@ def planej_midias_page():
                         model="gemini-1.5-flash",
                         contents=[prompt_redes_yt]).text
 
-                        prompt_criativos = f"""
-                        Crie 10 criativos para as campanhas de marketing digital em um nível bem detalhado, aprodundado,
-                        oriundos da concepção de um especialista em nível acadêmico sobre marketing digital, que referencia e justifica todas
-                        as suas escolhas. Para {nome_cliente}, considerando os seguintes pontos:
+                        
 
-                        - Ramo de atuação: {ramo_atuacao}.
-                        - Intuito estratégico do plano: {intuito_plano}.
-                        - Público-alvo: {publico_alvo}.
-                        - Referência da marca: {referencia_da_marca}.
-                        
-                        Cada criativo deve incluir:
-                        
-                        1. **Título**: Seja criativo, objetivo e alinhado com a proposta de valor da marca.
-                        2. **Descrição**: Corpo de texto do anúncio.
-                        3. **Tipo de Imagem ou Vídeo Sugerido**: Indique qual estilo de imagem ou elemento visual deve ser usado (foto, ilustração, gráfico, etc.) e explique por que esse tipo de imagem é o mais eficaz para o público e o ramo de atuação.
-                        Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
-                        delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
-                        detalhe e justificados.
 
                         
-                        Seja original e proponha ideias que possam ser executadas com um alto impacto.
-
-                        """
-
-                        criativos_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_criativos]).text
 
 
-                        #SEO e Site
-
-
-                        prompt_palavras_chave = f"""
-                        Desenvolva um relatório detalhado de sugestões de palavras-chave para SEO para {nome_cliente}, levando em conta:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O público-alvo: {publico_alvo}.
-                        - O comportamento de busca online do público-alvo.
                         
-                        No relatório, inclua:
-                        
-                        1. **Palavras-chave principais**: Liste as palavras-chave mais relevantes, com base em volume de busca e relevância para o cliente.
-                        2. **Palavras-chave secundárias**: Inclua termos relacionados que podem gerar tráfego complementar.
-                        3. **Tendências e variações de busca**: Analise variações de palavras-chave que podem ajudar a aumentar a visibilidade.
-                        4. **Sugestões de conteúdo otimizado**: Ofereça sugestões de tipos de conteúdo que possam ser usados para melhorar o SEO, como artigos, blogs ou vídeos.
-                        5. **Estratégias de otimização on-page e off-page**: Forneça dicas de como melhorar a presença online de {nome_cliente} a partir dessas palavras-chave.
-                        
-                        Seja claro e detalhado, com uma explicação de como cada palavra-chave pode gerar resultados tangíveis para a marca.
-
-                        """
-
-                        palavras_chave_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_palavras_chave]).text
 
                         #Etapa estratégia de conteúdo - Pilar institucional
 
