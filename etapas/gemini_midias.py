@@ -291,7 +291,7 @@ def planej_midias_page():
                         - data fim {end_date}
                         - orçamento para plataformas de anúncios: {budget} reais
                         
-                        - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas:
+                        - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas. Não seja vago. Nâo me dê diretrizes, me de ações concretas. Não me ensina sobre marketing, me diga exatamente o que fazer e por que.
                         
                         
                         """
@@ -308,16 +308,14 @@ def planej_midias_page():
 
                         
                         
-                        - Em formato de tabela, cronograma e considerando datas comemorativas, divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento para os anúncios: {budget} reais (alocação
+                        - Em formato de tabela, cronograma COMPLETO e considerando datas comemorativas, divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento para os anúncios: {budget} reais (alocação
                         devida e detalhadamente justificada) definindo tambem
                         tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque. Quebre o investimento, tipo de campanha e estratégia
                         por plataforma e periodo (dentro de {start_date} e {end_date}). Detalhe o quanto cada campanha deve gastar, por qual pedíodo, por qual plataforma, qual é o tipo de campanha,
-                        justificando sempre o porque de cada atributo. Primeiro justifique a alocação de recursos temporalmente e depois por plataforma. Quantidade a ser gasta em cada etapa temporal
-                        por que? Quantidade a ser gasta em cada plataforma porque? Redija textos justificando o porque que cada fase recebe mais ou menos recursos,
-                        o porque que cada plataforma recebe mais ou menos recursos. 
+                        justificando sempre o porque de cada atributo. 
                      
                         
-                        não resuma ou pule etapas. quero o cronograma completo.
+                        
                         
 
 
