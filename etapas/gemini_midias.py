@@ -2,6 +2,7 @@ import streamlit as st
 from google import genai
 import uuid
 import os
+from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 from pymongo import MongoClient
 
 # Configuração do Gemini API
@@ -172,7 +173,32 @@ def planej_midias_page():
                 else:
                     with st.spinner('Gerando o planejamento de mídias...'):
 
-                        # Aqui vamos gerar as respostas usando o modelo Gemini
+                        
+
+                        model_id = "gemini-2.0-flash"
+
+                        google_search_tool = Tool(
+                            google_search = GoogleSearch()
+                        )
+                        
+                        # Agente de pesquisa de concorrentes
+                        concorrentes_out = client.models.generate_content(
+                            model=model_id,
+                            contents="Faça uma pesquisa sobre a empresa {concorrentes}",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
+
+                        tendencias_out = client.models.generate_content(
+                            model=model_id,
+                            contents="Faça uma pesquisa sobre a empresa {tendaux}",
+                            config=GenerateContentConfig(
+                                tools=[google_search_tool],
+                                response_modalities=["TEXT"],
+                            )
+                        )
 
                         prompt_kv = f"""
                         Defina o Key Visual para a marca {nome_cliente}, levando em consideração os seguintes pontos:
@@ -313,6 +339,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         Otimize sua estratégia para Instagram e Facebook. Considerando suas forças e limitações como rede                        
                         **Instagram & Facebook:**
@@ -330,6 +358,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         Otimize a estratégia para Linkedin. Considerando suas forças e limitações como rede                        
                         
@@ -350,6 +380,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         Otimize a estratégia para whatsapp. Considerando suas forças e limitações
                         
@@ -368,6 +400,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         otimize a estratégia para o Youtube. Considerando suas forças e limitações como rede social
 
@@ -415,6 +449,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         Crie o pilar institucional do conteúdo
 
@@ -468,6 +504,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         Crie o pilar Inspiração da estratégia de conteúdo                        
 
@@ -518,6 +556,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
                         Crie o pilar Educação do conteúdo                        
 
@@ -572,6 +612,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
 
                         Crie o pilar produtos/serviços da estratégia de conteúdo
@@ -625,6 +667,8 @@ def planej_midias_page():
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - notícias sobre tendência escolhida: {tendencias_out}
+                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         
 
                         Crie o pilar de relacionamento da estratégia de conteúdo
