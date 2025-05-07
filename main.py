@@ -17,6 +17,7 @@ from etapas.lead_osint import osint_report
 from contato.Email import gen_emails
 from contato.noticias import pesquisa
 from etapas.gemini_trend import gerar_trend
+from etapas.seo_gemini import seo_page
 
 st.set_page_config(
     layout="wide",
@@ -115,6 +116,7 @@ if login():
             "Planejamento",
             "CRM",
             "Mídias",
+            "SEO",
             "Briefing",
             "Documentos Salvos"
         ],
@@ -190,7 +192,11 @@ if login():
             elif midias_option == "Geração de Trends":
                 gerar_trend()
 
-
+    elif selecao_sidebar ==  "SEO":
+        st.sidebar.subheader("Realizar Planejamento de SEO")
+        seo_page()
+    
+    
     elif selecao_sidebar == "Briefing":
         st.sidebar.subheader("Desenvolver documento de Briefing")
         briefing()
