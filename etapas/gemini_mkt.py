@@ -316,26 +316,15 @@ def planej_mkt_page():
                                     cliente {nome_cliente} pode superar isso. Aprofundando em um nível bem detalhado, com parágrafos para cada ponto extremamente bem
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Tenha um olhar sob a ótica de marketing, que é o foco de nossa empresa.
                                     Veja como {nome_cliente} pode se destacar em contraponto ao(s) concorrente(s) sob uma ótica estratégica de marketing. Traga impacto nas suas análises. Você é um especialista e está aqui para liderar nossos processos.
-                                    
+                                    -  Se não houver nenhuma informação sobre a concorrência (se nenhum concorrente for listado), mantenha esse campo em branco. Você não deve inventar informações.
 
 '''
 
-                        pre_concorrencias_output = client.models.generate_content(
+                        concorrencias_output = client.models.generate_content(
                         model="gemini-2.0-flash",
                         contents=[prompt_concorrencias]).text
 
-                        concorrencias_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
-                        contents=[f'''
-                                    ###SISTEMA###
-                                  Você é um redator humano especialista em redijir planejamentos estratégicos, você
-                                  irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
-                                  essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
-                                  melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
-                                  reescreva o que você recebu de entrada e a torne melhor. Seja prático, não seja vago. Aprimore a saída.
-                                  ###FIM DAS DIRETRIZES DE SISTEMA###
-                                  Reescreva a seguinte análise de concorrência menos genérica, melhor redijida: {pre_concorrencias_output}''']).text
-
+                       
 
 
                         prompt_PEST = f'''Assumindo um especialista em administração de marketing.
@@ -391,6 +380,7 @@ def planej_mkt_page():
                                   Essas são as melhorias propostas: {PEST_guides}
                                   
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
+                                  Você nunca deve mudar a sigla Análise PEST.
 
                             Considerando os guias de melhorias e o output prévio da análise PEST :{PEST_output}, reescreva a análise PEST melhorada.''']).text
                         
