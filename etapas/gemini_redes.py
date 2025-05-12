@@ -184,7 +184,7 @@ def planej_redes_page():
                         # Agente de pesquisa de concorrentes
                         concorrentes_out = client.models.generate_content(
                             model=model_id,
-                            contents="Faça uma pesquisa sobre a empresa {concorrentes}",
+                            contents=f"Faça uma pesquisa sobre a empresa {concorrentes}",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
@@ -193,7 +193,7 @@ def planej_redes_page():
 
                         tendencias_out = client.models.generate_content(
                             model=model_id,
-                            contents="Faça uma pesquisa sobre a empresa {tendaux}",
+                            contents=f"Faça uma pesquisa sobre a empresa {tendaux}",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
@@ -290,6 +290,7 @@ def planej_redes_page():
                         - data de inicio {start_date}
                         - data fim {end_date}
                         - orçamento para plataformas de anúncios: {budget} reais
+
                         
                         - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas. Não seja vago. Nâo me dê diretrizes, me de ações concretas. Não me ensina sobre marketing, me diga exatamente o que fazer e por que.
                         
@@ -339,6 +340,8 @@ def planej_redes_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         Otimize sua estratégia para Instagram e Facebook. Considerando suas forças e limitações como rede                        
                         **Instagram & Facebook:**
@@ -358,6 +361,8 @@ def planej_redes_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         Otimize a estratégia para Linkedin. Considerando suas forças e limitações como rede                        
                         
@@ -380,6 +385,8 @@ def planej_redes_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         Otimize a estratégia para whatsapp. Considerando suas forças e limitações
                         
@@ -400,6 +407,8 @@ def planej_redes_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         otimize a estratégia para o Youtube. Considerando suas forças e limitações como rede social
 
