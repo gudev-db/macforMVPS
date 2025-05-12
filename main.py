@@ -18,6 +18,7 @@ from contato.Email import gen_emails
 from contato.noticias import pesquisa
 from etapas.gemini_trend import gerar_trend
 from etapas.seo_gemini import seo_page
+from etapas.gemini_redes import planej_redes_page
 
 st.set_page_config(
     layout="wide",
@@ -116,6 +117,7 @@ if login():
             "Planejamento",
             "CRM",
             "Mídias",
+            
             "SEO",
             "Briefing",
             "Documentos Salvos"
@@ -175,7 +177,8 @@ if login():
             "Escolha o tipo de conteúdo Mídias:",
             [
                 "Selecione uma opção",
-                "Planejamento de Mídias e Redes",
+                "Planejamento de Mídias",
+                "Planejamento de Redes",
                 "Brainstorming de Anúncios",
                 "Geração de Imagens",
                 "Geração de Trends"
@@ -183,8 +186,10 @@ if login():
         )
 
         if midias_option != "Selecione uma opção":
-            if midias_option == "Planejamento de Mídias e Redes":
+            if midias_option == "Planejamento de Mídias":
                 planej_midias_page()
+            if midias_option == "Planejamento de Redes":
+                planej_redes_page()
             elif midias_option == "Brainstorming de Anúncios":
                 planej_campanhas()
             elif midias_option == "Geração de Imagens":

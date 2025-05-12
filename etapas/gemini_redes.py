@@ -53,7 +53,7 @@ def limpar_estado():
         del st.session_state[key]
 
 # Função principal da página de planejamento de mídias
-def planej_midias_page():
+def planej_redes_page():
     st.subheader('Planejamento de Mídias e Redes')
     st.text('''Aqui geramos plano para criativos, plano de Key Visual, Plano de atuação segmentado por canal (ex: Linkedin, Facebook, Instagram...),
             brainstorming de criativos a serem utilizados, estratégia de conteúdo e sugestões de palavras chave.''')
@@ -438,294 +438,27 @@ def planej_midias_page():
 
                         
 
-                        #Etapa estratégia de conteúdo - Pilar institucional
-
-                        prompt_estrategia_conteudo_inst = f"""
-                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        Crie o pilar institucional do conteúdo
-
-                         **Institucional**:
-                           - Objetivo: Posicionar a marca e gerar credibilidade.
-                           - Conteúdo: Defina o tipo de conteúdo (ex: história da empresa, missão, visão).
-                           - Canal: Sugira as plataformas onde esse conteúdo deve ser veiculado.
-                        
-
-
-                        """
-
-                        estrategia_conteudo_output_inst1 = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_inst]).text
-
-                        #Refinação da etapa institucional
-                        prompt_estrategia_conteudo_inst_guias = f"""
-                        Você é um especialista no pilar de institucional em estratégia de conteúdo
-
-
-                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
-                       ## {estrategia_conteudo_output_inst1} ##
-
-                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
-
-                        """
-
-                        estrategia_conteudo_output_inst_guias = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_inst_guias]).text
-
-                        estrategia_conteudo_output_inst = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_inst_guias}##
-                                  Reescreva o pilar institucional de estratégia de conteúdo a seguir.
-
-                                  ##{estrategia_conteudo_output_inst1}##
-
-                                  Apenas escreva uma nova estratégia de conteudo - pilar institucional. Não aponte o que você mudou
-                                   ''']).text
-
-
-
-                        #Etapa pilar inspiração
-                        prompt_estrategia_conteudo_insp = f"""
-                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        Crie o pilar Inspiração da estratégia de conteúdo                        
-
-                        
-                        **Inspiração**:
-                           - Objetivo: Criar uma conexão emocional com o público.
-                           - Conteúdo: Defina histórias e temas inspiradores.
-                           - Canal: Sugira plataformas adequadas para esse tipo de conteúdo.
-
-                        """
-
-                        estrategia_conteudo_output_insp1 = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_insp]).text
-
-                        #Refinação da etapa de inspiração
-                        prompt_estrategia_conteudo_insp_guias = f"""
-                        Você é um especialista no pilar de educação em estratégia de conteúdo
-
-
-                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
-                       ## {estrategia_conteudo_output_insp1} ##
-
-                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
-
-                        """
-
-                        estrategia_conteudo_output_insp_guias = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_insp_guias]).text
-
-                        estrategia_conteudo_output_insp = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_insp_guias}##
-                                  Reescreva o pilar de inspiração de estratégia de conteúdo a seguir.
-
-                                  ##{estrategia_conteudo_output_insp1}##
-
-                                  Apenas escreva uma nova estratégia de conteudo - pilar inspiração. Não aponte o que você mudou
-                                   ''']).text
-
-                        #Etapa de estratégia de geração de conteúdo - pilar educação
-                        prompt_estrategia_conteudo_edu = f"""
-                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        Crie o pilar Educação do conteúdo                        
-
-                        
-                        **Educação**:
-                           - Objetivo: Educar o público sobre produtos, serviços ou tendências do mercado.
-                           - Conteúdo: Ofereça temas educativos relevantes para o público-alvo.
-                           - Canal: Defina as plataformas mais eficazes para esse tipo de conteúdo.
-                        
-
-
-                        """
-
-                        estrategia_conteudo_output_edu1 = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_edu]).text
-
-
-                        #Refinamento de estratégia de educação
-
-                        prompt_estrategia_conteudo_edu_guias = f"""
-                        Você é um especialista no pilar de educação em estratégia de conteúdo
-
-
-                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
-                       ## {estrategia_conteudo_output_edu1} ##
-
-                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
-
-                        """
-
-                        estrategia_conteudo_output_edu_guias = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_edu_guias]).text
-
-                        estrategia_conteudo_output_edu = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_edu_guias}##
-                                  Reescreva o pilar de educação do pilar de estratégia de conteúdo a seguir.
-
-                                  ##{estrategia_conteudo_output_edu1}##
-
-                                  Apenas escreva uma nova estratégia de conteudo - pilar educação. Não aponte o que você mudou
-                                   ''']).text
-
-                        #Etapa de estratégia de produtos e serviços
-                        prompt_estrategia_conteudo_prod1 = f"""
-                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-
-                        Crie o pilar produtos/serviços da estratégia de conteúdo
-                        **Produtos/Serviços**:
-                           - Objetivo: Gerar leads e promover vendas.
-                           - Conteúdo: Detalhe como destacar os produtos ou serviços de maneira atrativa.
-                           - Canal: Quais canais serão mais eficazes para conversões?
-                        
-
-                        """
-
-                        
-
-                        estrategia_conteudo_output_prod1 = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_prod1]).text
-
-                        # Refinamento de Estratégia de Produtos e Serviços
-                        prompt_estrategia_conteudo_prod_guias = f"""
-                        Você é um especialista no pilar de produtos e serviços em estratégia de conteúdo
-
-
-                       Dada a seguinte estratégia de conteúdo de Produtos e Serviços
-                       ## {estrategia_conteudo_output_prod1} ##
-
-                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
-
-                        """
-
-                        estrategia_conteudo_output_prod_guias = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_prod_guias]).text
-
-                        estrategia_conteudo_output_prod = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_prod_guias}##
-                                  Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
-
-                                  ##{estrategia_conteudo_output_prod1}##
-
-                                  Apenas escreva uma nova estratégia de conteudo - pilar relacionamento. Não aponte o que você mudou
-                                   ''']).text
-
-
-                        # Estratégia de Relacionamento
-                        prompt_estrategia_conteudo_rel1 = f"""
-                       Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-
-                        Crie o pilar de relacionamento da estratégia de conteúdo
-                         **Relacionamento**:
-                           - Objetivo: Criar e manter um relacionamento de longo prazo com o público.
-                           - Conteúdo: Defina conteúdo interativo ou de engajamento.
-                           - Canal: Sugira canais onde o engajamento direto com o público seja mais efetivo.
-                        
-                        Inclua também sugestões de formatos, como blogs, vídeos, webinars, posts interativos, etc.
-
-                        """
-
-                        estrategia_conteudo_output_rel1 = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_rel1]).text
-
-                        # Refinamento de Estratégia de Relacionamento
-                        prompt_estrategia_conteudo_rel_guias = f"""
-                        Você é um especialista no pilar de relacionamento em estratégia de conteúdo
-
-
-                       Dada a seguinte estratégia de conteúdo de Relacionamento
-                       ## {estrategia_conteudo_output_rel1} ##
-
-                       Faça uma avaliação sobre o que a torna genérica demais e como ela pode melhorar.
-
-                        """
-
-                        estrategia_conteudo_output_rel_guias = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_estrategia_conteudo_rel_guias]).text
-
-                        estrategia_conteudo_output_rel = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_rel_guias}##
-                                  Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
-
-                                  ##{estrategia_conteudo_output_rel1}##
-
-                                  Apenas escreva uma nova estratégia de conteudo - pilar relacionamento. Não aponte o que você mudou
-                                   ''']).text
+                      
 
                         
 
                         # Exibe os resultados na interface
-                        st.header('Plano de Mídias')
+                        st.header('Plano de Redes Sociais e Mídias')
                         st.subheader('1. Plano de Key Visual')
-                        st.subheader('2. Estratégia de Conteúdo')
-                        st.subheader('2.1 Estratégia de Conteúdo - Institucional')
-                        st.markdown(estrategia_conteudo_output_inst)
-                        st.subheader('2.2 Estratégia de Conteúdo - Inspiração')
-                        st.markdown(estrategia_conteudo_output_insp)
-                        st.subheader('2.3 Estratégia de Conteúdo - Educação')
-                        st.markdown(estrategia_conteudo_output_edu)
-                        st.subheader('2.4 Estratégia de Conteúdo - Produtos/Serviços')
-                        st.markdown(estrategia_conteudo_output_prod)
-                        st.subheader('2.5 Estratégia de Conteúdo - Relação com o cliente')
-                        st.markdown(estrategia_conteudo_output_rel)
+                        st.markdown(kv_output_final)
+                        st.subheader('2. Plano Geral de Redes')
+                        st.markdown(redesplanej_output)
+                        st.subheader('2.1 Cronograma de Redes')
+                        st.markdown(redesplanej_output_crono)
+                        st.subheader('2.2 Meta (Instagram e Facebook)')
+                        st.markdown(redes_output_meta) 
+                        st.subheader('2.3 Linkedin')  
+                        st.markdown(redes_output_link)   
+                        st.subheader('2.4 Whatsapp')
+                        st.markdown(redes_output_wpp)   
+                        st.subheader('2.5 Youtube')
+                        st.markdown(redes_output_yt)                   
+                      
                         
                         
 
