@@ -135,18 +135,7 @@ def planej_midias_page():
     Forneça informações sobre a identidade da marca, seus valores, sua proposta única de valor e como ela se diferencia no mercado.
     """)
 
-    budget = st.text_input('Orçamento de Anúncios:', key="budget", placeholder="Valor em reais", help="""
-    **Quanto o cliente está disposto a investir em anúncios?**
-    
-    Informe o orçamento disponível para as campanhas de mídia.
-    """)
 
-    start_date = st.date_input("Data de Início do período de contratação de serviços:", key="start_date", help="""
-    **Quando a estratégia deve começar a ser implementada?**
-    """)
-    end_date = st.date_input("Data do Fim do período de contratação de serviços::", key="end_date", help="""
-    **Quando a estratégia deve ser finalizada?**
-    """)
 
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True, help="""
@@ -207,6 +196,7 @@ def planej_midias_page():
                         - O intuito estratégico do plano de marketing: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         O Key Visual deve ser a representação visual central para campanhas de marketing, refletindo a identidade da marca e ressoando com o público-alvo. Ele deve ser aplicável em diferentes materiais de comunicação, como anúncios, redes sociais, e embalagens.
                         
@@ -280,157 +270,6 @@ def planej_midias_page():
 
                         
 
-                        prompt_redesplanej = f"""
-                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - data de inicio {start_date}
-                        - data fim {end_date}
-                        - orçamento para plataformas de anúncios: {budget} reais
-                        
-                        - Extraia todo o seu conhecimento possível sobre marketing digital, estratégicas de campanhas. Não seja vago. Nâo me dê diretrizes, me de ações concretas. Não me ensina sobre marketing, me diga exatamente o que fazer e por que.
-                        
-                        
-                        """
-
-                        redesplanej_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_redesplanej]).text
-
-                        prompt_redesplanej_crono = f"""
-                        Com base na estratégia de redes definida abaixo
-                        ##START ESTRATEGIA DE REDES##
-                        {redesplanej_output}
-                        ##END ESTRATEGIA DE REDES##
-
-                        
-                        
-                        - Em formato de tabela, cronograma COMPLETO e considerando datas comemorativas, divida a estratégia de acordo com cada rede social (Instagram, Facebook, LinkedIn, WhatsApp, YouTube) no que se refere a alocação do orçamento para os anúncios: {budget} reais (alocação
-                        devida e detalhadamente justificada) definindo tambem
-                        tipos de campanhas a serem realizadas (ex: pesquisa, display, video, app, pmax) de acordo com a plataforma e porque. Quebre o investimento, tipo de campanha e estratégia
-                        por plataforma e periodo (dentro de {start_date} e {end_date}). Detalhe o quanto cada campanha deve gastar, por qual pedíodo, por qual plataforma, qual é o tipo de campanha,
-                        justificando sempre o porque de cada atributo. 
-                     
-                        
-                        
-                        
-
-
-                        """
-
-                        
-
-
-                        redesplanej_output_crono = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_redesplanej_crono]).text
-
-                        
-
-                        prompt_redes_meta = f"""
-                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        Otimize sua estratégia para Instagram e Facebook. Considerando suas forças e limitações como rede                        
-                        **Instagram & Facebook:**
-                           - 5 ideias de Reels e Stories: Explique como essas ideias capturam a atenção e engajam o público.
-                           - 5 ideias de posts estáticos e carrosséis: Descreva como esses formatos ajudam a aumentar a conscientização da marca.
-                           - 5 ideias de conteúdo localizado: Aproxime a marca do público local, considerando preferências culturais e comportamentais.
-                        
-                        
-                        """
-
-                        prompt_redes_link = f"""
-                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        Otimize a estratégia para Linkedin. Considerando suas forças e limitações como rede                        
-                        
-                         **LinkedIn:**
-                           - 5 ideias de conteúdos educativos e informativos: Envolva o público com informações valiosas e especializadas.
-                           - 5 ideias de depoimentos de sucesso: Utilize histórias reais para gerar confiança e credibilidade.
-                           - 5 ideias de eventos e comemorações: Relacione a marca com momentos importantes para o público.
-                           - Defina o tom de voz para LinkedIn.
-                           - 5 sugestões de CTAs: Proponha ações com objetivos claros e atraentes.
-                        
-                        
-                        """
-
-                        prompt_redes_wpp = f"""
-                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        Otimize a estratégia para whatsapp. Considerando suas forças e limitações
-                        
-                         **WhatsApp:**
-                           - 5 ideias de canais: Estratégias de comunicação direta e personalizada.
-                           - 5 ideias de listas de transmissão: Engajamento com grupos segmentados.
-                           - 5 ideias de análises regulares: Como medir o impacto da comunicação e melhorar o engajamento.
-                        
-                        
-                        """
-
-                        prompt_redes_yt = f"""
-                        Crie uma estratégia de redes sociais detalhada para {nome_cliente}, com base nas seguintes informações:
-
-                        - O ramo de atuação: {ramo_atuacao}.
-                        - O intuito estratégico do plano: {intuito_plano}.
-                        - O público-alvo: {publico_alvo}.
-                        - A referência da marca: {referencia_da_marca}.
-                        - notícias sobre tendência escolhida: {tendencias_out}
-                        - notícias sobre concorrente que precisamos superar: {concorrentes_out}
-                        
-                        otimize a estratégia para o Youtube. Considerando suas forças e limitações como rede social
-
-                         **YouTube:**
-                           - 5 ideias de Shorts: Estratégias curtas e impactantes.
-                           - 5 ideias de conteúdos com especialistas: Produza conteúdos com autoridade no tema.
-                           - 5 ideias de vídeos: Defina o tipo de vídeos que atraem e educam o público.
-                           - 5 ideias de análises regulares: Como fazer revisões de performance para otimizar a estratégia.
-                        
-                        Além disso, inclua sugestões sobre o que evitar em cada plataforma, para não prejudicar a imagem da marca.
-
-                        """
-                        
-
-                        redes_output_meta = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_redes_meta]).text
-
-                        redes_output_link = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_redes_link]).text
-
-                        redes_output_wpp = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_redes_wpp]).text
-
-                        redes_output_yt = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[prompt_redes_yt]).text
-
-                        
 
 
                         
@@ -449,6 +288,8 @@ def planej_midias_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         Crie o pilar institucional do conteúdo
 
@@ -468,6 +309,10 @@ def planej_midias_page():
                         #Refinação da etapa institucional
                         prompt_estrategia_conteudo_inst_guias = f"""
                         Você é um especialista no pilar de institucional em estratégia de conteúdo
+                        - Você preza por praticidade
+                        - Você não gosta de genericidade
+                        - Você está aqui para apontar falhas de conteúdo que o tornam genéricos e amplos demais.
+                        - Você preza por textos concisos
 
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
@@ -504,6 +349,8 @@ def planej_midias_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         Crie o pilar Inspiração da estratégia de conteúdo                        
 
@@ -522,6 +369,10 @@ def planej_midias_page():
                         #Refinação da etapa de inspiração
                         prompt_estrategia_conteudo_insp_guias = f"""
                         Você é um especialista no pilar de educação em estratégia de conteúdo
+                        - Você preza por praticidade
+                        - Você não gosta de genericidade
+                        - Você está aqui para apontar falhas de conteúdo que o tornam genéricos e amplos demais.
+                        - Você preza por textos concisos
 
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
@@ -556,6 +407,8 @@ def planej_midias_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
                         Crie o pilar Educação do conteúdo                        
 
@@ -578,6 +431,10 @@ def planej_midias_page():
 
                         prompt_estrategia_conteudo_edu_guias = f"""
                         Você é um especialista no pilar de educação em estratégia de conteúdo
+                        - Você preza por praticidade
+                        - Você não gosta de genericidade
+                        - Você está aqui para apontar falhas de conteúdo que o tornam genéricos e amplos demais.
+                        - Você preza por textos concisos
 
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
@@ -612,6 +469,8 @@ def planej_midias_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
 
                         Crie o pilar produtos/serviços da estratégia de conteúdo
@@ -632,7 +491,10 @@ def planej_midias_page():
                         # Refinamento de Estratégia de Produtos e Serviços
                         prompt_estrategia_conteudo_prod_guias = f"""
                         Você é um especialista no pilar de produtos e serviços em estratégia de conteúdo
-
+                        - Você preza por praticidade
+                        - Você não gosta de genericidade
+                        - Você está aqui para apontar falhas de conteúdo que o tornam genéricos e amplos demais.
+                        - Você preza por textos concisos
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
                        ## {estrategia_conteudo_output_prod1} ##
@@ -667,6 +529,8 @@ def planej_midias_page():
                         - A referência da marca: {referencia_da_marca}.
                         - notícias sobre tendência escolhida: {tendencias_out}
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
+                        - O Key Visual : {kv_output_final}
+                        - Objetivos de marca: {objetivos_de_marca}
                         
 
                         Crie o pilar de relacionamento da estratégia de conteúdo
@@ -685,7 +549,11 @@ def planej_midias_page():
 
                         # Refinamento de Estratégia de Relacionamento
                         prompt_estrategia_conteudo_rel_guias = f"""
-                        Você é um especialista no pilar de relacionamento em estratégia de conteúdo
+                        Você é um especialista no pilar de relacionamento em estratégia de conteúdo.
+                        - Você preza por praticidade
+                        - Você não gosta de genericidade
+                        - Você está aqui para apontar falhas de conteúdo que o tornam genéricos e amplos demais.
+                        - Você preza por textos concisos
 
 
                        Dada a seguinte estratégia de conteúdo de Relacionamento
@@ -707,7 +575,7 @@ def planej_midias_page():
 
                                   ##{estrategia_conteudo_output_rel1}##
 
-                                  Apenas escreva uma nova estratégia de conteudo - pilar relacionamento. Não aponte o que você mudou
+                                  Apenas escreva uma nova estratégia de conteudo - pilar relacionamento. Não aponte o que você mudou.
                                    ''']).text
 
                         
