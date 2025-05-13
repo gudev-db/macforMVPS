@@ -583,6 +583,7 @@ def planej_midias_page():
                         # Exibe os resultados na interface
                         st.header('Plano de Mídias')
                         st.subheader('1. Plano de Key Visual')
+                        st.markdown(kv_output_final)
                         st.subheader('2. Estratégia de Conteúdo')
                         st.subheader('2.1 Estratégia de Conteúdo - Institucional')
                         st.markdown(estrategia_conteudo_output_inst)
