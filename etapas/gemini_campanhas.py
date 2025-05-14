@@ -85,7 +85,7 @@ def planej_campanhas():
         if st.button('Iniciar Planejamento'):
             if 1 ==1:
                 with st.spinner('Brainstorming...'):
-                    prompt_ads = f"""
+                    prompt_mote = f"""
                     Desenvolva um anúncio {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
                     - O ramo de atuação da empresa: {ramo_atuacao}.
                     - O intuito estratégico do plano de marketing: {intuito_plano}.
@@ -108,31 +108,197 @@ def planej_campanhas():
 
                         1. **Mote de Campanha:** dado o guia para se criar um bom mote de campanha: {guias_mote}. Crie 5 motes de campanha
 
+                      
+                        """
+                    mote_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_mote]).text
+
+                    prompt_imagem = f"""
+                    Desenvolva a descrição da imagem ou vídeo (como se fosse diretrizes completas que possui tudo que um designer gráfico precisa para desenvolver a imagem) a ser utilizada em anúncios do cliente {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Mote de campanha : {mote_output}
+                  
+                        
+                        
+                        
+                   
                         2. **Imagem ou vídeo:** Defina a imagem que encapsula os valores e o propósito da marca. Justifique a escolha com base em elementos visuais comumente utilizados no ramo de atuação {ramo_atuacao} e como isso se conecta ao público-alvo {publico_alvo}. Explique por que essa imagem foi escolhida, incluindo referências culturais, psicológicas e comportamentais.
                         Imagine que você irá contratar um designer para desenvolver essa imagem. Detalhe-a em como ela deve ser feita em um nível extremamente detalhados. Serão guidelines extremamente
                         delhadados, precisos e justificados que o designer irá receber para desenvolver a imagem conceito. Não seja vago. Dia exatamente quais são os elementos visuais em extremo
                         detalhe e justificados.
+                     
+                        """
+                    imagem_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_imagem]).text
+
+                    prompt_tipografia = f"""
+                    Desenvolva a tipografia a ser utilizada em anúncios do cliente {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Mote de campanha : {mote_output}
+                    - Imagem a ser usada: {imagem_output}
+                  
                         
+                        
+                        
+                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico (seja preciso. Diga exatamente o que deve ser feito):
+
+                     
                         3. **Tipografia:** Escolha uma fonte tipográfica que complemente a imagem. Detalhe a escolha e a forma como a tipografia reflete a identidade da marca, levando em conta a legibilidade e a conexão emocional com o público. Explique as escolhas de estilo, espessura e espaçamento.
                         
-                        4. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
+                     
+                        """
+                    tipografia_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_tipografia]).text
+
+                    prompt_cores = f"""
+                    Desenvolva a palleta de cores a serem utilizadas em anúncios do cliente {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Mote de campanha : {mote_output}
+                    - Imagem a ser usada: {imagem_output}
+                    - Tipografia: {tipografia_output}
+                  
                         
+                        
+                        
+                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico (seja preciso. Diga exatamente o que deve ser feito):
+
+                        4. **Cores:** Selecione uma paleta de cores específica para o Key Visual. Justifique as escolhas com base em psicologia das cores e tendências do mercado no ramo de atuação {ramo_atuacao}. Detalhe como essas cores evocam emoções e criam uma identidade visual forte e coesa.
+                      
+                        """
+                    cores_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_cores]).text
+
+                    prompt_grafs = f"""
+                    Desenvolva elementos gráficos a serem utilizados em anúncios do cliente {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Mote de campanha : {mote_output}
+                    - Imagem a ser usada: {imagem_output}
+                    - Tipografia: {tipografia_output}
+                    - Cores: {cores_output}
+                  
+                        
+                        
+                        
+                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico (seja preciso. Diga exatamente o que deve ser feito):
+
+                       
                         5. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
-                        6. **Descrição:** Texto associado ao anúncio.
+                       
+                        """
+                    grafs_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_grafs]).text
+
+                    prompt_desc = f"""
+                    Desenvolva uma descrição de anúncio para {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Mote de campanha : {mote_output}
+                    - Imagem a ser usada: {imagem_output}
+                    - Tipografia: {tipografia_output}
+                    - Cores: {cores_output}
+                    - Elementos gráficos: {grafs_output}
+                  
+                        
+                        
+                        
+                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico (seja preciso. Diga exatamente o que deve ser feito):
+
+                      6. **Descrição:** Texto associado ao anúncio.
+
+                        """
+                    desc_output = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[prompt_desc]).text
+
+                    prompt_cron = f"""
+                    Desenvolva um cronograma de anúncios {nome_cliente}, levando em consideração e otimizando a criação da campanha para os seguintes pontos:
+                    - O ramo de atuação da empresa: {ramo_atuacao}.
+                    - O intuito estratégico do plano de marketing: {intuito_plano}.
+                    - O público-alvo: {publico_alvo}.
+                    - A referência da marca: {referencia_da_marca}.
+                    - Tipo de anúncio: dado os tipos de anúncio em {tipo_anuncio}, escolha o(s) que faz(em) mais sentido para que o cliente atinja seus objetivos.
+                    - Data de início: {start_date}
+                    - Data fim: {end_date}
+                    - Plataforma: {platform}
+                    - Mote de campanha : {mote_output}
+                    - Imagem a ser usada: {imagem_output}
+                    - Tipografia: {tipografia_output}
+                    - Cores: {cores_output}
+                    - Elementos gráficos: {grafs_output}
+                    - Descrição: {desc_output}
+                  
+                        
+                        
+                        
+                    - Para cada um dos anúncios, desenvolva, sendo original, com solução pulo do gato, sem ser genérico (seja preciso. Diga exatamente o que deve ser feito):
+
+                      
                         7. **Cronograma:** Cronograma de anúncios em formato de fluxograma. Seja estratégico com o fluxo de uma forma que otimize os resultados. Você é um especialista bem analítico em marketing digital.
 
                         """
-                    ads_output = client.models.generate_content(
+                    cron_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[prompt_ads]).text
+                        contents=[prompt_cron]).text
 
 
                      
 
 
-                        # Exibe os resultados na interface
+                    # Exibe os resultados na interface
                     st.header('Brainstorming de Anúncios')
-                    st.markdown(ads_output)
+                    st.header('Mote de Campanha')
+                    st.markdown(mote_output)
+                    st.header('Imagem a ser utilizada')
+                    st.markdown(imagem_output)
+                    st.header('Tipografia')
+                    st.markdown(tipografia_output)
+                    st.header('Cores')
+                    st.markdown(cores_output)
+                    st.header('Elementos Gráficos')
+                    st.markdown(grafs_output)
+                    st.header('Descrição a ser utilizada')
+                    st.markdown(desc_output)
+                    st.header('Cronograma')
+                    st.markdown(cron_output)
                   
 
                         # Salva o planejamento no MongoDB
