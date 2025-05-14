@@ -301,5 +301,4 @@ def planej_campanhas():
                     st.markdown(cron_output)
                   
 
-                        # Salva o planejamento no MongoDB
-                    save_to_mongo_ads(ads_output, nome_cliente)
+         
