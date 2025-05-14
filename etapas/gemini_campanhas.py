@@ -71,6 +71,7 @@ def planej_campanhas():
     
     start_date = st.date_input("Data de Início:", key="start_date")
     end_date = st.date_input("Data de Fim:", key="end_date")
+    obs = st.text_area("Observações de ajuste")
 
     if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
         st.subheader("Anúncio gerado")
@@ -95,6 +96,7 @@ def planej_campanhas():
                     - Data de início: {start_date}
                     - Data fim: {end_date}
                     - Plataforma: {platform}
+                    - Observação de ajuste para a saída: {obs}
                   
                         
                         
@@ -125,7 +127,7 @@ def planej_campanhas():
                     - Data fim: {end_date}
                     - Plataforma: {platform}
                     - Mote de campanha : {mote_output}
-                  
+                    - Observação de ajuste para a saída: {obs}
                         
                         
                         
@@ -152,7 +154,7 @@ def planej_campanhas():
                     - Plataforma: {platform}
                     - Mote de campanha : {mote_output}
                     - Imagem a ser usada: {imagem_output}
-                  
+                    - Observação de ajuste para a saída: {obs}
                         
                         
                         
@@ -180,7 +182,7 @@ def planej_campanhas():
                     - Mote de campanha : {mote_output}
                     - Imagem a ser usada: {imagem_output}
                     - Tipografia: {tipografia_output}
-                  
+                    - Observação de ajuste para a saída: {obs}
                         
                         
                         
@@ -207,7 +209,7 @@ def planej_campanhas():
                     - Imagem a ser usada: {imagem_output}
                     - Tipografia: {tipografia_output}
                     - Cores: {cores_output}
-                  
+                    - Observação de ajuste para a saída: {obs}
                         
                         
                         
@@ -236,7 +238,7 @@ def planej_campanhas():
                     - Tipografia: {tipografia_output}
                     - Cores: {cores_output}
                     - Elementos gráficos: {grafs_output}
-                  
+                    - Observação de ajuste para a saída: {obs}
                         
                         
                         
@@ -265,7 +267,7 @@ def planej_campanhas():
                     - Cores: {cores_output}
                     - Elementos gráficos: {grafs_output}
                     - Descrição: {desc_output}
-                  
+                    - Observação de ajuste para a saída: {obs}
                         
                         
                         
