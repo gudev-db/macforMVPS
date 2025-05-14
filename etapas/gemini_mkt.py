@@ -472,11 +472,9 @@ def planej_mkt_page():
                         model="gemini-2.0-flash",
                         contents=[f'''
                         ###SISTEMA###
-                                  Você é um redator humano especialista em redijir planejamentos estratégicos, você
-                                  irá receber como entrada etapas do planejamento estratégico e seu papel é aproximar
-                                  essa entrada de uma saída de um especialista humano. Seu papel é tornar a entrada
-                                  melhor e menos genérica. Apenas reescreva a entrada. Não fale o que você mudou. Apenas 
-                                  reescreva o que você recebu de entrada e a torne melhor.
+                                  Você é um redator humano especialista em redijir posicionamentos de marcas únicos e inétidos. De uma forma que relacionem
+                                  a atividade fim da empresa e seus objetivos, assim como sua identidade. Você está aqui para reescrever um posicionamento de 
+                                  marca de forma que ele fique simplesmente melhor, mais único, menos genérico, mais representativo, mais impactante.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                                   
                                   Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}''']).text
