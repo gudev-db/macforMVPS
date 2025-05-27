@@ -3,7 +3,6 @@ from google import genai
 from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 import uuid
 import os
-from pymongo import MongoClient
 from datetime import datetime
 import os
 import requests
@@ -83,7 +82,7 @@ def nn_gen():
 
 
   
-    if pest_files is not None:
+    if 1==1:
         if "relatorio_gerado" in st.session_state and st.session_state.relatorio_gerado:
             st.subheader("Relatório Gerado")
             for tarefa in st.session_state.resultados_tarefas:
@@ -102,72 +101,7 @@ def nn_gen():
                     with st.spinner('Gerando o planejamento...'):
 
                         model_id = "gemini-2.0-flash"
-
-                        google_search_tool = Tool(
-                            google_search = GoogleSearch()
-                        )
-                        
-                        # Agente de pesquisa política
-                        pls = client.models.generate_content(
-                            model=model_id,
-                            contents="Faça uma pesquisa sobre notícias políticas recentes sobre o Brasil",
-                            config=GenerateContentConfig(
-                                tools=[google_search_tool],
-                                response_modalities=["TEXT"],
-                            )
-                        )
-                        
-                        # Agente de pesquisa econômica do Brasil
-                        dados_econ_brasil = client.models.generate_content(
-                            model=model_id,
-                            contents="Faça uma pesquisa sobre dados econômicos recentes sobre o Brasil",
-                            config=GenerateContentConfig(
-                                tools=[google_search_tool],
-                                response_modalities=["TEXT"],
-                            )
-                        )
-                        
-                        # Agente de notícias sobre concorrentes
-                        novids_conc = client.models.generate_content(
-                            model=model_id,
-                            contents=f"Faça uma pesquisa sobre as notícias mais recentes sobre os concorrentes: {concorrentes}",
-                            config=GenerateContentConfig(
-                                tools=[google_search_tool],
-                                response_modalities=["TEXT"],
-                            )
-                        )
-
-                        # Agente de pesquisa Social
-                        tend_social_duck = client.models.generate_content(
-                            model=model_id,
-                            contents="Pesquise sobre novidades no âmbito social brasileiro",
-                            config=GenerateContentConfig(
-                                tools=[google_search_tool],
-                                response_modalities=["TEXT"],
-                            )
-                        )
-                        
-                        # Agente de pesquisa tecnológica
-                        tec = client.models.generate_content(
-                            model=model_id,
-                            contents=f'''Pesquise novidades tecnológicas no ramo de atuação: {ramo_atuacao}''',
-                            config=GenerateContentConfig(
-                                tools=[google_search_tool],
-                                response_modalities=["TEXT"],
-                            )
-                        )
-
-
-
-
-
-                       
-
-
-
-
-
-                      
+          
 
                         base_prompt = f'''
                         Como especialista em administração de marketing com 20 anos de experiência, crie uma análise SWOT EXTREMAMENTE detalhada e específica para:
