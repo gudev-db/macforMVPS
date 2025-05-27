@@ -193,6 +193,7 @@ def nn_gen():
                         current_prompt = base_prompt
                         swot_history = []  
                         prompt_history = []
+                        prompt_history.append(base_prompt)
                         
                         for i in range(iteracoes_swot):
                             with st.spinner(f'Gerando análise SWOT (iteração {i+1}/{iteracoes_swot})...'):
@@ -238,14 +239,12 @@ def nn_gen():
                         
                         SWOT_output = current_swot
                         
-                        # Opcional: Mostrar evolução se desejar
-                        
+                        st.header("Output History")
                         for idx, version in enumerate(swot_history):
                             st.subheader(f'Iteração {idx+1}')
                             st.write(version)
 
-                        # Opcional: Mostrar evolução se desejar
-                        
+                        st.header("Prompt History")
                         for idx, version in enumerate(prompt_history):
                             st.subheader(f'Iteração {idx+1}')
                             st.write(version)
