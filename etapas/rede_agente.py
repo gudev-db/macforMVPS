@@ -239,16 +239,16 @@ def nn_gen():
                         SWOT_output = current_swot
                         
                         # Opcional: Mostrar evolução se desejar
-                        if st.checkbox('Mostrar histórico de refinamento do output'):
-                            for idx, version in enumerate(swot_history):
-                                st.subheader(f'Iteração {idx+1}')
-                                st.write(version)
+                        
+                        for idx, version in enumerate(swot_history):
+                            st.subheader(f'Iteração {idx+1}')
+                            st.write(version)
 
                         # Opcional: Mostrar evolução se desejar
-                        if st.checkbox('Mostrar histórico de refinamento do prompt'):
-                            for idx, version in enumerate(prompt_history):
-                                st.subheader(f'Iteração {idx+1}')
-                                st.write(version)
+                        
+                        for idx, version in enumerate(prompt_history):
+                            st.subheader(f'Iteração {idx+1}')
+                            st.write(version)
                         
 
 
