@@ -170,24 +170,17 @@ def nn_gen():
                       
 
                         base_prompt = f'''
-                        Como especialista em administração de marketing com 20 anos de experiência, crie uma análise SWOT EXTREMAMENTE detalhada e específica para:
-                        - Cliente: {nome_cliente}
-                        - Ramo: {ramo_atuacao}
-                        - Objetivos: {objetivos_de_marca}
-                        - Definição de sucesso: {sucesso}
-                        
-                        Contexto adicional da marca:
-                        {referencia_da_marca}
-                        
-                        Requisitos:
-                        1. 10 pontos em CADA quadrante (Forças, Fraquezas, Oportunidades, Ameaças)
-                        2. Cada ponto deve ter:
-                           - 3-5 frases de análise profunda
-                           - Dados concretos quando possível
-                           - Conexão clara com os objetivos do cliente
-                        3. Linguagem profissional em português BR
-                        4. Evitar generalizações - focar em aspectos ÚNICOS deste negócio
-                        5. Organizar em bullets claros por quadrante
+                        - não seja genérico
+                        - traga impacto com seu output
+                        - você é um especialista em administração de marketing; Você tem todo o conhecimento possível comparavel à Simon Sinek
+                        - Você está aqui para fazer a diferença
+                        - considerando os objetivos de marca ({objetivos_de_marca})
+                        - seja único. una o que torna o cliente {nome_cliente} de diferente em relação ao resto.
+
+                        Como um especialista em administração de marketing, gere um Golden Circle completo com 'how', 'why' e 'what' resumidos 
+                                    em uma frase cada. Considerando e sintetizando de forma perspicaz o seguinte contexto 
+                                     e o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
+                                    {referencia_da_marca}
                         '''
                         
                         current_prompt = base_prompt
