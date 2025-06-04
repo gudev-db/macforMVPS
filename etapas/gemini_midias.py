@@ -4,10 +4,17 @@ import uuid
 import os
 from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 from pymongo import MongoClient
+from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
+
 
 # Configuração do Gemini API
 gemini_api_key = os.getenv("GEM_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
+model_id = "gemini-2.0-flash"
+
+google_search_tool = Tool(
+    google_search = GoogleSearch()
+)
 
 
 
@@ -164,16 +171,12 @@ def planej_midias_page():
 
                         
 
-                        model_id = "gemini-2.0-flash"
-
-                        google_search_tool = Tool(
-                            google_search = GoogleSearch()
-                        )
+                       
                         
                         # Agente de pesquisa de concorrentes
                         concorrentes_out = client.models.generate_content(
                             model=model_id,
-                            contents="Faça uma pesquisa sobre a empresa {concorrentes}",
+                            contents=f"Faça uma pesquisa sobre a empresa {concorrentes}",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
@@ -182,7 +185,7 @@ def planej_midias_page():
 
                         tendencias_out = client.models.generate_content(
                             model=model_id,
-                            contents="Faça uma pesquisa sobre a empresa {tendaux}",
+                            contents=f"Faça uma pesquisa sobre as tendências de {tendaux}",
                             config=GenerateContentConfig(
                                 tools=[google_search_tool],
                                 response_modalities=["TEXT"],
@@ -192,11 +195,19 @@ def planej_midias_page():
                         prompt_kv = f"""
                         Defina o Key Visual para a marca {nome_cliente}, levando em consideração os seguintes pontos:
 
+                        ############BEGIN INPUT DATA FOR KEY VISUAL################
+
                         - O ramo de atuação da empresa: {ramo_atuacao}.
                         - O intuito estratégico do plano de marketing: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
                         - A referência da marca: {referencia_da_marca}.
                         - Objetivos de marca: {objetivos_de_marca}
+                        - Notícias sobre a concorrência: {concorrentes_out}
+                        - Tendências estratégicas: {tendencias_out}
+
+                        ###########END INPUT DATA FOR KEY VISUAL##################
+
+                        #########BEGIN ESTRUTURA KEY VISUAL###############
                         
                         O Key Visual deve ser a representação visual central para campanhas de marketing, refletindo a identidade da marca e ressoando com o público-alvo. Ele deve ser aplicável em diferentes materiais de comunicação, como anúncios, redes sociais, e embalagens.
                         
@@ -213,10 +224,11 @@ def planej_midias_page():
                         
                         4. **Elementos Gráficos:** Defina quais elementos gráficos, como formas, ícones ou texturas, são fundamentais para compor o Key Visual. Justifique a escolha desses elementos em relação à consistência da identidade visual e à relevância para o público-alvo.
 
+                        ########END ESTRUTURA KEY VISUAL###############
                         """
 
                         kv_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_kv]).text
 
                         prompt_kv_aval = f"""
@@ -251,7 +263,7 @@ def planej_midias_page():
 
 
                         kv_output_final = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''Considerando a avaliação do Key Visual
                                   
                                   
@@ -282,6 +294,8 @@ def planej_midias_page():
                         prompt_estrategia_conteudo_inst = f"""
                        Crie uma estratégia de conteúdo detalhada para {nome_cliente}, considerando:
 
+                       #########BEGIN INPUT DATA FOR CONTENT STRATEGY##############
+
                         - O ramo de atuação: {ramo_atuacao}.
                         - O intuito estratégico do plano: {intuito_plano}.
                         - O público-alvo: {publico_alvo}.
@@ -290,6 +304,8 @@ def planej_midias_page():
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         - O Key Visual : {kv_output_final}
                         - Objetivos de marca: {objetivos_de_marca}
+
+                      ##########END INPUT DATA FOR CONTENT STRATEGY#################
                         
                         Crie o pilar institucional do conteúdo
 
@@ -327,16 +343,28 @@ def planej_midias_page():
                         contents=[prompt_estrategia_conteudo_inst_guias]).text
 
                         estrategia_conteudo_output_inst = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_inst_guias}##
-                                  Reescreva o pilar institucional de estratégia de conteúdo a seguir.
+                            model='gemini-2.0-flash',
+                            contents=[f'''Dado os guias de melhorias
+                                ##{estrategia_conteudo_output_inst_guias}##
+                                Reescreva o pilar institucional de estratégia de conteúdo a seguir.
 
-                                  ##{estrategia_conteudo_output_inst1}##
+                                ##{estrategia_conteudo_output_inst1}##
 
-                                  Apenas escreva uma nova estratégia de conteudo - pilar institucional. Não aponte o que você mudou
-                                   ''']).text
+                                Apenas escreva uma nova estratégia de conteudo - pilar institucional. Não aponte o que você mudou
+                                '''],
+                            config=types.GenerateContentConfig(
+                                tools=[types.Tool(
+                                    google_search_retrieval=types.GoogleSearchRetrieval(
+                                        dynamic_retrieval_config=types.DynamicRetrievalConfig(
+                                            mode=types.DynamicRetrievalConfigMode.MODE_DYNAMIC,
+                                            dynamic_threshold=0.6
+                                        )
+                                    )
+                                )]
+                            )
+                        ).text
 
+                       
 
 
                         #Etapa pilar inspiração
@@ -387,15 +415,28 @@ def planej_midias_page():
                         contents=[prompt_estrategia_conteudo_insp_guias]).text
 
                         estrategia_conteudo_output_insp = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_insp_guias}##
-                                  Reescreva o pilar de inspiração de estratégia de conteúdo a seguir.
+                            model='gemini-2.0-flash',
+                            contents=[f'''Dado os guias de melhorias
+                                ##{estrategia_conteudo_output_insp_guias}##
+                                Reescreva o pilar de inspiração de estratégia de conteúdo a seguir.
 
-                                  ##{estrategia_conteudo_output_insp1}##
+                                ##{estrategia_conteudo_output_insp1}##
 
-                                  Apenas escreva uma nova estratégia de conteudo - pilar inspiração. Não aponte o que você mudou
-                                   ''']).text
+                                Apenas escreva uma nova estratégia de conteudo - pilar inspiração. Não aponte o que você mudou
+                                '''],
+                            config=types.GenerateContentConfig(
+                                tools=[types.Tool(
+                                    google_search_retrieval=types.GoogleSearchRetrieval(
+                                        dynamic_retrieval_config=types.DynamicRetrievalConfig(
+                                            mode=types.DynamicRetrievalConfigMode.MODE_DYNAMIC,
+                                            dynamic_threshold=0.6
+                                        )
+                                    )
+                                )]
+                            )
+                        ).text
+                                        
+
 
                         #Etapa de estratégia de geração de conteúdo - pilar educação
                         prompt_estrategia_conteudo_edu = f"""
