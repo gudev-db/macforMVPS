@@ -4,7 +4,7 @@ import uuid
 import os
 from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 from pymongo import MongoClient
-from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
+from google.genai import types
 
 
 # Configuração do Gemini API
