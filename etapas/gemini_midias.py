@@ -343,7 +343,7 @@ def planej_midias_page():
                         contents=[prompt_estrategia_conteudo_inst_guias]).text
 
                         estrategia_conteudo_output_inst = client.models.generate_content(
-                            model='gemini-2.0-flash',
+                            model='gemini-1.5-flash',
                             contents=[f'''Dado os guias de melhorias
                                 ##{estrategia_conteudo_output_inst_guias}##
                                 Reescreva o pilar institucional de estratégia de conteúdo a seguir.
@@ -415,7 +415,7 @@ def planej_midias_page():
                         contents=[prompt_estrategia_conteudo_insp_guias]).text
 
                         estrategia_conteudo_output_insp = client.models.generate_content(
-                            model='gemini-2.0-flash',
+                            model='gemini-1.5-flash',
                             contents=[f'''Dado os guias de melhorias
                                 ##{estrategia_conteudo_output_insp_guias}##
                                 Reescreva o pilar de inspiração de estratégia de conteúdo a seguir.
