@@ -72,9 +72,8 @@ def planejamento_campanha_page():
         
         nome_campanha = st.text_input("Nome da Campanha*", help="Ex: Lançamento Relatório de Sustentabilidade 2024")
         data_evento = st.date_input("Data do Evento/Lançamento*")
-        objetivo_principal = st.text_area("Objetivo Principal*", help="O que a campanha precisa alcançar?")
+        objetivo_principal = st.text_area("Briefing*", help="O que a campanha precisa alcançar?")
         publico_alvo = st.text_area("Público-Alvo*", help="Quem queremos atingir? Descreva detalhadamente")
-        metricas = st.text_area("Métricas de Sucesso*", help="Como vamos medir o sucesso? Quais KPIs?")
         orcamento = st.number_input("Orçamento Total (R$)*", min_value=0)
         frentes_atuacao = st.multiselect("Frentes de Atuação*", 
                                         ["Redes Sociais", "Mídias Pagas", "E-mail Marketing", 
@@ -91,12 +90,12 @@ def planejamento_campanha_page():
             with st.spinner('Criando planejamento de campanha...'):
                 # Construindo o contexto base
                 contexto_base = f"""
-                **Contexto**: Holambra é uma cooperativa com forte atuação no agronegócio, conhecida por sua produção de flores e plantas ornamentais, com compromisso com sustentabilidade e inovação.
+                **Contexto**: Holambra é uma cooperativa com forte atuação no agronegócio, conhecida por sua produção de flores e plantas ornamentais, com compromisso com sustentabilidade e inovação. Não há qualquer relação com as flores holambra ou a cidade. Se trata apenas da cooperativa agroindustrial.
 
                 **Briefing da Campanha**:
                 - Nome: {nome_campanha}
                 - Data: {data_evento}
-                - Objetivo: {objetivo_principal}
+                - Briefing: {objetivo_principal}
                 - Público-Alvo: {publico_alvo}
                 - Orçamento: R${orcamento:,.2f}
                 - Frentes: {", ".join(frentes_atuacao)}
