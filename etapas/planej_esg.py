@@ -39,7 +39,7 @@ def save_to_mongo(briefing, estrategia_geral, midias_pagas, email_marketing, ass
     collection.insert_one(task_outputs)
     st.success(f"Planejamento de campanha salvo com sucesso! ID: {id_planejamento}")
 
-def generate_section(prompt, section_name, model="gemini-2.0-flash"):
+def generate_section(prompt, section_name, model="gemini-1.5-flash"):
     """Função auxiliar para gerar seções específicas com prompts segmentados"""
     try:
         response = client.models.generate_content(
