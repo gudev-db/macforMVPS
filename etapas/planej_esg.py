@@ -20,7 +20,7 @@ def gerar_id_planejamento():
     return str(uuid.uuid4())
 
 # Função para salvar no MongoDB
-def save_to_mongo(briefing, estrategia_geral, midias_pagas, email_marketing, assessoria_imprensa, endomarketing, metricas, nome_campanha):
+def save_to_mongo(briefing, estrategia_geral, midias_pagas, email_marketing, assessoria_imprensa, endomarketing,  nome_campanha):
     id_planejamento = gerar_id_planejamento()
     
     task_outputs = {
@@ -34,7 +34,6 @@ def save_to_mongo(briefing, estrategia_geral, midias_pagas, email_marketing, ass
         "email_marketing": email_marketing,
         "assessoria_imprensa": assessoria_imprensa,
         "endomarketing": endomarketing,
-        "metricas": metricas
     }
 
     collection.insert_one(task_outputs)
@@ -84,7 +83,7 @@ def planejamento_campanha_page():
         submitted = st.form_submit_button("Gerar Planejamento")
     
     if submitted:
-        if not nome_campanha or not objetivo_principal or not publico_alvo or not metricas:
+        if not nome_campanha or not objetivo_principal or not publico_alvo:
             st.error("Por favor, preencha todos os campos obrigatórios (*)")
         else:
             with st.spinner('Criando planejamento de campanha...'):
@@ -323,7 +322,6 @@ def planejamento_campanha_page():
                             "data_evento": str(data_evento),
                             "objetivo": objetivo_principal,
                             "publico_alvo": publico_alvo,
-                            "metricas": metricas,
                             "orcamento": orcamento,
                             "frentes": frentes_atuacao,
                             "informacoes_adicionais": informacoes_adicionais
