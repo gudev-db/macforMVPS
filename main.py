@@ -20,6 +20,7 @@ from etapas.gemini_trend import gerar_trend
 from etapas.seo_gemini import seo_page
 from etapas.gemini_redes import planej_redes_page
 from etapas.rede_agente import nn_gen
+from etapas.planej_esg import planejamento_campanha_page
 
 st.set_page_config(
     layout="wide",
@@ -138,7 +139,8 @@ if login():
                 "Selecione uma opção",
                 "Planejamento de Pesquisa e Estratégia",
                 "Pesquisa de Tendências",
-                "Geração de prompt"
+                "Geração de prompt",
+                "Geração de Planejamento Específico"
             ]
         )
 
@@ -149,6 +151,8 @@ if login():
                 pesquisa()
             elif pesquisa_estrategia == "Geração de prompt":
                 nn_gen()
+            elif pesquisa_estrategia == "Geração de Planejamento Específico":
+                planejamento_campanha_page()
 
     # Seção para "Cliente"
     elif selecao_sidebar == "CRM":
