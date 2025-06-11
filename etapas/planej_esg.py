@@ -40,6 +40,18 @@ def save_to_mongo(briefing, estrategia_geral, midias_pagas, email_marketing, ass
     collection.insert_one(task_outputs)
     st.success(f"Planejamento de campanha salvo com sucesso! ID: {id_planejamento}")
 
+def generate_section(prompt, section_name, model="gemini-2.0-flash"):
+    """Função auxiliar para gerar seções específicas com prompts segmentados"""
+    try:
+        response = client.models.generate_content(
+            model=model,
+            contents=[prompt]
+        )
+        return response.text
+    except Exception as e:
+        st.error(f"Erro ao gerar a seção {section_name}: {str(e)}")
+        return f"Erro na geração desta seção. Por favor, tente novamente."
+
 def planejamento_campanha_page():
     st.title("Planejamento de Campanha para Holambra")
     st.markdown("""
@@ -77,8 +89,8 @@ def planejamento_campanha_page():
             st.error("Por favor, preencha todos os campos obrigatórios (*)")
         else:
             with st.spinner('Criando planejamento de campanha...'):
-                # Construindo o prompt completo
-                prompt_briefing = f"""
+                # Construindo o contexto base
+                contexto_base = f"""
                 **Contexto**: Holambra é uma cooperativa com forte atuação no agronegócio, conhecida por sua produção de flores e plantas ornamentais, com compromisso com sustentabilidade e inovação.
 
                 **Briefing da Campanha**:
@@ -86,105 +98,151 @@ def planejamento_campanha_page():
                 - Data: {data_evento}
                 - Objetivo: {objetivo_principal}
                 - Público-Alvo: {publico_alvo}
-                - Métricas: {metricas}
                 - Orçamento: R${orcamento:,.2f}
                 - Frentes: {", ".join(frentes_atuacao)}
                 - Informações Adicionais: {informacoes_adicionais}
-
-                **Instruções**:
-                Como especialista em marketing digital com foco no agronegócio, crie um planejamento de campanha completo para Holambra considerando:
-                1. As melhores práticas de marketing digital
-                2. As especificidades do setor agrícola e do público de Holambra
-                3. O briefing fornecido
-                4. Destaque especialmente a defesa de mídias pagas quando aplicável
-                5. Considere diferentes níveis de orçamento quando relevante
-
-                Retorne o planejamento com as seguintes seções:
                 """
 
-                # Geração das seções do planejamento
-                estrategia_geral = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=[f"""
-                    {prompt_briefing}
-                    
-                    **Estratégia Geral de Campanha**:
-                    - Desenvolva uma estratégia integrada considerando o briefing
-                    - Destaque o posicionamento de marca
-                    - Proponha uma narrativa central
-                    - Defina os pilares da campanha
-                    - Considere o timing e fases da campanha
-                    """]
-                ).text
+                # 1. Estratégia Geral (segmentada em partes menores)
+                estrategia_geral = {
+                    "posicionamento": generate_section(
+                        f"{contexto_base}\n\nDesenvolva o posicionamento de marca para esta campanha, considerando:\n"
+                        "- Tom de voz\n- Valores a serem destacados\n- Diferenciais competitivos\n- Como queremos ser percebidos pelo público",
+                        "Posicionamento de Marca"
+                    ),
+                    "narrativa": generate_section(
+                        f"{contexto_base}\n\nCrie a narrativa central da campanha com:\n"
+                        "- Storytelling principal\n- Mensagens-chave\n- Arco narrativo\n- Conexão emocional com o público",
+                        "Narrativa Central"
+                    ),
+                    "pilares": generate_section(
+                        f"{contexto_base}\n\nDefina 3-5 pilares estratégicos para esta campanha, cada um com:\n"
+                        "- Nome do pilar\n- Objetivo específico\n- Como será implementado\n- Recursos necessários",
+                        "Pilares da Campanha"
+                    ),
+                    "cronograma": generate_section(
+                        f"{contexto_base}\n\nCrie um cronograma detalhado com:\n"
+                        "- Fases da campanha (pré-lançamento, lançamento, pós-lançamento)\n"
+                        "- Datas importantes\n- Atividades por fase\n- Responsáveis sugeridos",
+                        "Cronograma"
+                    )
+                }
 
-                midias_pagas = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=[f"""
-                    {prompt_briefing}
-                    
-                    **Plano de Mídias Pagas** (defenda fortemente esta frente quando aplicável):
-                    - Plataformas recomendadas (Meta Ads, Google Ads, LinkedIn etc.)
-                    - Estratégia de segmentação detalhada
-                    - Tipos de anúncios recomendados
-                    - Proposta de investimento (considerando diferentes cenários de orçamento)
-                    - Argumentos para justificar o investimento em mídia paga
-                    - Previsão de resultados
-                    """]
-                ).text
+                # 2. Mídias Pagas (se aplicável)
+                midias_pagas = {}
+                if "Mídias Pagas" in frentes_atuacao:
+                    midias_pagas = {
+                        "plataformas": generate_section(
+                            f"{contexto_base}\n\nRecomendação de plataformas de mídia paga:\n"
+                            "- Plataformas mais adequadas\n- Justificativa para cada escolha\n"
+                            "- % sugerido do orçamento para cada plataforma",
+                            "Plataformas de Mídia Paga"
+                        ),
+                        "segmentacao": generate_section(
+                            f"{contexto_base}\n\nEstratégia de segmentação detalhada:\n"
+                            "- Públicos-alvo por plataforma\n- Interesses e comportamentos\n"
+                            "- Parâmetros demográficos\n- Lookalike audiences sugeridas",
+                            "Segmentação de Mídia Paga"
+                        ),
+                        "formatos": generate_section(
+                            f"{contexto_base}\n\nFormatos de anúncio recomendados:\n"
+                            "- Tipos de anúncio por plataforma\n- Especificações técnicas\n"
+                            "- Melhores práticas para cada formato\n- Exemplos criativos",
+                            "Formatos de Anúncio"
+                        ),
+                        "investimento": generate_section(
+                            f"{contexto_base}\n\nProposta de investimento:\n"
+                            "- Distribuição por plataforma\n- Cenários de orçamento\n"
+                            "- ROI esperado\n- Argumentos para justificar o investimento",
+                            "Investimento em Mídia Paga"
+                        )
+                    }
 
-                email_marketing = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=[f"""
-                    {prompt_briefing}
-                    
-                    **Estratégia de E-mail Marketing**:
-                    - Proposta de régua de e-mails
-                    - Segmentação da base
-                    - Conteúdo dos e-mails
-                    - Cronograma de disparos
-                    - Métricas específicas para acompanhamento
-                    """]
-                ).text
+                # 3. E-mail Marketing (se aplicável)
+                email_marketing = {}
+                if "E-mail Marketing" in frentes_atuacao:
+                    email_marketing = {
+                        "segmentacao": generate_section(
+                            f"{contexto_base}\n\nSegmentação para e-mail marketing:\n"
+                            "- Divisão da base\n- Critérios de segmentação\n- Personas por segmento",
+                            "Segmentação de E-mail"
+                        ),
+                        "conteudo": generate_section(
+                            f"{contexto_base}\n\nConteúdo dos e-mails:\n"
+                            "- Assuntos sugeridos\n- Estrutura do conteúdo\n- Chamadas para ação\n"
+                            "- Elementos visuais recomendados\n- Personalização sugerida",
+                            "Conteúdo de E-mail"
+                        ),
+                        "cronograma": generate_section(
+                            f"{contexto_base}\n\nCronograma de disparos:\n"
+                            "- Frequência\n- Timing em relação ao evento\n- Gatilhos para automação",
+                            "Cronograma de E-mails"
+                        )
+                    }
 
-                assessoria_imprensa = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=[f"""
-                    {prompt_briefing}
-                    
-                    **Estratégia de Assessoria de Imprensa**:
-                    - Proposta de release (estrutura e ângulos)
-                    - Lista de veículos e jornalistas a abordar
-                    - Sugestão de pautas adicionais
-                    - Cronograma de divulgação
-                    """]
-                ).text
+                # 4. Assessoria de Imprensa (se aplicável)
+                assessoria_imprensa = {}
+                if "Assessoria de Imprensa" in frentes_atuacao:
+                    assessoria_imprensa = {
+                        "release": generate_section(
+                            f"{contexto_base}\n\nEstrutura do release:\n"
+                            "- Ângulo principal\n- Destaques\n- Citações sugeridas\n"
+                            "- Dados para incluir\n- Contatos para a imprensa",
+                            "Release de Imprensa"
+                        ),
+                        "veiculos": generate_section(
+                            f"{contexto_base}\n\nLista de veículos e jornalistas:\n"
+                            "- Veículos prioritários\n- Jornalistas especializados\n"
+                            "- Bloggers/influencers relevantes\n- Mídias trade",
+                            "Lista de Veículos"
+                        ),
+                        "pautas": generate_section(
+                            f"{contexto_base}\n\nPautas adicionais:\n"
+                            "- Ideias de pautas derivadas\n- Opiniões de especialistas\n"
+                            "- Casos de sucesso relacionados\n- Dados estatísticos relevantes",
+                            "Pautas Adicionais"
+                        )
+                    }
 
-                endomarketing = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=[f"""
-                    {prompt_briefing}
-                    
-                    **Ações de Endomarketing**:
-                    - Ideias para engajamento interno
-                    - Proposta de comunicação com colaboradores
-                    - Ativações criativas
-                    - Cronograma de ações
-                    """]
-                ).text
+                # 5. Endomarketing (se aplicável)
+                endomarketing = {}
+                if "Endomarketing" in frentes_atuacao:
+                    endomarketing = {
+                        "engajamento": generate_section(
+                            f"{contexto_base}\n\nEstratégia de engajamento interno:\n"
+                            "- Formas de envolver os colaboradores\n- Programas de embaixadores\n"
+                            "- Reconhecimento e recompensas\n- Comunicação interna",
+                            "Engajamento Interno"
+                        ),
+                        "acoes": generate_section(
+                            f"{contexto_base}\n\nAções de endomarketing:\n"
+                            "- Eventos internos\n- Treinamentos\n- Materiais de comunicação\n"
+                            "- Ativações criativas\n- Feedback dos colaboradores",
+                            "Ações de Endomarketing"
+                        )
+                    }
 
-                metricas_detalhadas = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=[f"""
-                    {prompt_briefing}
-                    
-                    **Detalhamento de Métricas e ROI**:
-                    - Métricas por frente de atuação
-                    - Metas específicas
-                    - Como mensurar cada KPI
-                    - Projeção de ROI
-                    - Ferramentas de acompanhamento recomendadas
-                    """]
-                ).text
+                # 6. Métricas Detalhadas
+                metricas_detalhadas = {
+                    "por_frente": generate_section(
+                        f"{contexto_base}\n\nMétricas por frente de atuação:\n"
+                        "- KPIs específicos para cada canal\n- Metas quantitativas\n"
+                        "- Benchmarks do setor\n- Periodicidade de medição",
+                        "Métricas por Frente"
+                    ),
+                    "ferramentas": generate_section(
+                        f"{contexto_base}\n\nFerramentas de acompanhamento:\n"
+                        "- Plataformas de analytics\n- Dashboards recomendados\n"
+                        "- Relatórios automatizados\n- Integrações sugeridas",
+                        "Ferramentas de Métricas"
+                    ),
+                    "roi": generate_section(
+                        f"{contexto_base}\n\nProjeção de ROI:\n"
+                        "- Cálculos esperados\n- Cenários otimista/realista/conservador\n"
+                        "- Valor do cliente ao longo do tempo\n- Métricas de eficiência",
+                        "Projeção de ROI"
+                    )
+                }
 
                 # Exibição dos resultados
                 st.success("Planejamento gerado com sucesso!")
@@ -198,27 +256,65 @@ def planejamento_campanha_page():
                 - **Orçamento**: R${orcamento:,.2f}
                 """)
                 
+                # Estratégia Geral
                 st.subheader("🎯 Estratégia Geral")
-                st.markdown(estrategia_geral)
+                with st.expander("Posicionamento de Marca"):
+                    st.markdown(estrategia_geral["posicionamento"])
+                with st.expander("Narrativa Central"):
+                    st.markdown(estrategia_geral["narrativa"])
+                with st.expander("Pilares da Campanha"):
+                    st.markdown(estrategia_geral["pilares"])
+                with st.expander("Cronograma Detalhado"):
+                    st.markdown(estrategia_geral["cronograma"])
                 
+                # Mídias Pagas
                 if "Mídias Pagas" in frentes_atuacao:
                     st.subheader("📢 Mídias Pagas")
-                    st.markdown(midias_pagas)
+                    with st.expander("Plataformas Recomendadas"):
+                        st.markdown(midias_pagas["plataformas"])
+                    with st.expander("Estratégia de Segmentação"):
+                        st.markdown(midias_pagas["segmentacao"])
+                    with st.expander("Formatos de Anúncio"):
+                        st.markdown(midias_pagas["formatos"])
+                    with st.expander("Investimento e ROI"):
+                        st.markdown(midias_pagas["investimento"])
                 
+                # E-mail Marketing
                 if "E-mail Marketing" in frentes_atuacao:
                     st.subheader("✉️ E-mail Marketing")
-                    st.markdown(email_marketing)
+                    with st.expander("Segmentação e Personas"):
+                        st.markdown(email_marketing["segmentacao"])
+                    with st.expander("Conteúdo dos E-mails"):
+                        st.markdown(email_marketing["conteudo"])
+                    with st.expander("Cronograma de Disparos"):
+                        st.markdown(email_marketing["cronograma"])
                 
+                # Assessoria de Imprensa
                 if "Assessoria de Imprensa" in frentes_atuacao:
                     st.subheader("📰 Assessoria de Imprensa")
-                    st.markdown(assessoria_imprensa)
+                    with st.expander("Release de Imprensa"):
+                        st.markdown(assessoria_imprensa["release"])
+                    with st.expander("Veículos e Jornalistas"):
+                        st.markdown(assessoria_imprensa["veiculos"])
+                    with st.expander("Pautas Adicionais"):
+                        st.markdown(assessoria_imprensa["pautas"])
                 
+                # Endomarketing
                 if "Endomarketing" in frentes_atuacao:
                     st.subheader("🏢 Endomarketing")
-                    st.markdown(endomarketing)
+                    with st.expander("Engajamento Interno"):
+                        st.markdown(endomarketing["engajamento"])
+                    with st.expander("Ações Específicas"):
+                        st.markdown(endomarketing["acoes"])
                 
+                # Métricas
                 st.subheader("📊 Métricas Detalhadas")
-                st.markdown(metricas_detalhadas)
+                with st.expander("Métricas por Frente"):
+                    st.markdown(metricas_detalhadas["por_frente"])
+                with st.expander("Ferramentas de Acompanhamento"):
+                    st.markdown(metricas_detalhadas["ferramentas"])
+                with st.expander("Projeção de ROI"):
+                    st.markdown(metricas_detalhadas["roi"])
                 
                 # Botão para salvar no MongoDB
                 if st.button("💾 Salvar Planejamento"):
@@ -234,10 +330,10 @@ def planejamento_campanha_page():
                             "informacoes_adicionais": informacoes_adicionais
                         },
                         estrategia_geral=estrategia_geral,
-                        midias_pagas=midias_pagas if "Mídias Pagas" in frentes_atuacao else "Não aplicável",
-                        email_marketing=email_marketing if "E-mail Marketing" in frentes_atuacao else "Não aplicável",
-                        assessoria_imprensa=assessoria_imprensa if "Assessoria de Imprensa" in frentes_atuacao else "Não aplicável",
-                        endomarketing=endomarketing if "Endomarketing" in frentes_atuacao else "Não aplicável",
+                        midias_pagas=midias_pagas if "Mídias Pagas" in frentes_atuacao else {},
+                        email_marketing=email_marketing if "E-mail Marketing" in frentes_atuacao else {},
+                        assessoria_imprensa=assessoria_imprensa if "Assessoria de Imprensa" in frentes_atuacao else {},
+                        endomarketing=endomarketing if "Endomarketing" in frentes_atuacao else {},
                         metricas=metricas_detalhadas,
                         nome_campanha=nome_campanha
                     )
