@@ -478,7 +478,7 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                                   
                                   Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}]).text
-                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.''']
+                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.'''])
 
                          # Avaliador de Posicionamento
                         posicionamento_guides = client.models.generate_content(
