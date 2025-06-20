@@ -107,7 +107,7 @@ def exibir_subsecoes(selecao_sidebar):
    
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
-    # Sidebar para escolher entre "Pesquisa e Estratégia", "Cliente", "Midias/Redes" e "Documentos Salvos"
+    # Sidebar para escolher entre "Pesquisa e Estratégia", "Cliente", "Midias/Redes"
     selecao_sidebar = st.sidebar.radio(
         "Escolha a seção:",
         [
@@ -117,7 +117,7 @@ if login():
             
             "SEO",
             "Briefing",
-            "Documentos Salvos"
+         
         ],
         index=0  # Predefinir como 'Pesquisa e Estratégia' ativo
     )
@@ -209,26 +209,6 @@ if login():
         st.sidebar.subheader("Desenvolver documento de Briefing")
         briefing()
 
-    # Seção para "Documentos Salvos"
-    elif selecao_sidebar == "Documentos Salvos":
-        st.sidebar.subheader("Visualizar Documentos Salvos")
 
-        # Obter a lista de documentos salvos
-        documentos_salvos = visualizar_planejamentos()  # Deve retornar [{"id": 1, "conteudo": "Texto 1"}, ...]
 
-        if documentos_salvos:
-            # Criar um selectbox para selecionar o documento pelo ID
-            doc_ids_salvos = [doc["id"] for doc in documentos_salvos]
-            doc_selecionado_id_salvo = st.sidebar.selectbox(
-                "Selecione o documento salvo pelo ID:",
-                ["Selecione um ID"] + doc_ids_salvos,
-                index=0
-            )
-
-            # Exibir o conteúdo do documento selecionado
-            if doc_selecionado_id_salvo != "Selecione um ID":
-                documento_selecionado_salvo = next(doc for doc in documentos_salvos if doc["id"] == doc_selecionado_id_salvo)
-                st.markdown("## Documento Salvo Selecionado")
-                st.text_area("Conteúdo do Documento", documento_selecionado_salvo["conteudo"], height=300)
-        else:
-            st.info("Nenhum documento salvo disponível no momento.")
+       
