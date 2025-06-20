@@ -471,6 +471,7 @@ def planej_midias_page():
                         - notícias sobre concorrente que precisamos superar: {concorrentes_out}
                         - O Key Visual : {kv_output_final}
                         - Objetivos de marca: {objetivos_de_marca}
+                        Ações como webinars, simpósios e whitepapers são esperadas, mas não inovadoras no ABM. A visão de longo prazo está mais focada em execução técnica do que em construção de ativos de marca.
                         
 
                         Crie o pilar produtos/serviços da estratégia de conteúdo
@@ -495,6 +496,7 @@ def planej_midias_page():
                         - Você não gosta de genericidade
                         - Você está aqui para apontar falhas de conteúdo que o tornam genéricos e amplos demais.
                         - Você preza por textos concisos
+                        Ações como webinars, simpósios e whitepapers são esperadas, mas não inovadoras no ABM. A visão de longo prazo está mais focada em execução técnica do que em construção de ativos de marca.
 
                        Dada a seguinte estratégia de conteúdo de Produtos e Serviços
                        ## {estrategia_conteudo_output_prod1} ##
@@ -512,6 +514,7 @@ def planej_midias_page():
                         contents=[f'''Dado os guias de melhorias
                                   ##{estrategia_conteudo_output_prod_guias}##
                                   Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
+                        Ações como webinars, simpósios e whitepapers são esperadas, mas não inovadoras no ABM. A visão de longo prazo está mais focada em execução técnica do que em construção de ativos de marca.
 
                                   ##{estrategia_conteudo_output_prod1}##
 
@@ -540,6 +543,9 @@ def planej_midias_page():
                            - Canal: Sugira canais onde o engajamento direto com o público seja mais efetivo.
                         
                         Inclua também sugestões de formatos, como blogs, vídeos, webinars, posts interativos, etc.
+                        Ações como webinars, simpósios e whitepapers são esperadas, mas não inovadoras no ABM. A visão de longo prazo está mais focada em execução técnica do que em construção de ativos de marca.
+
+Então, o planejamento cumpre bem sua função como base operacional e/ou apoio tático. Porém, carece de profundidade, repertório criativo e visão estratégica mais ousada e com correlações.
 
                         """
 
@@ -570,7 +576,9 @@ def planej_midias_page():
                         estrategia_conteudo_output_rel = client.models.generate_content(
                         model="gemini-1.5-flash",
                         contents=[f'''Dado os guias de melhorias
-                                  ##{estrategia_conteudo_output_rel_guias}##
+                                  ##{estrategia_conteudo_output_rel_guias} As ideias são corretas, mas previsíveis. Ações como webinars, simpósios e whitepapers são esperadas, mas não inovadoras no ABM. A visão de longo prazo está mais focada em execução técnica do que em construção de ativos de marca.
+
+Então, o planejamento cumpre bem sua função como base operacional e/ou apoio tático. Porém, carece de profundidade, repertório criativo e visão estratégica mais ousada e com correlações.##
                                   Reescreva o pilar de relacionamento do pilar de estratégia de conteúdo a seguir.
 
                                   ##{estrategia_conteudo_output_rel1}##
