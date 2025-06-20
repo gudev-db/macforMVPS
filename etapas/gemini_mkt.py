@@ -308,7 +308,7 @@ def planej_mkt_page():
 
 
 
-                        prompt_concorrencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
+                        prompt_concorrencias = f'''Redija uma análise de concorrência sobre {concorrentes}. Esse deve ser seu principal foco.
                                     
                                     
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -317,6 +317,7 @@ def planej_mkt_page():
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Tenha um olhar sob a ótica de marketing, que é o foco de nossa empresa.
                                     Veja como {nome_cliente} pode se destacar em contraponto ao(s) concorrente(s) sob uma ótica estratégica de marketing. Traga impacto nas suas análises. Você é um especialista e está aqui para liderar nossos processos.
                                     -  Se não houver nenhuma informação sobre a concorrência (se nenhum concorrente for listado), mantenha esse campo em branco. Você não deve inventar informações.
+                                    - O
 
 '''
 
