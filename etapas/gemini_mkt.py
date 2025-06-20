@@ -477,8 +477,8 @@ def planej_mkt_page():
                                   marca de forma que ele fique simplesmente melhor, mais único, menos genérico, mais representativo, mais impactante.
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                                   
-                                  Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}''']).text
-
+                                  Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}]).text
+                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.'''
 
                          # Avaliador de Posicionamento
                         posicionamento_guides = client.models.generate_content(
@@ -519,6 +519,8 @@ def planej_mkt_page():
                                     -Defina seu gênero, faixa de idade, qual a sua bagagem, defina sua personalidade. 
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
                                     -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?
+
+                                    -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
                                     
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?'''
                   
@@ -529,7 +531,8 @@ def planej_mkt_page():
 
                         brand_persona_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}''']).text
+                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}.                                     -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
+''']).text
 
                         brand_persona_talk = client.models.generate_content(
                         model="gemini-2.0-flash",
@@ -543,6 +546,7 @@ def planej_mkt_page():
                                     nome fictício, idade, gênero, classe social, objetivos,  vontades, Emoções negativas (o que lhe traz anseio, aflinge, etc), Emoções positivas,
                                     quais são suas dores, quais são suas objeções, quais são seus resultados dos sonhos,
                                     suas metas e objetivos e qual o seu canal favorito (entre facebook, instagram, whatsapp, youtube ou linkedin), em português brasileiro. 
+                                     -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
 
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?
                                     '''
@@ -554,7 +558,7 @@ def planej_mkt_page():
 
                         buyer_persona_talk = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f''' Com base no buyer pesona: {buyer_persona_output}, redija exemplos de fala para ela''']).text
+                        contents=[f''' Com base no buyer pesona: {buyer_persona_output}, redija exemplos de fala para ela. ''']).text
 
 
                         prompt_tom = f'''Descrição do tom de voz, incluindo nuvem de palavras e palavras proibidas. Levando em conta o ramo de atuação: ({ramo_atuacao}), o brand persona: ({brand_persona_output})
