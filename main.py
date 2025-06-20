@@ -4,7 +4,6 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import os
 import streamlit as st
 from etapas.gemini_mkt import planej_mkt_page
-from tools.retrieve import visualizar_planejamentos  # Importando a função visualizar_planejamentos
 from tavily import TavilyClient
 from etapas.gemini_midias import planej_midias_page
 from etapas.gemini_crm import planej_crm_page
@@ -105,11 +104,7 @@ def exibir_subsecoes(selecao_sidebar):
         st.subheader("3. Geração de Imagens")
         st.text("Dê vida ao seu conteúdo visual com ideias de imagens geradas com base em uma descrição detalhada do que deseja comunicar.")
 
-    elif selecao_sidebar == "Documentos Salvos":
-        st.header("Documentos Salvos")
-        st.text("Aqui você pode visualizar, editar e organizar todos os documentos gerados ao longo do processo. "
-                "Essa área é essencial para manter o controle de todas as estratégias e materiais criados, facilitando o acesso e a edição desses conteúdos quando necessário.")
-
+   
 # Verifique se o login foi feito antes de exibir o conteúdo
 if login():
     # Sidebar para escolher entre "Pesquisa e Estratégia", "Cliente", "Midias/Redes" e "Documentos Salvos"
