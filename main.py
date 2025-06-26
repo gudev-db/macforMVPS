@@ -135,7 +135,7 @@ if login():
                 "Planejamento de Pesquisa e Estratégia",
                 "Pesquisa de Tendências",
                 "Geração de prompt",
-                "Geração de Planejamento Específico"
+                
             ]
         )
 
@@ -146,8 +146,7 @@ if login():
                 pesquisa()
             elif pesquisa_estrategia == "Geração de prompt":
                 nn_gen()
-            elif pesquisa_estrategia == "Geração de Planejamento Específico":
-                planejamento_campanha_page()
+            
 
     # Seção para "Cliente"
     elif selecao_sidebar == "CRM":
