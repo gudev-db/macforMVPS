@@ -10,6 +10,11 @@ from pymongo import MongoClient
 import requests
 
 
+
+rapid_key = os.getenv("RAPID_API")
+
+
+
 exp_golden = '''
 
 Comunique seu 'porquê' aos seus clientes
@@ -473,7 +478,7 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                                   
                                   Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}]).text
-                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.'''
+                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.'''])
 
                          # Avaliador de Posicionamento
                         posicionamento_guides = client.models.generate_content(
@@ -503,7 +508,7 @@ def planej_mkt_page():
                         
 
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
-                                    seguinte contexto. Lembre que a brand persona é uma persona representativa da marca e da forma como ela se apresenta para o cliente.
+                                    seguinte contexto. Lembre que a brand persona é uma persona representativa da marca e da forma como ela se apresenta para o cliente. Ela deve ter o nome de uma pessoa comum. Ela é uma PESSOA que representa a marca.
                                     
                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
@@ -515,7 +520,7 @@ def planej_mkt_page():
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
                                     -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?
 
-                                    -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
+                                    -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas. Incorpore esses pontos na construção das personas.
                                     
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?'''
                   
@@ -526,7 +531,8 @@ def planej_mkt_page():
 
                         brand_persona_output = client.models.generate_content(
                         model="gemini-2.0-flash",
-                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}.                                     -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
+                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela seja uma pessoa que realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}.                                     
+                        -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
 ''']).text
 
                         brand_persona_talk = client.models.generate_content(
