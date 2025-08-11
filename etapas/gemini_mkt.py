@@ -10,9 +10,6 @@ from pymongo import MongoClient
 import requests
 
 
-
-
-
 exp_golden = '''
 
 Comunique seu 'porquê' aos seus clientes
@@ -152,7 +149,9 @@ def planej_mkt_page():
     # Se os arquivos PDF forem carregados
     pest_files = st.file_uploader("Escolha arquivos de PDF para referência de mercado", type=["pdf"], accept_multiple_files=True)
 
-
+        # Set parameters for the search
+    days = 90
+    max_results = 15
 
 
   
@@ -174,7 +173,7 @@ def planej_mkt_page():
                 else:
                     with st.spinner('Gerando o planejamento...'):
 
-                        model_id = "gemini-1.5-flash"
+                        model_id = "gemini-2.0-flash"
 
                         google_search_tool = Tool(
                             google_search = GoogleSearch()
@@ -256,11 +255,11 @@ def planej_mkt_page():
 
                         
                         pre_SWOT_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_SWOT]).text
 
                         SWOT_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
                                   Você é um redator humano especialista em redijir planejamentos estratégicos, você
@@ -274,7 +273,7 @@ def planej_mkt_page():
                         
                         # Avaliador SWOT
                         SWOT_guides = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
                                   Você é um expert em analisar análises SWOT e apontar como elas podem melhorar. Você não inventa informações e se trouxer números, traz o link da fonte.
@@ -285,7 +284,7 @@ def planej_mkt_page():
                                   se tornar menos amadora:{SWOT_output}''']).text
                         
                         SWOT_final = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                    ###SISTEMA###
                                   Você é um redator humano especialista em redijir planejamentos estratégicos, você
@@ -304,7 +303,7 @@ def planej_mkt_page():
 
 
 
-                        prompt_concorrencias = f'''Redija uma análise de concorrência sobre {concorrentes}. Esse deve ser seu principal foco.
+                        prompt_concorrencias = f'''Assumindo o papel um especialista em administração de marketing, extraia todo o conhecimento existente sobre marketing em um nível extremamente aprofundado., -
                                     
                                     
                                     - considerando o que a marca considera como sucesso em ({sucesso}) e os objetivos de marca ({objetivos_de_marca})
@@ -313,12 +312,11 @@ def planej_mkt_page():
                                     explicado. Não seja superficial. Seja detalhista, comunicativo, aprofundado, especialista. Tenha um olhar sob a ótica de marketing, que é o foco de nossa empresa.
                                     Veja como {nome_cliente} pode se destacar em contraponto ao(s) concorrente(s) sob uma ótica estratégica de marketing. Traga impacto nas suas análises. Você é um especialista e está aqui para liderar nossos processos.
                                     -  Se não houver nenhuma informação sobre a concorrência (se nenhum concorrente for listado), mantenha esse campo em branco. Você não deve inventar informações.
-                                    - O
 
 '''
 
                         concorrencias_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_concorrencias]).text
 
                        
@@ -335,11 +333,11 @@ def planej_mkt_page():
                         
 
                         pre_PEST_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_PEST]).text
 
                         PEST_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                             ###SISTEMA###
                                   Você é um redator humano especialista em redijir planejamentos estratégicos, você
@@ -355,7 +353,7 @@ def planej_mkt_page():
 
                          # Avaliador PEST
                         PEST_guides = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
                                   Você é um expert em analisar análises PEST e apontar como elas podem melhorar. Você deve encontrar falhas na redação e ver como ela pode
@@ -366,7 +364,7 @@ def planej_mkt_page():
                                   e melhor reidijido :{PEST_output}''']).text
                         
                         PEST_final = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                    ###SISTEMA###
                                   Você é um redator humano especialista em redijir planejamentos estratégicos, você
@@ -401,11 +399,11 @@ def planej_mkt_page():
                       
 
                         pre_golden_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_golden]).text
 
                         golden_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                         ###SISTEMA###
                                   Você é um redator humano especialista em redijir planejamentos estratégicos, você
@@ -462,11 +460,11 @@ def planej_mkt_page():
                   
 
                         pre_posicionamento_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_posicionamento]).text
 
                         posicionamento_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                         ###SISTEMA###
                                   Você é um redator humano especialista em redijir posicionamentos de marcas únicos e inétidos. De uma forma que relacionem
@@ -475,11 +473,11 @@ def planej_mkt_page():
                                   ###FIM DAS DIRETRIZES DE SISTEMA###
                                   
                                   Reescreva o seguinte posicionamento de marca menos genérico, de melhor qualidade, com mais impacto: {pre_posicionamento_output}]).text
-                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.'''])
+                                Você precisa fazer com que o posicionamento de marca torne a empresa {nome_cliente} de fato 'dono' do posicionamento.'''
 
                          # Avaliador de Posicionamento
                         posicionamento_guides = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                   ###SISTEMA###
                                   Você é um expert em analisar posicionamento de marca e apontar como elas podem melhorar. Você não inventa informações e se trouxer números, traz o link da fonte.
@@ -489,7 +487,7 @@ def planej_mkt_page():
                                   e melhor reidijido:{posicionamento_output}''']).text
                         
                         posicionamento_final = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f'''
                                    ###SISTEMA###
                                   Você é um redator humano especialista em redijir planejamentos estratégicos, você
@@ -505,7 +503,7 @@ def planej_mkt_page():
                         
 
                         prompt_brand_persona = f'''2 Brand Personas detalhada, alinhada com a marca do {nome_cliente} que é do setor de atuação {ramo_atuacao} em português brasileiro considerando o 
-                                    seguinte contexto. Lembre que a brand persona é uma persona representativa da marca e da forma como ela se apresenta para o cliente. Ela deve ter o nome de uma pessoa comum. Ela é uma PESSOA que representa a marca.
+                                    seguinte contexto. Lembre que a brand persona é uma persona representativa da marca e da forma como ela se apresenta para o cliente.
                                     
                                     o objetivo do planejamento estratégico {intuito_plano},e a referência da marca:
                                     {referencia_da_marca},. 
@@ -517,23 +515,22 @@ def planej_mkt_page():
                                     -Defina suas características: possui filhos? É amigável? quais seus objetivos? qual seu repertório? O que gosta de fazer?
                                     -Comunicação: Como se expressa? Qual o seu tom? Qual o seu linguajar?
 
-                                    -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas. Incorpore esses pontos na construção das personas.
+                                    -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
                                     
                                     Crie exemplos práticos de aplicação das personas também. Como essa persona interage? Que decisões toma? Como é a comunicação dela? Que tipos de post ela faria? Como ela escreve?'''
                   
 
                         pre_brand_persona_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_brand_persona]).text
 
                         brand_persona_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
-                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela seja uma pessoa que realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}.                                     
-                        -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
+                        model="gemini-2.0-flash",
+                        contents=[f'''Considere a seguinte Brand Persona, faça com que ela realmente represente a marca, aproxime-a de uma persona que representa a marca {nome_cliente}, ela não deve ser um buyer persona, ela deve ser um brand persona, aproxime-a do conceito de BRAND PERSONA: {pre_brand_persona_output}.                                     -apresente demonstração de escuta ativa ou dados primários que justifiquem as escolhas estratégicas. Traga dores que não sejam superficiais. aprofunde no “por que” das personas.
 ''']).text
 
                         brand_persona_talk = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f''' Com base no brand pesona: {brand_persona_output}, redija exemplos de fala para ela''']).text
 
                         prompt_buyer_persona = f'''
@@ -551,11 +548,11 @@ def planej_mkt_page():
                   
 
                         buyer_persona_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_buyer_persona]).text
 
                         buyer_persona_talk = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[f''' Com base no buyer pesona: {buyer_persona_output}, redija exemplos de fala para ela. ''']).text
 
 
@@ -573,7 +570,7 @@ def planej_mkt_page():
                   
 
                         tom_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.0-flash",
                         contents=[prompt_tom]).text
 
                         #Printando Tarefas
