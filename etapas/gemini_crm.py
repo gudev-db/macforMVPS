@@ -47,7 +47,7 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
 
     
     output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt]).text
 
     for _ in range(nivel_detalhamento - 1):
@@ -59,7 +59,7 @@ def gerar_fluxo_etapa(nome_cliente, ramo_atuacao, referencia_da_marca, objetivo_
         Veja cada um dos pontos e aprofunde mais, e mais, e mais,
         detalhe mais, e mais, e mais. Saia do macro e vá para o micro. Detalhe cada ação. Faça um plano de conteúdo para essa etapa. Detalhe e explique o que deve ser feito com uma estratégia de conteúdo a nível de cronograma.'''
         output += "\n" + client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_aprofundamento]).text
     return output
 
