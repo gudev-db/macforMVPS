@@ -185,7 +185,7 @@ def planej_redes_page():
             st.error("Por favor, selecione pelo menos uma rede social para o planejamento.")
         else:
             with st.spinner('Gerando o planejamento de mídias...'):
-                model_id = "gemini-2.0-flash"
+                model_id = "gemini-2.5-flash"
                 google_search_tool = Tool(google_search = GoogleSearch())
                 
                 # Agente de pesquisa de concorrentes
