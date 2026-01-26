@@ -139,7 +139,7 @@ def planej_campanhas():
                      
                         """
                     imagem_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_imagem]).text
 
                     prompt_tipografia = f"""
@@ -166,7 +166,7 @@ def planej_campanhas():
                      
                         """
                     tipografia_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_tipografia]).text
 
                     prompt_cores = f"""
@@ -192,7 +192,7 @@ def planej_campanhas():
                       
                         """
                     cores_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_cores]).text
 
                     prompt_grafs = f"""
@@ -220,7 +220,7 @@ def planej_campanhas():
                        
                         """
                     grafs_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_grafs]).text
 
                     prompt_desc = f"""
@@ -248,7 +248,7 @@ def planej_campanhas():
 
                         """
                     desc_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_desc]).text
 
                     prompt_cron = f"""
@@ -278,7 +278,7 @@ def planej_campanhas():
 
                         """
                     cron_output = client.models.generate_content(
-                        model="gemini-2.0-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_cron]).text
 
 
