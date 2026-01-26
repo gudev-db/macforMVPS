@@ -185,7 +185,7 @@ def seo_page():
                         """
 
                         seop_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_palavras_chave]).text
 
                         prompt_palavras_chave = f"""
@@ -207,7 +207,7 @@ def seo_page():
                         """
 
                         seos_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_palavras_chave]).text
 
                         prompt_palavras_chave = f"""
@@ -229,7 +229,7 @@ def seo_page():
                         """
 
                         teds_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_palavras_chave]).text
 
                         prompt_palavras_chave = f"""
@@ -251,7 +251,7 @@ def seo_page():
                         """
 
                         sugest_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_palavras_chave]).text
 
                         prompt_palavras_chave = f"""
@@ -273,7 +273,7 @@ def seo_page():
                         """
 
                         estr_output = client.models.generate_content(
-                        model="gemini-1.5-flash",
+                        model="gemini-2.5-flash",
                         contents=[prompt_palavras_chave]).text
                         
 
