@@ -7,7 +7,7 @@ from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 gemini_api_key = os.getenv("GEM_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
 
-model_id = "gemini-2.0-flash"
+model_id = "gemini-2.5-flash"
 
 google_search_tool = Tool(
     google_search=GoogleSearch()
@@ -125,7 +125,7 @@ def gerar_trend():
                 
                 # Gerar o conteúdo com o modelo
                 resultado_trend = client.models.generate_content(
-                    model="gemini-2.0-flash",
+                    model="gemini-2.5-flash",
                     contents=[prompt]
                 ).text
 
