@@ -23,11 +23,12 @@ from etapas.planej_esg import planejamento_campanha_page
 
 st.set_page_config(
     layout="wide",
-    page_title="Macfor AutoDoc",
+    page_title="Agente de Planejamento",
     page_icon="static/page-icon.png"
 )
 
 st.image('static/macLogo.png', width=300)
+st.title('Agente de Planejamento')
 st.text(
         "Empoderada por IA, a Macfor conta com um sistema gerador de documentos "
         "automatizado movido por agentes de inteligência artificial. Preencha os campos abaixo "
@@ -211,3 +212,4 @@ if login():
 
 
        
+
