@@ -40,7 +40,7 @@ gemini_api_key = os.getenv("GEM_API_KEY")
 client = genai.Client(api_key=gemini_api_key)
 
 # Inicializa o modelo Gemini
-modelo_linguagem = "gemini-1.5-flash"  # Usando Gemini
+modelo_linguagem = "gemini-2.5-flash"  # Usando Gemini
 
 
 
