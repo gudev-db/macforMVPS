@@ -164,7 +164,7 @@ def planej_midias_page():
 
                         
 
-                        model_id = "gemini-2.0-flash"
+                        model_id = "gemini-2.5-flash"
 
                         google_search_tool = Tool(
                             google_search = GoogleSearch()
